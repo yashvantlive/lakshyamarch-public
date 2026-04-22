@@ -1,0 +1,25 @@
+{
+  "name": "LakshyaMarch ERP",
+  "short_name": "LakshyaMarch",
+  "description": "Premium ERP for Coaching & School Management — Begusarai's #1 Institute.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "orientation": "portrait",
+  "categories": ["education", "productivity"]
+}
