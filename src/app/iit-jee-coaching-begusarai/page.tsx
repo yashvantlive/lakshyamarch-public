@@ -39,9 +39,16 @@ export default function IITJEECoachingPage() {
             <h3>Our JEE Programs</h3>
             <ul>
               <li><strong>Two-Year Foundation Course (Class 11):</strong> Ideal for early starters wanting to build a strong base.</li>
-              <li><strong>One-Year Target Course (Class 12):</strong> Intensive preparation managing both Boards and JEE.</li>
-              <li><strong>Dropper/Repeater Batch:</strong> A rigorous 1-year program focused purely on cracking JEE with a top rank.</li>
+              <li><strong>Target Batch (Droppers):</strong> Intensive preparation with a focus on problem-solving and speed.</li>
             </ul>
+
+            <h3>Frequently Asked Questions</h3>
+            <p><strong>Q: Why is LakshyaMarch the best for IIT-JEE in Begusarai?</strong><br/>
+            A: With an elite faculty pool, high-quality study materials, and rigorous mock tests aligned with NTA standards, we provide the best ecosystem for JEE aspirants in Begusarai.</p>
+            <p><strong>Q: When do the new JEE batches start for Begusarai students?</strong><br/>
+            A: New batches for class 11th, 12th, and droppers commence in April and June. Register early via our Admission portal.</p>
+            <p><strong>Q: Can average students clear IIT-JEE studying here?</strong><br/>
+            A: Yes. We focus on building fundamentals from the ground up and provide personalized doubt-clearing sessions to ensure every student succeeds.</p>
 
             <div className={styles.bottomCta}>
               <h3>Don't compromise on your IIT dream</h3>

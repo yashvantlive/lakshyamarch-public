@@ -39,9 +39,16 @@ export default function NEETCoachingPage() {
             <h3>Our NEET Programs</h3>
             <ul>
               <li><strong>Two-Year Foundation Course (Class 11):</strong> Step-by-step preparation covering Class 11 and 12 syllabus comprehensively.</li>
-              <li><strong>One-Year Target Course (Class 12):</strong> Fast-tracked syllabus completion with rigorous revision modules.</li>
-              <li><strong>Dropper/Repeater Batch:</strong> Dedicated batches for repeaters focusing entirely on NEET rank improvement.</li>
+              <li><strong>Target Batch (Droppers):</strong> Intensive preparation with rigorous testing and doubt clearing.</li>
             </ul>
+
+            <h3>Frequently Asked Questions</h3>
+            <p><strong>Q: Is LakshyaMarch good for NEET coaching in Begusarai?</strong><br/>
+            A: Yes, it is the top choice. We have specialized batches strictly adhering to the latest NTA NEET syllabus, ensuring maximum selections from the Begusarai area.</p>
+            <p><strong>Q: Do you provide NCERT based study material?</strong><br/>
+            A: Absolutely. Our study material is meticulously designed to cover every single concept, diagram, and summary of the NCERT Biology, Physics, and Chemistry textbooks.</p>
+            <p><strong>Q: How frequent are the mock tests?</strong><br/>
+            A: We conduct minor tests every 15 days and major full-syllabus tests monthly to benchmark your performance on a national level.</p>
 
             <div className={styles.bottomCta}>
               <h3>Secure your White Coat!</h3>

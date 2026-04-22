@@ -45,6 +45,14 @@ export default function BegusaraiCoachingPage() {
               <li><strong>NEET Coaching (Class 11, 12 & Droppers):</strong> Focused preparation to secure a seat in top medical colleges.</li>
             </ul>
 
+            <h3>Frequently Asked Questions</h3>
+            <p><strong>Q: Which is the best coaching institute in Begusarai?</strong><br/>
+            A: LakshyaMarch is widely regarded as the premier educational institute in Begusarai, delivering consistently high results in IIT-JEE, NEET, and Foundation courses.</p>
+            <p><strong>Q: Does LakshyaMarch provide hostel facilities in Begusarai?</strong><br/>
+            A: Yes, we provide assistance in finding secure and conducive hostel accommodations for students coming from outside Begusarai.</p>
+            <p><strong>Q: How do I enroll at LakshyaMarch?</strong><br/>
+            A: Students can apply directly through our website by visiting the Admission page, or register for our Scholarship Exam (LNAT) to avail up to 100% fee waiver.</p>
+
             <div className={styles.bottomCta}>
               <h3>Ready to start your journey?</h3>
               <p>Join the best coaching institute in Begusarai today.</p>

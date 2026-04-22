@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next';
 import { BLOG_POSTS } from '@/lib/blogData';
 import { SUCCESS_STORIES } from '@/lib/stories';
+import { districtData } from '@/lib/districtData';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://lakshyamarch.com';
@@ -45,5 +46,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticRoutes, ...blogRoutes, ...storyRoutes];
+  const seoRoutes: MetadataRoute.Sitemap = [];
+  districtData.forEach((district) => {
+    const dSlug = district.english.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    seoRoutes.push({ url: `${baseUrl}/${dSlug}-coaching`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 });
+    seoRoutes.push({ url: `${baseUrl}/iit-jee-coaching-${dSlug}`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 });
+    seoRoutes.push({ url: `${baseUrl}/neet-coaching-${dSlug}`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 });
+
+    district.blocks.forEach((block) => {
+      const bSlug = block.english.split('/')[0].trim().toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      seoRoutes.push({ url: `${baseUrl}/${bSlug}-coaching`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 });
+      seoRoutes.push({ url: `${baseUrl}/iit-jee-coaching-${bSlug}`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 });
+      seoRoutes.push({ url: `${baseUrl}/neet-coaching-${bSlug}`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 });
+    });
+  });
+
+  return [...staticRoutes, ...blogRoutes, ...storyRoutes, ...seoRoutes];
 }

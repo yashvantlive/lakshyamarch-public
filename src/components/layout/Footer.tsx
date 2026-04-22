@@ -152,11 +152,34 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Popular Locations (SEO) */}
+        <div className={styles.locationsRow}>
+          <h4 className={styles.locationsTitle}>Top Coaching Centers in Bihar:</h4>
+          <div className={styles.locationsLinks}>
+            <Link href="/khagaria-coaching">Khagaria Coaching</Link>
+            <span className={styles.dot}>•</span>
+            <Link href="/iit-jee-coaching-khagaria">IIT-JEE Khagaria</Link>
+            <span className={styles.dot}>•</span>
+            <Link href="/neet-coaching-khagaria">NEET Khagaria</Link>
+            <span className={styles.dot}>•</span>
+            <Link href="/samastipur-coaching">Samastipur Coaching</Link>
+            <span className={styles.dot}>•</span>
+            <Link href="/iit-jee-coaching-samastipur">IIT-JEE Samastipur</Link>
+            <span className={styles.dot}>•</span>
+            <Link href="/neet-coaching-samastipur">NEET Samastipur</Link>
+            <span className={styles.dot}>•</span>
+            <Link href="/lakhisarai-coaching">Lakhisarai Coaching</Link>
+            <span className={styles.dot}>•</span>
+            <Link href="/iit-jee-coaching-lakhisarai">IIT-JEE Lakhisarai</Link>
+            <span className={styles.dot}>•</span>
+            <Link href="/neet-coaching-lakhisarai">NEET Lakhisarai</Link>
+          </div>
+        </div>
+
         <div className={styles.bottom}>
           <div className={styles.legalLinks}>
             <Link href="/privacy-policy">Privacy Policy</Link>
             <Link href="/terms">Terms & Conditions</Link>
-            <Link href="https://admin.lakshyamarch.com" target="_blank" className={styles.teamLogin}>Team Login</Link>
           </div>
           <div className={styles.copyInfo}>
             <p className={styles.copyText}>&copy; {currentYear} {INSTITUTE.name}. All rights reserved.</p>
