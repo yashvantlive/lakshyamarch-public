@@ -1,85 +1,32 @@
-import React from 'react';
-import { INSTITUTE, PROGRAMS } from '@/lib/siteData';
-import styles from './Programs.module.css';
+import type { Metadata } from "next";
+import ProgramsClient from "@/components/public/ProgramsClient";
+import FaqSchema from "@/components/seo/FaqSchema";
 
-export const metadata = {
-  title: `Our Programs | ${INSTITUTE.name}`,
-  description: `Explore our Schooling and Coaching programs for JEE, NEET, and Board Exams at ${INSTITUTE.name}.`,
+export const metadata: Metadata = {
+  title: "Academic Programs 2026-2027 | Schooling & Coaching",
+  description:
+    "Explore our integrated schooling (Class 6-10) and competitive coaching (JEE/NEET) programs. Designed for academic excellence and balanced growth in Begusarai.",
+  keywords: ["Integrated Schooling", "IIT-JEE Coaching", "NEET Preparation", "Foundation Batches", "2-Year JEE Program", "Dropper Batch Begusarai"],
+  openGraph: {
+    title: "Academic Programs | LakshyaMarch Begusarai",
+    description: "Integrated Schooling and Competitive Coaching programs in Begusarai.",
+    type: "website",
+  },
 };
+
+const programFaqs = [
+  { q: "What programs does LakshyaMarch offer?", a: "LakshyaMarch offers two main wings: (1) LM Integrated School — Class 6 to 10 with combined board + foundation coaching, and (2) Coaching Wing — IIT-JEE, NEET-UG, Foundation (Class 7-10), and Dropper batches." },
+  { q: "What is the LM Integrated School model?", a: "LM Integrated School combines regular CBSE/ICSE curriculum with IIT-JEE/NEET foundation coaching under one roof. Students attend school 8 AM to 2 PM, get built-in self-study time, and don't need separate coaching — saving time and money." },
+  { q: "Is there a dropper batch at LakshyaMarch?", a: "Yes, dedicated 1-Year Dropper Batches are available for both JEE Main+Advanced and NEET-UG. These start in May 2026 with intensive revision, test series, and personalized doubt sessions." },
+  { q: "What is the timing of LakshyaMarch coaching?", a: "LM Integrated School runs from 8 AM to 2 PM. Coaching batches have flexible timings. The institute operates all days, 8 AM – 7 PM." },
+  { q: "How many batches are available?", a: "LakshyaMarch offers 15+ batches across both wings — School (Class 6-10, 5 batches), Foundation Coaching (Class 7-10, 4 batches), JEE (3 batches), NEET (3 batches), and Dropper (2 batches)." },
+];
 
 export default function ProgramsPage() {
   return (
-    <div className={styles.programsPage}>
-      <div className={styles.hero}>
-        <div className={styles.heroContent}>
-          <h1 className={styles.title}>Academic <span className={styles.highlight}>Programs</span></h1>
-          <p className={styles.subtitle}>Comprehensive education solutions designed for your success. Choose between our Integrated School and Dedicated Coaching wings.</p>
-        </div>
-      </div>
-
-      <section id="school" className={styles.wingSection}>
-        <div className={styles.container}>
-          <div className={styles.wingHeader}>
-            <div className={styles.iconBox}>🏫</div>
-            <div>
-              <h2 className={styles.wingTitle}>{PROGRAMS.school.name}</h2>
-              <p className={styles.wingTagline}>{PROGRAMS.school.tagline}</p>
-            </div>
-          </div>
-          <p className={styles.wingDesc}>{PROGRAMS.school.description}</p>
-          
-          <h3 className={styles.batchTitle}>Available Batches (2026-27)</h3>
-          <div className={styles.grid}>
-            {PROGRAMS.school.batches.map(batch => (
-              <div key={batch.id} className={styles.batchCard}>
-                <h4 className={styles.batchName}>{batch.name}</h4>
-                <p className={styles.batchTarget}>{batch.target}</p>
-                <div className={styles.batchDetails}>
-                  <div className={styles.detailRow}>
-                    <span>Starts:</span> <strong>{batch.startDate}</strong>
-                  </div>
-                  <div className={styles.detailRow}>
-                    <span>Mode:</span> <strong>{batch.type}</strong>
-                  </div>
-                </div>
-                <a href={`/admission?batch=${batch.id}`} className={styles.applyBtn}>Apply Now</a>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="coaching" className={`${styles.wingSection} ${styles.altBg}`}>
-        <div className={styles.container}>
-          <div className={styles.wingHeader}>
-            <div className={styles.iconBox}>🎯</div>
-            <div>
-              <h2 className={styles.wingTitle}>{PROGRAMS.coaching.name}</h2>
-              <p className={styles.wingTagline}>{PROGRAMS.coaching.tagline}</p>
-            </div>
-          </div>
-          <p className={styles.wingDesc}>{PROGRAMS.coaching.description}</p>
-          
-          <h3 className={styles.batchTitle}>Available Batches (2026-27)</h3>
-          <div className={styles.grid}>
-            {PROGRAMS.coaching.batches.map(batch => (
-              <div key={batch.id} className={styles.batchCard}>
-                <h4 className={styles.batchName}>{batch.name}</h4>
-                <p className={styles.batchTarget}>{batch.target}</p>
-                <div className={styles.batchDetails}>
-                  <div className={styles.detailRow}>
-                    <span>Starts:</span> <strong>{batch.startDate}</strong>
-                  </div>
-                  <div className={styles.detailRow}>
-                    <span>Mode:</span> <strong>{batch.type}</strong>
-                  </div>
-                </div>
-                <a href={`/admission?batch=${batch.id}`} className={styles.applyBtn}>Apply Now</a>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    </div>
+    <>
+      <FaqSchema faqs={programFaqs} />
+      <ProgramsClient />
+    </>
   );
 }

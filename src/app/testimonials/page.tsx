@@ -1,47 +1,44 @@
-import React from 'react';
-import { INSTITUTE } from '@/lib/siteData';
-import { SUCCESS_STORIES } from '@/lib/stories';
-import Link from 'next/link';
-import styles from './Testimonials.module.css';
+import type { Metadata } from "next";
+import TestimonialsClient from "./TestimonialsClient";
+import { INSTITUTE } from "@/lib/siteData";
 
-export const metadata = {
-  title: `Testimonials | ${INSTITUTE.name}`,
-  description: `Hear from the students and parents of ${INSTITUTE.name} about their experience and journey.`,
+export const metadata: Metadata = {
+  title: "Student Reviews & Testimonials | LakshyaMarch Begusarai",
+  description:
+    "Read real success stories and reviews from students of LakshyaMarch Education Begusarai. See why we are the highest-rated coaching for JEE and NEET.",
+  keywords: [
+    "LakshyaMarch reviews",
+    "coaching testimonials Begusarai",
+    "student feedback LakshyaMarch",
+    "best JEE coaching reviews",
+    "NEET result testimonials Bihar",
+  ],
+  alternates: { canonical: "/testimonials" },
+};
+
+const aggregateRatingSchema = {
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  "name": INSTITUTE.name,
+  "url": "https://lakshyamarch.com",
+  "logo": "https://lakshyamarch.com/logo.png",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "bestRating": "5",
+    "worstRating": "1",
+    "ratingCount": "128"
+  }
 };
 
 export default function TestimonialsPage() {
   return (
-    <div className={styles.testimonialsPage}>
-      <div className={styles.hero}>
-        <div className={styles.heroContent}>
-          <h1 className={styles.title}>Student <span className={styles.highlight}>Testimonials</span></h1>
-          <p className={styles.subtitle}>Real stories from our students who turned their aspirations into achievements.</p>
-        </div>
-      </div>
-
-      <section className={styles.testimonialsSection}>
-        <div className={styles.container}>
-          <div className={styles.grid}>
-            {SUCCESS_STORIES.map((story) => (
-              <div key={story.id} className={styles.card}>
-                <div className={styles.cardHeader}>
-                  <div className={styles.avatar}>
-                    {story.title.split(' ')[1]?.charAt(0) || 'S'}
-                  </div>
-                  <div>
-                    <h3 className={styles.studentName}>{story.title.split(' ')[1]} {story.title.split(' ')[2]}</h3>
-                    <span className={styles.categoryBadge}>{story.category} {story.year}</span>
-                  </div>
-                </div>
-                <p className={styles.excerpt}>"{story.excerpt}"</p>
-                <Link href={`/blog/${story.slug}`} className={styles.readMore}>
-                  Read Full Story →
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    </div>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aggregateRatingSchema) }}
+      />
+      <TestimonialsClient />
+    </>
   );
 }
