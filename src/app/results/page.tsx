@@ -1,75 +1,31 @@
-import React from 'react';
-import { INSTITUTE, RESULTS_NEET, RESULTS_JEE } from '@/lib/siteData';
-import styles from './Results.module.css';
+import PublicNavbar from "@/components/public/PublicNavbar";
+import PublicFooter from "@/components/public/PublicFooter";
+import FaqSchema from "@/components/seo/FaqSchema";
+import { INSTITUTE } from "@/lib/siteData";
+import ResultsPageContent from "@/components/results/ResultsPage";
+
+const resultsFaqs = [
+  { q: "What is LakshyaMarch's best JEE result?", a: "Akhnavya scored 99.35 percentile in JEE Main 2025 and got admitted to NIT Trichy. Multiple students secured admissions in IIT Bhilai, IIT Roorkee, IIT Hyderabad, NIT Durgapur, and other top-ranked institutes." },
+  { q: "What is LakshyaMarch's best NEET result?", a: "Aradhya Bharti achieved AIR 499 in NEET 2025 with a score of 619/720 and got admitted to ABVIMS Delhi. Abhijeet scored 685/720 in NEET 2024." },
+  { q: "How many students from LakshyaMarch got into IIT?", a: "Multiple LakshyaMarch students have secured IIT admissions including IIT Bhilai, IIT Roorkee, and IIT Hyderabad. Students have also been selected in top NITs and IIITs across India." },
+  { q: "What are LakshyaMarch board exam results?", a: "In CBSE Class 10, top scorers include Priyanshu Kumar (98%) and Ayush Kumar (93%). ICSE topper Arpit Bhardwaj scored 96.8%. In CBSE 12th, Tannu Kumari topped with 92.2%." },
+];
 
 export const metadata = {
-  title: `Our Results | ${INSTITUTE.name}`,
-  description: `Discover the phenomenal results of our students in JEE, NEET, and Board Exams at ${INSTITUTE.name}.`,
+  title: "IIT-JEE & NEET Results | Hall of Fame",
+  description: "Check out our historic success in NEET UG, JEE Main & Advanced, and Board exams. Year after year, LakshyaMarch produces city toppers in Begusarai.",
+  keywords: ["NEET 2025 Toppers", "JEE Main Percentile Stars", "CBSE 12th Board Results", "ICSE 10th Toppers", "Academic Success Begusarai", "LM Hall of Fame"],
 };
 
 export default function ResultsPage() {
   return (
-    <div className={styles.resultsPage}>
-      <div className={styles.hero}>
-        <div className={styles.heroContent}>
-          <h1 className={styles.title}>Our <span className={styles.highlight}>Results</span></h1>
-          <p className={styles.subtitle}>Consistent excellence across JEE, NEET, and Board examinations year after year.</p>
-        </div>
-      </div>
-
-      <section className={styles.resultsSection}>
-        <div className={styles.container}>
-          
-          <div className={styles.categoryHeader}>
-            <h2 className={styles.categoryTitle}>NEET-UG Achievements</h2>
-            <div className={styles.divider}></div>
-          </div>
-          
-          <div className={styles.grid}>
-            {RESULTS_NEET.map((student) => (
-              <div key={student.id} className={`${styles.resultCard} ${student.isTopper ? styles.topperCard : ''}`}>
-                {student.badge && <div className={styles.badge}>{student.badge}</div>}
-                <div className={styles.avatar}>
-                  {student.image ? (
-                    <img src={student.image} alt={student.name} />
-                  ) : (
-                    <span>{student.name.charAt(0)}</span>
-                  )}
-                </div>
-                <h3 className={styles.studentName}>{student.name}</h3>
-                <p className={styles.score}>{student.score}</p>
-                {student.college && <p className={styles.college}>{student.college}</p>}
-                <p className={styles.year}>NEET {student.year}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className={styles.categoryHeader} style={{ marginTop: '6rem' }}>
-            <h2 className={styles.categoryTitle}>JEE Main & Advanced</h2>
-            <div className={styles.divider}></div>
-          </div>
-          
-          <div className={styles.grid}>
-            {RESULTS_JEE.map((student) => (
-              <div key={student.id} className={`${styles.resultCard} ${student.isTopper ? styles.topperCard : ''}`}>
-                {student.badge && <div className={styles.badge}>{student.badge}</div>}
-                <div className={styles.avatar}>
-                  {student.image ? (
-                    <img src={student.image} alt={student.name} />
-                  ) : (
-                    <span>{student.name.charAt(0)}</span>
-                  )}
-                </div>
-                <h3 className={styles.studentName}>{student.name}</h3>
-                <p className={styles.score}>{student.stat}</p>
-                {student.college && <p className={styles.college}>{student.college}</p>}
-                <p className={styles.year}>{student.examType} {student.year}</p>
-              </div>
-            ))}
-          </div>
-
-        </div>
-      </section>
+    <div className="min-h-screen bg-white flex flex-col">
+      <FaqSchema faqs={resultsFaqs} />
+      <PublicNavbar />
+      <main className="flex-1">
+        <ResultsPageContent />
+      </main>
+      <PublicFooter />
     </div>
   );
 }

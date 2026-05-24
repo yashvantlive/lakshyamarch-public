@@ -21,7 +21,7 @@ export const INSTITUTE = {
     full: "Dakbangla Road, Opp. Omar Girls High School, Chanakya Nagar, Begusarai, Bihar – 851101",
   },
   phones: ["7296050207", "6206323869", "8603793869"],
-  primaryPhone: "6206323869",
+  primaryPhone: "7296050207",
   email: "lakshyamarch@gmail.com",
   schoolEmail: "lmintegratedschoolbgs@gmail.com",
   whatsappNumber: "916206323869",
@@ -70,7 +70,7 @@ export const PROGRAMS = {
     name: "School Preparation Courses",
     tagline: "Integrated Schooling for Excellence",
     description: "Begusarai's first integrated model combining CBSE/ICSE curriculum with IIT/NEET foundation. One fee, two benefits.",
-    classes: ["6", "7", "8", "9", "10"],
+    classes: ["Class 6", "Class 7", "Class 8", "Class 9", "Class 10"],
     features: ["Integrated Coaching", "National Curriculum", "Daily DPPs", "Doubt Classes", "Mental Ability (MAT)", "Mental Health Support"],
     batches: [
       {
@@ -139,7 +139,7 @@ export const PROGRAMS = {
     name: "Coaching & Competitive Wings",
     tagline: "Gateway to IITs & Medical Colleges",
     description: "Expert level mentorship for JEE (Main+Adv), NEET-UG and Olympiads by IIT/NIT alumni.",
-    classes: ["7", "8", "9", "10", "10th NLQ", "11th JEE", "11th NEET", "12th JEE", "12th NEET", "Dropper JEE", "Dropper NEET"],
+    classes: ["Class 6", "Class 7", "Class 8", "Class 9", "Class 10", "Class 10 NLQ", "Class 11 NEET", "Class 11 JEE", "Class 12 NEET", "Class 12 JEE", "Class 12 NEET NLQ", "Class 12 JEE NLQ", "Class NEET Dropper", "Class JEE Dropper"],
     courses: [
       { name: "IIT-JEE Main+Adv", target: "Engineering Aspirants" },
       { name: "NEET-UG Medical", target: "Medical Aspirants" },
@@ -147,6 +147,18 @@ export const PROGRAMS = {
       { name: "KVPY / Board Exams", target: "Academic Excellence" }
     ],
     batches: [
+      {
+        id: "fnd-6",
+        name: "LakshyaMarch (Class 6)",
+        target: "Target NTSE/Olympiads + Foundation",
+        classes: ["6"],
+        startDate: "02 Apr, 2026",
+        endDate: "31 Mar, 2027",
+        price: null,
+        originalPrice: null,
+        discount: null,
+        type: "OFFLINE"
+      },
       {
         id: "fnd-7",
         name: "LakshyaMarch (Class 7)",
@@ -379,7 +391,7 @@ export const RESULTS_NEET = [
     fullMarks: 720,
     air: 499,
     college: "ABVIMS, Delhi",
-    image: "",
+    image: "/campaign/neet/aradhya.webp",
     isTopper: true,
     badge: "AIR 499 · Topper 2025"
   },
@@ -392,7 +404,7 @@ export const RESULTS_NEET = [
     fullMarks: 720,
     air: null,
     college: null,
-    image: "",
+    image: "/campaign/neet/aditi.webp",
     isTopper: false,
     badge: null
   },
@@ -405,7 +417,7 @@ export const RESULTS_NEET = [
     fullMarks: 720,
     air: null,
     college: "ANMMCH, Gaya",
-    image: "https://firebasestorage.googleapis.com/v0/b/edu-marketing-os.firebasestorage.app/o/LM_Students%2Fpuja_kumari_NEET.webp?alt=media&token=39fe5e89-65fe-456e-bbbd-ab41edb0aeac",
+    image: "/campaign/neet/puja.webp",
     isTopper: false,
     badge: null
   },
@@ -418,7 +430,7 @@ export const RESULTS_NEET = [
     fullMarks: 720,
     air: null,
     college: "ZMC, Mizoram",
-    image: "https://firebasestorage.googleapis.com/v0/b/edu-marketing-os.firebasestorage.app/o/LM_Students%2Falok_kumar_NEET.webp?alt=media&token=27a8568c-fd5b-4504-84b3-6a91240494d1",
+    image: "/campaign/neet/alok.webp",
     isTopper: false,
     badge: null
   },
@@ -431,7 +443,7 @@ export const RESULTS_NEET = [
     fullMarks: 720,
     air: null,
     college: "NMCH, Patna",
-    image: "https://firebasestorage.googleapis.com/v0/b/edu-marketing-os.firebasestorage.app/o/LM_Students%2Franjita_ranjan_NEET.webp?alt=media&token=508fe01e-cb69-448e-ac23-2c8a7054571d",
+    image: "/campaign/neet/ranjita.webp",
     isTopper: false,
     badge: null
   },
@@ -444,7 +456,7 @@ export const RESULTS_NEET = [
     fullMarks: 720,
     air: null,
     college: "PMCH Patna",
-    image: "",
+    image: "/campaign/neet/abhijeet.webp",
     isTopper: true,
     badge: "LM Topper 2024"
   },
@@ -457,7 +469,7 @@ export const RESULTS_NEET = [
     fullMarks: 720,
     air: null,
     college: "ANMMCH, Gaya",
-    image: "https://firebasestorage.googleapis.com/v0/b/edu-marketing-os.firebasestorage.app/o/LM_Students%2Fpallavi_kumai_NEET.webp?alt=media&token=a295f1b7-826c-4194-943d-edfb0cb8ea09",
+    image: "/campaign/neet/pallavi.webp",
     isTopper: false,
     badge: null
   },
@@ -470,13 +482,104 @@ export const RESULTS_NEET = [
     fullMarks: 720,
     air: null,
     college: null,
-    image: "https://firebasestorage.googleapis.com/v0/b/edu-marketing-os.firebasestorage.app/o/LM_Students%2Fricha_singh_NEET.webp?alt=media&token=9de31d26-842a-46e7-9304-b5b565bdf413",
+    image: "",
     isTopper: true,
     badge: "LM Topper 2022"
   },
 ];
 
 export const RESULTS_JEE = [
+  {
+    id: "jee-2026-001",
+    year: 2026,
+    name: "Achyut",
+    percentile: 99.51,
+    stat: "99.51%",
+    examType: "JEE Main",
+    rank: null,
+    college: null,
+    image: "/campaign/neet/achyut.webp",
+    isTopper: true,
+    badge: "99.51 Percentile"
+  },
+  {
+    id: "jee-2026-002",
+    year: 2026,
+    name: "Keshav Raj",
+    percentile: 98.96,
+    stat: "98.96%",
+    examType: "JEE Main",
+    rank: null,
+    college: null,
+    image: "/campaign/neet/keshav.webp",
+    isTopper: true,
+    badge: "98.96 Percentile"
+  },
+  {
+    id: "jee-2026-003",
+    year: 2026,
+    name: "Rishi Raj",
+    percentile: 98.90,
+    stat: "98.90%",
+    examType: "JEE Main",
+    rank: null,
+    college: null,
+    image: "/campaign/neet/rishi.webp",
+    isTopper: true,
+    badge: "98.90 Percentile"
+  },
+  {
+    id: "jee-2026-004",
+    year: 2026,
+    name: "Abhishek Anand",
+    percentile: 97.92,
+    stat: "97.92%",
+    examType: "JEE Main",
+    rank: null,
+    college: null,
+    image: "/campaign/neet/abhishek.webp",
+    isTopper: false,
+    badge: "97.92 Percentile"
+  },
+  {
+    id: "jee-2026-005",
+    year: 2026,
+    name: "Aman Raj",
+    percentile: 95.98,
+    stat: "95.98%",
+    examType: "JEE Main",
+    rank: null,
+    college: null,
+    image: "/campaign/neet/aman.webp",
+    isTopper: false,
+    badge: "95.98 Percentile"
+  },
+  {
+    id: "jee-2026-006",
+    year: 2026,
+    name: "Pragya",
+    percentile: 94.58,
+    stat: "94.58%",
+    examType: "JEE Main",
+    rank: null,
+    college: null,
+    image: "/campaign/neet/pragya.webp",
+    isTopper: false,
+    badge: "94.58 Percentile"
+  },
+  {
+    id: "jee-2026-007",
+    year: 2026,
+    name: "Aadarsh",
+    percentile: 93.65,
+    stat: "93.65%",
+    examType: "JEE Main",
+    rank: null,
+    college: null,
+    image: "/campaign/neet/aadarsh.webp",
+    isTopper: false,
+    badge: "93.65 Percentile"
+  },
   {
     id: "jee-2025-001",
     year: 2025,
@@ -678,7 +781,7 @@ export const RESULTS_BOARD = {
       value: 83,
       class: 12,
       board: "CBSE",
-      image: "",
+      image: "/campaign/neet/nutan.webp",
       isTopper: false
     }
   ],
