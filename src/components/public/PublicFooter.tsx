@@ -3,7 +3,8 @@
 import { INSTITUTE, PROGRAMS, FOOTER_CONTENT, NAV_LINKS, whatsappLink } from "@/lib/siteData";
 import { GraduationCap, MapPin, Phone, Mail, Clock } from "lucide-react";
 import Link from "next/link";
-import { getPortalLoginUrl, getMarketingLoginUrl } from "@/lib/erpApi";
+
+
 
 const SocialIcon = ({ d, href, label, color }: { d: string; href: string; label: string; color: string }) => (
   <a
@@ -95,8 +96,25 @@ export default function PublicFooter() {
                     ))}
                   </div>
                 </div>
+
+                {/* Portal Login CTA */}
+                <div className="pt-6 border-t border-slate-800">
+                  <p className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] mb-3">Portal Access</p>
+                  <a
+                    href="/login"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 bg-amber-500/10 border border-amber-500/30 rounded-xl text-amber-400 text-xs font-bold hover:bg-amber-500/20 hover:border-amber-400/60 transition-all duration-300"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+                      <polyline points="10 17 15 12 10 7"/>
+                      <line x1="15" y1="12" x2="3" y2="12"/>
+                    </svg>
+                    Login to Portal →
+                  </a>
+                </div>
               </div>
             </div>
+
 
             {/* Quick Links (New Section) */}
             <div>
@@ -300,8 +318,7 @@ export default function PublicFooter() {
             <div className="flex flex-wrap items-center gap-6 sm:gap-8 text-[11px] font-extrabold text-slate-400 uppercase tracking-[0.2em] transition-all">
               <Link href="/privacy-policy" className="hover:text-blue-600 hover:tracking-[0.25em] transition-all duration-300">Privacy Policy</Link>
               <Link href="/terms" className="hover:text-blue-600 hover:tracking-[0.25em] transition-all duration-300">Terms & Conditions</Link>
-              <a href={getPortalLoginUrl()} className="hover:text-blue-600 hover:tracking-[0.25em] transition-all duration-300">Portal Login</a>
-              <a href={getMarketingLoginUrl()} className="hover:text-amber-500 hover:tracking-[0.25em] transition-all duration-300">Field Team Login</a>
+
             </div>
             <div className="text-right">
               <p className="text-[11px] text-slate-400 font-bold uppercase tracking-widest leading-loose">

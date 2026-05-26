@@ -50,7 +50,7 @@ export const NAV_LINKS = [
   { label: "Results", href: "/results" },
   { label: "Study Material", href: "/study-material" },
   { label: "Blog", href: "/blog" },
-  { label: "Social", href: "/social" },
+  { label: "Admission", href: "/admission" },
   { label: "YouTube", href: "/youtube" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
@@ -393,7 +393,7 @@ export const RESULTS_NEET = [
     marks: 577,
     fullMarks: 720,
     air: null,
-    college: null,
+    college: "GMC Korba, Chhatisgarh",
     image: "/images/students/coaching/neet/aditi.webp",
     isTopper: false,
     badge: null

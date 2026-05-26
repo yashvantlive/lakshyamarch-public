@@ -77,7 +77,11 @@ export default function ThinkNeetPage() {
               </div>
               
               <div className="mb-8">
-                <img src="/think-neet-logo.webp" alt="ThinkNEET Logo" className="h-24 w-auto object-contain mb-6 drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]" />
+                <img 
+                  src="/images/campaigns/think-neet/think-neet-logo.webp" 
+                  alt="ThinkNEET Logo" 
+                  className="h-16 w-auto object-contain mb-6 drop-shadow-[0_0_20px_rgba(16,185,129,0.3)]" 
+                />
                 <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black text-white leading-tight tracking-tight">
                   Master the <span className="text-emerald-400">NEET</span> <br />
                   with <span className="text-blue-400">ThinkNEET</span>

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X, GraduationCap } from "lucide-react";
 import { INSTITUTE, NAV_LINKS } from "@/lib/siteData";
-import { getPortalLoginUrl, getMarketingLoginUrl } from "@/lib/erpApi";
+
 
 export default function PublicNavbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -62,12 +62,7 @@ export default function PublicNavbar() {
             >
               Apply Now
             </Link>
-            <a
-              href={getPortalLoginUrl()}
-              className="ml-1 h-9 px-5 inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-slate-800 to-slate-900 text-white text-sm font-semibold shadow-md hover:shadow-lg hover:from-slate-900 hover:to-black transition-all"
-            >
-              Portal Login
-            </a>
+
           </div>
 
 
@@ -100,20 +95,7 @@ export default function PublicNavbar() {
                 {link.label}
               </a>
             ))}
-            <a
-              href={getPortalLoginUrl()}
-              onClick={() => setMobileOpen(false)}
-              className="block mt-3 w-full text-center h-10 leading-10 rounded-lg bg-slate-900 text-white text-sm font-semibold shadow-md"
-            >
-              Portal Login
-            </a>
-            <a
-              href={getMarketingLoginUrl()}
-              onClick={() => setMobileOpen(false)}
-              className="block w-full text-center py-2 text-xs font-semibold text-slate-500 hover:text-amber-600"
-            >
-              Field team login →
-            </a>
+
           </div>
         </div>
       )}

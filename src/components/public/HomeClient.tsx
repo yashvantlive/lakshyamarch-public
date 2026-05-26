@@ -130,7 +130,7 @@ export default function HomeClient() {
             {/* Image at Top */}
             <div className="relative w-full aspect-[16/7] overflow-hidden bg-slate-100">
               <img 
-                src="/think-neet-lakshyamarch-begusarai.webp" 
+                src="/images/campaigns/think-neet/think-neet-poster.webp" 
                 alt="ThinkNEET Test Series Begusarai" 
                 className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700"
               />
