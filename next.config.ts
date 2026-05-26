@@ -7,6 +7,14 @@ const erpBase =
     : "https://erp.lakshyamarch.com");
 
 const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "firebasestorage.googleapis.com",
+      },
+    ],
+  },
   async redirects() {
     return [
       { source: "/login", destination: `${erpBase}/login`, permanent: false },

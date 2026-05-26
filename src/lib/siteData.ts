@@ -567,19 +567,19 @@ export const RESULTS_JEE = [
     isTopper: false,
     badge: "94.58 Percentile"
   },
-  {
-    id: "jee-2026-007",
-    year: 2026,
-    name: "Aadarsh",
-    percentile: 93.65,
-    stat: "93.65%",
-    examType: "JEE Main",
-    rank: null,
-    college: null,
-    image: "/campaign/neet/aadarsh.webp",
-    isTopper: false,
-    badge: "93.65 Percentile"
-  },
+  // {
+  //   id: "jee-2026-007",
+  //   year: 2026,
+  //   name: "Aadarsh",
+  //   percentile: 93.65,
+  //   stat: "93.65%",
+  //   examType: "JEE Main",
+  //   rank: null,
+  //   college: null,
+  //   image: "/campaign/neet/aadarsh.webp",
+  //   isTopper: false,
+  //   badge: "93.65 Percentile"
+  // },
   {
     id: "jee-2025-001",
     year: 2025,
