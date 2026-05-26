@@ -5,6 +5,7 @@ import PublicNavbar from "@/components/public/PublicNavbar";
 import PublicFooter from "@/components/public/PublicFooter";
 import { BLOG_POSTS } from "@/lib/blogData";
 import { INSTITUTE, whatsappLink } from "@/lib/siteData";
+import ArticleSchema from "@/components/seo/ArticleSchema";
 import {
   ArrowLeft, ArrowRight, Clock, User, CalendarDays,
   BookOpen, MessageCircle, Share2, ChevronRight
@@ -71,35 +72,14 @@ export default async function BlogPostPage({
     (p) => p.category === post.category && p.slug !== post.slug
   ).slice(0, 3);
 
-  // Article JSON-LD
-  const articleSchema = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: post.title,
-    description: post.description,
-    datePublished: post.date,
-    author: {
-      "@type": "Person",
-      name: post.author,
-      jobTitle: post.authorRole,
-    },
-    publisher: {
-      "@type": "Organization",
-      name: INSTITUTE.name,
-      url: "https://lakshyamarch.com",
-    },
-    mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": `https://lakshyamarch.com/blog/${post.slug}`,
-    },
-    keywords: post.keywords.join(", "),
-  };
-
   return (
     <div className="min-h-screen bg-white flex flex-col">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      <ArticleSchema 
+        title={post.title} 
+        description={post.description} 
+        url={`https://lakshyamarch.com/blog/${post.slug}`} 
+        datePublished={post.date} 
+        authorName={post.author} 
       />
       <PublicNavbar />
       <div className="h-16" />

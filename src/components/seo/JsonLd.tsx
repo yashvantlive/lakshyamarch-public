@@ -24,9 +24,19 @@ export default function JsonLd() {
     },
     "founder": {
       "@type": "Person",
-      "name": FOUNDER.name
+      "name": FOUNDER.name,
+      "jobTitle": "Founder",
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "IIT Kharagpur"
+      }
     },
-    "description": INSTITUTE.tagline
+    "description": INSTITUTE.tagline,
+    "sameAs": [
+      "https://www.facebook.com/lakshyamarch",
+      "https://www.instagram.com/lakshyamarch",
+      "https://www.youtube.com/@lakshyamarch"
+    ]
   };
 
   const localBusinessData = {
@@ -64,6 +74,13 @@ export default function JsonLd() {
       ],
       "opens": "08:00",
       "closes": "19:00"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.2",
+      "reviewCount": "107",
+      "bestRating": "5",
+      "worstRating": "1"
     }
   };
 

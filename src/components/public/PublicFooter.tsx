@@ -249,6 +249,30 @@ export default function PublicFooter() {
       <div className="bg-white text-slate-700 border-t border-slate-100 shadow-[0_-10px_20px_rgba(0,0,0,0.02)]">
         <div className="max-w-7xl mx-auto px-5 sm:px-8 py-16">
           <div className="space-y-12">
+            
+            {/* Popular Locations (SEO) */}
+            <div className="pb-8 border-b border-slate-100">
+              <h4 className="text-[11px] font-black text-slate-400 uppercase tracking-widest mb-4">Top Coaching Centers in Bihar:</h4>
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-[13px] font-medium text-slate-500">
+                <Link href="/khagaria-coaching" className="hover:text-blue-600 transition-colors">Khagaria Coaching</Link>
+                <span className="text-slate-300">•</span>
+                <Link href="/iit-jee-coaching-khagaria" className="hover:text-blue-600 transition-colors">IIT-JEE Khagaria</Link>
+                <span className="text-slate-300">•</span>
+                <Link href="/neet-coaching-khagaria" className="hover:text-blue-600 transition-colors">NEET Khagaria</Link>
+                <span className="text-slate-300">•</span>
+                <Link href="/samastipur-coaching" className="hover:text-blue-600 transition-colors">Samastipur Coaching</Link>
+                <span className="text-slate-300">•</span>
+                <Link href="/iit-jee-coaching-samastipur" className="hover:text-blue-600 transition-colors">IIT-JEE Samastipur</Link>
+                <span className="text-slate-300">•</span>
+                <Link href="/neet-coaching-samastipur" className="hover:text-blue-600 transition-colors">NEET Samastipur</Link>
+                <span className="text-slate-300">•</span>
+                <Link href="/lakhisarai-coaching" className="hover:text-blue-600 transition-colors">Lakhisarai Coaching</Link>
+                <span className="text-slate-300">•</span>
+                <Link href="/iit-jee-coaching-lakhisarai" className="hover:text-blue-600 transition-colors">IIT-JEE Lakhisarai</Link>
+                <span className="text-slate-300">•</span>
+                <Link href="/neet-coaching-lakhisarai" className="hover:text-blue-600 transition-colors">NEET Lakhisarai</Link>
+              </div>
+            </div>
             <div>
               <h3 className="text-lg font-bold text-slate-900 mb-4 tracking-tight">Know about {INSTITUTE.shortName} LakshyaMarch</h3>
               <p className="text-sm text-slate-500 leading-relaxed max-w-6xl">{FOOTER_CONTENT.knowAbout}</p>

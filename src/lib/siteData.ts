@@ -21,7 +21,7 @@ export const INSTITUTE = {
     full: "Dakbangla Road, Opp. Omar Girls High School, Chanakya Nagar, Begusarai, Bihar – 851101",
   },
   phones: ["7296050207", "6206323869", "8603793869"],
-  primaryPhone: "7296050207",
+  primaryPhone: "6206323869",
   email: "lakshyamarch@gmail.com",
   schoolEmail: "lmintegratedschoolbgs@gmail.com",
   whatsappNumber: "916206323869",
@@ -50,6 +50,8 @@ export const NAV_LINKS = [
   { label: "Results", href: "/results" },
   { label: "Study Material", href: "/study-material" },
   { label: "Blog", href: "/blog" },
+  { label: "Social", href: "/social" },
+  { label: "YouTube", href: "/youtube" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
@@ -57,7 +59,7 @@ export const NAV_LINKS = [
 export const FOUNDER = {
   name: "Ram Kumar",
   nickname: "Ram Sir",
-  image: "https://firebasestorage.googleapis.com/v0/b/edu-marketing-os.firebasestorage.app/o/ram%20sir%20dp_optimized.webp?alt=media&token=4231f0b3-d742-4ca2-8e71-4ae42e51347b",
+  image: "/images/founder/ram-sir.webp",
   designation: "Founder & Director",
   qualification: "B.Tech, IIT Kharagpur (1998–2002)",
   certification: "PMP from PMI, USA (2011)",
@@ -70,7 +72,7 @@ export const PROGRAMS = {
     name: "School Preparation Courses",
     tagline: "Integrated Schooling for Excellence",
     description: "Begusarai's first integrated model combining CBSE/ICSE curriculum with IIT/NEET foundation. One fee, two benefits.",
-    classes: ["Class 6", "Class 7", "Class 8", "Class 9", "Class 10"],
+    classes: ["6", "7", "8", "9", "10"],
     features: ["Integrated Coaching", "National Curriculum", "Daily DPPs", "Doubt Classes", "Mental Ability (MAT)", "Mental Health Support"],
     batches: [
       {
@@ -139,7 +141,7 @@ export const PROGRAMS = {
     name: "Coaching & Competitive Wings",
     tagline: "Gateway to IITs & Medical Colleges",
     description: "Expert level mentorship for JEE (Main+Adv), NEET-UG and Olympiads by IIT/NIT alumni.",
-    classes: ["Class 6", "Class 7", "Class 8", "Class 9", "Class 10", "Class 10 NLQ", "Class 11 NEET", "Class 11 JEE", "Class 12 NEET", "Class 12 JEE", "Class 12 NEET NLQ", "Class 12 JEE NLQ", "Class NEET Dropper", "Class JEE Dropper"],
+    classes: ["7", "8", "9", "10", "10th NLQ", "11th JEE", "11th NEET", "12th JEE", "12th NEET", "Dropper JEE", "Dropper NEET"],
     courses: [
       { name: "IIT-JEE Main+Adv", target: "Engineering Aspirants" },
       { name: "NEET-UG Medical", target: "Medical Aspirants" },
@@ -147,18 +149,6 @@ export const PROGRAMS = {
       { name: "KVPY / Board Exams", target: "Academic Excellence" }
     ],
     batches: [
-      {
-        id: "fnd-6",
-        name: "LakshyaMarch (Class 6)",
-        target: "Target NTSE/Olympiads + Foundation",
-        classes: ["6"],
-        startDate: "02 Apr, 2026",
-        endDate: "31 Mar, 2027",
-        price: null,
-        originalPrice: null,
-        discount: null,
-        type: "OFFLINE"
-      },
       {
         id: "fnd-7",
         name: "LakshyaMarch (Class 7)",
@@ -301,7 +291,7 @@ export const FACULTY = [
     name: "Rajesh Nayan",
     subject: "Mathematics",
     role: "Senior Faculty",
-    image: "https://firebasestorage.googleapis.com/v0/b/edu-marketing-os.firebasestorage.app/o/1000373081_optimized.webp?alt=media&token=43f0a1f9-6fec-4f95-8785-89ba71e2a938",
+    image: "/images/teachers/rajesh_nayan.webp",
     qual: "B.Tech NIT Allahabad (16 yrs exp)",
     prev: "ex-Bansal Classes Kota/Jaipur",
     usp: "Best mentorship, guidance and disciplinarian with caring attitude.",
@@ -310,7 +300,7 @@ export const FACULTY = [
     name: "M.P.B Sir",
     subject: "Mathematics",
     role: "Senior Faculty",
-    image: "https://firebasestorage.googleapis.com/v0/b/edu-marketing-os.firebasestorage.app/o/LM_teacher%2Fmpb_sir_mathematics.webp?alt=media&token=337f9b82-4094-4766-855b-706f0d116a8c",
+    image: "/images/teachers/mpb_sir.webp",
     qual: "Madras University, Chennai",
     prev: "",
     usp: "Hard Work Meets Accountability: Elite Mentorship for High Achievers.",
@@ -319,7 +309,7 @@ export const FACULTY = [
     name: "L.K.P. Sir",
     subject: "Physics",
     role: "Senior Faculty",
-    image: "https://firebasestorage.googleapis.com/v0/b/edu-marketing-os.firebasestorage.app/o/LM_teacher%2F1000372090_optimized.webp?alt=media&token=1e195e0b-37fe-492f-88af-10c837093028",
+    image: "/images/teachers/lkp_sir.webp",
     qual: "B.Tech, M.I.T. Muzaffarpur",
     prev: "",
     usp: "Hard Work Meets Accountability: Elite Mentorship for High Achievers.",
@@ -328,7 +318,7 @@ export const FACULTY = [
     name: "Shiv Kumar",
     subject: "Chemistry",
     role: "Senior Faculty",
-    image: "https://firebasestorage.googleapis.com/v0/b/edu-marketing-os.firebasestorage.app/o/1000371266_optimized.webp?alt=media&token=84189164-5d72-47de-8d8b-49e88a9f049b",
+    image: "",
     qual: "M.Sc Chemistry, IIT Dhanbad",
     prev: "ex-Biome Ranchi, Chem Academy Delhi",
     usp: "Passionate about Chemistry. Uses mind maps, mnemonics, visualization.",
@@ -337,7 +327,7 @@ export const FACULTY = [
     name: "Chandan Kumar",
     subject: "Physics",
     role: "Faculty",
-    image: "https://firebasestorage.googleapis.com/v0/b/edu-marketing-os.firebasestorage.app/o/1000371287_optimized.webp?alt=media&token=d4555d7e-bed6-42b1-b9bd-9633d7775fa1",
+    image: "",
     qual: "B.Tech, NIT Agartala",
     prev: "3 years at LM",
     usp: "'Give me a chance, I'll make you fall in love with Physics.'",
@@ -346,7 +336,7 @@ export const FACULTY = [
     name: "Aditya Kumar",
     subject: "Chemistry",
     role: "Faculty",
-    image: "https://firebasestorage.googleapis.com/v0/b/edu-marketing-os.firebasestorage.app/o/1000371289_optimized.webp?alt=media&token=20af2ff2-8887-497f-bff0-5f4bff873ed8",
+    image: "",
     qual: "B.Tech, NIT Patna",
     prev: "3.5 years exp",
     usp: "Passionate faculty. Here to guide, support, and inspire students.",
@@ -355,7 +345,7 @@ export const FACULTY = [
     name: "Nitish Sharma",
     subject: "Biology",
     role: "Faculty",
-    image: "https://firebasestorage.googleapis.com/v0/b/edu-marketing-os.firebasestorage.app/o/1000371300_optimized.webp?alt=media&token=23c5c6ef-10e0-4897-8da2-872f3c53bf27",
+    image: "",
     qual: "AIR-82 in GATE-XL, 5 years exp",
     prev: "3.5 years at LM",
     usp: "One of finest Biology faculty for NEET. Clear concepts & guidance for competitions.",
@@ -364,7 +354,7 @@ export const FACULTY = [
     name: "Rahul Kumar",
     subject: "Biology",
     role: "Faculty",
-    image: "https://firebasestorage.googleapis.com/v0/b/edu-marketing-os.firebasestorage.app/o/1000371291_optimized.webp?alt=media&token=444be3d7-f94d-4d65-9047-2641b0d01fa7",
+    image: "",
     qual: "M.Sc Biotechnology, CUSB",
     prev: "4 years exp",
     usp: "Passionate faculty. Here to guide, support, and inspire students.",
@@ -373,7 +363,7 @@ export const FACULTY = [
     name: "Gautam Ishwar",
     subject: "Physics & Mathematics",
     role: "Junior Wing Faculty",
-    image: "https://firebasestorage.googleapis.com/v0/b/edu-marketing-os.firebasestorage.app/o/1000373080_optimized.webp?alt=media&token=5443526a-fcc7-4cbc-a519-d908c449b556",
+    image: "/images/teachers/gautam_ishwar.webp",
     qual: "B.Tech, BEU Patna",
     prev: "3 years exp",
     usp: "Passionate faculty. Here to guide, support, and inspire students.",
@@ -391,7 +381,7 @@ export const RESULTS_NEET = [
     fullMarks: 720,
     air: 499,
     college: "ABVIMS, Delhi",
-    image: "/campaign/neet/aradhya.webp",
+    image: "/images/students/coaching/neet/aradhya.webp",
     isTopper: true,
     badge: "AIR 499 · Topper 2025"
   },
@@ -404,7 +394,7 @@ export const RESULTS_NEET = [
     fullMarks: 720,
     air: null,
     college: null,
-    image: "/campaign/neet/aditi.webp",
+    image: "/images/students/coaching/neet/aditi.webp",
     isTopper: false,
     badge: null
   },
@@ -417,7 +407,7 @@ export const RESULTS_NEET = [
     fullMarks: 720,
     air: null,
     college: "ANMMCH, Gaya",
-    image: "/campaign/neet/puja.webp",
+    image: "/images/students/coaching/neet/puja.webp",
     isTopper: false,
     badge: null
   },
@@ -430,7 +420,7 @@ export const RESULTS_NEET = [
     fullMarks: 720,
     air: null,
     college: "ZMC, Mizoram",
-    image: "/campaign/neet/alok.webp",
+    image: "/images/students/coaching/neet/alok.webp",
     isTopper: false,
     badge: null
   },
@@ -443,7 +433,7 @@ export const RESULTS_NEET = [
     fullMarks: 720,
     air: null,
     college: "NMCH, Patna",
-    image: "/campaign/neet/ranjita.webp",
+    image: "/images/students/coaching/neet/ranjita.webp",
     isTopper: false,
     badge: null
   },
@@ -456,7 +446,7 @@ export const RESULTS_NEET = [
     fullMarks: 720,
     air: null,
     college: "PMCH Patna",
-    image: "/campaign/neet/abhijeet.webp",
+    image: "/images/students/coaching/neet/abhijeet.webp",
     isTopper: true,
     badge: "LM Topper 2024"
   },
@@ -469,7 +459,7 @@ export const RESULTS_NEET = [
     fullMarks: 720,
     air: null,
     college: "ANMMCH, Gaya",
-    image: "/campaign/neet/pallavi.webp",
+    image: "/images/students/coaching/neet/pallavi.webp",
     isTopper: false,
     badge: null
   },
@@ -482,7 +472,7 @@ export const RESULTS_NEET = [
     fullMarks: 720,
     air: null,
     college: null,
-    image: "",
+    image: "/images/students/coaching/neet/richa_singh.webp",
     isTopper: true,
     badge: "LM Topper 2022"
   },
@@ -498,7 +488,7 @@ export const RESULTS_JEE = [
     examType: "JEE Main",
     rank: null,
     college: null,
-    image: "/campaign/neet/achyut.webp",
+    image: "/images/students/coaching/jee/achyut.webp",
     isTopper: true,
     badge: "99.51 Percentile"
   },
@@ -511,7 +501,7 @@ export const RESULTS_JEE = [
     examType: "JEE Main",
     rank: null,
     college: null,
-    image: "/campaign/neet/keshav.webp",
+    image: "/images/students/coaching/jee/keshav.webp",
     isTopper: true,
     badge: "98.96 Percentile"
   },
@@ -524,7 +514,7 @@ export const RESULTS_JEE = [
     examType: "JEE Main",
     rank: null,
     college: null,
-    image: "/campaign/neet/rishi.webp",
+    image: "/images/students/coaching/jee/rishi.webp",
     isTopper: true,
     badge: "98.90 Percentile"
   },
@@ -537,7 +527,7 @@ export const RESULTS_JEE = [
     examType: "JEE Main",
     rank: null,
     college: null,
-    image: "/campaign/neet/abhishek.webp",
+    image: "/images/students/coaching/jee/abhishek.webp",
     isTopper: false,
     badge: "97.92 Percentile"
   },
@@ -550,7 +540,7 @@ export const RESULTS_JEE = [
     examType: "JEE Main",
     rank: null,
     college: null,
-    image: "/campaign/neet/aman.webp",
+    image: "/images/students/coaching/jee/aman.webp",
     isTopper: false,
     badge: "95.98 Percentile"
   },
@@ -563,7 +553,7 @@ export const RESULTS_JEE = [
     examType: "JEE Main",
     rank: null,
     college: null,
-    image: "/campaign/neet/pragya.webp",
+    image: "/images/students/coaching/jee/pragya.webp",
     isTopper: false,
     badge: "94.58 Percentile"
   },
@@ -576,7 +566,7 @@ export const RESULTS_JEE = [
     examType: "JEE Main",
     rank: null,
     college: null,
-    image: "/campaign/neet/aadarsh.webp",
+    image: "/images/students/coaching/jee/aadarsh.webp",
     isTopper: false,
     badge: "93.65 Percentile"
   },
@@ -589,7 +579,7 @@ export const RESULTS_JEE = [
     examType: "JEE Main",
     rank: null,
     college: "NIT Trichy",
-    image: "https://firebasestorage.googleapis.com/v0/b/edu-marketing-os.firebasestorage.app/o/LM_Students%2Fakhnavya_NIT.webp?alt=media&token=ed9d6268-0ab4-46b6-b2b3-184f724ad94a",
+    image: "/images/students/coaching/jee/akhnavya.webp",
     isTopper: true,
     badge: "99.35 Percentile"
   },
@@ -602,7 +592,7 @@ export const RESULTS_JEE = [
     examType: "JEE Main",
     rank: null,
     college: "IIT Bhilai",
-    image: "https://firebasestorage.googleapis.com/v0/b/edu-marketing-os.firebasestorage.app/o/LM_Students%2Fayush_kumar_IIT.webp?alt=media&token=66e7317b-73d5-4965-8342-941015e70bf2",
+    image: "/images/students/coaching/jee/ayush_kumar.webp",
     isTopper: true,
     badge: "99.24 Percentile"
   },
@@ -628,7 +618,7 @@ export const RESULTS_JEE = [
     examType: "JEE Main",
     rank: null,
     college: "IIT Roorkee",
-    image: "https://firebasestorage.googleapis.com/v0/b/edu-marketing-os.firebasestorage.app/o/LM_Students%2Fyatharth_mishra_IIT.webp?alt=media&token=dbbdd803-a4b5-4acf-8777-d33cd9424e7a",
+    image: "/images/students/coaching/jee/yatharth_mishra.webp",
     isTopper: false,
     badge: null
   },
@@ -641,7 +631,7 @@ export const RESULTS_JEE = [
     examType: "JEE Main",
     rank: null,
     college: "IIT Bhilai",
-    image: "https://firebasestorage.googleapis.com/v0/b/edu-marketing-os.firebasestorage.app/o/LM_Students%2Fgangesh_kumar_IIT.webp?alt=media&token=596a8875-627e-42be-b0c7-16d3ddb4a0fb",
+    image: "/images/students/coaching/jee/gangesh_kumar.webp",
     isTopper: false,
     badge: null
   },
@@ -667,7 +657,7 @@ export const RESULTS_JEE = [
     examType: "JEE Main",
     rank: null,
     college: "NIT Silchar",
-    image: "https://firebasestorage.googleapis.com/v0/b/edu-marketing-os.firebasestorage.app/o/LM_Students%2Fmadhav_kumar_NIT.webp?alt=media&token=e95638f2-7f13-4af2-aae3-4992dab1b197",
+    image: "/images/students/coaching/jee/madhav_kumar.webp",
     isTopper: false,
     badge: null
   },
@@ -693,7 +683,7 @@ export const RESULTS_JEE = [
     examType: "JEE Main",
     rank: null,
     college: "VIT Chennai",
-    image: "https://firebasestorage.googleapis.com/v0/b/edu-marketing-os.firebasestorage.app/o/LM_Students%2Fayush_shivam_VIT.webp?alt=media&token=cc8ec7fe-45d0-4a32-895a-85914d740323",
+    image: "/images/students/coaching/jee/ayush_shivam.webp",
     isTopper: false,
     badge: null
   },
@@ -759,7 +749,7 @@ export const RESULTS_BOARD = {
       value: 85.4,
       class: 12,
       board: "CBSE",
-      image: "https://firebasestorage.googleapis.com/v0/b/edu-marketing-os.firebasestorage.app/o/LM_Students%2Fpragya_12th_CBSE.webp?alt=media&token=1a57ff61-8f20-4ec4-88c8-4bbcc8ad91f3",
+      image: "/images/students/coaching/boards/pragya_12th_cbse.webp",
       isTopper: false
     },
     {
@@ -781,7 +771,7 @@ export const RESULTS_BOARD = {
       value: 83,
       class: 12,
       board: "CBSE",
-      image: "/campaign/neet/nutan.webp",
+      image: "/images/students/coaching/boards/nutan.webp",
       isTopper: false
     }
   ],

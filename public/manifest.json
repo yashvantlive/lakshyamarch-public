@@ -1,10 +1,10 @@
 {
-  "name": "LakshyaMarch ERP",
+  "name": "LakshyaMarch Education",
   "short_name": "LakshyaMarch",
-  "description": "Premium ERP for Coaching & School Management — Begusarai's #1 Institute.",
+  "description": "Begusarai's #1 Coaching Institute — Specializing in IIT JEE, NEET, 11th, 12th CBSE/ICSE Boards & Foundation.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
+  "background_color": "#0A0F2C",
   "theme_color": "#2563eb",
   "icons": [
     {
@@ -20,6 +20,20 @@
       "purpose": "any maskable"
     }
   ],
+  "shortcuts": [
+    {
+      "name": "Admissions",
+      "short_name": "Apply",
+      "description": "Apply for Admission",
+      "url": "/admission"
+    },
+    {
+      "name": "Results",
+      "short_name": "Results",
+      "description": "View Our Success Stories",
+      "url": "/results"
+    }
+  ],
   "orientation": "portrait",
-  "categories": ["education", "productivity"]
+  "categories": ["education"]
 }

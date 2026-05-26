@@ -15,6 +15,8 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import ResultCarousel from "@/components/public/ResultCarousel";
+import { SUCCESS_STORIES } from "@/lib/stories";
+import Link from "next/link";
 
 export default function HomeClient() {
   return (
@@ -494,6 +496,57 @@ export default function HomeClient() {
               </div>
             </div>
 
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════ SUCCESS STORIES (TESTIMONIALS) ═══════════ */}
+      <section className="py-20 sm:py-28 bg-white border-t border-slate-200">
+        <div className="max-w-7xl mx-auto px-5 sm:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+              Success <span className="text-amber-500">Stories</span>
+            </h2>
+            <p className="mt-4 text-slate-500 leading-relaxed">
+              Hear from our top achievers who turned their dreams into reality.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {SUCCESS_STORIES.slice(0, 3).map((story) => (
+              <div key={story.id} className="bg-slate-50 rounded-3xl p-8 border border-slate-200 hover:shadow-xl transition-all duration-300 flex flex-col h-full group">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="h-14 w-14 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-black text-2xl shadow-inner shrink-0">
+                    {story.title.split(' ')[1]?.charAt(0) || 'S'}
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-black text-slate-900 leading-tight">
+                      {story.title.split(' ')[1]} {story.title.split(' ')[2]}
+                    </h3>
+                    <span className="inline-block mt-1 px-2.5 py-1 bg-amber-100 text-amber-700 text-[10px] font-black rounded-lg uppercase tracking-widest">
+                      {story.category} {story.year}
+                    </span>
+                  </div>
+                </div>
+                <div className="flex-1 relative">
+                  <Quote className="absolute -top-2 -left-2 h-8 w-8 text-slate-200 pointer-events-none" />
+                  <p className="text-slate-600 font-medium italic leading-relaxed relative z-10 pl-6">
+                    "{story.excerpt}"
+                  </p>
+                </div>
+                <div className="mt-8 pt-6 border-t border-slate-200">
+                  <Link href={`/blog/${story.slug}`} className="inline-flex items-center gap-2 text-sm font-black text-blue-600 hover:text-blue-700 uppercase tracking-widest group-hover:gap-3 transition-all">
+                    Read Full Story <ArrowRight size={16} />
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          <div className="mt-16 text-center">
+            <Link href="/results" className="inline-flex items-center gap-3 bg-white border-2 border-slate-900 text-slate-900 px-10 py-4 rounded-full font-black uppercase tracking-widest hover:bg-slate-900 hover:text-white transition-all duration-300 shadow-sm">
+              View All Results
+            </Link>
           </div>
         </div>
       </section>

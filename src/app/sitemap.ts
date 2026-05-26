@@ -1,6 +1,7 @@
 import { MetadataRoute } from "next";
 import { SUCCESS_STORIES } from "@/lib/stories";
 import { BLOG_POSTS } from "@/lib/blogData";
+import { districtData } from "@/lib/districtData";
 
 const BASE_URL = "https://lakshyamarch.com";
 
@@ -13,11 +14,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/results",
     "/notes",
     "/about",
+    "/social",
+    "/youtube",
     "/contact",
     "/success-stories",
     "/testimonials",
     "/privacy-policy",
     "/terms",
+    "/hostel-facilities",
+    "/study-material",
+    "/study-material/ncert",
+    "/study-material/syllabus",
+    "/study-material/dpps",
   ].map((route) => ({
     url: `${BASE_URL}${route}`,
     lastModified: new Date().toISOString().split("T")[0],
@@ -65,5 +73,35 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.75,
   }));
 
-  return [...staticRoutes, ...phase3Routes, ...storyRoutes, ...blogListingRoute, ...blogPostRoutes];
+  // SEO Location Pages
+  const locationSlugs: string[] = [];
+  districtData.forEach(district => {
+    locationSlugs.push(district.english.toLowerCase().replace(/[^a-z0-9]+/g, '-'));
+    district.blocks.forEach(block => {
+      locationSlugs.push(block.english.split('/')[0].trim().toLowerCase().replace(/[^a-z0-9]+/g, '-'));
+    });
+  });
+
+  const locationRoutes = locationSlugs.flatMap((slug) => [
+    {
+      url: `${BASE_URL}/seo/general/${slug}`,
+      lastModified: new Date().toISOString().split("T")[0],
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    },
+    {
+      url: `${BASE_URL}/seo/iit-jee/${slug}`,
+      lastModified: new Date().toISOString().split("T")[0],
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    },
+    {
+      url: `${BASE_URL}/seo/neet/${slug}`,
+      lastModified: new Date().toISOString().split("T")[0],
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    }
+  ]);
+
+  return [...staticRoutes, ...phase3Routes, ...storyRoutes, ...blogListingRoute, ...blogPostRoutes, ...locationRoutes];
 }
