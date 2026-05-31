@@ -8,6 +8,7 @@ import { Suspense } from "react";
 import SocialCard, { SocialCardSkeleton } from "@/components/public/SocialCard";
 import { getNormalizedFeed } from "@/lib/socialService";
 import { getLatestYouTubeVideos, timeAgo } from "@/lib/youtubeService";
+import { AcademicGrid, BrandGlow } from "@/design-system/patterns";
 
 export const revalidate = 3600; // Cache the whole page optionally, but Suspense handles the rest
 
@@ -22,10 +23,7 @@ export default function SocialWallPage() {
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">
       <PublicNavbar />
-      
-      {/* Spacer */}
-      <div className="h-20 sm:h-24 bg-slate-900 border-b border-white/10" />
-      
+
       {/* JSON-LD Schema for SEO */}
       <Script id="social-schema" type="application/ld+json">
         {JSON.stringify({
@@ -44,23 +42,19 @@ export default function SocialWallPage() {
       </Script>
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-slate-900 via-[hsl(224,71%,18%)] to-slate-900 py-16 overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.04]"
-          style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` }} />
-        <div className="absolute top-1/2 left-10 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl -translate-y-1/2" />
-        
+      <section className="relative overflow-hidden bg-ink-950 pt-32 pb-16 sm:pt-40">
+        <AcademicGrid className="text-white" opacity={4} />
+        <BrandGlow className="left-10 top-1/2 h-64 w-64 -translate-y-1/2" color="rgb(37 71 235 / 0.25)" />
+
         <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-amber-500/15 border border-amber-400/30 rounded-full mb-6">
-            <Activity size={14} className="text-amber-400 animate-pulse" />
-            <span className="text-xs font-bold text-amber-200 tracking-widest uppercase">
-              Live Campus Updates
-            </span>
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 font-sans text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-brand-gold-400 backdrop-blur-sm">
+            <Activity size={14} className="animate-pulse" /> Live Campus Updates
           </div>
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-6 leading-tight">
-            LakshyaMarch <span className="text-amber-400">Social Wall</span>
+          <h1 className="font-display text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-6 leading-tight">
+            LakshyaMarch <span className="text-brand-gold-400">Social Wall</span>
           </h1>
-          <p className="text-blue-100/75 max-w-3xl mx-auto text-lg leading-relaxed">
-            Welcome to the digital community of Begusarai's leading coaching institute for IIT-JEE and NEET. Follow our social feeds for real-time announcements, free educational videos, daily quizzes, and motivation from our expert faculty.
+          <p className="text-white/70 max-w-3xl mx-auto text-lg leading-relaxed font-sans">
+            The digital community of Begusarai's leading IIT-JEE and NEET coaching institute. Follow our feeds for real-time announcements, free educational videos, daily quizzes, and motivation from expert faculty.
           </p>
         </div>
       </section>

@@ -4,6 +4,7 @@ import PublicFooter from "@/components/public/PublicFooter";
 import { getAllYouTubeVideos, timeAgo } from "@/lib/youtubeService";
 import { FaYoutube } from "react-icons/fa6";
 import { Suspense } from "react";
+import { AcademicGrid, BrandGlow } from "@/design-system/patterns";
 
 export const revalidate = 604800; // Cache for 7 days (Weekly update)
 
@@ -17,26 +18,24 @@ export default function YouTubeGalleryPage() {
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">
       <PublicNavbar />
-      
-      <div className="h-20 sm:h-24 bg-slate-900 border-b border-white/10" />
 
       {/* Hero Section */}
-      <section className="relative bg-slate-900 py-16 overflow-hidden">
-        <div className="absolute inset-0 opacity-10 bg-[url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80')] bg-cover bg-center" />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent" />
-        
+      <section className="relative overflow-hidden bg-ink-950 pt-32 pb-16 sm:pt-40">
+        <AcademicGrid className="text-white" opacity={4} />
+        <BrandGlow className="left-1/2 top-0 h-72 w-[36rem] -translate-x-1/2" color="rgb(229 57 53 / 0.25)" />
+
         <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 text-center">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#FF0000]/10 mb-6 shadow-[0_0_30px_rgba(255,0,0,0.3)]">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[#FF0000]/15 mb-6">
             <FaYoutube size={32} className="text-[#FF0000]" />
           </div>
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
-            LakshyaMarch <span className="text-[#FF0000]">Video Library</span>
+          <h1 className="font-display text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
+            LakshyaMarch <span className="text-brand-gold-400">Video Library</span>
           </h1>
-          <p className="text-slate-400 max-w-2xl mx-auto text-lg mb-8">
+          <p className="text-white/70 max-w-2xl mx-auto text-lg mb-8 font-sans">
             Master complex concepts, get exam strategies, and watch our toppers share their success secrets. Updated weekly with the latest classes.
           </p>
           <a href="https://youtube.com/@lakshyamarch?sub_confirmation=1" target="_blank" rel="noopener noreferrer"
-             className="inline-block px-8 py-4 bg-[#FF0000] hover:bg-red-600 text-white font-bold rounded-full transition-transform hover:scale-105 shadow-lg shadow-red-500/30">
+             className="inline-flex h-12 items-center rounded-xl bg-[#FF0000] px-8 font-display font-semibold text-white transition-transform hover:scale-105">
             Subscribe on YouTube
           </a>
         </div>

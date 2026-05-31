@@ -2,103 +2,235 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X, GraduationCap } from "lucide-react";
-import { INSTITUTE, NAV_LINKS } from "@/lib/siteData";
+import { usePathname } from "next/navigation";
+import { AnimatePresence, motion } from "framer-motion";
+import {
+  Menu,
+  X,
+  ChevronDown,
+  GraduationCap,
+  Target,
+  Stethoscope,
+  BookOpen,
+  Trophy,
+  Phone,
+} from "lucide-react";
+import { INSTITUTE } from "@/lib/siteData";
+import { cn } from "@/lib/utils";
+import BrandMark from "@/components/brand/BrandMark";
+import Button from "@/components/brand/Button";
 
+const MAIN_LINKS = [
+  { label: "Home", href: "/" },
+  { label: "Results", href: "/results" },
+  { label: "Faculty", href: "/faculty" },
+  { label: "Study Material", href: "/study-material" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
+];
+
+const PROGRAM_MENU = [
+  { label: "IIT-JEE Coaching", href: "/iit-jee-coaching-begusarai", desc: "Class 11, 12 & Dropper", icon: Target, accent: "text-brand-blue-700 bg-brand-blue-50" },
+  { label: "NEET Coaching", href: "/neet-coaching-begusarai", desc: "Medical aspirants & Droppers", icon: Stethoscope, accent: "text-brand-green-600 bg-brand-green-50" },
+  { label: "Foundation & School", href: "/programs", desc: "Integrated Class 6–10", icon: GraduationCap, accent: "text-brand-red-600 bg-brand-red-50" },
+  { label: "ThinkNEET Test Series", href: "/think-neet-test-series-begusarai", desc: "NCERT-based mock tests", icon: BookOpen, accent: "text-brand-gold-600 bg-brand-gold-50" },
+  { label: "Scholarship Exam", href: "/scholarship", desc: "Win up to 100% fee waiver", icon: Trophy, accent: "text-brand-red-600 bg-brand-red-50" },
+];
 
 export default function PublicNavbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [megaOpen, setMegaOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 40);
+    const handler = () => setScrolled(window.scrollY > 24);
+    handler();
     window.addEventListener("scroll", handler, { passive: true });
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
+  useEffect(() => {
+    setMobileOpen(false);
+    setMegaOpen(false);
+  }, [pathname]);
+
+  const onDark = !scrolled;
+
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+      className={cn(
+        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
         scrolled
-          ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-slate-100"
-          : "bg-transparent"
-      }`}
+          ? "border-b border-ink-200/70 bg-white/85 shadow-brand-sm backdrop-blur-xl"
+          : "border-b border-transparent bg-transparent",
+      )}
     >
-      <div className="max-w-7xl mx-auto px-5 sm:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-18">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="h-9 w-9 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow">
-              <GraduationCap size={20} className="text-white" />
-            </div>
-            <div className="leading-tight">
-              <p className={`text-base font-extrabold tracking-tight transition-colors ${scrolled ? "text-slate-900" : "text-white"}`}>
-                {INSTITUTE.headerName}
-              </p>
-              <p className={`text-[10px] font-medium uppercase tracking-widest transition-colors ${scrolled ? "text-blue-600" : "text-blue-200"}`}>
-                {INSTITUTE.tagline2}
-              </p>
-            </div>
-          </Link>
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:h-[72px] sm:px-8">
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2.5">
+          <BrandMark size={40} />
+          <span className="leading-tight">
+            <span className={cn("block font-display text-base font-extrabold tracking-tight", onDark ? "text-white" : "text-ink-900")}>
+              {INSTITUTE.headerName}
+            </span>
+            <span className={cn("block font-sans text-[0.625rem] font-bold uppercase tracking-[0.16em]", onDark ? "text-brand-gold-400" : "text-brand-red-600")}>
+              Begusarai · Estd {INSTITUTE.established}
+            </span>
+          </span>
+        </Link>
 
-          {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-1">
-            {NAV_LINKS.map((link: { label: string; href: string }) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className={`px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
-                  scrolled
-                    ? "text-slate-600 hover:text-blue-600 hover:bg-blue-50"
-                    : "text-white/80 hover:text-white hover:bg-white/10"
-                }`}
-              >
-                {link.label}
-              </a>
-            ))}
-            <Link
-              href="/admission"
-              className="ml-2 h-9 px-4 inline-flex items-center justify-center rounded-lg bg-amber-500 hover:bg-amber-600 text-white text-sm font-bold shadow-md transition-all"
+        {/* Desktop nav */}
+        <div className="hidden items-center gap-1 lg:flex">
+          <NavItem href="/" label="Home" onDark={onDark} active={pathname === "/"} />
+
+          {/* Programs mega menu */}
+          <div
+            className="relative"
+            onMouseEnter={() => setMegaOpen(true)}
+            onMouseLeave={() => setMegaOpen(false)}
+          >
+            <button
+              className={cn(
+                "flex items-center gap-1 rounded-lg px-3 py-2 font-sans text-sm font-medium transition-colors",
+                onDark ? "text-white/85 hover:bg-white/10 hover:text-white" : "text-ink-600 hover:bg-ink-100 hover:text-ink-900",
+              )}
             >
-              Apply Now
-            </Link>
-
+              Programs
+              <ChevronDown size={15} strokeWidth={2} className={cn("transition-transform", megaOpen && "rotate-180")} />
+            </button>
+            <AnimatePresence>
+              {megaOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 8 }}
+                  transition={{ duration: 0.18 }}
+                  className="absolute left-1/2 top-full w-[28rem] -translate-x-1/2 pt-3"
+                >
+                  <div className="grid grid-cols-1 gap-1 rounded-2xl border border-ink-200 bg-white p-3 shadow-brand-xl">
+                    {PROGRAM_MENU.map((p) => (
+                      <Link
+                        key={p.href}
+                        href={p.href}
+                        className="group flex items-center gap-3 rounded-xl p-3 transition-colors hover:bg-ink-50"
+                      >
+                        <span className={cn("flex h-10 w-10 shrink-0 items-center justify-center rounded-lg", p.accent)}>
+                          <p.icon size={20} strokeWidth={1.75} />
+                        </span>
+                        <span>
+                          <span className="block font-display text-sm font-semibold text-ink-900">{p.label}</span>
+                          <span className="block font-sans text-xs text-ink-500">{p.desc}</span>
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
+          {MAIN_LINKS.slice(1).map((link) => (
+            <NavItem key={link.href} href={link.href} label={link.label} onDark={onDark} active={pathname === link.href} />
+          ))}
 
-          {/* Mobile menu toggle */}
-          <button
-            className="md:hidden p-2 rounded-lg"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle menu"
-          >
-            {mobileOpen ? (
-              <X size={22} className={scrolled ? "text-slate-800" : "text-white"} />
-            ) : (
-              <Menu size={22} className={scrolled ? "text-slate-800" : "text-white"} />
-            )}
-          </button>
+          <div className="ml-2 flex items-center gap-2">
+            <a
+              href={`tel:+91${INSTITUTE.primaryPhone}`}
+              className={cn(
+                "flex h-10 w-10 items-center justify-center rounded-lg transition-colors",
+                onDark ? "text-white/85 hover:bg-white/10" : "text-ink-600 hover:bg-ink-100",
+              )}
+              aria-label="Call admissions"
+            >
+              <Phone size={18} strokeWidth={1.75} />
+            </a>
+            <Button href="/admission" variant="primary" size="sm" withArrow>
+              Apply Now
+            </Button>
+          </div>
         </div>
+
+        {/* Mobile toggle */}
+        <button
+          className={cn("rounded-lg p-2 lg:hidden", onDark ? "text-white" : "text-ink-900")}
+          onClick={() => setMobileOpen((v) => !v)}
+          aria-label="Toggle menu"
+        >
+          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </div>
 
-      {/* Mobile dropdown */}
-      {mobileOpen && (
-        <div className="md:hidden bg-white/95 backdrop-blur-md border-t border-slate-100 shadow-xl">
-          <div className="px-5 py-4 space-y-1">
-            {NAV_LINKS.map((link: { label: string; href: string }) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setMobileOpen(false)}
-                className="block px-3 py-2.5 text-sm font-medium text-slate-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
-
-          </div>
-        </div>
-      )}
+      {/* Mobile drawer */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25 }}
+            className="overflow-hidden border-t border-ink-200 bg-white lg:hidden"
+          >
+            <div className="space-y-1 px-5 py-4">
+              {MAIN_LINKS.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="block rounded-xl px-4 py-3 font-sans text-sm font-semibold text-ink-700 transition-colors hover:bg-ink-50 hover:text-brand-red-600"
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <p className="px-4 pb-1 pt-4 font-sans text-[0.625rem] font-bold uppercase tracking-[0.16em] text-ink-400">
+                Programs
+              </p>
+              {PROGRAM_MENU.map((p) => (
+                <Link
+                  key={p.href}
+                  href={p.href}
+                  className="flex items-center gap-3 rounded-xl px-4 py-3 transition-colors hover:bg-ink-50"
+                >
+                  <span className={cn("flex h-9 w-9 items-center justify-center rounded-lg", p.accent)}>
+                    <p.icon size={18} strokeWidth={1.75} />
+                  </span>
+                  <span className="font-sans text-sm font-semibold text-ink-700">{p.label}</span>
+                </Link>
+              ))}
+              <div className="grid grid-cols-2 gap-3 pt-4">
+                <Button href={`tel:+91${INSTITUTE.primaryPhone}`} variant="outline" size="sm">
+                  Call Us
+                </Button>
+                <Button href="/admission" variant="primary" size="sm" withArrow>
+                  Apply Now
+                </Button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
+  );
+}
+
+function NavItem({ href, label, onDark, active }: { href: string; label: string; onDark: boolean; active: boolean }) {
+  return (
+    <Link
+      href={href}
+      className={cn(
+        "relative rounded-lg px-3 py-2 font-sans text-sm font-medium transition-colors",
+        onDark ? "text-white/85 hover:bg-white/10 hover:text-white" : "text-ink-600 hover:bg-ink-100 hover:text-ink-900",
+        active && (onDark ? "text-white" : "text-brand-red-600"),
+      )}
+    >
+      {label}
+      {active && (
+        <span
+          className={cn(
+            "absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full",
+            onDark ? "bg-brand-gold-400" : "bg-brand-red-600",
+          )}
+        />
+      )}
+    </Link>
   );
 }

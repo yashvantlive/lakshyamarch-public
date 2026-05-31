@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Send, CheckCircle, Loader2 } from "lucide-react";
+import { Send, CheckCircle, Loader2, AlertCircle } from "lucide-react";
 import { PROGRAMS } from "@/lib/siteData";
 import ClientOnly from "@/components/ClientOnly";
 import { erpApiPath } from "@/lib/erpApi";
@@ -84,17 +84,17 @@ function EnquiryFormInner() {
 
   if (success) {
     return (
-      <div className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 p-8 text-center max-w-md mx-auto shadow-2xl">
-        <div className="h-16 w-16 rounded-full bg-emerald-500/20 flex items-center justify-center mx-auto mb-4">
-          <CheckCircle size={32} className="text-emerald-400" />
+      <div className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 p-8 text-center max-w-md mx-auto shadow-brand-xl">
+        <div className="h-16 w-16 rounded-full bg-brand-green-500/20 flex items-center justify-center mx-auto mb-4">
+          <CheckCircle size={32} className="text-brand-green-400" strokeWidth={1.75} />
         </div>
-        <h3 className="text-xl font-bold text-white mb-2">Enquiry Submitted! 🎉</h3>
-        <p className="text-sm text-blue-100/80 mb-5">
+        <h3 className="text-xl font-display font-bold text-white mb-2">Enquiry Submitted</h3>
+        <p className="text-sm text-white/70 mb-5">
           Thank you for your interest in LakshyaMarch. Our counsellor will call you within 24 hours.
         </p>
         <button
           onClick={() => setSuccess(false)}
-          className="text-sm font-medium text-amber-400 hover:text-white underline underline-offset-4 transition-colors"
+          className="text-sm font-medium text-brand-gold-400 hover:text-white underline underline-offset-4 transition-colors"
         >
           Submit another enquiry
         </button>
@@ -111,13 +111,13 @@ function EnquiryFormInner() {
       className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 p-6 sm:p-8 max-w-md mx-auto shadow-2xl"
     >
       <div className="mb-6">
-        <h3 className="text-xl font-extrabold text-white mb-1">Begin Your Journey</h3>
-        <p className="text-sm text-blue-100/70">Admission Enquiry for 2026-2027</p>
+        <h3 className="text-xl font-display font-extrabold text-white mb-1">Begin Your Journey</h3>
+        <p className="text-sm text-white/65">Admission Enquiry for 2026-2027</p>
       </div>
 
       <div className="space-y-4">
         <div>
-          <label className="block text-[11px] font-bold text-blue-100/80 uppercase tracking-wider mb-1.5">
+          <label className="block text-[11px] font-bold text-white/70 uppercase tracking-wider mb-1.5">
             Student Name
           </label>
           <input
@@ -125,12 +125,12 @@ function EnquiryFormInner() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Enter Your Name"
-            className="w-full h-11 px-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder:text-blue-200/40 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-all"
+            className="w-full h-11 px-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder:text-white/40 text-sm focus:outline-none focus:ring-2 focus:ring-brand-gold-400 focus:border-transparent transition-all"
           />
         </div>
 
         <div>
-          <label className="block text-[11px] font-bold text-blue-100/80 uppercase tracking-wider mb-1.5">
+          <label className="block text-[11px] font-bold text-white/70 uppercase tracking-wider mb-1.5">
             Mobile Number
           </label>
           <input
@@ -139,39 +139,39 @@ function EnquiryFormInner() {
             onChange={(e) => setPhone(e.target.value)}
             placeholder="10-digit number"
             maxLength={10}
-            className="w-full h-11 px-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder:text-blue-200/40 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-all"
+            className="w-full h-11 px-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder:text-white/40 text-sm focus:outline-none focus:ring-2 focus:ring-brand-gold-400 focus:border-transparent transition-all"
           />
         </div>
 
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <label className="block text-[11px] font-bold text-blue-100/80 uppercase tracking-wider mb-1.5">
+            <label className="block text-[11px] font-bold text-white/70 uppercase tracking-wider mb-1.5">
               Program
             </label>
             <select
               value={program}
               onChange={(e) => { setProgram(e.target.value as any); setClassApplied(""); }}
-              className="w-full h-11 px-3 rounded-xl bg-white/10 border border-white/20 text-white text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-all appearance-none cursor-pointer"
+              className="w-full h-11 px-3 rounded-xl bg-white/10 border border-white/20 text-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-gold-400 focus:border-transparent transition-all appearance-none cursor-pointer"
             >
-              <option value="" className="text-slate-900">Select...</option>
-              <option value="coaching" className="text-slate-900">Coaching (7-12)</option>
-              <option value="school" className="text-slate-900">School (6-10)</option>
+              <option value="" className="text-ink-900">Select...</option>
+              <option value="coaching" className="text-ink-900">Coaching (7-12)</option>
+              <option value="school" className="text-ink-900">School (6-10)</option>
             </select>
           </div>
 
           <div>
-            <label className="block text-[11px] font-bold text-blue-100/80 uppercase tracking-wider mb-1.5">
+            <label className="block text-[11px] font-bold text-white/70 uppercase tracking-wider mb-1.5">
               Class
             </label>
             <select
               value={classApplied}
               onChange={(e) => setClassApplied(e.target.value)}
               disabled={!program}
-              className="w-full h-11 px-3 rounded-xl bg-white/10 border border-white/20 text-white text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-all appearance-none cursor-pointer disabled:opacity-50"
+              className="w-full h-11 px-3 rounded-xl bg-white/10 border border-white/20 text-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-gold-400 focus:border-transparent transition-all appearance-none cursor-pointer disabled:opacity-50"
             >
-              <option value="" className="text-slate-900">Class</option>
+              <option value="" className="text-ink-900">Class</option>
               {classOptions.map((c) => (
-                <option key={c} value={c} className="text-slate-900">
+                <option key={c} value={c} className="text-ink-900">
                   {c}
                 </option>
               ))}
@@ -181,32 +181,32 @@ function EnquiryFormInner() {
 
         {program === "coaching" && (
           <div className="pt-1">
-            <label className="block text-[11px] font-bold text-blue-100/80 uppercase tracking-wider mb-1.5">
+            <label className="block text-[11px] font-bold text-white/70 uppercase tracking-wider mb-1.5">
               Target Exam
             </label>
             <select
               required
-              className="w-full h-11 px-3 rounded-xl bg-white/10 border border-white/20 text-white text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-all appearance-none cursor-pointer"
+              className="w-full h-11 px-3 rounded-xl bg-white/10 border border-white/20 text-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-gold-400 focus:border-transparent transition-all appearance-none cursor-pointer"
             >
-              <option value="" className="text-slate-900">Select Target</option>
-              <option value="IIT-JEE" className="text-slate-900">IIT-JEE (Engineering)</option>
-              <option value="NEET" className="text-slate-900">NEET (Medical)</option>
-              <option value="Foundation" className="text-slate-900">Foundation / Olympiads</option>
+              <option value="" className="text-ink-900">Select Target</option>
+              <option value="IIT-JEE" className="text-ink-900">IIT-JEE (Engineering)</option>
+              <option value="NEET" className="text-ink-900">NEET (Medical)</option>
+              <option value="Foundation" className="text-ink-900">Foundation / Olympiads</option>
             </select>
           </div>
         )}
       </div>
 
       {error && (
-        <p className="mt-4 text-[13px] font-medium text-red-200 bg-red-500/20 rounded-lg px-3 py-2 border border-red-500/30">
-          ⚠ {error}
+        <p className="mt-4 text-[13px] font-medium text-red-100 bg-brand-red-500/20 rounded-lg px-3 py-2 border border-brand-red-500/30 flex items-center gap-2">
+          <AlertCircle size={15} strokeWidth={1.75} className="shrink-0" /> {error}
         </p>
       )}
 
       <button
         type="submit"
         disabled={saving}
-        className="mt-6 w-full h-12 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-bold tracking-wide text-sm shadow-xl shadow-amber-500/20 disabled:opacity-60 transition-all flex items-center justify-center gap-2 cursor-pointer"
+        className="mt-6 w-full h-12 rounded-xl bg-brand-red-600 hover:bg-brand-red-700 text-white font-display font-semibold tracking-wide text-sm shadow-brand-md hover:shadow-brand-glow-red disabled:opacity-60 transition-all flex items-center justify-center gap-2 cursor-pointer"
       >
         {saving ? (
           <>
@@ -221,7 +221,7 @@ function EnquiryFormInner() {
         )}
       </button>
 
-      <p className="mt-4 text-[10px] text-blue-200/50 text-center uppercase tracking-wider font-semibold">
+      <p className="mt-4 text-[10px] text-white/50 text-center uppercase tracking-wider font-semibold">
         No Spam • Expert Counselling
       </p>
     </form>

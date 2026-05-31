@@ -30,13 +30,13 @@ export default function FloatingCTA() {
       {/* Phone CTA */}
       <a 
         href={`tel:+91${INSTITUTE.primaryPhone || "6206323869"}`} 
-        className="group relative h-12 w-12 sm:h-14 sm:w-14 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-lg hover:scale-110 hover:bg-blue-700 transition-all duration-300"
+        className="group relative h-12 w-12 sm:h-14 sm:w-14 rounded-full bg-brand-blue-800 text-white flex items-center justify-center shadow-brand-lg hover:scale-110 hover:bg-brand-blue-900 transition-all duration-300"
         aria-label="Call Admissions"
       >
-        <span className="absolute right-full mr-4 whitespace-nowrap bg-slate-900 text-white text-xs font-bold px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none after:content-[''] after:absolute after:top-1/2 after:-translate-y-1/2 after:left-full after:border-4 after:border-transparent after:border-l-slate-900">
+        <span className="absolute right-full mr-4 whitespace-nowrap bg-ink-900 text-white text-xs font-bold px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none after:content-[''] after:absolute after:top-1/2 after:-translate-y-1/2 after:left-full after:border-4 after:border-transparent after:border-l-ink-900">
           Call Admissions
         </span>
-        <Phone size={22} className="group-hover:animate-pulse" />
+        <Phone size={22} strokeWidth={1.75} />
       </a>
 
       {/* WhatsApp CTA */}
@@ -44,17 +44,17 @@ export default function FloatingCTA() {
         href={whatsappLink()} 
         target="_blank" 
         rel="noopener noreferrer"
-        className="group relative h-12 w-12 sm:h-14 sm:w-14 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-xl hover:scale-110 hover:bg-emerald-600 transition-all duration-300 before:absolute before:inset-0 before:rounded-full before:border-2 before:border-emerald-500 before:animate-ping"
+        className="group relative h-12 w-12 sm:h-14 sm:w-14 rounded-full bg-brand-green-500 text-white flex items-center justify-center shadow-brand-lg hover:scale-110 hover:bg-brand-green-600 transition-all duration-300 before:absolute before:inset-0 before:rounded-full before:border-2 before:border-brand-green-500 before:animate-ping"
         aria-label="WhatsApp Us"
       >
-        <span className="absolute right-full mr-4 whitespace-nowrap bg-slate-900 text-white text-xs font-bold px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none flex items-center gap-2 after:content-[''] after:absolute after:top-1/2 after:-translate-y-1/2 after:left-full after:border-4 after:border-transparent after:border-l-slate-900">
+        <span className="absolute right-full mr-4 whitespace-nowrap bg-ink-900 text-white text-xs font-bold px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none flex items-center gap-2 after:content-[''] after:absolute after:top-1/2 after:-translate-y-1/2 after:left-full after:border-4 after:border-transparent after:border-l-ink-900">
           <span className="relative flex h-2 w-2">
-             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-green-400 opacity-75"></span>
+             <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-green-500"></span>
           </span>
           Chat with Us
         </span>
-        <MessageCircle size={26} />
+        <MessageCircle size={26} strokeWidth={1.75} />
       </a>
     </div>
   );
