@@ -3,6 +3,11 @@ import PublicFooter from "@/components/public/PublicFooter";
 import FaqSchema from "@/components/seo/FaqSchema";
 import { INSTITUTE, whatsappLink } from "@/lib/siteData";
 import { MapPin, Phone, Mail, Clock, MessageCircle } from "lucide-react";
+import {
+  Badge, SectionHeader, HeroSection, Button, Reveal, Stagger, StaggerItem,
+} from "@/components/brand";
+import { layout } from "@/design-system/spacing";
+import { cn } from "@/lib/utils";
 
 const contactFaqs = [
   { q: "What is LakshyaMarch's phone number?", a: "You can call LakshyaMarch at +91-7296050207, +91-6206323869, or +91-8603793869. WhatsApp is also available on +91-6206323869." },
@@ -17,106 +22,108 @@ export const metadata = {
   keywords: ["LakshyaMarch Contact Number", "Admission Enquiry Begusarai", "Coaching Center Address", "Ram Sir WhatsApp", "LakshyaMarch Location", "Office Hours"],
 };
 
+type ContactLine = { text: string; href?: string };
+const CONTACT_METHODS: { icon: typeof Phone; tone: "blue" | "green" | "red" | "gold"; title: string; lines: ContactLine[] }[] = [
+  { icon: Phone, tone: "blue", title: "Call Us", lines: INSTITUTE.phones.map((p) => ({ text: p, href: `tel:+91${p}` })) },
+  { icon: MessageCircle, tone: "green", title: "WhatsApp", lines: [{ text: "Chat with Admission Counsellor", href: whatsappLink() }] },
+  { icon: Mail, tone: "red", title: "Email", lines: [{ text: INSTITUTE.email }, { text: INSTITUTE.schoolEmail }] },
+  { icon: Clock, tone: "gold", title: "Office Hours", lines: [{ text: INSTITUTE.officeHours }, { text: "Sundays closed for general public" }] },
+];
+
+const toneChip: Record<string, string> = {
+  blue: "bg-brand-blue-50 text-brand-blue-700",
+  green: "bg-brand-green-50 text-brand-green-600",
+  red: "bg-brand-red-50 text-brand-red-600",
+  gold: "bg-brand-gold-50 text-brand-gold-600",
+};
+
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col">
+    <div className="flex min-h-screen flex-col bg-ink-50">
       <FaqSchema faqs={contactFaqs} />
       <PublicNavbar />
-      <div className="h-24 bg-slate-900 border-b border-white/10" />
+
+      <HeroSection accent="red" minHeight="min-h-[52vh]">
+        <div className="mx-auto max-w-3xl text-center">
+          <Reveal>
+            <Badge tone="onDark" icon={MapPin}>We're in Begusarai</Badge>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <h1 className="mt-6 font-display text-[clamp(2.25rem,5vw,3.5rem)] font-extrabold leading-tight tracking-tight text-white">
+              Contact <span className="text-brand-gold-400">Us</span>
+            </h1>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="mx-auto mt-5 max-w-2xl font-sans text-lg leading-relaxed text-white/70">
+              Questions about admissions, fees, or a campus tour? Our team is ready to help.
+            </p>
+          </Reveal>
+        </div>
+      </HeroSection>
 
       <main className="flex-1">
-        <div className="bg-slate-900 py-16 sm:py-24 text-center px-4 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-t from-blue-900/50 to-transparent mix-blend-overlay"></div>
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-4 relative z-10">Contact <span className="text-amber-400">Us</span></h1>
-          <p className="text-blue-200 text-lg max-w-2xl mx-auto relative z-10">
-            We'd love to hear from you. Visit our campus or reach out via phone or email.
-          </p>
-        </div>
+        <section className={cn(layout.section, "bg-white")}>
+          <div className={layout.container}>
+            <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
+              {/* Map */}
+              <Reveal>
+                <div className="relative h-[420px] overflow-hidden rounded-lg border border-ink-200 shadow-brand-lg lg:h-[560px]">
+                  <iframe
+                    src={INSTITUTE.mapEmbedUrl}
+                    width="100%" height="100%" style={{ border: 0 }}
+                    allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"
+                    title="LakshyaMarch Location"
+                  />
+                  <div className="absolute inset-x-6 bottom-6 rounded-lg border border-ink-200 bg-white p-5 shadow-brand-lg">
+                    <p className="font-display font-bold text-ink-900">{INSTITUTE.name}</p>
+                    <p className="mt-1 font-sans text-sm leading-snug text-ink-600">{INSTITUTE.address.full}</p>
+                  </div>
+                </div>
+              </Reveal>
 
-        <section className="py-16 sm:py-24 bg-white px-5 sm:px-8">
-          <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
-            
-            {/* Map */}
-            <div className="rounded-3xl overflow-hidden shadow-2xl border-4 border-slate-100 h-[400px] lg:h-[600px] relative">
-              <iframe
-                src={INSTITUTE.mapEmbedUrl}
-                width="100%" height="100%" style={{ border: 0 }}
-                allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"
-                title="LakshyaMarch Location"
-              />
-              <div className="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-md p-5 rounded-xl border border-white/50 shadow-lg">
-                <p className="font-bold text-slate-900 mb-1">{INSTITUTE.name}</p>
-                <p className="text-sm text-slate-600 leading-snug">{INSTITUTE.address.full}</p>
-              </div>
+              {/* Details */}
+              <Reveal delay={0.1}>
+                <SectionHeader
+                  align="left"
+                  eyebrow="Get in Touch"
+                  title="Reach Out Anytime"
+                  accentWord="Anytime"
+                  accent="blue"
+                  lead="Whether it's a quick question or a detailed counselling request, we respond fast."
+                  className="mb-8"
+                />
+                <Stagger className="grid gap-4 sm:grid-cols-2">
+                  {CONTACT_METHODS.map((m) => (
+                    <StaggerItem key={m.title}>
+                      <div className="h-full rounded-lg border border-ink-200 bg-ink-50 p-5">
+                        <div className={cn("mb-3 flex h-12 w-12 items-center justify-center rounded-xl", toneChip[m.tone])}>
+                          <m.icon size={22} strokeWidth={1.75} />
+                        </div>
+                        <h4 className="font-display font-bold text-ink-900">{m.title}</h4>
+                        <div className="mt-1 space-y-0.5">
+                          {m.lines.map((l, i) =>
+                            l.href ? (
+                              <a key={i} href={l.href} className="block font-sans text-sm text-ink-600 hover:text-brand-red-600">
+                                {l.text}
+                              </a>
+                            ) : (
+                              <p key={i} className="font-sans text-sm text-ink-600">{l.text}</p>
+                            ),
+                          )}
+                        </div>
+                      </div>
+                    </StaggerItem>
+                  ))}
+                </Stagger>
+                <div className="mt-8">
+                  <Button href="/admission" variant="primary" size="lg" withArrow magnetic className="w-full sm:w-auto">
+                    Fill the Admission Enquiry Form
+                  </Button>
+                </div>
+              </Reveal>
             </div>
-
-            {/* Details */}
-            <div className="space-y-8">
-              <div>
-                <h2 className="text-3xl font-extrabold text-slate-900 mb-6">Get In Touch</h2>
-                <p className="text-slate-600 mb-8 leading-relaxed">
-                  Whether you have a question about admissions, fees, or want to schedule a campus tour, our team is ready to answer all your questions.
-                </p>
-              </div>
-
-              <div className="space-y-6">
-                <div className="flex gap-5">
-                  <div className="h-14 w-14 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
-                    <Phone className="text-blue-600" size={24} />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-slate-900 mb-1">Call Us</h4>
-                    {INSTITUTE.phones.map(ph => (
-                      <p key={ph} className="text-slate-600"><a href={`tel:+91${ph}`} className="hover:text-blue-600 transition-colors">{ph}</a></p>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="flex gap-5">
-                  <div className="h-14 w-14 rounded-full bg-emerald-50 flex items-center justify-center shrink-0">
-                    <MessageCircle className="text-emerald-500" size={24} />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-slate-900 mb-1">WhatsApp</h4>
-                    <p className="text-slate-600">
-                      <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="hover:text-emerald-600 transition-colors">Chat with Admission Counsellor</a>
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex gap-5">
-                  <div className="h-14 w-14 rounded-full bg-amber-50 flex items-center justify-center shrink-0">
-                    <Mail className="text-amber-600" size={24} />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-slate-900 mb-1">Email Us</h4>
-                    <p className="text-slate-600">{INSTITUTE.email}</p>
-                    <p className="text-slate-600">{INSTITUTE.schoolEmail}</p>
-                  </div>
-                </div>
-
-                <div className="flex gap-5">
-                  <div className="h-14 w-14 rounded-full bg-purple-50 flex items-center justify-center shrink-0">
-                    <Clock className="text-purple-600" size={24} />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-slate-900 mb-1">Office Hours</h4>
-                    <p className="text-slate-600">{INSTITUTE.officeHours}</p>
-                    <p className="text-slate-500 text-sm mt-1">Sundays are closed for general public.</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="pt-8 border-t border-slate-200">
-                <a href="/" className="inline-flex items-center justify-center w-full h-14 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl transition-colors shadow-lg shadow-slate-900/20">
-                  Fill Online Enquiry Form Instead
-                </a>
-              </div>
-            </div>
-
           </div>
         </section>
-
       </main>
 
       <PublicFooter />

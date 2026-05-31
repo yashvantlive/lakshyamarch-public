@@ -14,16 +14,13 @@ export const INST_VALUES = {
   vision: {
     title: "Our Vision",
     text: "To establish a benchmark in education by making premier engineering (IIT-JEE) and medical (NEET) coaching accessible to students within their home region, eliminating the need to relocate to distant coaching hubs.",
-    icon: "👁️"
   },
   mission: {
     title: "Our Mission",
     text: "To nurture competitive excellence and board-level brilliance together through disciplined integrated schooling and mentorship by elite IIT/NIT alumni, while prioritizing students' mental health and academic integrity.",
-    icon: "🎯"
   },
   goal: {
     title: "Our Goals",
     text: "To ensure 100% conceptual clarity, build competitive test temperament using daily practice problems (DPPs), and continuously improve selection rates to make Begusarai a leading educational hub in Bihar.",
-    icon: "🏆"
   }
 };

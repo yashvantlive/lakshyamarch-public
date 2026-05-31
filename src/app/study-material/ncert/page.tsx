@@ -100,7 +100,7 @@ export default function NcertPage() {
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {classSec.subjects.map((subject, subIdx) => (
-                  <div key={subIdx} className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow">
+                  <div key={subIdx} className="bg-white border border-slate-200 rounded-lg p-8 shadow-sm hover:shadow-md transition-shadow">
                     <h3 className="text-2xl font-bold text-blue-600 mb-6">
                       {subject.name}
                     </h3>

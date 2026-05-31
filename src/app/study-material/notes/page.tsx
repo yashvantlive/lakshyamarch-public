@@ -1,7 +1,10 @@
-import Link from "next/link";
 import PublicNavbar from "@/components/public/PublicNavbar";
 import PublicFooter from "@/components/public/PublicFooter";
 import NotesClient from "@/components/public/NotesClient";
+import { Badge, HeroSection, Reveal } from "@/components/brand";
+import { BookText } from "lucide-react";
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 
 export const metadata = {
   title: "Concept Notes & Formula Sheets | LakshyaMarch Education",
@@ -11,30 +14,30 @@ export const metadata = {
 
 export default function NotesPage() {
   return (
-    <div className="min-h-screen bg-white flex flex-col uppercase-none">
+    <div className="flex min-h-screen flex-col bg-ink-50">
       <PublicNavbar />
-      
       <main className="flex-1">
-        {/* Hero Section */}
-        <section className="relative pt-32 pb-20 px-6 overflow-hidden bg-slate-900">
-          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10" />
-          <div className="max-w-6xl mx-auto relative z-10">
-             <nav className="flex items-center gap-2 text-[10px] font-black text-blue-400/60 uppercase tracking-[0.2em] mb-4">
-              <Link href="/study-material" className="hover:text-blue-400 transition-colors">Study Material</Link>
-              <span>/</span>
-              <span className="text-white">Concept Notes</span>
-            </nav>
-            <h1 className="text-4xl md:text-5xl font-black text-white leading-tight">
-              Concept <span className="text-blue-400">Notes</span>
-            </h1>
+        <HeroSection accent="red" minHeight="min-h-[44vh]">
+          <div>
+            <Reveal>
+              <nav className="flex items-center gap-2 font-sans text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-white/50">
+                <Link href="/study-material" className="transition-colors hover:text-white">Study Material</Link>
+                <ChevronRight size={12} />
+                <span className="text-white">Concept Notes</span>
+              </nav>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <Badge tone="onDark" icon={BookText} className="mt-5">Revision Hub</Badge>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h1 className="mt-5 font-display text-[clamp(2rem,4.5vw,3rem)] font-extrabold leading-tight tracking-tight text-white">
+                Concept <span className="text-brand-gold-400">Notes</span>
+              </h1>
+            </Reveal>
           </div>
-        </section>
-
-        <div className="max-w-7xl mx-auto px-6">
-          <NotesClient />
-        </div>
+        </HeroSection>
+        <NotesClient />
       </main>
-
       <PublicFooter />
     </div>
   );

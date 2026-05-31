@@ -55,15 +55,15 @@ export default function TestEnquiryForm() {
   };
 
   return (
-    <div className="bg-white p-8 sm:p-10 rounded-3xl shadow-2xl border border-slate-100 relative overflow-hidden">
+    <div className="bg-white p-8 sm:p-10 rounded-lg shadow-brand-lg border border-ink-100 relative overflow-hidden">
       {/* Top Banner inside form */}
-      <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-amber-400 to-orange-500" />
+      <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-brand-red-600 to-brand-red-700" />
       
       <div className="text-center mb-8">
-        <h3 className="text-2xl font-black text-slate-900 leading-tight">
-          Register for <span className="text-amber-500">Free Test</span>
+        <h3 className="text-2xl font-extrabold text-ink-900 leading-tight">
+          Register for <span className="text-brand-red-600">Free Test</span>
         </h3>
-        <p className="text-sm text-slate-500 mt-2 font-medium">Limited slots. Fill the form to secure your seat.</p>
+        <p className="text-sm text-ink-500 mt-2 font-medium">Limited slots. Fill the form to secure your seat.</p>
       </div>
 
       {success && (
@@ -97,7 +97,7 @@ export default function TestEnquiryForm() {
               type="text"
               name="name"
               required
-              className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium text-slate-900 focus:bg-white focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 outline-none transition-all"
+              className="w-full pl-10 pr-4 py-3 bg-ink-50 border border-ink-200 rounded-xl text-sm font-medium text-ink-900 focus:bg-white focus:ring-2 focus:ring-brand-red-500/20 focus:border-brand-red-500 outline-none transition-all"
               placeholder="e.g. Rahul Kumar"
             />
           </div>
@@ -117,7 +117,7 @@ export default function TestEnquiryForm() {
               name="phone"
               required
               pattern="[0-9]{10}"
-              className="w-full pl-[4.5rem] pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium text-slate-900 focus:bg-white focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 outline-none transition-all"
+              className="w-full pl-[4.5rem] pr-4 py-3 bg-ink-50 border border-ink-200 rounded-xl text-sm font-medium text-ink-900 focus:bg-white focus:ring-2 focus:ring-brand-red-500/20 focus:border-brand-red-500 outline-none transition-all"
               placeholder="10-digit number"
             />
           </div>
@@ -137,7 +137,7 @@ export default function TestEnquiryForm() {
               required
               value={targetExam}
               onChange={(e) => setTargetExam(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium text-slate-900 focus:bg-white focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 outline-none transition-all appearance-none"
+              className="w-full pl-10 pr-4 py-3 bg-ink-50 border border-ink-200 rounded-xl text-sm font-medium text-ink-900 focus:bg-white focus:ring-2 focus:ring-brand-red-500/20 focus:border-brand-red-500 outline-none transition-all appearance-none"
             >
               <option value="" disabled>Select target exam...</option>
               <option value="NEET">NEET (Medical)</option>
@@ -159,7 +159,7 @@ export default function TestEnquiryForm() {
             <select
               name="className"
               required
-              className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium text-slate-900 focus:bg-white focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 outline-none transition-all appearance-none"
+              className="w-full pl-10 pr-4 py-3 bg-ink-50 border border-ink-200 rounded-xl text-sm font-medium text-ink-900 focus:bg-white focus:ring-2 focus:ring-brand-red-500/20 focus:border-brand-red-500 outline-none transition-all appearance-none"
             >
               <option value="" disabled>Select your class...</option>
               {isSchool ? (
@@ -190,7 +190,7 @@ export default function TestEnquiryForm() {
             <input
               type="text"
               name="schoolName"
-              className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium text-slate-900 focus:bg-white focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 outline-none transition-all"
+              className="w-full pl-10 pr-4 py-3 bg-ink-50 border border-ink-200 rounded-xl text-sm font-medium text-ink-900 focus:bg-white focus:ring-2 focus:ring-brand-red-500/20 focus:border-brand-red-500 outline-none transition-all"
               placeholder="Your current school"
             />
           </div>
@@ -199,7 +199,7 @@ export default function TestEnquiryForm() {
         <button
           type="submit"
           disabled={loading || success}
-          className="w-full h-12 mt-2 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-extrabold rounded-xl text-sm shadow-xl shadow-amber-500/20 flex items-center justify-center transition-all disabled:opacity-70"
+          className="w-full h-12 mt-2 bg-brand-red-600 hover:bg-brand-red-700 text-white font-extrabold rounded-xl text-sm shadow-brand-md hover:shadow-brand-glow-red flex items-center justify-center transition-all disabled:opacity-70"
         >
           {loading ? <Loader2 className="animate-spin" size={20} /> : "Submit Registration"}
         </button>

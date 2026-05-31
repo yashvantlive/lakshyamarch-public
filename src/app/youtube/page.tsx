@@ -4,6 +4,7 @@ import PublicFooter from "@/components/public/PublicFooter";
 import { getAllYouTubeVideos, timeAgo } from "@/lib/youtubeService";
 import { FaYoutube } from "react-icons/fa6";
 import { Suspense } from "react";
+import { ExamSheetTexture, StaircaseEmblem } from "@/design-system/patterns";
 
 export const revalidate = 604800; // Cache for 7 days (Weekly update)
 
@@ -17,26 +18,26 @@ export default function YouTubeGalleryPage() {
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">
       <PublicNavbar />
-      
-      <div className="h-20 sm:h-24 bg-slate-900 border-b border-white/10" />
 
       {/* Hero Section */}
-      <section className="relative bg-slate-900 py-16 overflow-hidden">
-        <div className="absolute inset-0 opacity-10 bg-[url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80')] bg-cover bg-center" />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent" />
-        
+      <section className="relative overflow-hidden bg-ink-950 pt-32 pb-16 sm:pt-40">
+        <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-brand-red-600 via-brand-gold-400 to-brand-red-600" />
+        <div className="absolute inset-0 bg-gradient-to-b from-ink-900 to-ink-950" />
+        <ExamSheetTexture dark opacity={6} />
+        <StaircaseEmblem className="pointer-events-none absolute -right-12 -bottom-12 h-72 w-72 text-brand-red-500/12" />
+
         <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 text-center">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#FF0000]/10 mb-6 shadow-[0_0_30px_rgba(255,0,0,0.3)]">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-lg bg-[#FF0000]/15 mb-6">
             <FaYoutube size={32} className="text-[#FF0000]" />
           </div>
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
-            LakshyaMarch <span className="text-[#FF0000]">Video Library</span>
+          <h1 className="font-display text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
+            LakshyaMarch <span className="text-brand-gold-400">Video Library</span>
           </h1>
-          <p className="text-slate-400 max-w-2xl mx-auto text-lg mb-8">
+          <p className="text-white/70 max-w-2xl mx-auto text-lg mb-8 font-sans">
             Master complex concepts, get exam strategies, and watch our toppers share their success secrets. Updated weekly with the latest classes.
           </p>
           <a href="https://youtube.com/@lakshyamarch?sub_confirmation=1" target="_blank" rel="noopener noreferrer"
-             className="inline-block px-8 py-4 bg-[#FF0000] hover:bg-red-600 text-white font-bold rounded-full transition-transform hover:scale-105 shadow-lg shadow-red-500/30">
+             className="inline-flex h-12 items-center rounded-xl bg-[#FF0000] px-8 font-display font-semibold text-white transition-transform hover:scale-105">
             Subscribe on YouTube
           </a>
         </div>
@@ -64,7 +65,7 @@ async function VideoGalleryFetcher() {
 
   if (!videos || videos.length === 0) {
     return (
-      <div className="text-center py-20 bg-white rounded-3xl border border-slate-200">
+      <div className="text-center py-20 bg-white rounded-lg border border-slate-200">
         <h2 className="text-2xl font-bold text-slate-900 mb-2">No videos found</h2>
         <p className="text-slate-500">Please check back later or visit our YouTube channel directly.</p>
       </div>
@@ -75,7 +76,7 @@ async function VideoGalleryFetcher() {
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       {videos.map((video) => (
         <a key={video.id} href={`https://youtube.com/watch?v=${video.id}`} target="_blank" rel="noopener noreferrer"
-           className="group bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col">
+           className="group bg-white rounded-lg border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col">
           
           <div className="aspect-video bg-slate-900 relative overflow-hidden">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -111,7 +112,7 @@ function VideoGallerySkeleton() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       {[...Array(12)].map((_, i) => (
-        <div key={i} className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm animate-pulse flex flex-col h-[280px]">
+        <div key={i} className="bg-white rounded-lg border border-slate-200 overflow-hidden shadow-sm animate-pulse flex flex-col h-[280px]">
           <div className="aspect-video bg-slate-200 w-full" />
           <div className="p-5 flex-1 flex flex-col justify-between">
             <div className="space-y-2">
