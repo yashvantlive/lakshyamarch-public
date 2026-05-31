@@ -92,7 +92,7 @@ export default function ScholarshipPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(scholarshipSchema) }} />
       <PublicNavbar />
 
-      <HeroSection accent="gold">
+      <HeroSection accent="gold" posterSrc="/images/posters/poster.webp" posterOpacity={7} logoWatermark>
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
             <Reveal>

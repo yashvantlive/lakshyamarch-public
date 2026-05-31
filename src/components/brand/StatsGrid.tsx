@@ -67,7 +67,7 @@ export function StatCard({ stat, theme = "dark" }: { stat: Stat; theme?: "light"
       className={cn(
         "rounded-2xl border p-5 sm:p-6 transition-all duration-200",
         theme === "dark"
-          ? "border-white/10 bg-white/[0.04] hover:bg-white/[0.07]"
+          ? "border-ink-800 bg-ink-900 hover:border-ink-700"
           : "border-ink-200 bg-white hover:shadow-brand-md",
       )}
     >

@@ -47,7 +47,7 @@ export default function SocialWallPage() {
         <BrandGlow className="left-10 top-1/2 h-64 w-64 -translate-y-1/2" color="rgb(37 71 235 / 0.25)" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 text-center">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 font-sans text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-brand-gold-400 backdrop-blur-sm">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-ink-700 bg-ink-800 px-4 py-1.5 font-sans text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-brand-gold-400">
             <Activity size={14} className="animate-pulse" /> Live Campus Updates
           </div>
           <h1 className="font-display text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-6 leading-tight">

@@ -16,24 +16,33 @@ const glowColor: Record<Accent, string> = {
 
 /**
  * Shared hero shell. Renders the unified branded background composition
- * (academic grid + staircase watermark + single-hue glow + optional poster
- * blend) and exposes `children` for the content grid.
+ * (academic grid + staircase watermark + single-hue glow + optional poster /
+ * brochure blend + optional logo watermark) and exposes `children` for the
+ * content grid.
  *
  * Always dark (ink) for brand consistency — heroes are the brand's signature
- * deep surface. Light intro sections should use a normal <section>, not Hero.
+ * deep surface. NO glassmorphism: the poster sits as a faint 3–8% branded
+ * background layer, never a frosted panel. Light intro sections should use a
+ * normal <section>, not Hero.
  */
 export default function HeroSection({
   children,
   accent = "red",
   posterSrc,
+  posterOpacity = 7,
+  logoWatermark = false,
   className,
   contentClassName,
   minHeight = "min-h-[88vh]",
 }: {
   children: React.ReactNode;
   accent?: Accent;
-  /** Optional poster/photo blended under a masked ink gradient. */
+  /** Optional poster/brochure photo blended in as a faint branded layer. */
   posterSrc?: string;
+  /** Poster layer opacity (percent, 3–8 recommended). */
+  posterOpacity?: number;
+  /** Render the LakshyaMarch logo as a large faint corner watermark. */
+  logoWatermark?: boolean;
   className?: string;
   contentClassName?: string;
   minHeight?: string;
@@ -49,20 +58,33 @@ export default function HeroSection({
       {/* Base gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-ink-950 via-ink-900 to-ink-950" />
 
-      {/* Optional poster blend */}
+      {/* Poster / brochure blend — a faint branded background layer (no blur, no panel) */}
       {posterSrc && (
-        <Parallax distance={30} className="absolute inset-0">
+        <Parallax distance={26} className="absolute inset-0">
           <div
-            className="absolute inset-0 bg-cover bg-center opacity-[0.18]"
-            style={{ backgroundImage: `url(${posterSrc})` }}
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${posterSrc})`, opacity: posterOpacity / 100 }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/85 to-ink-950/40" />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-transparent to-ink-950/60" />
+          {/* gentle grounding fade so the content stays legible */}
+          <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/20 to-ink-950/40" />
         </Parallax>
       )}
 
       {/* Academic grid watermark */}
       <AcademicGrid className="text-white" opacity={4} />
+
+      {/* Company logo watermark (faint, branded) */}
+      {logoWatermark && (
+        <Parallax distance={20} className="pointer-events-none absolute -right-6 top-1/2 hidden h-[460px] w-[460px] -translate-y-1/2 sm:block lg:-right-2">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/company_logo.png"
+            alt=""
+            aria-hidden
+            className="h-full w-full object-contain opacity-[0.05] select-none"
+          />
+        </Parallax>
+      )}
 
       {/* Staircase watermark (parallax) */}
       <Parallax distance={36} className="absolute -right-10 bottom-0 h-[420px] w-[420px] sm:h-[560px] sm:w-[560px]">

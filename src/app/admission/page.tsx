@@ -76,7 +76,7 @@ export default function AdmissionPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(admissionSchema) }} />
       <PublicNavbar />
 
-      <HeroSection accent="red">
+      <HeroSection accent="red" posterSrc="/images/posters/brochure.webp" posterOpacity={6} logoWatermark>
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
             <Reveal>

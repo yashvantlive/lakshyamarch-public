@@ -70,7 +70,7 @@ export default function SeoLocationPage({
               <a href={primaryCta.href} className="inline-flex h-14 items-center gap-2 rounded-xl bg-brand-red-600 px-9 font-display font-semibold text-white shadow-brand-md transition-all hover:bg-brand-red-700">
                 {primaryCta.label}
               </a>
-              <a href={secondaryCta.href} className="inline-flex h-14 items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-9 font-display font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/20">
+              <a href={secondaryCta.href} className="inline-flex h-14 items-center gap-2 rounded-xl border border-ink-700 bg-ink-800 px-9 font-display font-semibold text-white transition-all hover:bg-ink-700">
                 {secondaryCta.label}
               </a>
             </div>

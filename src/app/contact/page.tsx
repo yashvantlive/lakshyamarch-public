@@ -74,7 +74,7 @@ export default function ContactPage() {
                     allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"
                     title="LakshyaMarch Location"
                   />
-                  <div className="absolute inset-x-6 bottom-6 rounded-2xl border border-white/60 bg-white/90 p-5 shadow-brand-md backdrop-blur-md">
+                  <div className="absolute inset-x-6 bottom-6 rounded-2xl border border-ink-200 bg-white p-5 shadow-brand-lg">
                     <p className="font-display font-bold text-ink-900">{INSTITUTE.name}</p>
                     <p className="mt-1 font-sans text-sm leading-snug text-ink-600">{INSTITUTE.address.full}</p>
                   </div>

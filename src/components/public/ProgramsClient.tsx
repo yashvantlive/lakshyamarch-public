@@ -92,7 +92,7 @@ export default function ProgramsClient() {
       </HeroSection>
 
       {/* Sticky filter bar */}
-      <div className="sticky top-16 z-40 border-b border-ink-200 bg-white/90 backdrop-blur-xl sm:top-[72px]">
+      <div className="sticky top-16 z-40 border-b border-ink-200 bg-white sm:top-[72px]">
         <div className={cn(layout.container, "flex items-center gap-2 overflow-x-auto py-4 no-scrollbar")}>
           {CLASS_FILTERS.map(({ value, label }) => (
             <button

@@ -9,7 +9,7 @@ const tones: Record<Tone, string> = {
   gold: "bg-brand-gold-50 text-brand-gold-700 border-brand-gold-200",
   green: "bg-brand-green-50 text-brand-green-700 border-brand-green-100",
   neutral: "bg-ink-100 text-ink-600 border-ink-200",
-  onDark: "bg-white/10 text-white border-white/20 backdrop-blur-sm",
+  onDark: "bg-ink-800 text-white border-ink-700",
 };
 
 export default function Badge({

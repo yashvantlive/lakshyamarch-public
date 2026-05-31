@@ -20,7 +20,7 @@ export default function NotesClient() {
   return (
     <div className="flex flex-col">
       {/* Sticky class tabs */}
-      <div className="sticky top-16 z-40 border-b border-ink-200 bg-white/90 backdrop-blur-xl sm:top-[72px]">
+      <div className="sticky top-16 z-40 border-b border-ink-200 bg-white sm:top-[72px]">
         <div className={layout.container}>
           <div className="flex items-center gap-2 overflow-x-auto py-3 no-scrollbar">
             {STUDY_MATERIAL_REGISTRY.map((cls) => (

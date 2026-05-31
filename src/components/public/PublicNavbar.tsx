@@ -62,7 +62,7 @@ export default function PublicNavbar() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
         scrolled
-          ? "border-b border-ink-200/70 bg-white/85 shadow-brand-sm backdrop-blur-xl"
+          ? "border-b border-ink-200 bg-white shadow-brand-sm"
           : "border-b border-transparent bg-transparent",
       )}
     >

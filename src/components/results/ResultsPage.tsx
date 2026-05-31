@@ -25,7 +25,7 @@ export default function ResultsPage() {
 
   return (
     <div className="bg-ink-50">
-      <HeroSection accent="red" minHeight="min-h-[70vh]">
+      <HeroSection accent="red" minHeight="min-h-[70vh]" posterSrc="/images/posters/brochure.webp" posterOpacity={6} logoWatermark>
         <div className="mx-auto max-w-3xl text-center">
           <Reveal>
             <Badge tone="onDark" icon={Trophy}>Hall of Fame</Badge>

@@ -58,6 +58,7 @@ export default function HomeClient() {
       <PublicNavbar />
       <Hero />
       <TrustMarquee />
+      <ThinkNeetSection />
       <ResultsSection />
       <FounderSection />
       <EcosystemSection />
@@ -82,7 +83,12 @@ export default function HomeClient() {
 /* ───────────────────────── Hero ───────────────────────── */
 function Hero() {
   return (
-    <HeroSection accent="red" posterSrc="/images/campaigns/think-neet/think-neet-poster.webp">
+    <HeroSection
+      accent="red"
+      posterSrc="/images/posters/brochure.webp"
+      posterOpacity={6}
+      logoWatermark
+    >
       <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
         <div>
           <Reveal>
@@ -149,6 +155,77 @@ function TrustMarquee() {
         ))}
       </div>
     </div>
+  );
+}
+
+/* ─────────────────── ThinkNEET poster promo ─────────────────── */
+function ThinkNeetSection() {
+  const points = [
+    "100% NCERT-based question patterns",
+    "OMR practice + real exam simulation",
+    "AIR benchmarking after every test",
+    "Post-test analysis by expert faculty",
+  ];
+  return (
+    <section className={cn(layout.section, "bg-white")}>
+      <div className={layout.container}>
+        <div className="relative overflow-hidden rounded-3xl border border-ink-200 bg-ink-950 shadow-brand-xl">
+          {/* Poster as a faint branded background layer (no glass) */}
+          <div
+            className="absolute inset-0 bg-cover bg-center opacity-[0.10]"
+            style={{ backgroundImage: "url(/images/campaigns/think-neet/think-neet-poster.webp)" }}
+            aria-hidden
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/90 to-ink-950/55" aria-hidden />
+
+          <div className="relative z-10 grid items-center gap-10 p-8 sm:p-12 lg:grid-cols-2 lg:gap-14">
+            <div>
+              <Badge tone="onDark" icon={BookOpen}>ThinkNEET Test Series</Badge>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/campaigns/think-neet/think-neet-logo.webp"
+                alt="ThinkNEET"
+                className="mt-6 h-12 w-auto object-contain"
+              />
+              <h2 className="mt-5 font-display text-[clamp(1.75rem,3.5vw,2.5rem)] font-extrabold leading-tight tracking-tight text-white">
+                Begusarai's Most Structured <span className="text-brand-gold-400">NEET</span> Test Series
+              </h2>
+              <p className="mt-4 max-w-xl font-sans leading-relaxed text-white/70">
+                Benchmark your NEET 2027 preparation with scientifically designed mock tests, OMR practice, and
+                expert-led analysis after every paper.
+              </p>
+              <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+                {points.map((p) => (
+                  <li key={p} className="flex items-start gap-2.5 font-sans text-sm text-white/80">
+                    <CheckCircle2 size={17} strokeWidth={1.75} className="mt-0.5 shrink-0 text-brand-green-400" />
+                    {p}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <Button href="/think-neet-test-series-begusarai" variant="gold" size="lg" withArrow magnetic>
+                  Explore ThinkNEET
+                </Button>
+                <Button href="/neet-coaching-begusarai" variant="ghost" size="lg">
+                  <Stethoscope size={18} strokeWidth={1.75} className="text-brand-green-400" /> NEET Coaching
+                </Button>
+              </div>
+            </div>
+
+            <div className="relative">
+              <div className="overflow-hidden rounded-2xl border border-ink-800 shadow-brand-lg">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/campaigns/think-neet/think-neet-poster.webp"
+                  alt="ThinkNEET Test Series poster"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 

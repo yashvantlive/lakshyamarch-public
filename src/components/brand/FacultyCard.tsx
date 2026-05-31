@@ -51,7 +51,7 @@ export default function FacultyCard({
         )}
         {/* subject ribbon */}
         <div className="absolute left-3 top-3">
-          <span className="inline-flex items-center rounded-full bg-ink-950/70 px-3 py-1 font-sans text-[0.625rem] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-sm">
+          <span className="inline-flex items-center rounded-full bg-ink-900 px-3 py-1 font-sans text-[0.625rem] font-bold uppercase tracking-[0.14em] text-white">
             {faculty.subject}
           </span>
         </div>
