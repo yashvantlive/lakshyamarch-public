@@ -21,7 +21,7 @@ export default function CampusGallery({
         <StaggerItem
           key={item.src + i}
           className={cn(
-            "group relative overflow-hidden rounded-2xl bg-ink-100 shadow-brand-sm",
+            "group relative overflow-hidden rounded-lg bg-ink-100 shadow-brand-sm",
             // first item spans larger on wide screens for editorial rhythm
             i === 0 ? "col-span-2 row-span-2 aspect-square lg:aspect-auto" : "aspect-[4/3]",
           )}

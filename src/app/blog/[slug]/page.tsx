@@ -10,7 +10,7 @@ import {
   ArrowLeft, ArrowRight, Clock, CalendarDays, BookOpen, MessageCircle, ChevronRight,
 } from "lucide-react";
 import { Badge, Button } from "@/components/brand";
-import { AcademicGrid, BrandGlow, StaircaseWatermark } from "@/design-system/patterns";
+import { ExamSheetTexture, StaircaseEmblem } from "@/design-system/patterns";
 import { cn } from "@/lib/utils";
 
 export function generateStaticParams() {
@@ -59,9 +59,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
       {/* Hero */}
       <section className="relative overflow-hidden bg-ink-950 pt-32 pb-16 text-white sm:pt-40">
-        <AcademicGrid className="text-white" opacity={4} />
-        <BrandGlow className="-top-20 right-1/4 h-80 w-80" color="rgb(37 71 235 / 0.30)" />
-        <StaircaseWatermark className="-right-6 bottom-0 h-64 w-64 text-white" opacity={5} />
+        <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-brand-blue-700 via-brand-gold-400 to-brand-blue-700" />
+        <div className="absolute inset-0 bg-gradient-to-b from-ink-900 to-ink-950" />
+        <ExamSheetTexture dark opacity={6} />
+        <StaircaseEmblem className="pointer-events-none absolute -right-12 -bottom-12 h-72 w-72 text-brand-blue-400/12" />
         <div className="relative z-10 mx-auto max-w-4xl px-5 sm:px-8">
           <nav className="mb-8 flex items-center gap-2 font-sans text-xs text-white/50">
             <Link href="/" className="transition-colors hover:text-white">Home</Link>
@@ -116,7 +117,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </div>
 
             <aside className="hidden space-y-6 lg:sticky lg:top-28 lg:block">
-              <div className="rounded-2xl border border-ink-200 bg-ink-50 p-5">
+              <div className="rounded-lg border border-ink-200 bg-ink-50 p-5">
                 <p className="mb-3 font-sans text-[0.6875rem] font-bold uppercase tracking-widest text-ink-400">Written by</p>
                 <div className="flex items-center gap-3">
                   <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-blue-800 font-display text-lg font-extrabold text-white">
@@ -129,7 +130,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 </div>
               </div>
 
-              <div className="rounded-2xl bg-ink-950 p-6 text-white">
+              <div className="rounded-lg bg-ink-950 p-6 text-white">
                 <p className="font-display text-lg font-bold">Join LakshyaMarch</p>
                 <p className="mt-2 font-sans text-sm leading-relaxed text-white/65">
                   Get coached by the same faculty who write these articles. Admission open for 2026–27.
@@ -137,7 +138,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 <Button href="/admission" variant="gold" size="sm" withArrow className="mt-5 w-full">Apply Now</Button>
               </div>
 
-              <div className="rounded-2xl border border-ink-200 bg-ink-50 p-5">
+              <div className="rounded-lg border border-ink-200 bg-ink-50 p-5">
                 <p className="mb-3 font-sans text-[0.6875rem] font-bold uppercase tracking-widest text-ink-400">Keywords</p>
                 <div className="flex flex-wrap gap-2">
                   {post.keywords.map((kw) => (
@@ -160,7 +161,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </h2>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {related.map((rp) => (
-                <Link key={rp.slug} href={`/blog/${rp.slug}`} className="group rounded-2xl border border-ink-200 bg-white p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg">
+                <Link key={rp.slug} href={`/blog/${rp.slug}`} className="group rounded-lg border border-ink-200 bg-white p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg">
                   <Badge tone={catTone[rp.category]} className="mb-3">{rp.category}</Badge>
                   <h3 className="font-display text-base font-bold leading-tight text-ink-900 transition-colors group-hover:text-brand-red-600 line-clamp-2">{rp.title}</h3>
                   <p className="mt-2 font-sans text-sm text-ink-500 line-clamp-2">{rp.description}</p>

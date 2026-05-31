@@ -69,7 +69,7 @@ export default function AboutPage() {
                 const Icon = VALUE_ICONS[key];
                 return (
                   <StaggerItem key={key}>
-                    <div className="h-full rounded-2xl border border-ink-200 bg-white p-8 shadow-brand-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg">
+                    <div className="h-full rounded-lg border border-ink-200 bg-white p-8 shadow-brand-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg">
                       <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-brand-blue-50 text-brand-blue-700">
                         <Icon size={28} strokeWidth={1.75} />
                       </div>
@@ -96,8 +96,8 @@ export default function AboutPage() {
             />
             <div className="grid gap-10 lg:grid-cols-[400px_1fr] lg:gap-16">
               <Reveal>
-                <div className="overflow-hidden rounded-3xl border border-ink-200 bg-white p-8 shadow-brand-sm lg:sticky lg:top-28">
-                  <div className="relative mb-7 aspect-square overflow-hidden rounded-2xl border border-ink-100 shadow-brand-md">
+                <div className="overflow-hidden rounded-lg border border-ink-200 bg-white p-8 shadow-brand-sm lg:sticky lg:top-28">
+                  <div className="relative mb-7 aspect-square overflow-hidden rounded-lg border border-ink-100 shadow-brand-md">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={DIRECTOR_DATA.image} alt={DIRECTOR_DATA.name} className="h-full w-full object-cover object-top" />
                   </div>
@@ -114,7 +114,7 @@ export default function AboutPage() {
 
               <Reveal delay={0.1}>
                 <div className="flex flex-col gap-10">
-                  <div className="relative overflow-hidden rounded-3xl bg-ink-950 p-8 sm:p-12">
+                  <div className="relative overflow-hidden rounded-lg bg-ink-950 p-8 sm:p-12">
                     <Quote className="absolute -left-2 -top-3 h-28 w-28 text-white/5" />
                     <p className="font-sans text-[0.6875rem] font-bold uppercase tracking-[0.18em] text-brand-gold-400">Our Foundational Vision</p>
                     <p className="relative mt-5 font-sans text-xl italic leading-relaxed text-white sm:text-2xl">
@@ -144,7 +144,7 @@ export default function AboutPage() {
             <Stagger className="mx-auto grid max-w-5xl gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {HIGHLIGHTS.map((h) => (
                 <StaggerItem key={h}>
-                  <div className="flex h-full items-start gap-4 rounded-2xl border border-ink-200 bg-ink-50 p-6">
+                  <div className="flex h-full items-start gap-4 rounded-lg border border-ink-200 bg-ink-50 p-6">
                     <CheckCircle2 size={22} strokeWidth={1.75} className="shrink-0 text-brand-green-500" />
                     <p className="font-sans text-sm font-medium leading-snug text-ink-700">{h}</p>
                   </div>

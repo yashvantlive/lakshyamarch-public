@@ -4,7 +4,7 @@ import PublicFooter from "@/components/public/PublicFooter";
 import { getAllYouTubeVideos, timeAgo } from "@/lib/youtubeService";
 import { FaYoutube } from "react-icons/fa6";
 import { Suspense } from "react";
-import { AcademicGrid, BrandGlow } from "@/design-system/patterns";
+import { ExamSheetTexture, StaircaseEmblem } from "@/design-system/patterns";
 
 export const revalidate = 604800; // Cache for 7 days (Weekly update)
 
@@ -21,11 +21,13 @@ export default function YouTubeGalleryPage() {
 
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-ink-950 pt-32 pb-16 sm:pt-40">
-        <AcademicGrid className="text-white" opacity={4} />
-        <BrandGlow className="left-1/2 top-0 h-72 w-[36rem] -translate-x-1/2" color="rgb(229 57 53 / 0.25)" />
+        <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-brand-red-600 via-brand-gold-400 to-brand-red-600" />
+        <div className="absolute inset-0 bg-gradient-to-b from-ink-900 to-ink-950" />
+        <ExamSheetTexture dark opacity={6} />
+        <StaircaseEmblem className="pointer-events-none absolute -right-12 -bottom-12 h-72 w-72 text-brand-red-500/12" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 text-center">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[#FF0000]/15 mb-6">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-lg bg-[#FF0000]/15 mb-6">
             <FaYoutube size={32} className="text-[#FF0000]" />
           </div>
           <h1 className="font-display text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
@@ -63,7 +65,7 @@ async function VideoGalleryFetcher() {
 
   if (!videos || videos.length === 0) {
     return (
-      <div className="text-center py-20 bg-white rounded-3xl border border-slate-200">
+      <div className="text-center py-20 bg-white rounded-lg border border-slate-200">
         <h2 className="text-2xl font-bold text-slate-900 mb-2">No videos found</h2>
         <p className="text-slate-500">Please check back later or visit our YouTube channel directly.</p>
       </div>
@@ -74,7 +76,7 @@ async function VideoGalleryFetcher() {
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       {videos.map((video) => (
         <a key={video.id} href={`https://youtube.com/watch?v=${video.id}`} target="_blank" rel="noopener noreferrer"
-           className="group bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col">
+           className="group bg-white rounded-lg border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col">
           
           <div className="aspect-video bg-slate-900 relative overflow-hidden">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -110,7 +112,7 @@ function VideoGallerySkeleton() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       {[...Array(12)].map((_, i) => (
-        <div key={i} className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm animate-pulse flex flex-col h-[280px]">
+        <div key={i} className="bg-white rounded-lg border border-slate-200 overflow-hidden shadow-sm animate-pulse flex flex-col h-[280px]">
           <div className="aspect-video bg-slate-200 w-full" />
           <div className="p-5 flex-1 flex flex-col justify-between">
             <div className="space-y-2">

@@ -10,7 +10,7 @@ type Variant = "primary" | "secondary" | "gold" | "ghost" | "outline" | "dark";
 type Size = "sm" | "md" | "lg";
 
 const base =
-  "group relative inline-flex items-center justify-center gap-2 font-display font-semibold rounded-xl transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-60 disabled:pointer-events-none whitespace-nowrap";
+  "group relative inline-flex items-center justify-center gap-2 font-display font-semibold rounded-md transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-60 disabled:pointer-events-none whitespace-nowrap";
 
 const variants: Record<Variant, string> = {
   primary:

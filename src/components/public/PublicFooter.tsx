@@ -2,7 +2,7 @@ import Link from "next/link";
 import { MapPin, Phone, Mail, Clock, ArrowUpRight } from "lucide-react";
 import { FaYoutube, FaInstagram, FaFacebook, FaXTwitter } from "react-icons/fa6";
 import { INSTITUTE } from "@/lib/siteData";
-import { AcademicGrid, StaircaseWatermark } from "@/design-system/patterns";
+import { ExamSheetTexture, StaircaseEmblem } from "@/design-system/patterns";
 import BrandMark from "@/components/brand/BrandMark";
 
 const NAV_COLUMNS = [
@@ -48,8 +48,9 @@ const SOCIALS = [
 export default function PublicFooter() {
   return (
     <footer className="relative overflow-hidden bg-ink-950 text-white">
-      <AcademicGrid className="text-white" opacity={3} />
-      <StaircaseWatermark className="-left-8 bottom-0 h-72 w-72 text-white" opacity={4} />
+      <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-brand-red-600 via-brand-gold-400 to-brand-red-600" />
+      <ExamSheetTexture dark opacity={5} />
+      <StaircaseEmblem className="pointer-events-none absolute -left-10 bottom-0 h-72 w-72 text-white/[0.04]" />
 
       <div className="relative z-10">
         {/* Top */}

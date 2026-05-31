@@ -27,7 +27,7 @@ export default function TestimonialCard({
   return (
     <div
       className={cn(
-        "group flex h-full flex-col rounded-2xl border border-ink-200 bg-white p-6 shadow-brand-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg",
+        "group flex h-full flex-col rounded-lg border border-ink-200 bg-white p-6 shadow-brand-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg",
         className,
       )}
     >

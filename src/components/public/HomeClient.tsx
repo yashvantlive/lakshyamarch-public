@@ -1,11 +1,10 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
 import {
-  GraduationCap, Target, Trophy, Users, ArrowRight, Quote, Star,
+  GraduationCap, Target, Trophy, Users, Quote,
   ShieldCheck, BookOpen, Stethoscope, Sparkles, CheckCircle2,
-  ClipboardList, BadgeCheck, Phone, MessageCircle, CalendarDays,
+  ClipboardList, BadgeCheck, Phone, CalendarDays,
 } from "lucide-react";
 import PublicNavbar from "@/components/public/PublicNavbar";
 import PublicFooter from "@/components/public/PublicFooter";
@@ -16,20 +15,21 @@ import {
 } from "@/lib/siteData";
 import { SUCCESS_STORIES } from "@/lib/stories";
 import {
-  Button, Badge, SectionHeader, HeroSection, StatsGrid, ResultsShowcase,
+  Button, Badge, BannerLabel, AchievementStrip, SectionHeader, HeroSection, ResultsShowcase,
   FacultyCard, ProgramCard, ScholarshipBadge, TestimonialCard, CTASection,
   Reveal, Stagger, StaggerItem,
 } from "@/components/brand";
-import type { Stat } from "@/components/brand";
+import type { Achievement } from "@/components/brand";
 import type { ResultStudent } from "@/components/brand";
 import { layout } from "@/design-system/spacing";
 import { cn } from "@/lib/utils";
 
-const HERO_STATS: Stat[] = [
-  { value: 100, suffix: "+", label: "Total Selections", accent: "gold" },
-  { value: 99.35, decimals: 2, label: "JEE Percentile", accent: "blue" },
-  { display: "AIR 499", label: "Best NEET Rank", accent: "green" },
-  { display: "IIT / NIT", label: "Faculty Alumni", accent: "red" },
+const HERO_STATS: Achievement[] = [
+  { value: 99.35, decimals: 2, label: "Top JEE Percentile" },
+  { display: "AIR 499", label: "Best NEET Rank" },
+  { value: 100, suffix: "+", label: "Total Selections" },
+  { display: "Since 2019", label: "Proven Results" },
+  { display: "IIT / NIT", label: "Faculty Alumni" },
 ];
 
 const SCHOLARSHIPS = [
@@ -83,61 +83,55 @@ export default function HomeClient() {
 /* ───────────────────────── Hero ───────────────────────── */
 function Hero() {
   return (
-    <HeroSection
-      accent="red"
-      posterSrc="/images/posters/brochure.webp"
-      posterOpacity={6}
-      logoWatermark
-    >
-      <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-        <div>
+    <HeroSection accent="red" minHeight="min-h-screen">
+      <div className="grid items-start gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
+        {/* Left: brochure masthead */}
+        <div className="pt-2">
           <Reveal>
-            <Badge tone="onDark" icon={Star}>
-              IIT / NEET selections every year since {INSTITUTE.established}
-            </Badge>
+            <BannerLabel tone="red" icon={Trophy}>Top Results Since {INSTITUTE.established}</BannerLabel>
           </Reveal>
+
           <Reveal delay={0.05}>
-            <h1 className="mt-6 font-display text-[clamp(2.5rem,5.5vw,4rem)] font-extrabold leading-[1.05] tracking-tight text-white">
-              {INSTITUTE.name}
+            <p className="mt-7 font-sans text-sm font-bold uppercase tracking-[0.22em] text-brand-gold-400">
+              Begusarai&apos;s Premier IIT-JEE &amp; NEET Institute
+            </p>
+            <h1 className="mt-3 font-display text-[clamp(2.5rem,5.5vw,4.25rem)] font-extrabold leading-[1.02] tracking-tight text-white">
+              Lakshya<span className="text-brand-red-500">March</span>
+              <span className="mt-2 block text-[0.42em] font-bold uppercase tracking-[0.16em] text-white/70">
+                Education · Integrated School &amp; Coaching
+              </span>
             </h1>
           </Reveal>
+
           <Reveal delay={0.1}>
-            <p className="mt-5 max-w-xl font-sans text-lg leading-relaxed text-white/70">
-              {INSTITUTE.tagline}. Quality education, strict discipline, and consistent results — all under one roof in {INSTITUTE.address.city}.
+            <p className="mt-6 max-w-xl font-sans text-lg leading-relaxed text-white/75">
+              Quality education, strict discipline, and consistent ranks — all under one roof in {INSTITUTE.address.city}.
+              Mentored by IIT &amp; NIT alumni faculty.
             </p>
           </Reveal>
-          <Reveal delay={0.15}>
-            <div className="mt-9 flex flex-wrap gap-4">
-              <Button href="/programs" variant="primary" size="lg" withArrow magnetic>
+
+          {/* Achievement anchors — poster result strip */}
+          <Reveal delay={0.15} className="mt-9">
+            <AchievementStrip items={HERO_STATS} theme="dark" className="border-ink-700" />
+          </Reveal>
+
+          <Reveal delay={0.2}>
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <Button href="/results" variant="gold" size="lg" withArrow magnetic>
+                <Trophy size={18} strokeWidth={1.75} /> View Hall of Achievements
+              </Button>
+              <Button href="/programs" variant="ghost" size="lg" withArrow>
                 Explore Programs
               </Button>
-              <Button href="/results" variant="ghost" size="lg">
-                <Trophy size={18} strokeWidth={1.75} className="text-brand-gold-400" /> View Results
-              </Button>
-            </div>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <div className="mt-9 flex items-center gap-3">
-              <div className="flex">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} size={16} className="text-brand-gold-400" fill="currentColor" />
-                ))}
-              </div>
-              <p className="font-sans text-sm font-medium text-white/70">
-                4.9/5 rated on Google & student reviews
-              </p>
             </div>
           </Reveal>
         </div>
 
-        <Reveal delay={0.1} className="lg:pl-8">
+        {/* Right: official admission registration panel */}
+        <Reveal delay={0.1}>
           <EnquiryForm />
         </Reveal>
       </div>
-
-      <Reveal delay={0.25} className="mt-16 border-t border-white/10 pt-10">
-        <StatsGrid stats={HERO_STATS} theme="dark" />
-      </Reveal>
     </HeroSection>
   );
 }
@@ -169,18 +163,12 @@ function ThinkNeetSection() {
   return (
     <section className={cn(layout.section, "bg-white")}>
       <div className={layout.container}>
-        <div className="relative overflow-hidden rounded-3xl border border-ink-200 bg-ink-950 shadow-brand-xl">
-          {/* Poster as a faint branded background layer (no glass) */}
-          <div
-            className="absolute inset-0 bg-cover bg-center opacity-[0.10]"
-            style={{ backgroundImage: "url(/images/campaigns/think-neet/think-neet-poster.webp)" }}
-            aria-hidden
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/90 to-ink-950/55" aria-hidden />
-
-          <div className="relative z-10 grid items-center gap-10 p-8 sm:p-12 lg:grid-cols-2 lg:gap-14">
-            <div>
-              <Badge tone="onDark" icon={BookOpen}>ThinkNEET Test Series</Badge>
+        <div className="overflow-hidden rounded-lg border border-ink-200 shadow-brand-lg">
+          <div className="grid lg:grid-cols-2">
+            {/* Left: solid ink color block */}
+            <div className="relative overflow-hidden bg-ink-950 p-8 sm:p-12">
+              <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-brand-green-600 via-brand-gold-400 to-brand-green-600" />
+              <BannerLabel tone="green" icon={BookOpen}>ThinkNEET Test Series</BannerLabel>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/campaigns/think-neet/think-neet-logo.webp"
@@ -188,7 +176,7 @@ function ThinkNeetSection() {
                 className="mt-6 h-12 w-auto object-contain"
               />
               <h2 className="mt-5 font-display text-[clamp(1.75rem,3.5vw,2.5rem)] font-extrabold leading-tight tracking-tight text-white">
-                Begusarai's Most Structured <span className="text-brand-gold-400">NEET</span> Test Series
+                Begusarai&apos;s Most Structured <span className="text-brand-green-400">NEET</span> Test Series
               </h2>
               <p className="mt-4 max-w-xl font-sans leading-relaxed text-white/70">
                 Benchmark your NEET 2027 preparation with scientifically designed mock tests, OMR practice, and
@@ -212,15 +200,14 @@ function ThinkNeetSection() {
               </div>
             </div>
 
-            <div className="relative">
-              <div className="overflow-hidden rounded-2xl border border-ink-800 shadow-brand-lg">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/images/campaigns/think-neet/think-neet-poster.webp"
-                  alt="ThinkNEET Test Series poster"
-                  className="h-full w-full object-cover"
-                />
-              </div>
+            {/* Right: clean framed poster (a real image, never a faded overlay) */}
+            <div className="relative min-h-[320px] bg-ink-100">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/campaigns/think-neet/think-neet-poster.webp"
+                alt="ThinkNEET Test Series poster"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
             </div>
           </div>
         </div>
@@ -239,7 +226,7 @@ function ResultsSection() {
     <section id="results" className={layout.section}>
       <div className={layout.container}>
         <SectionHeader
-          eyebrow="Hall of Fame"
+          eyebrow="Hall of Achievements"
           eyebrowIcon={Trophy}
           title="Results That Speak"
           accentWord="Speak"
@@ -254,7 +241,7 @@ function ResultsSection() {
         />
         <Reveal className="mt-12 text-center">
           <Button href="/results" variant="outline" size="md" withArrow>
-            View Complete Hall of Fame
+            View Complete Hall of Achievements
           </Button>
         </Reveal>
       </div>
@@ -269,8 +256,8 @@ function FounderSection() {
       <div className={layout.container}>
         <div className="grid gap-8 lg:grid-cols-[380px_1fr] lg:gap-12">
           <Reveal>
-            <div className="relative overflow-hidden rounded-3xl border border-ink-200 bg-white p-8 shadow-brand-sm">
-              <div className="relative mb-6 aspect-square overflow-hidden rounded-2xl border border-ink-100 shadow-brand-md">
+            <div className="relative overflow-hidden rounded-lg border border-ink-200 bg-white p-6 shadow-brand-sm">
+              <div className="relative mb-6 aspect-square overflow-hidden rounded-md border border-ink-200">
                 {FOUNDER.image ? (
                   /* eslint-disable-next-line @next/next/no-img-element */
                   <img src={FOUNDER.image} alt={FOUNDER.name} className="h-full w-full object-cover object-top" />
@@ -279,23 +266,29 @@ function FounderSection() {
                     {FOUNDER.name.charAt(0)}
                   </div>
                 )}
-                <div className="absolute right-4 top-4 flex h-16 w-16 flex-col items-center justify-center rounded-full bg-brand-gold-400 text-ink-900 shadow-brand-md">
-                  <span className="font-sans text-[0.5rem] font-bold uppercase tracking-widest opacity-70">Estd</span>
-                  <span className="font-display text-base font-extrabold">{INSTITUTE.established}</span>
+                <div className="absolute right-0 top-3 flex flex-col items-center justify-center bg-brand-gold-400 px-3 py-1.5 text-ink-900 shadow-brand-sm">
+                  <span className="font-sans text-[0.5rem] font-bold uppercase tracking-[0.18em] opacity-70">Estd</span>
+                  <span className="font-display text-base font-extrabold leading-none">{INSTITUTE.established}</span>
                 </div>
               </div>
               <h3 className="font-display text-2xl font-extrabold text-ink-900">{FOUNDER.name}</h3>
               <p className="mt-1 font-sans text-sm font-bold uppercase tracking-[0.14em] text-brand-blue-700">{FOUNDER.designation}</p>
-              <div className="mt-5 flex flex-wrap gap-2">
-                <Badge tone="neutral">{FOUNDER.qualification}</Badge>
-                <Badge tone="green">{FOUNDER.certification}</Badge>
+              <div className="mt-5 space-y-2 border-t border-ink-100 pt-4">
+                <p className="flex items-start gap-2 font-sans text-sm text-ink-600">
+                  <GraduationCap size={15} strokeWidth={1.75} className="mt-0.5 shrink-0 text-brand-blue-700" />
+                  {FOUNDER.qualification}
+                </p>
+                <p className="flex items-start gap-2 font-sans text-sm text-ink-600">
+                  <BadgeCheck size={15} strokeWidth={1.75} className="mt-0.5 shrink-0 text-brand-green-600" />
+                  {FOUNDER.certification}
+                </p>
               </div>
             </div>
           </Reveal>
 
           <Reveal delay={0.1}>
             <div className="flex h-full flex-col justify-center">
-              <Badge tone="gold">From the Founder's Desk</Badge>
+              <Badge tone="gold">From the Founder&apos;s Desk</Badge>
               <h2 className="mt-5 font-display text-[clamp(1.75rem,3.5vw,2.5rem)] font-extrabold leading-tight tracking-tight text-ink-900">
                 A Message from <span className="text-brand-red-600">Ram Sir</span>
               </h2>
@@ -303,7 +296,7 @@ function FounderSection() {
                 <Quote size={28} strokeWidth={1.5} className="mb-2 text-brand-gold-300" />
                 <p className="font-sans text-lg italic leading-relaxed text-ink-700">{FOUNDER.message}</p>
               </div>
-              <p className="mt-7 max-w-2xl font-sans leading-relaxed text-ink-500">
+              <p className="mt-7 max-w-2xl font-sans leading-relaxed text-ink-600">
                 We started LakshyaMarch in {INSTITUTE.established} with a simple goal:{" "}
                 <strong className="text-ink-900">quality education with no compromises.</strong> Today we bring
                 premier JEE & NEET standards to {INSTITUTE.address.city} through our integrated school model — so
@@ -484,18 +477,18 @@ function AdmissionsSection() {
           lead="We've made joining LakshyaMarch effortless. Three steps, done in 48 hours."
           className="mb-16"
         />
-        <Stagger className="grid gap-8 sm:grid-cols-3">
+        <Stagger className="grid gap-6 sm:grid-cols-3">
           {ADMISSION_STEPS.map((s) => (
-            <StaggerItem key={s.step} className="relative text-center">
-              <span className="pointer-events-none absolute -top-6 left-1/2 -translate-x-1/2 font-display text-[5rem] font-extrabold leading-none text-ink-200/70 select-none">
-                {s.step}
-              </span>
-              <div className="relative">
-                <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-red-600 text-white shadow-brand-md">
-                  <s.icon size={28} strokeWidth={1.75} />
+            <StaggerItem key={s.step} className="relative">
+              <div className="relative h-full overflow-hidden rounded-lg border border-ink-200 bg-white p-6 shadow-brand-sm">
+                <div className="absolute right-0 top-0 bg-ink-900 px-3 py-1.5 font-display text-sm font-extrabold text-white">
+                  {s.step}
+                </div>
+                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-md bg-brand-red-600 text-white">
+                  <s.icon size={26} strokeWidth={1.75} />
                 </div>
                 <h3 className="font-display text-xl font-bold text-ink-900">{s.title}</h3>
-                <p className="mx-auto mt-2 max-w-xs font-sans text-sm leading-relaxed text-ink-500">{s.desc}</p>
+                <p className="mt-2 font-sans text-sm leading-relaxed text-ink-600">{s.desc}</p>
               </div>
             </StaggerItem>
           ))}

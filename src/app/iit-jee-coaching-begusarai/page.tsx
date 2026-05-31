@@ -117,7 +117,7 @@ export default function JEECoachingPage() {
       <main className="flex-1">
         <section className={cn(layout.section, "bg-white")}>
           <div className={layout.container}>
-            <SectionHeader eyebrow="Hall of Fame" eyebrowIcon={Trophy} title="JEE Results That Speak" accentWord="Speak" accent="blue" lead="Every year, LakshyaMarch students crack JEE Main & Advanced and secure seats in IITs and NITs." className="mb-12" />
+            <SectionHeader eyebrow="Hall of Achievements" eyebrowIcon={Trophy} title="JEE Results That Speak" accentWord="Speak" accent="blue" lead="Every year, LakshyaMarch students crack JEE Main & Advanced and secure seats in IITs and NITs." className="mb-12" />
             <ResultsShowcase jee={jeeToppers} />
             <Reveal className="mt-10 text-center"><Button href="/results" variant="outline" size="md" withArrow>View All Results</Button></Reveal>
           </div>

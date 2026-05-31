@@ -38,7 +38,7 @@ export default function FAQSection({
         <div className="space-y-3">
           {faqs.map((faq, i) => (
             <Reveal key={i} delay={i * 0.04}>
-              <details className="group overflow-hidden rounded-2xl border border-ink-200 bg-white">
+              <details className="group overflow-hidden rounded-lg border border-ink-200 bg-white">
                 <summary
                   className={cn(
                     "flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 font-display text-sm font-semibold text-ink-900 transition-colors sm:text-base",

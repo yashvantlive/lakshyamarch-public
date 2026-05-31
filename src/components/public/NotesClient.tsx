@@ -46,14 +46,14 @@ export default function NotesClient() {
         <div className={layout.containerMedium}>
           {activeDriveId ? (
             <>
-              <div className="mb-8 flex items-start gap-4 rounded-2xl border-l-4 border-brand-blue-700 bg-ink-950 p-6 text-white shadow-brand-md">
+              <div className="mb-8 flex items-start gap-4 rounded-lg border-l-4 border-brand-blue-700 bg-ink-950 p-6 text-white shadow-brand-md">
                 <Info size={22} strokeWidth={1.75} className="shrink-0 text-brand-blue-400" />
                 <div>
                   <p className="font-display text-sm font-bold uppercase tracking-widest">Digital Archive Active</p>
                   <p className="mt-1 font-sans text-xs text-white/60">Open folders to access nested PDFs in the native viewer.</p>
                 </div>
               </div>
-              <div className="overflow-hidden rounded-2xl border border-ink-200 bg-white shadow-brand-lg" style={{ height: "calc(100vh - 320px)", minHeight: 520 }}>
+              <div className="overflow-hidden rounded-lg border border-ink-200 bg-white shadow-brand-lg" style={{ height: "calc(100vh - 320px)", minHeight: 520 }}>
                 <iframe
                   key={selectedClassId}
                   src={`https://drive.google.com/embeddedfolderview?id=${activeDriveId}#grid`}
@@ -65,8 +65,8 @@ export default function NotesClient() {
               </div>
             </>
           ) : (
-            <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-ink-200 bg-ink-50 px-10 py-28 text-center">
-              <div className="mb-8 flex h-20 w-20 items-center justify-center rounded-2xl bg-white text-ink-300 shadow-brand-sm">
+            <div className="flex flex-col items-center justify-center rounded-lg border-2 border-dashed border-ink-200 bg-ink-50 px-10 py-28 text-center">
+              <div className="mb-8 flex h-20 w-20 items-center justify-center rounded-lg bg-white text-ink-300 shadow-brand-sm">
                 <FolderOpen size={36} strokeWidth={1.5} />
               </div>
               <h3 className="font-display text-2xl font-extrabold tracking-tight text-ink-900">Notes coming soon</h3>

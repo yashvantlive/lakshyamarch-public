@@ -45,14 +45,14 @@ export default function ProgramCard({
   return (
     <div
       className={cn(
-        "group flex h-full flex-col overflow-hidden rounded-2xl border border-ink-200 bg-white shadow-brand-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg",
+        "group flex h-full flex-col overflow-hidden rounded-lg border border-ink-200 bg-white shadow-brand-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg",
         className,
       )}
     >
       <div className={cn("h-1.5 w-full", a.bar)} />
       <div className="flex flex-1 flex-col p-6">
         <div className="mb-4 flex items-center gap-3">
-          <div className={cn("flex h-12 w-12 shrink-0 items-center justify-center rounded-xl transition-transform duration-200 group-hover:scale-105", a.icon)}>
+          <div className={cn("flex h-12 w-12 shrink-0 items-center justify-center rounded-md transition-transform duration-200 group-hover:scale-105", a.icon)}>
             <Icon size={24} strokeWidth={1.75} />
           </div>
           <div>

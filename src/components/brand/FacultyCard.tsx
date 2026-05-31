@@ -28,7 +28,7 @@ export default function FacultyCard({
   return (
     <div
       className={cn(
-        "group flex h-full flex-col overflow-hidden rounded-2xl border border-ink-200 bg-white shadow-brand-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg",
+        "group flex h-full flex-col overflow-hidden rounded-lg border border-ink-200 bg-white shadow-brand-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg",
         className,
       )}
     >
@@ -50,8 +50,8 @@ export default function FacultyCard({
           </div>
         )}
         {/* subject ribbon */}
-        <div className="absolute left-3 top-3">
-          <span className="inline-flex items-center rounded-full bg-ink-900 px-3 py-1 font-sans text-[0.625rem] font-bold uppercase tracking-[0.14em] text-white">
+        <div className="absolute left-0 top-3">
+          <span className="inline-flex items-center bg-brand-blue-800 py-1 pl-3 pr-3.5 font-sans text-[0.625rem] font-bold uppercase tracking-[0.14em] text-white">
             {faculty.subject}
           </span>
         </div>
@@ -74,13 +74,13 @@ export default function FacultyCard({
         </div>
 
         {faculty.prev && (
-          <span className="inline-block w-fit rounded-lg border border-brand-gold-200 bg-brand-gold-50 px-2.5 py-1 font-sans text-[0.6875rem] font-semibold text-brand-gold-700">
+          <span className="inline-block w-fit rounded-sm border-l-2 border-brand-gold-500 bg-brand-gold-50 px-2.5 py-1 font-sans text-[0.6875rem] font-semibold text-brand-gold-700">
             {faculty.prev}
           </span>
         )}
 
         {!compact && faculty.usp && (
-          <div className="mt-auto rounded-xl border border-brand-blue-100 bg-brand-blue-50/60 p-3">
+          <div className="mt-auto rounded-sm border-l-2 border-brand-blue-700 bg-brand-blue-50/60 p-3">
             <Quote size={14} strokeWidth={1.75} className="mb-1 text-brand-blue-400" />
             <p className="font-sans text-xs italic leading-relaxed text-ink-700">{faculty.usp}</p>
           </div>

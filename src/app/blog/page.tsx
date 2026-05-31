@@ -64,7 +64,7 @@ export default function BlogPage() {
         <Reveal delay={0.15}>
           <Link
             href={`/blog/${featured.slug}`}
-            className="group grid overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] transition-colors hover:border-white/20 lg:grid-cols-2"
+            className="group grid overflow-hidden rounded-lg border border-white/10 bg-white/[0.04] transition-colors hover:border-white/20 lg:grid-cols-2"
           >
             <div className="flex flex-col justify-center gap-4 bg-gradient-to-br from-brand-blue-800 to-ink-900 p-10 sm:p-12">
               <Badge tone="onDark">Featured Article</Badge>
@@ -96,7 +96,7 @@ export default function BlogPage() {
                 <StaggerItem key={post.slug}>
                   <Link
                     href={`/blog/${post.slug}`}
-                    className="group flex h-full flex-col overflow-hidden rounded-2xl border border-ink-200 bg-white shadow-brand-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg"
+                    className="group flex h-full flex-col overflow-hidden rounded-lg border border-ink-200 bg-white shadow-brand-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg"
                   >
                     <div className="h-1.5 w-full bg-brand-red-600" />
                     <div className="flex flex-1 flex-col p-6">

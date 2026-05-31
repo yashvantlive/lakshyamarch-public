@@ -5,7 +5,6 @@ import { ChevronRight, FileText, Search, ArrowLeft, ExternalLink, FolderOpen } f
 import Link from "next/link";
 import { STUDY_MATERIAL_REGISTRY, ClassSection, Subject, Chapter, StudyFile } from "@/lib/studyMaterialRegistry";
 import { Badge, HeroSection, Reveal } from "@/components/brand";
-import { AcademicGrid } from "@/design-system/patterns";
 import { layout } from "@/design-system/spacing";
 import { cn } from "@/lib/utils";
 
@@ -116,7 +115,7 @@ export default function DPPExplorerClient() {
           </div>
         </div>
 
-        <div className="overflow-hidden rounded-2xl border border-ink-200 bg-white shadow-brand-sm">
+        <div className="overflow-hidden rounded-lg border border-ink-200 bg-white shadow-brand-sm">
           {activeFile ? (
             <div className="flex h-[640px] flex-col bg-ink-950">
               <div className="flex items-center justify-between gap-3 border-b border-white/5 bg-ink-900 p-4">
@@ -137,10 +136,9 @@ export default function DPPExplorerClient() {
               ))}
             </div>
           ) : (
-            <div className="relative flex min-h-[420px] flex-col items-center justify-center p-16 text-center">
-              <AcademicGrid className="text-ink-300" opacity={5} />
+            <div className="surface-exam-sheet relative flex min-h-[420px] flex-col items-center justify-center p-16 text-center">
               <div className="relative">
-                <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-ink-100 text-ink-400">
+                <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-md bg-ink-100 text-ink-400">
                   <FolderOpen size={36} strokeWidth={1.5} />
                 </div>
                 <h3 className="font-display text-2xl font-extrabold text-ink-900">Materials coming soon</h3>

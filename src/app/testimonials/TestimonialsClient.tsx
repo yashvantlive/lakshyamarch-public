@@ -178,7 +178,7 @@ export default function TestimonialsClient() {
               ))}
             </Stagger>
           ) : (
-            <div className="rounded-3xl border-2 border-dashed border-ink-200 bg-white py-20 text-center">
+            <div className="rounded-lg border-2 border-dashed border-ink-200 bg-white py-20 text-center">
               <p className="font-sans font-bold uppercase tracking-widest text-ink-400">No testimonials yet. Be the first!</p>
             </div>
           )}

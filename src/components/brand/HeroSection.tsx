@@ -2,47 +2,44 @@
 
 import React from "react";
 import { cn } from "@/lib/utils";
-import { AcademicGrid, BrandGlow, StaircaseWatermark } from "@/design-system/patterns";
-import { Parallax } from "./Motion";
+import { StaircaseEmblem, ExamSheetTexture } from "@/design-system/patterns";
 
-type Accent = "red" | "blue" | "gold" | "green";
+type Accent = "red" | "blue" | "gold" | "green" | "teal";
 
-const glowColor: Record<Accent, string> = {
-  red: "rgb(229 57 53 / 0.40)",
-  blue: "rgb(37 71 235 / 0.35)",
-  gold: "rgb(244 197 66 / 0.35)",
-  green: "rgb(16 185 129 / 0.30)",
+const emblemColor: Record<Accent, string> = {
+  red: "text-brand-red-500/15",
+  blue: "text-brand-blue-400/15",
+  gold: "text-brand-gold-400/15",
+  green: "text-brand-green-400/15",
+  teal: "text-brand-teal-400/15",
+};
+
+const topRule: Record<Accent, string> = {
+  red: "from-brand-red-600 via-brand-gold-400 to-brand-red-600",
+  blue: "from-brand-blue-700 via-brand-gold-400 to-brand-blue-700",
+  gold: "from-brand-gold-500 via-brand-red-600 to-brand-gold-500",
+  green: "from-brand-green-600 via-brand-gold-400 to-brand-green-600",
+  teal: "from-brand-teal-600 via-brand-gold-400 to-brand-teal-600",
 };
 
 /**
- * Shared hero shell. Renders the unified branded background composition
- * (academic grid + staircase watermark + single-hue glow + optional poster /
- * brochure blend + optional logo watermark) and exposes `children` for the
- * content grid.
+ * Admission-brochure hero surface.
  *
- * Always dark (ink) for brand consistency — heroes are the brand's signature
- * deep surface. NO glassmorphism: the poster sits as a faint 3–8% branded
- * background layer, never a frosted panel. Light intro sections should use a
- * normal <section>, not Hero.
+ * A deliberate institutional panel — solid ink, an examination-sheet ruling
+ * texture, a bold top brand rule (like a printed banner edge), and a large
+ * staircase academic seal as the visual anchor. NO blueprint grid, NO blur glow
+ * orbs, NO translucent poster overlays. Heroes read like the top of a premium
+ * coaching prospectus.
  */
 export default function HeroSection({
   children,
   accent = "red",
-  posterSrc,
-  posterOpacity = 7,
-  logoWatermark = false,
   className,
   contentClassName,
   minHeight = "min-h-[88vh]",
 }: {
   children: React.ReactNode;
   accent?: Accent;
-  /** Optional poster/brochure photo blended in as a faint branded layer. */
-  posterSrc?: string;
-  /** Poster layer opacity (percent, 3–8 recommended). */
-  posterOpacity?: number;
-  /** Render the LakshyaMarch logo as a large faint corner watermark. */
-  logoWatermark?: boolean;
   className?: string;
   contentClassName?: string;
   minHeight?: string;
@@ -55,48 +52,29 @@ export default function HeroSection({
         className,
       )}
     >
-      {/* Base gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-ink-950 via-ink-900 to-ink-950" />
+      {/* Top brand rule — printed banner edge */}
+      <div className={cn("absolute inset-x-0 top-0 z-20 h-1.5 bg-gradient-to-r", topRule[accent])} />
 
-      {/* Poster / brochure blend — a faint branded background layer (no blur, no panel) */}
-      {posterSrc && (
-        <Parallax distance={26} className="absolute inset-0">
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${posterSrc})`, opacity: posterOpacity / 100 }}
-          />
-          {/* gentle grounding fade so the content stays legible */}
-          <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/20 to-ink-950/40" />
-        </Parallax>
-      )}
+      {/* Solid academic base */}
+      <div className="absolute inset-0 bg-gradient-to-b from-ink-900 to-ink-950" />
 
-      {/* Academic grid watermark */}
-      <AcademicGrid className="text-white" opacity={4} />
+      {/* Examination-sheet ruling (intentional surface, not decoration) */}
+      <ExamSheetTexture dark opacity={6} />
 
-      {/* Company logo watermark (faint, branded) */}
-      {logoWatermark && (
-        <Parallax distance={20} className="pointer-events-none absolute -right-6 top-1/2 hidden h-[460px] w-[460px] -translate-y-1/2 sm:block lg:-right-2">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/company_logo.png"
-            alt=""
-            aria-hidden
-            className="h-full w-full object-contain opacity-[0.05] select-none"
-          />
-        </Parallax>
-      )}
+      {/* Side colour block — poster-style vertical band on the right */}
+      <div className={cn("absolute inset-y-0 right-0 hidden w-[38%] lg:block", "bg-ink-900/40")} />
+      <div className="absolute inset-y-0 right-0 hidden w-px bg-white/5 lg:block lg:right-[38%]" />
 
-      {/* Staircase watermark (parallax) */}
-      <Parallax distance={36} className="absolute -right-10 bottom-0 h-[420px] w-[420px] sm:h-[560px] sm:w-[560px]">
-        <StaircaseWatermark className="inset-0 h-full w-full text-white" opacity={6} />
-      </Parallax>
-
-      {/* Single-hue brand glow */}
-      <BrandGlow className="-top-24 right-1/4 h-96 w-96" color={glowColor[accent]} />
-      <BrandGlow className="bottom-0 -left-20 h-80 w-80" color="rgb(244 197 66 / 0.16)" />
+      {/* Staircase academic seal — the brand anchor (replaces grid/glow) */}
+      <StaircaseEmblem
+        className={cn(
+          "pointer-events-none absolute -right-16 -bottom-16 h-[420px] w-[420px] select-none sm:h-[520px] sm:w-[520px]",
+          emblemColor[accent],
+        )}
+      />
 
       {/* Content */}
-      <div className={cn("relative z-10 mx-auto w-full max-w-7xl px-5 py-28 sm:px-8 sm:py-32", contentClassName)}>
+      <div className={cn("relative z-10 mx-auto w-full max-w-7xl px-5 py-24 sm:px-8 sm:py-28", contentClassName)}>
         {children}
       </div>
     </section>

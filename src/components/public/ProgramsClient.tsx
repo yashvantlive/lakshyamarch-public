@@ -99,9 +99,9 @@ export default function ProgramsClient() {
               key={value}
               onClick={() => setActiveClass(value)}
               className={cn(
-                "whitespace-nowrap rounded-full border px-5 py-2 font-display text-sm font-semibold transition-all",
+                "whitespace-nowrap border px-5 py-2 font-display text-sm font-semibold uppercase tracking-[0.04em] transition-all",
                 activeClass === value
-                  ? "border-transparent bg-brand-red-600 text-white shadow-brand-md"
+                  ? "border-brand-red-600 bg-brand-red-600 text-white"
                   : "border-ink-200 bg-white text-ink-600 hover:border-brand-red-300 hover:text-brand-red-600",
               )}
             >

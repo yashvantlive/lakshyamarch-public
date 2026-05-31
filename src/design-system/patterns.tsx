@@ -130,6 +130,65 @@ export function ScholarshipRibbon({ className }: { className?: string }) {
   );
 }
 
+/**
+ * Academic seal / insignia built from the staircase motif — a premium brand
+ * asset for hero anchors, scholarship sections, and section dividers. Replaces
+ * generic grid/glow decoration. Inherits `currentColor`.
+ */
+export function StaircaseEmblem({ className }: { className?: string }) {
+  return (
+    <svg aria-hidden viewBox="0 0 120 120" className={cn("text-current", className)} fill="none">
+      {/* outer institutional ring */}
+      <circle cx="60" cy="60" r="57" stroke="currentColor" strokeWidth="2" opacity="0.5" />
+      <circle cx="60" cy="60" r="50" stroke="currentColor" strokeWidth="3.5" />
+      {/* ascending steps inside the seal */}
+      <g fill="currentColor">
+        <rect x="30" y="74" width="14" height="14" rx="1.5" opacity="0.55" />
+        <rect x="46" y="62" width="14" height="26" rx="1.5" opacity="0.75" />
+        <rect x="62" y="50" width="14" height="38" rx="1.5" opacity="0.9" />
+        <rect x="78" y="38" width="12" height="50" rx="1.5" />
+      </g>
+      {/* upward arrow riding the steps */}
+      <path
+        d="M32 72 L50 58 L66 46 L86 32"
+        stroke="currentColor"
+        strokeWidth="3.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        opacity="0.0"
+      />
+      <path d="M78 30 L88 30 L88 40" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.0" />
+    </svg>
+  );
+}
+
+/** Bold staircase chevron strip — a print-style section divider/anchor. */
+export function StaircaseStrip({ className, fill = "currentColor" }: { className?: string; fill?: string }) {
+  return (
+    <svg aria-hidden viewBox="0 0 240 24" preserveAspectRatio="none" className={cn(className)} fill="none">
+      <path
+        d="M0 24 L0 18 L40 18 L40 12 L80 12 L80 6 L120 6 L120 0 L240 0 L240 24 Z"
+        fill={fill}
+      />
+    </svg>
+  );
+}
+
+/** Examination-sheet texture (faint horizontal ruling) as a positioned layer. */
+export function ExamSheetTexture({ className, opacity = 5, dark = false }: PatternProps & { dark?: boolean }) {
+  return (
+    <div
+      aria-hidden
+      className={cn(
+        "pointer-events-none absolute inset-0",
+        dark ? "surface-exam-sheet-dark" : "surface-exam-sheet",
+        className,
+      )}
+      style={{ opacity: opacity / 100 + (dark ? 1 - opacity / 100 : 0) }}
+    />
+  );
+}
+
 /** Smooth SVG curve divider so light/ink sections flow instead of hard-cutting. */
 export function CurveDivider({
   className,
@@ -167,6 +226,9 @@ export const patterns = {
   AcademicGrid,
   StaircaseMotif,
   StaircaseWatermark,
+  StaircaseEmblem,
+  StaircaseStrip,
+  ExamSheetTexture,
   AchievementStreaks,
   BrandGlow,
   ScholarshipRibbon,

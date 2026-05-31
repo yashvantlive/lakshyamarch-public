@@ -94,7 +94,7 @@ export default function BegusaraiCoachingPage() {
             <Stagger className="grid gap-8 md:grid-cols-3">
               {WHY.map((f) => (
                 <StaggerItem key={f.title}>
-                  <div className="h-full rounded-2xl border border-ink-200 bg-ink-50 p-8 transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg">
+                  <div className="h-full rounded-lg border border-ink-200 bg-ink-50 p-8 transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg">
                     <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-brand-red-50 text-brand-red-600">
                       <f.icon size={24} strokeWidth={1.75} />
                     </div>
@@ -131,7 +131,7 @@ export default function BegusaraiCoachingPage() {
                 </div>
               </Reveal>
               <Reveal delay={0.1}>
-                <div className="relative h-[360px] overflow-hidden rounded-3xl border border-white/10 shadow-brand-xl lg:h-[440px]">
+                <div className="relative h-[360px] overflow-hidden rounded-lg border border-white/10 shadow-brand-xl lg:h-[440px]">
                   <iframe
                     src={INSTITUTE.mapEmbedUrl}
                     width="100%" height="100%" style={{ border: 0 }}

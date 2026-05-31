@@ -55,7 +55,7 @@ export default function TestEnquiryForm() {
   };
 
   return (
-    <div className="bg-white p-8 sm:p-10 rounded-3xl shadow-brand-lg border border-ink-100 relative overflow-hidden">
+    <div className="bg-white p-8 sm:p-10 rounded-lg shadow-brand-lg border border-ink-100 relative overflow-hidden">
       {/* Top Banner inside form */}
       <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-brand-red-600 to-brand-red-700" />
       

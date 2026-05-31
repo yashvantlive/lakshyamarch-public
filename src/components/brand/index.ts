@@ -6,6 +6,9 @@
 export { default as Button } from "./Button";
 export type { ButtonProps } from "./Button";
 export { default as Badge } from "./Badge";
+export { default as BannerLabel } from "./BannerLabel";
+export { default as AchievementStrip } from "./AchievementStrip";
+export type { Achievement } from "./AchievementStrip";
 export { default as SectionHeader } from "./SectionHeader";
 export { default as HeroSection } from "./HeroSection";
 export { default as StatsGrid, StatCard } from "./StatsGrid";

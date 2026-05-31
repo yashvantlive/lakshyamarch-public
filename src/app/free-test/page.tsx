@@ -94,7 +94,7 @@ export default function FreeTestPage() {
               </p>
             </Reveal>
             <Reveal delay={0.15}>
-              <div className="mt-8 flex items-start gap-4 rounded-2xl border border-white/10 bg-white/5 p-4">
+              <div className="mt-8 flex items-start gap-4 rounded-lg border border-white/10 bg-white/5 p-4">
                 <CalendarDays size={22} strokeWidth={1.75} className="mt-0.5 shrink-0 text-brand-gold-400" />
                 <p className="font-sans text-sm text-white/75">
                   <strong className="text-white">Tentative date & timing:</strong> exact exam date and shift will be shared via WhatsApp after registration.
@@ -124,7 +124,7 @@ export default function FreeTestPage() {
             <Stagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
               {TEST_CLASSES.map((c) => (
                 <StaggerItem key={c.class}>
-                  <div className="flex h-44 flex-col items-center justify-center rounded-2xl border border-ink-200 bg-ink-50 p-6 text-center transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg">
+                  <div className="flex h-44 flex-col items-center justify-center rounded-lg border border-ink-200 bg-ink-50 p-6 text-center transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg">
                     <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-brand-blue-800 text-white">
                       <c.icon size={24} strokeWidth={1.75} />
                     </div>
@@ -143,8 +143,8 @@ export default function FreeTestPage() {
             <Stagger className="grid gap-8 sm:grid-cols-3">
               {WHY.map((w) => (
                 <StaggerItem key={w.title}>
-                  <div className="h-full rounded-2xl border border-ink-200 bg-white p-8 text-center shadow-brand-sm">
-                    <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-gold-50 text-brand-gold-600">
+                  <div className="h-full rounded-lg border border-ink-200 bg-white p-8 text-center shadow-brand-sm">
+                    <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-lg bg-brand-gold-50 text-brand-gold-600">
                       <w.icon size={26} strokeWidth={1.75} />
                     </div>
                     <h3 className="font-display text-lg font-bold text-ink-900">{w.title}</h3>

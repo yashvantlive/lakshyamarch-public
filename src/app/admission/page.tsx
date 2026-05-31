@@ -76,7 +76,7 @@ export default function AdmissionPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(admissionSchema) }} />
       <PublicNavbar />
 
-      <HeroSection accent="red" posterSrc="/images/posters/brochure.webp" posterOpacity={6} logoWatermark>
+      <HeroSection accent="red">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
             <Reveal>
@@ -96,7 +96,7 @@ export default function AdmissionPage() {
               <div className="mt-8 space-y-3">
                 {STEPS.map((s) => (
                   <div key={s.step} className="flex items-center gap-4">
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-gold-400 font-display text-sm font-extrabold text-ink-900">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center bg-brand-gold-400 font-display text-sm font-extrabold text-ink-900">
                       {s.step.replace("0", "")}
                     </span>
                     <p className="font-sans text-sm text-white/80">{s.desc}</p>
@@ -132,7 +132,7 @@ export default function AdmissionPage() {
                 <StaggerItem key={s.step} className="relative text-center">
                   <span className="pointer-events-none absolute -top-6 left-1/2 -translate-x-1/2 font-display text-[5rem] font-extrabold leading-none text-ink-200/70 select-none">{s.step}</span>
                   <div className="relative">
-                    <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-red-600 text-white shadow-brand-md">
+                    <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-lg bg-brand-red-600 text-white shadow-brand-md">
                       <s.icon size={28} strokeWidth={1.75} />
                     </div>
                     <h3 className="font-display text-xl font-bold text-ink-900">{s.title}</h3>
@@ -148,7 +148,7 @@ export default function AdmissionPage() {
         <section className={cn(layout.sectionTight, "bg-ink-50")}>
           <div className={layout.containerNarrow}>
             <Reveal>
-              <div className="rounded-3xl border border-ink-200 bg-white p-8 shadow-brand-sm sm:p-10">
+              <div className="rounded-lg border border-ink-200 bg-white p-8 shadow-brand-sm sm:p-10">
                 <SectionHeader align="left" eyebrow="Checklist" eyebrowIcon={FileText} title="Documents Required" accentWord="Required" accent="blue" lead="Keep these ready before visiting the campus or applying online." className="mb-8" />
                 <div className="grid gap-4 sm:grid-cols-2">
                   {DOCS.map((doc) => (
@@ -218,7 +218,7 @@ function BatchTable({
                     </span>
                   </td>
                   <td className="px-6 py-4">
-                    <span className="rounded-full border border-brand-green-200 bg-brand-green-50 px-2.5 py-1 font-sans text-[0.625rem] font-bold uppercase tracking-wider text-brand-green-700">Open</span>
+                    <span className="inline-block border-l-2 border-brand-green-600 bg-brand-green-50 px-2.5 py-1 font-sans text-[0.625rem] font-bold uppercase tracking-wider text-brand-green-700">Open</span>
                   </td>
                 </tr>
               ))}

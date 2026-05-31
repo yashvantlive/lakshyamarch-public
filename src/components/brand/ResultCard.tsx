@@ -74,13 +74,13 @@ export default function ResultCard({
   return (
     <div
       className={cn(
-        "group relative flex h-full flex-col overflow-hidden rounded-2xl border bg-white shadow-brand-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg",
+        "group relative flex h-full flex-col overflow-hidden rounded-lg border bg-white shadow-brand-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg",
         topper ? cn("border-transparent ring-2", a.ring) : "border-ink-200",
         className,
       )}
     >
       {topper && (
-        <div className="absolute right-3 top-3 z-10 flex items-center gap-1 rounded-full bg-brand-gold-400 px-2.5 py-1 font-sans text-[0.625rem] font-bold uppercase tracking-[0.12em] text-ink-900 shadow-brand-md">
+        <div className="absolute right-0 top-3 z-10 flex items-center gap-1 bg-brand-gold-400 py-1 pl-2.5 pr-3 font-sans text-[0.625rem] font-bold uppercase tracking-[0.12em] text-ink-900 shadow-brand-sm">
           <Trophy size={12} strokeWidth={2.25} /> Topper
         </div>
       )}
@@ -105,7 +105,7 @@ export default function ResultCard({
         )}
         <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-ink-950/70 to-transparent" />
         {student.air != null && (
-          <div className="absolute bottom-3 left-3 rounded-lg bg-white/95 px-2.5 py-1 font-display text-sm font-extrabold text-brand-red-600 shadow-brand-sm">
+          <div className="absolute bottom-3 left-3 bg-white px-2.5 py-1 font-display text-sm font-extrabold text-brand-red-600 shadow-brand-sm">
             AIR {student.air}
           </div>
         )}
@@ -122,7 +122,7 @@ export default function ResultCard({
         </p>
         <div className="mt-auto pt-3">
           {student.college ? (
-            <span className={cn("inline-flex items-center gap-1 rounded-full border px-2.5 py-1 font-sans text-[0.625rem] font-bold uppercase tracking-[0.1em]", a.chip)}>
+            <span className={cn("inline-flex items-center gap-1 rounded-sm border px-2.5 py-1 font-sans text-[0.625rem] font-bold uppercase tracking-[0.1em]", a.chip)}>
               <GraduationCap size={11} strokeWidth={2} /> {student.college}
             </span>
           ) : (

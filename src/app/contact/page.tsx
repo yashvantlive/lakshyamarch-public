@@ -67,14 +67,14 @@ export default function ContactPage() {
             <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
               {/* Map */}
               <Reveal>
-                <div className="relative h-[420px] overflow-hidden rounded-3xl border border-ink-200 shadow-brand-lg lg:h-[560px]">
+                <div className="relative h-[420px] overflow-hidden rounded-lg border border-ink-200 shadow-brand-lg lg:h-[560px]">
                   <iframe
                     src={INSTITUTE.mapEmbedUrl}
                     width="100%" height="100%" style={{ border: 0 }}
                     allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"
                     title="LakshyaMarch Location"
                   />
-                  <div className="absolute inset-x-6 bottom-6 rounded-2xl border border-ink-200 bg-white p-5 shadow-brand-lg">
+                  <div className="absolute inset-x-6 bottom-6 rounded-lg border border-ink-200 bg-white p-5 shadow-brand-lg">
                     <p className="font-display font-bold text-ink-900">{INSTITUTE.name}</p>
                     <p className="mt-1 font-sans text-sm leading-snug text-ink-600">{INSTITUTE.address.full}</p>
                   </div>
@@ -95,7 +95,7 @@ export default function ContactPage() {
                 <Stagger className="grid gap-4 sm:grid-cols-2">
                   {CONTACT_METHODS.map((m) => (
                     <StaggerItem key={m.title}>
-                      <div className="h-full rounded-2xl border border-ink-200 bg-ink-50 p-5">
+                      <div className="h-full rounded-lg border border-ink-200 bg-ink-50 p-5">
                         <div className={cn("mb-3 flex h-12 w-12 items-center justify-center rounded-xl", toneChip[m.tone])}>
                           <m.icon size={22} strokeWidth={1.75} />
                         </div>

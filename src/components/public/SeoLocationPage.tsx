@@ -85,7 +85,7 @@ export default function SeoLocationPage({
             <Stagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {features.map((f) => (
                 <StaggerItem key={f.title}>
-                  <div className="h-full rounded-2xl border border-ink-200 bg-ink-50 p-8 transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg">
+                  <div className="h-full rounded-lg border border-ink-200 bg-ink-50 p-8 transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg">
                     <div className={cn("mb-6 flex h-14 w-14 items-center justify-center rounded-xl", chip[accent])}>
                       <f.icon size={26} strokeWidth={1.75} />
                     </div>

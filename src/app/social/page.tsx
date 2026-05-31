@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import PublicNavbar from "@/components/public/PublicNavbar";
 import PublicFooter from "@/components/public/PublicFooter";
-import { ExternalLink, Activity } from "lucide-react";
+import { ExternalLink, Activity, CheckCircle2 } from "lucide-react";
 import { FaFacebook, FaInstagram, FaYoutube, FaXTwitter } from "react-icons/fa6";
 import Script from "next/script";
 import { Suspense } from "react";
 import SocialCard, { SocialCardSkeleton } from "@/components/public/SocialCard";
 import { getNormalizedFeed } from "@/lib/socialService";
 import { getLatestYouTubeVideos, timeAgo } from "@/lib/youtubeService";
-import { AcademicGrid, BrandGlow } from "@/design-system/patterns";
+import { ExamSheetTexture, StaircaseEmblem } from "@/design-system/patterns";
 
 export const revalidate = 3600; // Cache the whole page optionally, but Suspense handles the rest
 
@@ -43,8 +43,10 @@ export default function SocialWallPage() {
 
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-ink-950 pt-32 pb-16 sm:pt-40">
-        <AcademicGrid className="text-white" opacity={4} />
-        <BrandGlow className="left-10 top-1/2 h-64 w-64 -translate-y-1/2" color="rgb(37 71 235 / 0.25)" />
+        <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-brand-blue-700 via-brand-gold-400 to-brand-blue-700" />
+        <div className="absolute inset-0 bg-gradient-to-b from-ink-900 to-ink-950" />
+        <ExamSheetTexture dark opacity={6} />
+        <StaircaseEmblem className="pointer-events-none absolute -left-12 -bottom-12 h-72 w-72 text-brand-blue-400/12" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 text-center">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-ink-700 bg-ink-800 px-4 py-1.5 font-sans text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-brand-gold-400">
@@ -79,7 +81,7 @@ export default function SocialWallPage() {
             <div className="flex flex-col gap-6">
               
               {/* YOUTUBE */}
-              <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm flex flex-col relative overflow-hidden group">
+              <div className="bg-white rounded-lg border border-slate-200 p-6 shadow-sm flex flex-col relative overflow-hidden group">
                 <div className="absolute top-0 left-0 w-full h-1 bg-[#FF0000]" />
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center gap-3">
@@ -124,7 +126,7 @@ export default function SocialWallPage() {
               </div>
 
               {/* FACEBOOK */}
-              <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm h-[600px] flex flex-col relative overflow-hidden group">
+              <div className="bg-white rounded-lg border border-slate-200 p-6 shadow-sm h-[600px] flex flex-col relative overflow-hidden group">
                 <div className="absolute top-0 left-0 w-full h-1 bg-[#1877F2]" />
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center gap-3">
@@ -164,7 +166,7 @@ export default function SocialWallPage() {
             <div className="flex flex-col gap-6">
               
               {/* INSTAGRAM (Fallback card as IG blocks iframe) */}
-              <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm flex-1 flex flex-col relative overflow-hidden group">
+              <div className="bg-white rounded-lg border border-slate-200 p-6 shadow-sm flex-1 flex flex-col relative overflow-hidden group">
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#f09433] via-[#dc2743] to-[#bc1888]" />
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center gap-3">
@@ -200,7 +202,7 @@ export default function SocialWallPage() {
 
             {/* ═══ COLUMN 3: X (TWITTER) ═══ */}
             <div className="flex flex-col gap-6">
-              <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm flex-1 flex flex-col relative overflow-hidden group">
+              <div className="bg-white rounded-lg border border-slate-200 p-6 shadow-sm flex-1 flex flex-col relative overflow-hidden group">
                 <div className="absolute top-0 left-0 w-full h-1 bg-black" />
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center gap-3">
@@ -238,39 +240,39 @@ export default function SocialWallPage() {
       </main>
 
       {/* SEO Concluding Content & Community Benefits */}
-      <section className="bg-slate-900 text-white py-16 border-t border-slate-800">
+      <section className="bg-ink-950 text-white py-16 border-t border-ink-800">
         <div className="max-w-7xl mx-auto px-5 sm:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl font-extrabold mb-4">Why Join Our Digital Community?</h2>
-              <p className="text-slate-400 mb-6 leading-relaxed">
+              <p className="text-white/60 mb-6 leading-relaxed">
                 At LakshyaMarch, we believe that education extends beyond the four walls of a classroom. Our social media channels are curated specifically for serious medical and engineering aspirants.
               </p>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
-                  <div className="h-6 w-6 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 shrink-0 mt-0.5">✓</div>
-                  <p className="text-slate-300"><strong className="text-white">Daily Practice Problems (DPPs):</strong> Regular quizzes and conceptual questions posted on Instagram and X.</p>
+                  <CheckCircle2 size={20} strokeWidth={1.75} className="mt-0.5 shrink-0 text-brand-blue-300" />
+                  <p className="text-white/75"><strong className="text-white">Daily Practice Problems (DPPs):</strong> Regular quizzes and conceptual questions posted on Instagram and X.</p>
                 </li>
                 <li className="flex items-start gap-3">
-                  <div className="h-6 w-6 rounded-full bg-red-500/20 flex items-center justify-center text-red-400 shrink-0 mt-0.5">✓</div>
-                  <p className="text-slate-300"><strong className="text-white">Strategy & Motivation:</strong> Exclusive interviews with our NEET and JEE toppers from Begusarai on YouTube.</p>
+                  <CheckCircle2 size={20} strokeWidth={1.75} className="mt-0.5 shrink-0 text-brand-red-400" />
+                  <p className="text-white/75"><strong className="text-white">Strategy & Motivation:</strong> Exclusive interviews with our NEET and JEE toppers from Begusarai on YouTube.</p>
                 </li>
                 <li className="flex items-start gap-3">
-                  <div className="h-6 w-6 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400 shrink-0 mt-0.5">✓</div>
-                  <p className="text-slate-300"><strong className="text-white">Instant Updates:</strong> Never miss a scholarship test (Think NEET), admission deadline, or batch launch announcement.</p>
+                  <CheckCircle2 size={20} strokeWidth={1.75} className="mt-0.5 shrink-0 text-brand-gold-400" />
+                  <p className="text-white/75"><strong className="text-white">Instant Updates:</strong> Never miss a scholarship test (Think NEET), admission deadline, or batch launch announcement.</p>
                 </li>
               </ul>
             </div>
-            <div className="bg-slate-800 rounded-3xl p-8 text-center border border-slate-700">
+            <div className="bg-ink-800 rounded-lg p-8 text-center border border-ink-700">
               <h3 className="text-2xl font-bold mb-4">Be Part of The Legacy</h3>
-              <p className="text-slate-400 mb-8">
+              <p className="text-white/60 mb-8">
                 Join thousands of students who are marching towards their Lakshya. Hit subscribe, follow, and engage with the best teaching faculty in Bihar.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
-                <a href="https://youtube.com/@lakshyamarch" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-[#FF0000] hover:bg-red-600 text-white rounded-xl font-bold transition-colors">
+                <a href="https://youtube.com/@lakshyamarch" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-[#FF0000] hover:bg-red-600 text-white rounded-md font-bold transition-colors">
                   Subscribe on YouTube
                 </a>
-                <a href="https://instagram.com/lakshyamarch" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-gradient-to-r from-[#f09433] to-[#bc1888] hover:opacity-90 text-white rounded-xl font-bold transition-opacity">
+                <a href="https://instagram.com/lakshyamarch" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-gradient-to-r from-[#f09433] to-[#bc1888] hover:opacity-90 text-white rounded-md font-bold transition-opacity">
                   Follow on Instagram
                 </a>
               </div>

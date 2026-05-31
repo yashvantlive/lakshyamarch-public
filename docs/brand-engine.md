@@ -7,6 +7,15 @@
 Brand idea: **"Academic Excellence Through Progress."** The staircase in the logo
 = upward movement, step-by-step mastery, the march toward one's _lakshya_ (goal).
 
+> **Design DNA: printed coaching brochure, not software.** Every surface is built
+> from the LakshyaMarch logo + printed admission posters — strong color blocking,
+> institutional banner labels, achievement strips, scholarship ribbons, and
+> exam-sheet/notebook textures. We do NOT use SaaS/dashboard patterns: no
+> blueprint grid backgrounds, no blur glow orbs, no frosted-glass cards, no
+> floating rounded "eyebrow" pills, no translucent poster overlays, no oversized
+> bubbly radii. The staircase is a premium brand asset (seal, divider, anchor),
+> never a logo placed on top of another logo.
+
 ---
 
 ## 1. Brand Personality

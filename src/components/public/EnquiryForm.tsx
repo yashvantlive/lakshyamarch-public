@@ -9,22 +9,24 @@ import { erpApiPath } from "@/lib/erpApi";
 function EnquiryFormSkeleton() {
   return (
     <div
-      className="bg-white rounded-2xl border border-ink-200 p-6 sm:p-8 max-w-md mx-auto shadow-brand-xl animate-pulse"
+      className="mx-auto max-w-md overflow-hidden rounded-lg border border-ink-200 bg-white shadow-brand-xl"
       aria-hidden
     >
-      <div className="mb-6 space-y-2">
-        <div className="h-6 w-40 rounded-lg bg-ink-200" />
-        <div className="h-4 w-52 rounded-lg bg-ink-100" />
+      <div className="bg-brand-blue-800 px-6 py-4 sm:px-8">
+        <div className="h-3 w-40 rounded bg-white/20" />
+        <div className="mt-2 h-5 w-32 rounded bg-white/30" />
       </div>
-      <div className="space-y-4">
-        <div className="h-11 rounded-xl bg-ink-100" />
-        <div className="h-11 rounded-xl bg-ink-100" />
-        <div className="grid grid-cols-2 gap-3">
-          <div className="h-11 rounded-xl bg-ink-100" />
-          <div className="h-11 rounded-xl bg-ink-100" />
+      <div className="p-6 animate-pulse sm:p-8">
+        <div className="space-y-4">
+          <div className="h-11 rounded-md bg-ink-100" />
+          <div className="h-11 rounded-md bg-ink-100" />
+          <div className="grid grid-cols-2 gap-3">
+            <div className="h-11 rounded-md bg-ink-100" />
+            <div className="h-11 rounded-md bg-ink-100" />
+          </div>
         </div>
+        <div className="mt-6 h-12 rounded-md bg-ink-200" />
       </div>
-      <div className="mt-6 h-12 rounded-xl bg-ink-200" />
     </div>
   );
 }
@@ -84,7 +86,7 @@ function EnquiryFormInner() {
 
   if (success) {
     return (
-      <div className="bg-white rounded-2xl border border-ink-200 p-8 text-center max-w-md mx-auto shadow-brand-xl">
+      <div className="bg-white rounded-lg border border-ink-200 p-8 text-center max-w-md mx-auto shadow-brand-xl">
         <div className="h-16 w-16 rounded-full bg-brand-green-50 flex items-center justify-center mx-auto mb-4">
           <CheckCircle size={32} className="text-brand-green-600" strokeWidth={1.75} />
         </div>
@@ -108,13 +110,17 @@ function EnquiryFormInner() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-white rounded-2xl border border-ink-200 p-6 sm:p-8 max-w-md mx-auto shadow-brand-xl"
+      className="mx-auto max-w-md overflow-hidden rounded-lg border border-ink-200 bg-white shadow-brand-xl"
     >
-      <div className="mb-6 border-l-4 border-brand-red-600 pl-4">
-        <h3 className="text-xl font-display font-extrabold text-ink-900 mb-1">Begin Your Journey</h3>
-        <p className="text-sm text-ink-500">Admission Enquiry for 2026-2027</p>
+      {/* Official admission-form header bar */}
+      <div className="bg-brand-blue-800 px-6 py-4 sm:px-8">
+        <p className="font-sans text-[0.625rem] font-bold uppercase tracking-[0.2em] text-brand-gold-400">
+          Admission Registration · 2026–27
+        </p>
+        <h3 className="mt-1 font-display text-xl font-extrabold text-white">Begin Your Journey</h3>
       </div>
 
+      <div className="p-6 sm:p-8">
       <div className="space-y-4">
         <div>
           <label className="block text-[11px] font-bold text-ink-500 uppercase tracking-wider mb-1.5">
@@ -125,7 +131,7 @@ function EnquiryFormInner() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Enter Your Name"
-            className="w-full h-11 px-4 rounded-xl bg-ink-50 border border-ink-200 text-ink-900 placeholder:text-ink-400 text-sm focus:outline-none focus:ring-2 focus:ring-brand-red-500/30 focus:border-brand-red-500 transition-all"
+            className="w-full h-11 px-4 rounded-md bg-ink-50 border border-ink-200 text-ink-900 placeholder:text-ink-400 text-sm focus:outline-none focus:ring-2 focus:ring-brand-red-500/30 focus:border-brand-red-500 transition-all"
           />
         </div>
 
@@ -139,7 +145,7 @@ function EnquiryFormInner() {
             onChange={(e) => setPhone(e.target.value)}
             placeholder="10-digit number"
             maxLength={10}
-            className="w-full h-11 px-4 rounded-xl bg-ink-50 border border-ink-200 text-ink-900 placeholder:text-ink-400 text-sm focus:outline-none focus:ring-2 focus:ring-brand-red-500/30 focus:border-brand-red-500 transition-all"
+            className="w-full h-11 px-4 rounded-md bg-ink-50 border border-ink-200 text-ink-900 placeholder:text-ink-400 text-sm focus:outline-none focus:ring-2 focus:ring-brand-red-500/30 focus:border-brand-red-500 transition-all"
           />
         </div>
 
@@ -151,7 +157,7 @@ function EnquiryFormInner() {
             <select
               value={program}
               onChange={(e) => { setProgram(e.target.value as any); setClassApplied(""); }}
-              className="w-full h-11 px-3 rounded-xl bg-ink-50 border border-ink-200 text-ink-900 text-sm focus:outline-none focus:ring-2 focus:ring-brand-red-500/30 focus:border-brand-red-500 transition-all appearance-none cursor-pointer"
+              className="w-full h-11 px-3 rounded-md bg-ink-50 border border-ink-200 text-ink-900 text-sm focus:outline-none focus:ring-2 focus:ring-brand-red-500/30 focus:border-brand-red-500 transition-all appearance-none cursor-pointer"
             >
               <option value="">Select...</option>
               <option value="coaching">Coaching (7-12)</option>
@@ -167,7 +173,7 @@ function EnquiryFormInner() {
               value={classApplied}
               onChange={(e) => setClassApplied(e.target.value)}
               disabled={!program}
-              className="w-full h-11 px-3 rounded-xl bg-ink-50 border border-ink-200 text-ink-900 text-sm focus:outline-none focus:ring-2 focus:ring-brand-red-500/30 focus:border-brand-red-500 transition-all appearance-none cursor-pointer disabled:opacity-50"
+              className="w-full h-11 px-3 rounded-md bg-ink-50 border border-ink-200 text-ink-900 text-sm focus:outline-none focus:ring-2 focus:ring-brand-red-500/30 focus:border-brand-red-500 transition-all appearance-none cursor-pointer disabled:opacity-50"
             >
               <option value="">Class</option>
               {classOptions.map((c) => (
@@ -186,7 +192,7 @@ function EnquiryFormInner() {
             </label>
             <select
               required
-              className="w-full h-11 px-3 rounded-xl bg-ink-50 border border-ink-200 text-ink-900 text-sm focus:outline-none focus:ring-2 focus:ring-brand-red-500/30 focus:border-brand-red-500 transition-all appearance-none cursor-pointer"
+              className="w-full h-11 px-3 rounded-md bg-ink-50 border border-ink-200 text-ink-900 text-sm focus:outline-none focus:ring-2 focus:ring-brand-red-500/30 focus:border-brand-red-500 transition-all appearance-none cursor-pointer"
             >
               <option value="">Select Target</option>
               <option value="IIT-JEE">IIT-JEE (Engineering)</option>
@@ -206,7 +212,7 @@ function EnquiryFormInner() {
       <button
         type="submit"
         disabled={saving}
-        className="mt-6 w-full h-12 rounded-xl bg-brand-red-600 hover:bg-brand-red-700 text-white font-display font-semibold tracking-wide text-sm shadow-brand-md hover:shadow-brand-glow-red disabled:opacity-60 transition-all flex items-center justify-center gap-2 cursor-pointer"
+        className="mt-6 w-full h-12 rounded-md bg-brand-red-600 hover:bg-brand-red-700 text-white font-display font-semibold tracking-wide text-sm shadow-brand-md hover:shadow-brand-glow-red disabled:opacity-60 transition-all flex items-center justify-center gap-2 cursor-pointer"
       >
         {saving ? (
           <>
@@ -224,6 +230,7 @@ function EnquiryFormInner() {
       <p className="mt-4 text-[10px] text-ink-400 text-center uppercase tracking-wider font-semibold">
         No Spam • Expert Counselling
       </p>
+      </div>
     </form>
   );
 }

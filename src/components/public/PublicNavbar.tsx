@@ -108,7 +108,7 @@ export default function PublicNavbar() {
                   transition={{ duration: 0.18 }}
                   className="absolute left-1/2 top-full w-[28rem] -translate-x-1/2 pt-3"
                 >
-                  <div className="grid grid-cols-1 gap-1 rounded-2xl border border-ink-200 bg-white p-3 shadow-brand-xl">
+                  <div className="grid grid-cols-1 gap-1 rounded-lg border border-ink-200 bg-white p-3 shadow-brand-xl">
                     {PROGRAM_MENU.map((p) => (
                       <Link
                         key={p.href}

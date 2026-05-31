@@ -72,7 +72,7 @@ export default function HostelPage() {
             <Stagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {AMENITIES.map((a) => (
                 <StaggerItem key={a.title}>
-                  <div className="h-full rounded-2xl border border-ink-200 bg-white p-8 text-center transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg">
+                  <div className="h-full rounded-lg border border-ink-200 bg-white p-8 text-center transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg">
                     <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-brand-blue-50 text-brand-blue-700">
                       <a.icon size={26} strokeWidth={1.75} />
                     </div>
@@ -106,7 +106,7 @@ export default function HostelPage() {
                 enrolled in our 1-Year or 2-Year classroom courses. Fill the form and our admissions desk will guide
                 you on fees, check-in checklists, and room availability.
               </p>
-              <div className="mt-8 space-y-3 rounded-2xl border-l-4 border-brand-blue-700 bg-ink-50 py-5 pl-6 pr-4">
+              <div className="mt-8 space-y-3 rounded-lg border-l-4 border-brand-blue-700 bg-ink-50 py-5 pl-6 pr-4">
                 <p className="flex items-center gap-3 font-sans font-semibold text-ink-700">
                   <Phone size={18} strokeWidth={1.75} className="text-brand-blue-700" /> Helpdesk: {INSTITUTE.primaryPhone}
                 </p>
@@ -116,7 +116,7 @@ export default function HostelPage() {
               </div>
             </Reveal>
             <Reveal delay={0.1}>
-              <div className="rounded-3xl bg-ink-950 p-2 shadow-brand-xl">
+              <div className="rounded-lg bg-ink-950 p-2 shadow-brand-xl">
                 <AdmissionEnquiryForm />
               </div>
             </Reveal>
@@ -142,7 +142,7 @@ function FeaturePanel({
 }) {
   const chip = accent === "green" ? "bg-brand-green-50 text-brand-green-600" : "bg-brand-red-50 text-brand-red-600";
   return (
-    <div className="h-full rounded-3xl border border-ink-200 bg-white p-8 shadow-brand-sm sm:p-10">
+    <div className="h-full rounded-lg border border-ink-200 bg-white p-8 shadow-brand-sm sm:p-10">
       <div className={cn("mb-6 flex h-14 w-14 items-center justify-center rounded-xl", chip)}>
         <Icon size={26} strokeWidth={1.75} />
       </div>

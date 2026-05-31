@@ -4,7 +4,7 @@ import Badge from "./Badge";
 import { Reveal } from "./Motion";
 
 type Align = "center" | "left";
-type Accent = "red" | "blue" | "gold" | "green";
+type Accent = "red" | "blue" | "gold" | "green" | "teal";
 type Theme = "light" | "dark";
 
 const accentText: Record<Accent, string> = {
@@ -12,18 +12,29 @@ const accentText: Record<Accent, string> = {
   blue: "text-brand-blue-700",
   gold: "text-brand-gold-500",
   green: "text-brand-green-600",
+  teal: "text-brand-teal-600",
 };
 
-const badgeTone: Record<Accent, "red" | "blue" | "gold" | "green"> = {
+const accentRule: Record<Accent, string> = {
+  red: "bg-brand-red-600",
+  blue: "bg-brand-blue-700",
+  gold: "bg-brand-gold-500",
+  green: "bg-brand-green-600",
+  teal: "bg-brand-teal-600",
+};
+
+const badgeTone: Record<Accent, "red" | "blue" | "gold" | "green" | "teal"> = {
   red: "red",
   blue: "blue",
   gold: "gold",
   green: "green",
+  teal: "teal",
 };
 
 /**
- * Unified section intro: optional eyebrow badge, a title where the LAST word (or
- * an explicit `accentWord`) is brand-colored, and an optional lead paragraph.
+ * Institutional section opener: an eyebrow label flanked by a brand rule, a
+ * heading where the accent word is colored, a short double-rule underline (like
+ * a printed prospectus heading), and an optional lead. No floating pills.
  */
 export default function SectionHeader({
   eyebrow,
@@ -57,24 +68,29 @@ export default function SectionHeader({
       )}
     >
       {eyebrow && (
-        <Badge tone={theme === "dark" ? "onDark" : badgeTone[accent]} icon={eyebrowIcon}>
+        <Badge tone={theme === "dark" ? "onDark" : badgeTone[accent]} icon={eyebrowIcon} align={align === "center" ? "center" : "start"}>
           {eyebrow}
         </Badge>
       )}
       <h2
         className={cn(
-          "font-display font-bold tracking-tight text-[clamp(1.6rem,3vw,2.25rem)] leading-[1.15]",
+          "font-display font-extrabold tracking-tight text-[clamp(1.7rem,3.2vw,2.4rem)] leading-[1.12]",
           theme === "dark" ? "text-white" : "text-ink-900",
         )}
       >
         {head}
         {tail && <span className={accentText[accent]}>{tail}</span>}
       </h2>
+      {/* institutional double-rule underline */}
+      <span aria-hidden className={cn("flex items-center gap-1", align === "center" ? "justify-center" : "")}>
+        <span className={cn("h-1 w-12", accentRule[accent])} />
+        <span className={cn("h-1 w-3", accentRule[accent], "opacity-50")} />
+      </span>
       {lead && (
         <p
           className={cn(
             "font-sans text-base leading-[1.7] sm:text-lg",
-            theme === "dark" ? "text-white/70" : "text-ink-500",
+            theme === "dark" ? "text-white/70" : "text-ink-600",
             align === "center" && "max-w-2xl",
           )}
         >

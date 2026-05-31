@@ -92,7 +92,7 @@ export default function ScholarshipPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(scholarshipSchema) }} />
       <PublicNavbar />
 
-      <HeroSection accent="gold" posterSrc="/images/posters/poster.webp" posterOpacity={7} logoWatermark>
+      <HeroSection accent="gold">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
             <Reveal>
@@ -145,7 +145,7 @@ export default function ScholarshipPage() {
             <Stagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {SYLLABUS.map((cat) => (
                 <StaggerItem key={cat.title}>
-                  <div className="h-full rounded-2xl border border-ink-200 bg-white p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg">
+                  <div className="h-full rounded-lg border border-ink-200 bg-white p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg">
                     <span className="inline-block rounded-lg bg-brand-blue-800 px-4 py-1.5 font-display text-sm font-bold uppercase tracking-wide text-white">{cat.title}</span>
                     <ul className="mb-5 mt-4 space-y-2">
                       {cat.subjects.map((sub) => (
@@ -174,7 +174,7 @@ export default function ScholarshipPage() {
                 <StaggerItem key={s.step} className="relative text-center">
                   <span className="pointer-events-none absolute -top-5 left-1/2 -translate-x-1/2 font-display text-[4.5rem] font-extrabold leading-none text-ink-200/70 select-none">{s.step}</span>
                   <div className="relative">
-                    <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-gold-400 text-ink-900 shadow-brand-md">
+                    <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-lg bg-brand-gold-400 text-ink-900 shadow-brand-md">
                       <s.icon size={26} strokeWidth={1.75} />
                     </div>
                     <h3 className="font-display text-base font-bold text-ink-900">{s.title}</h3>

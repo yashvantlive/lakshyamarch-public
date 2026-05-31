@@ -26,7 +26,7 @@ export default function SuccessStoriesPage() {
 
       <HeroSection accent="gold" minHeight="min-h-[58vh]">
         <div className="mx-auto max-w-3xl text-center">
-          <Reveal><Badge tone="onDark" icon={Trophy}>Hall of Fame</Badge></Reveal>
+          <Reveal><Badge tone="onDark" icon={Trophy}>Hall of Achievements</Badge></Reveal>
           <Reveal delay={0.05}>
             <h1 className="mt-6 font-display text-[clamp(2.5rem,5.5vw,4rem)] font-extrabold leading-[1.05] tracking-tight text-white">
               The <span className="text-brand-gold-400">Success</span> Stories
@@ -49,7 +49,7 @@ export default function SuccessStoriesPage() {
                 <StaggerItem key={story.id}>
                   <Link
                     href={`/success-stories/${story.slug}`}
-                    className="group flex h-full flex-col overflow-hidden rounded-2xl border border-ink-200 bg-white shadow-brand-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg"
+                    className="group flex h-full flex-col overflow-hidden rounded-lg border border-ink-200 bg-white shadow-brand-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg"
                   >
                     <div className="relative aspect-[16/10] overflow-hidden bg-ink-100">
                       {story.image ? (

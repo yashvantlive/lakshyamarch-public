@@ -43,7 +43,7 @@ export default function NeetCampaignPage() {
     <div className="flex min-h-screen flex-col bg-ink-50">
       <PublicNavbar />
 
-      <HeroSection accent="green" posterSrc="/images/campaigns/think-neet/think-neet-poster.webp">
+      <HeroSection accent="green">
         <div className="mx-auto max-w-3xl text-center">
           <Reveal><Badge tone="onDark" icon={Megaphone}>Free 1-Week Demo Class</Badge></Reveal>
           <Reveal delay={0.05}>
@@ -93,8 +93,8 @@ export default function NeetCampaignPage() {
             <Stagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {WHY.map((w) => (
                 <StaggerItem key={w.title}>
-                  <div className="h-full rounded-2xl border border-ink-200 bg-white p-8 text-center transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg">
-                    <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-blue-50 text-brand-blue-700">
+                  <div className="h-full rounded-lg border border-ink-200 bg-white p-8 text-center transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg">
+                    <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-lg bg-brand-blue-50 text-brand-blue-700">
                       <w.icon size={26} strokeWidth={1.75} />
                     </div>
                     <h3 className="font-display text-lg font-bold text-ink-900">{w.title}</h3>
@@ -113,7 +113,7 @@ export default function NeetCampaignPage() {
             <Stagger className="grid gap-6 sm:grid-cols-3">
               {BATCHES.map((b) => (
                 <StaggerItem key={b.title}>
-                  <div className="flex h-full flex-col rounded-2xl border border-ink-200 bg-white p-7 shadow-brand-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg">
+                  <div className="flex h-full flex-col rounded-lg border border-ink-200 bg-white p-7 shadow-brand-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg">
                     <div className={cn("mb-5 flex h-12 w-12 items-center justify-center rounded-xl", accentChip[b.accent])}>
                       <b.icon size={24} strokeWidth={1.75} />
                     </div>

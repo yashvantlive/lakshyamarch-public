@@ -65,20 +65,22 @@ export default function ResultsShowcase({
     <div className={cn("w-full", className)}>
       {/* Category tabs */}
       {categories.length > 1 && (
-        <div className="mb-6 flex flex-wrap justify-center gap-2">
-          {categories.map((c) => (
-            <button
-              key={c}
-              data-active={category === c}
-              onClick={() => setCategory(c)}
-              className={cn(
-                "rounded-full border border-ink-200 bg-white px-5 py-2 font-display text-sm font-semibold text-ink-600 transition-all data-[active=true]:border-transparent data-[active=true]:text-white data-[active=true]:shadow-brand-md",
-                tabAccent[c],
-              )}
-            >
-              {c === "Board" ? "Board Exams" : c}
-            </button>
-          ))}
+        <div className="mb-6 flex justify-center">
+          <div className="inline-flex border border-ink-200 bg-white p-1">
+            {categories.map((c) => (
+              <button
+                key={c}
+                data-active={category === c}
+                onClick={() => setCategory(c)}
+                className={cn(
+                  "px-6 py-2.5 font-display text-sm font-bold uppercase tracking-[0.08em] text-ink-500 transition-all data-[active=true]:text-white",
+                  tabAccent[c],
+                )}
+              >
+                {c === "Board" ? "Board Exams" : c}
+              </button>
+            ))}
+          </div>
         </div>
       )}
 
@@ -131,10 +133,10 @@ function YearPill({
     <button
       onClick={onClick}
       className={cn(
-        "rounded-full px-4 py-1.5 font-sans text-xs font-bold uppercase tracking-[0.1em] transition-all",
+        "px-4 py-1.5 font-sans text-xs font-bold uppercase tracking-[0.1em] transition-all",
         active
-          ? "bg-ink-900 text-white shadow-brand-sm"
-          : "bg-ink-100 text-ink-500 hover:bg-ink-200",
+          ? "bg-ink-900 text-white"
+          : "border border-ink-200 bg-white text-ink-500 hover:border-ink-300 hover:text-ink-700",
       )}
     >
       {children}

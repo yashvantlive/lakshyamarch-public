@@ -116,7 +116,7 @@ export default function NEETCoachingPage() {
       <main className="flex-1">
         <section className={cn(layout.section, "bg-white")}>
           <div className={layout.container}>
-            <SectionHeader eyebrow="Hall of Fame" eyebrowIcon={Trophy} title="NEET Results That Make Bihar Proud" accentWord="Proud" accent="green" lead="Our NEET selections span government medical colleges across Bihar, Delhi, Mizoram and beyond." className="mb-12" />
+            <SectionHeader eyebrow="Hall of Achievements" eyebrowIcon={Trophy} title="NEET Results That Make Bihar Proud" accentWord="Proud" accent="green" lead="Our NEET selections span government medical colleges across Bihar, Delhi, Mizoram and beyond." className="mb-12" />
             <ResultsShowcase neet={RESULTS_NEET as ResultStudent[]} />
             <Reveal className="mt-10 text-center"><Button href="/results" variant="outline" size="md" withArrow>View All Results</Button></Reveal>
           </div>

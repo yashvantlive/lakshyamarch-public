@@ -50,7 +50,7 @@ export default function ThinkNeetPage() {
     <div className="flex min-h-screen flex-col bg-ink-50">
       <PublicNavbar />
 
-      <HeroSection accent="green" posterSrc="/images/campaigns/think-neet/think-neet-poster.webp">
+      <HeroSection accent="green">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
             <Reveal><Badge tone="onDark" icon={Sparkles}>The Ultimate NEET Prep</Badge></Reveal>
@@ -89,7 +89,7 @@ export default function ThinkNeetPage() {
             <Stagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {FEATURES.map((f) => (
                 <StaggerItem key={f.title}>
-                  <div className="h-full rounded-2xl border border-ink-200 bg-white p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg">
+                  <div className="h-full rounded-lg border border-ink-200 bg-white p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg">
                     <div className={cn("mb-5 flex h-14 w-14 items-center justify-center rounded-xl", accentChip[f.accent])}>
                       <f.icon size={26} strokeWidth={1.75} />
                     </div>
@@ -109,8 +109,8 @@ export default function ThinkNeetPage() {
                 <SectionHeader align="left" eyebrow="The Path" title="A Structured Learning Path" accentWord="Path" accent="blue" className="mb-8" />
                 <Stagger className="space-y-4">
                   {PATH.map((item, i) => (
-                    <StaggerItem key={item.title} className="flex gap-5 rounded-2xl border border-ink-200 bg-white p-5 shadow-brand-sm">
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-blue-800 font-display font-bold text-white">{i + 1}</span>
+                    <StaggerItem key={item.title} className="flex gap-5 rounded-lg border border-ink-200 bg-white p-5 shadow-brand-sm">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-brand-blue-800 font-display font-bold text-white">{i + 1}</span>
                       <div>
                         <h4 className="font-display font-bold text-ink-900">{item.title}</h4>
                         <p className="font-sans text-sm text-ink-500">{item.desc}</p>
@@ -120,7 +120,7 @@ export default function ThinkNeetPage() {
                 </Stagger>
               </div>
               <Reveal delay={0.1}>
-                <div className="relative overflow-hidden rounded-3xl bg-ink-950 p-8 sm:p-12">
+                <div className="relative overflow-hidden rounded-lg bg-ink-950 p-8 sm:p-12">
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-green-500/15 text-brand-green-400">
                     <GraduationCap size={26} strokeWidth={1.75} />
                   </div>
@@ -129,7 +129,7 @@ export default function ThinkNeetPage() {
                     Taking a test is only half the work. The other half is analysis. Our faculty conducts discussion
                     sessions after every major test to clear doubts and share shortcuts.
                   </p>
-                  <div className="mt-8 flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-4">
+                  <div className="mt-8 flex items-center gap-4 rounded-lg border border-white/10 bg-white/5 p-4">
                     <AlertCircle size={22} strokeWidth={1.75} className="shrink-0 text-brand-gold-400" />
                     <p className="font-sans text-sm text-white/80">
                       <strong className="text-white">Note:</strong> Available in both Hindi & English mediums.
@@ -144,7 +144,7 @@ export default function ThinkNeetPage() {
         <section className={cn(layout.section, "bg-white")}>
           <div className={cn(layout.containerNarrow, "text-center")}>
             <Reveal>
-              <div className="mx-auto mb-7 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-green-50 text-brand-green-600">
+              <div className="mx-auto mb-7 flex h-16 w-16 items-center justify-center rounded-lg bg-brand-green-50 text-brand-green-600">
                 <GraduationCap size={32} strokeWidth={1.75} />
               </div>
               <h2 className="font-display text-2xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-3xl">
@@ -152,7 +152,7 @@ export default function ThinkNeetPage() {
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
-              <div className="mt-8 flex items-center justify-between gap-6 rounded-2xl border border-ink-200 bg-ink-50 p-6 text-left">
+              <div className="mt-8 flex items-center justify-between gap-6 rounded-lg border border-ink-200 bg-ink-50 p-6 text-left">
                 <div>
                   <h4 className="font-display font-bold text-ink-900">Expert Preparation Strategy</h4>
                   <p className="font-sans text-sm text-ink-500">Read our detailed blog on using ThinkNEET to crack the medical entrance.</p>

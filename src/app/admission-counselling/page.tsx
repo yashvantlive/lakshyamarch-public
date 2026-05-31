@@ -51,9 +51,9 @@ export default function AdmissionCounsellingPage() {
             <Stagger className="mx-auto grid max-w-4xl gap-8 md:grid-cols-2">
               {COUNSELORS.map((c) => (
                 <StaggerItem key={c.name}>
-                  <div className="flex h-full flex-col rounded-2xl border border-ink-200 bg-white p-7 shadow-brand-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg">
+                  <div className="flex h-full flex-col rounded-lg border border-ink-200 bg-white p-7 shadow-brand-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg">
                     <div className="flex items-center gap-4">
-                      <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-blue-700 to-brand-blue-900 font-display text-2xl font-extrabold text-white">
+                      <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-gradient-to-br from-brand-blue-700 to-brand-blue-900 font-display text-2xl font-extrabold text-white">
                         {c.name.charAt(0)}
                       </div>
                       <div>

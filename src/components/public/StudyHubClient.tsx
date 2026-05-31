@@ -41,7 +41,7 @@ export default function StudyHubClient() {
     <main className="flex-1">
       <HeroSection accent="blue" minHeight="min-h-[56vh]">
         <div className="mx-auto max-w-3xl text-center">
-          <Reveal><Badge tone="onDark" icon={Search}>Knowledge Repository</Badge></Reveal>
+          <Reveal><Badge tone="onDark" icon={Search}>Academic Resource Library</Badge></Reveal>
           <Reveal delay={0.05}>
             <h1 className="mt-6 font-display text-[clamp(2.5rem,5.5vw,4rem)] font-extrabold leading-[1.05] tracking-tight text-white">
               LakshyaMarch <span className="text-brand-gold-400">Study Hub</span>
@@ -63,10 +63,10 @@ export default function StudyHubClient() {
               <StaggerItem key={cat.href}>
                 <Link
                   href={cat.href}
-                  className="group flex h-full flex-col rounded-2xl border border-ink-200 bg-white p-9 shadow-brand-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg"
+                  className="group flex h-full flex-col rounded-lg border border-ink-200 bg-white p-9 shadow-brand-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg"
                 >
                   <div className="mb-7 flex items-center justify-between">
-                    <span className={cn("flex h-16 w-16 items-center justify-center rounded-2xl transition-colors group-hover:bg-ink-900 group-hover:text-white", chip[cat.accent])}>
+                    <span className={cn("flex h-16 w-16 items-center justify-center rounded-lg transition-colors group-hover:bg-ink-900 group-hover:text-white", chip[cat.accent])}>
                       <cat.icon size={30} strokeWidth={1.75} />
                     </span>
                     <Badge tone={cat.accent}>{cat.tag}</Badge>
