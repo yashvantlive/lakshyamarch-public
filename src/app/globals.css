@@ -6,6 +6,8 @@
   --primary:        221 83% 53%;   /* blue-600 */
   --primary-light:  213 97% 65%;
   --primary-dark:   224 76% 43%;
+  --brand-amber:    45 95% 50%;
+  --brand-gold:     45 95% 50%;
 
   /* Semantic surfaces */
   --surface:        0 0% 100%;
@@ -30,17 +32,17 @@
   --sidebar-active-bg:  221 83% 53%;
   --sidebar-active-text: 0 0% 100%;
 
-  /* Spacing */
-  --radius: 0rem;
-  --radius-sm: 0rem;
-  --radius-lg: 0rem;
-  --radius-full: 0px;
+  /* Spacing - Max 7px radius per user request */
+  --radius: 4px;
+  --radius-sm: 2px;
+  --radius-lg: 7px;
+  --radius-full: 7px; /* Max 7px restriction */
 
-  /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow:    0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  /* Shadows - Rich organic depth */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow:    0 6px 16px -2px rgba(30, 58, 138, 0.04), 0 2px 6px -1px rgba(30, 58, 138, 0.02);
+  --shadow-md: 0 12px 24px -4px rgba(30, 58, 138, 0.08), 0 4px 12px -2px rgba(30, 58, 138, 0.03);
+  --shadow-lg: 0 24px 48px -8px rgba(30, 58, 138, 0.12), 0 8px 24px -4px rgba(30, 58, 138, 0.06);
 }
 
 /* ── Base reset ─────────────────────────────────────────── */
@@ -57,7 +59,7 @@ body {
 /* ── Scrollbar ──────────────────────────────────────────── */
 ::-webkit-scrollbar          { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track    { background: transparent; }
-::-webkit-scrollbar-thumb    { background: hsl(var(--border)); border-radius: 0px; }
+::-webkit-scrollbar-thumb    { background: hsl(var(--border)); border-radius: var(--radius-full); }
 ::-webkit-scrollbar-thumb:hover { background: hsl(var(--text-subtle)); }
 
 /* ── Focus ring ─────────────────────────────────────────── */
@@ -68,33 +70,41 @@ body {
 
 /* ── Page transition ────────────────────────────────────── */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
-.page-enter { animation: fadeIn 0.25s ease-out both; }
+.page-enter { animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both; }
 
 /* ── Sidebar ────────────────────────────────────────────── */
 .sidebar { background: hsl(var(--sidebar-bg)); }
 .sidebar-link {
   color: hsl(var(--sidebar-text));
-  border-radius: 0;
-  transition: background 0.15s, color 0.15s;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
 }
 .sidebar-link:hover {
   background: hsl(var(--primary) / 0.15);
   color: hsl(0 0% 100%);
+  transform: translateX(3px);
 }
 .sidebar-link.active {
   background: hsl(var(--sidebar-active-bg));
   color: hsl(var(--sidebar-active-text));
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
 }
 
 /* ── Card ───────────────────────────────────────────────── */
 .card {
   background: hsl(var(--surface));
-  border: 1px solid hsl(var(--border));
-  border-radius: 0;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(30, 58, 138, 0.15);
 }
 
 /* ── Table ──────────────────────────────────────────────── */
@@ -126,4 +136,52 @@ body {
   0%   { transform: scale(1.6); opacity: 0; }
   60%  { transform: scale(0.92); opacity: 1; }
   100% { transform: scale(1); opacity: 1; }
+}
+
+/* ── Modern entrance animations ──────────────────────── */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-slide-in {
+  animation: slideInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(245, 158, 11, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
+  }
+}
+.animate-pulse-glow {
+  animation: pulseGlow 2s infinite;
+}
+
+/* ── Marquee Animation ──────────────────────── */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes wave {
+  0% { transform: translateX(0) translateZ(0) scaleY(1); }
+  50% { transform: translateX(-25%) translateZ(0) scaleY(0.55); }
+  100% { transform: translateX(-50%) translateZ(0) scaleY(1); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+  20%, 40%, 60%, 80% { transform: translateX(4px); }
 }

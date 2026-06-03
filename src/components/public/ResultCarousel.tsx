@@ -4,6 +4,7 @@ import React, { useRef } from 'react';
 import { RESULTS_JEE, RESULTS_NEET } from '@/lib/siteData';
 import { ChevronLeft, ChevronRight, Trophy, Stethoscope } from 'lucide-react';
 import ClientOnly from '@/components/ClientOnly';
+import { AnimatedSection, BlackCard, SectionBadge } from "@/components/public/ui";
 
 interface CarouselProps {
   title: string;
@@ -31,37 +32,42 @@ function CarouselSection({ title, highlight, data, badgeColor, accentColor, icon
   };
 
   return (
-    <div className="mb-24 last:mb-0">
-      {/* Header — title only */}
-      <div className="mb-10 text-left">
-        <div className={`inline-flex items-center gap-2 px-4 py-1.5 ${badgeColor} rounded-full mb-4 border border-opacity-20 border-current`}>
-          {icon}
-          <span className="text-[10px] font-black uppercase tracking-[0.2em]">{type} Achievements</span>
+    <AnimatedSection className="mb-24 last:mb-0">
+      {/* Header */}
+      <BlackCard glowColor={isJee ? "rose" : "emerald"} className="mb-10 p-6 sm:p-8">
+        <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+          <div>
+            <SectionBadge color={isJee ? "rose" : "emerald"} className="mb-4 bg-white/10 text-white border-white/20">
+              {icon}
+              <span className="text-[10px] font-black uppercase tracking-[0.2em] ml-1">{type} Achievements</span>
+            </SectionBadge>
+            <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+              {title} <span className={accentColor}>{highlight}</span>
+            </h2>
+          </div>
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={() => scroll('left')}
+              className={`h-12 w-12 rounded-lg border border-white/20 bg-white/10 text-white flex items-center justify-center shadow-lg transition-all duration-300 ${navHover} hover:scale-105 active:scale-95`}
+              aria-label="Previous"
+            >
+              <ChevronLeft size={24} />
+            </button>
+            <button
+              type="button"
+              onClick={() => scroll('right')}
+              className={`h-12 w-12 rounded-lg border border-white/20 bg-white/10 text-white flex items-center justify-center shadow-lg transition-all duration-300 ${navHover} hover:scale-105 active:scale-95`}
+              aria-label="Next"
+            >
+              <ChevronRight size={24} />
+            </button>
+          </div>
         </div>
-        <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
-          {title} <span className={accentColor}>{highlight}</span>
-        </h2>
-      </div>
+      </BlackCard>
 
-      {/* Carousel + side arrows */}
+      {/* Carousel */}
       <div className="relative">
-        <button
-          type="button"
-          onClick={() => scroll('left')}
-          className={`absolute left-0 sm:-left-2 top-1/2 -translate-y-1/2 z-20 h-12 w-12 sm:h-14 sm:w-14 rounded-full border border-slate-200 bg-white text-slate-900 flex items-center justify-center shadow-lg transition-all duration-300 ${navHover}`}
-          aria-label="Previous"
-        >
-          <ChevronLeft size={24} />
-        </button>
-        <button
-          type="button"
-          onClick={() => scroll('right')}
-          className={`absolute right-0 sm:-right-2 top-1/2 -translate-y-1/2 z-20 h-12 w-12 sm:h-14 sm:w-14 rounded-full border border-slate-200 bg-white text-slate-900 flex items-center justify-center shadow-lg transition-all duration-300 ${navHover}`}
-          aria-label="Next"
-        >
-          <ChevronRight size={24} />
-        </button>
-
         <div
           className="overflow-x-auto snap-x snap-mandatory no-scrollbar pb-8 px-14 sm:px-16"
           ref={scrollRef}
@@ -112,7 +118,7 @@ function CarouselSection({ title, highlight, data, badgeColor, accentColor, icon
           </div>
         </div>
       </div>
-    </div>
+    </AnimatedSection>
   );
 }
 
@@ -140,7 +146,7 @@ function ResultCarouselInner() {
   const neetToppers = RESULTS_NEET.filter(s => s.year >= 2024);
 
   return (
-    <section className="py-24 bg-white overflow-hidden relative">
+    <section id="results" className="py-24 bg-slate-50 overflow-hidden relative">
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
         
         {/* JEE Section */}

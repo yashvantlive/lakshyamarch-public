@@ -8,6 +8,7 @@ import {
   ArrowRight, Clock, User, Star, BookOpen,
   ChevronRight, CalendarDays
 } from "lucide-react";
+import { BlackCard, GlassCard, AnimatedSection, GlowButton, SectionBadge, UnifiedContainer } from "@/components/public/ui";
 
 export const metadata: Metadata = {
   title: "Blog — JEE, NEET Tips & Study Strategies | LakshyaMarch Begusarai",
@@ -64,16 +65,14 @@ export default function BlogPage() {
       <div className="h-24 bg-slate-900 border-b border-white/10" />
 
       {/* ═══ HERO ═══ */}
-      <section className="bg-slate-900 py-12 sm:py-16 px-5">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-blue-500/10 border border-blue-400/20 rounded-full mb-5">
-              <BookOpen size={12} className="text-blue-400" />
-              <span className="text-[10px] font-extrabold text-blue-300 uppercase tracking-[0.2em]">
-                LakshyaMarch Blog
-              </span>
-            </div>
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
+      <div className="pt-12 pb-16 px-4 max-w-7xl mx-auto">
+        <BlackCard glowColor="blue" className="relative overflow-hidden rounded-[2rem] p-8 sm:p-14">
+          <div className="text-center mb-12 relative z-10">
+            <SectionBadge color="blue" className="bg-blue-500/10 border-blue-400/20 text-blue-300 mb-5">
+              <BookOpen size={12} className="text-blue-400 mr-2" />
+              LakshyaMarch Blog
+            </SectionBadge>
+            <h1 className="text-4xl sm:text-5xl font-black text-white tracking-tight mb-4">
               JEE & NEET <span className="text-amber-400">Study Resources</span>
             </h1>
             <p className="text-slate-400 max-w-2xl mx-auto text-lg">
@@ -83,95 +82,102 @@ export default function BlogPage() {
 
           {/* Featured Post */}
           <Link href={`/blog/${featured.slug}`}
-            className="block bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 rounded-3xl overflow-hidden hover:border-blue-500/40 transition-all group">
+            className="block relative z-10 bg-slate-900/60 border border-slate-700 rounded-3xl overflow-hidden hover:border-blue-500/40 transition-all hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] group">
             <div className="grid lg:grid-cols-2">
               <div className={`bg-gradient-to-br ${heroGradients[featured.category]} p-10 sm:p-14 flex flex-col justify-center min-h-[200px]`}>
-                <span className="inline-block px-3 py-1 bg-white/15 text-white text-[10px] font-extrabold uppercase tracking-widest rounded-full mb-4 w-fit">
+                <span className="inline-block px-3 py-1 bg-white/15 text-white text-[10px] font-black uppercase tracking-widest rounded-full mb-4 w-fit">
                   ⭐ Featured Article
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-white leading-tight group-hover:text-amber-200 transition-colors">
+                <h2 className="text-2xl sm:text-3xl font-black text-white leading-tight group-hover:text-amber-200 transition-colors">
                   {featured.title}
                 </h2>
               </div>
-              <div className="p-8 sm:p-10 flex flex-col justify-center">
-                <p className="text-slate-400 text-sm leading-relaxed mb-6">{featured.description}</p>
-                <div className="flex items-center gap-4 text-xs text-slate-500 mb-6">
+              <div className="p-8 sm:p-10 flex flex-col justify-center backdrop-blur-sm">
+                <p className="text-slate-300 text-sm leading-relaxed mb-6">{featured.description}</p>
+                <div className="flex flex-wrap items-center gap-4 text-xs text-slate-400 mb-6">
                   <span className="flex items-center gap-1.5"><User size={12} /> {featured.author}</span>
                   <span className="flex items-center gap-1.5"><Clock size={12} /> {featured.readTime}</span>
                   <span className="flex items-center gap-1.5"><CalendarDays size={12} /> {featured.date}</span>
                 </div>
-                <span className="inline-flex items-center gap-2 text-sm font-bold text-blue-400 group-hover:text-blue-300 transition-colors">
+                <span className="inline-flex items-center gap-2 text-sm font-bold text-blue-400 group-hover:text-blue-300 transition-colors uppercase tracking-widest">
                   Read Full Article <ArrowRight size={15} />
                 </span>
               </div>
             </div>
           </Link>
-        </div>
-      </section>
+        </BlackCard>
+      </div>
 
       {/* ═══ ALL POSTS ═══ */}
-      <section className="py-16 sm:py-20 px-5">
+      <AnimatedSection className="py-16 sm:py-20 px-5">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-2xl font-extrabold text-slate-900 mb-8 flex items-center gap-3">
+          <h2 className="text-2xl font-black text-slate-900 mb-8 flex items-center gap-3">
             <span className="h-0.5 w-8 bg-blue-600" /> All Articles
           </h2>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {rest.map((post) => (
-              <Link key={post.slug} href={`/blog/${post.slug}`}
-                className="bg-white border border-slate-200 rounded-2xl overflow-hidden group hover:shadow-xl hover:border-blue-200 transition-all duration-300 flex flex-col">
-                {/* Color Header */}
-                <div className={`h-3 bg-gradient-to-r ${heroGradients[post.category]}`} />
-                <div className="p-6 flex flex-col flex-1">
-                  <div className="flex items-center gap-2 mb-4">
-                    <span className={`px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider rounded-full border ${categoryColors[post.category]}`}>
-                      {post.category}
-                    </span>
-                    <span className="text-[10px] text-slate-400 font-medium flex items-center gap-1">
-                      <Clock size={10} /> {post.readTime}
-                    </span>
-                  </div>
-                  <h3 className="text-lg font-extrabold text-slate-900 leading-tight mb-3 group-hover:text-blue-600 transition-colors line-clamp-2">
-                    {post.title}
-                  </h3>
-                  <p className="text-sm text-slate-500 leading-relaxed mb-5 flex-1 line-clamp-3">
-                    {post.description}
-                  </p>
-                  <div className="flex items-center justify-between pt-4 border-t border-slate-100">
-                    <div className="flex items-center gap-2 text-xs text-slate-500">
-                      <div className="h-6 w-6 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center text-white text-[9px] font-bold">
-                        {post.author.charAt(0)}
+          <UnifiedContainer className="p-2 sm:p-4">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {rest.map((post) => (
+                <Link href={`/blog/${post.slug}`} key={post.slug} className="block group h-full">
+                  <GlassCard className="overflow-hidden hover:border-blue-300 p-0 flex flex-col h-full cursor-pointer">
+                    {/* Color Header */}
+                    <div className={`h-3 bg-gradient-to-r ${heroGradients[post.category]} w-full`} />
+                    <div className="p-6 flex flex-col flex-1 h-full">
+                      <div className="flex items-center gap-2 mb-4">
+                        <span className={`px-2.5 py-0.5 text-[10px] font-black uppercase tracking-wider rounded-full border ${categoryColors[post.category]}`}>
+                          {post.category}
+                        </span>
+                        <span className="text-[10px] text-slate-400 font-bold flex items-center gap-1 uppercase tracking-widest">
+                          <Clock size={10} /> {post.readTime}
+                        </span>
                       </div>
-                      {post.author}
+                      <h3 className="text-lg font-black text-slate-900 leading-tight mb-3 group-hover:text-blue-600 transition-colors line-clamp-2">
+                        {post.title}
+                      </h3>
+                      <p className="text-sm text-slate-500 leading-relaxed mb-5 flex-1 line-clamp-3">
+                        {post.description}
+                      </p>
+                      <div className="flex items-center justify-between pt-4 border-t border-slate-200/50">
+                        <div className="flex items-center gap-2 text-xs font-bold text-slate-600">
+                          <div className="h-6 w-6 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center text-white text-[9px] font-black">
+                            {post.author.charAt(0)}
+                          </div>
+                          {post.author}
+                        </div>
+                        <span className="text-xs font-bold text-slate-400">{post.date}</span>
+                      </div>
                     </div>
-                    <span className="text-xs text-slate-400">{post.date}</span>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
+                  </GlassCard>
+                </Link>
+              ))}
+            </div>
+          </UnifiedContainer>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* ═══ CTA ═══ */}
-      <section className="py-16 bg-slate-900 text-center px-5">
+      <AnimatedSection className="py-16 bg-slate-900 text-center px-5 border-t-4 border-blue-500">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-extrabold text-white tracking-tight mb-4">
+          <h2 className="text-3xl font-black text-white tracking-tight mb-4">
             Want Personalized Guidance?
           </h2>
           <p className="text-slate-400 mb-8">
             Our IIT/NIT alumni faculty can mentor you 1-on-1. Join LakshyaMarch for the complete JEE/NEET experience.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/admission" className="h-12 px-8 inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-white font-bold rounded-xl text-sm transition-all">
-              Apply Now <ArrowRight size={15} />
-            </Link>
-            <Link href="/programs" className="h-12 px-8 inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white font-bold rounded-xl text-sm hover:bg-white/20 transition-all">
-              View Programs <ChevronRight size={15} />
-            </Link>
+            <GlowButton variant="amber" asChild>
+              <Link href="/admission" className="px-8 py-4 uppercase tracking-widest">
+                Apply Now <ArrowRight size={15} className="ml-2" />
+              </Link>
+            </GlowButton>
+            <GlowButton variant="blue" asChild>
+              <Link href="/programs" className="px-8 py-4 bg-transparent border-2 border-slate-700 text-white hover:border-blue-400 uppercase tracking-widest">
+                View Programs <ChevronRight size={15} className="ml-2" />
+              </Link>
+            </GlowButton>
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       <PublicFooter />
     </div>

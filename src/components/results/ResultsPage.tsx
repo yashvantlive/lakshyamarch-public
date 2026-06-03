@@ -8,8 +8,9 @@ import YearTabs from "./YearTabs";
 import StudentCard from "./StudentCard";
 import TopperCard from "./TopperCard";
 import StatsCounter from "./StatsCounter";
-import { ArrowRight, Phone, Search } from "lucide-react";
+import { ArrowRight, Phone, Search, Trophy } from "lucide-react";
 import Link from "next/link";
+import { BlackCard, UnifiedContainer, GlowButton, AnimatedSection } from "@/components/public/ui";
 
 export default function ResultsPage() {
   const [activeCategory, setActiveCategory] = useState<FilterCategory>("NEET");
@@ -67,144 +68,128 @@ export default function ResultsPage() {
   return (
     <div className="bg-slate-50 min-h-screen">
       {/* 1. HERO SECTION */}
-      <section className="bg-[#0A0F2C] pt-32 pb-20 px-4 overflow-hidden relative">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none" />
-        <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/20 blur-[150px] -mr-48 -mt-48 rounded-full pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-orange-600/10 blur-[150px] -ml-48 -mb-48 rounded-full pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto text-center relative z-10">
+      <div className="pt-24 pb-8 px-4 sm:px-8 max-w-7xl mx-auto">
+        <BlackCard glowColor="amber" className="text-center py-20 px-4 sm:px-10 rounded-[2rem]">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-orange-400 text-[10px] font-black uppercase tracking-[0.3em] mb-8"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-amber-400 text-[10px] font-black uppercase tracking-[0.3em] mb-8"
           >
+            <Trophy size={14} />
             Hall of Fame
           </motion.div>
+          
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-5xl sm:text-7xl font-black text-white tracking-tighter mb-6"
           >
-            Our <span className="relative inline-block">
+            Our <span className="relative inline-block text-amber-500">
               Results
-              <motion.div 
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ delay: 0.5, duration: 1 }}
-                className="absolute -bottom-2 left-0 right-0 h-2 bg-gradient-to-r from-[#FF6B00] to-orange-400 rounded-full origin-left"
-              />
             </span>
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-blue-200 text-lg max-w-2xl mx-auto font-medium"
+            className="text-blue-100/80 text-lg max-w-2xl mx-auto font-medium"
           >
             Every batch since {INSTITUTE.established} — Consistent IIT & NEET Selections with stellar board performances.
           </motion.p>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mt-12 sm:mt-16">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mt-12 sm:mt-16 border-t border-white/10 pt-10">
             <StatsCounter value={499} label="NEET Best AIR" prefix="AIR " />
             <StatsCounter value={99.35} label="JEE Percentile" suffix="%" decimals={2} />
             <StatsCounter value={categoryStats.value} label={categoryStats.label} suffix={categoryStats.sub} />
             <StatsCounter value={availableYears.length} label="Years of Success" suffix="Distinctions" />
           </div>
-        </div>
-      </section>
-
-      {/* 2 & 3. DYNAMIC STICKY FILTER BAR */}
-      <div className="sticky top-0 z-50 bg-white/95 backdrop-blur-xl border-b border-slate-200/80 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.1)] transition-all duration-300">
-        <FilterBar 
-          categories={["NEET", "JEE", "Class 12 Board", "Class 10 Board"]}
-          activeCategory={activeCategory}
-          onCategoryChange={setActiveCategory}
-          boards={["CBSE", "BSEB", "ICSE"]}
-          activeBoard={activeBoard}
-          onBoardChange={setActiveBoard}
-        />
+        </BlackCard>
       </div>
 
-      {/* 5. RESULTS STACK (No scroll tabs, all visible by year) */}
-      <section className="pb-24 px-4 sm:px-8 bg-slate-50 min-h-[60vh]">
-        <div className="max-w-7xl mx-auto">
-          {availableYears.length > 0 ? (
-            <div className="space-y-16 mt-12">
-              {availableYears.map((year) => (
-                <div key={year} className="relative">
-                  {/* Sticky Year Header */}
-                  <div className="sticky top-[72px] z-30 bg-slate-50/90 backdrop-blur-md py-4 mb-8 -mx-4 px-4 transition-all duration-300">
-                    <div className="flex items-center gap-4">
-                      <div className="h-0.5 flex-1 bg-gradient-to-r from-transparent via-slate-200 to-slate-300" />
-                      <div className="flex items-center gap-3">
-                         <span className="text-sm font-black text-slate-400 uppercase tracking-[0.3em]">Result Year:</span>
-                         <span className="text-3xl font-black text-slate-900 tracking-tight">{year}</span>
-                      </div>
-                      <div className="h-0.5 flex-1 bg-gradient-to-r from-slate-300 via-slate-200 to-transparent" />
-                    </div>
-                  </div>
+      {/* 2 & 3. DYNAMIC STICKY FILTER BAR AND RESULTS IN UNIFIED CONTAINER */}
+      <section className="pb-24 px-4 sm:px-8 bg-slate-50 min-h-[60vh] -mt-4">
+        <UnifiedContainer className="max-w-7xl mx-auto">
+          {/* Filter Bar Inside Unified Container */}
+          <div className="sticky top-16 sm:top-[72px] z-40 bg-white border-b border-slate-200 shadow-sm transition-all duration-300">
+            <FilterBar 
+              categories={["NEET", "JEE", "Class 12 Board", "Class 10 Board"]}
+              activeCategory={activeCategory}
+              onCategoryChange={setActiveCategory}
+              boards={["CBSE", "BSEB", "ICSE"]}
+              activeBoard={activeBoard}
+              onBoardChange={setActiveBoard}
+            />
+          </div>
 
-                  {/* Results Grid for the Year */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-stretch"
-                  >
-                    {groupedResults[year].map((student) => (
-                      <div key={student.id} className="h-full">
-                        {student.isTopper 
-                          ? <TopperCard student={student} category={activeCategory} />
-                          : <StudentCard student={student} category={activeCategory} />
-                        }
+          <div className="p-6 sm:p-10 bg-slate-50/50 animate-in fade-in duration-300">
+            {availableYears.length > 0 ? (
+              <div className="space-y-16">
+                {availableYears.map((year) => (
+                  <AnimatedSection key={year} className="relative">
+                    {/* Sticky Year Header */}
+                    <div className="sticky top-[130px] z-30 bg-slate-50/95 backdrop-blur-md py-4 mb-8 -mx-6 px-6 transition-all duration-300">
+                      <div className="flex items-center gap-4">
+                        <div className="h-0.5 flex-1 bg-gradient-to-r from-transparent via-slate-200 to-slate-300" />
+                        <div className="flex items-center gap-3">
+                           <span className="text-sm font-black text-slate-400 uppercase tracking-[0.3em]">Result Year:</span>
+                           <span className="text-3xl font-black text-slate-900 tracking-tight">{year}</span>
+                        </div>
+                        <div className="h-0.5 flex-1 bg-gradient-to-r from-slate-300 via-slate-200 to-transparent" />
                       </div>
-                    ))}
-                  </motion.div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-32">
-              <div className="inline-flex h-20 w-20 rounded-full bg-slate-100 items-center justify-center mb-6">
-                <Search size={32} className="text-slate-400" />
+                    </div>
+
+                    {/* Results Grid for the Year */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-stretch">
+                      {groupedResults[year].map((student) => (
+                        <div key={student.id} className="h-full hover:scale-[1.03] transition-transform duration-300">
+                          {student.isTopper 
+                            ? <TopperCard student={student} category={activeCategory} />
+                            : <StudentCard student={student} category={activeCategory} />
+                          }
+                        </div>
+                      ))}
+                    </div>
+                  </AnimatedSection>
+                ))}
               </div>
-              <h3 className="text-2xl font-black text-slate-800 mb-2">Results will be updated soon</h3>
-              <p className="text-slate-500 max-w-sm mx-auto font-medium">
-                We are currently collecting and verifying {activeCategory} results.
-              </p>
-            </div>
-          )}
-        </div>
+            ) : (
+              <div className="text-center py-32">
+                <div className="inline-flex h-20 w-20 rounded-full bg-slate-100 items-center justify-center mb-6">
+                  <Search size={32} className="text-slate-400" />
+                </div>
+                <h3 className="text-2xl font-black text-slate-800 mb-2">Results will be updated soon</h3>
+                <p className="text-slate-500 max-w-sm mx-auto font-medium">
+                  We are currently collecting and verifying {activeCategory} results.
+                </p>
+              </div>
+            )}
+          </div>
+        </UnifiedContainer>
       </section>
 
       {/* 5. CTA STRIP */}
-      <section className="bg-gradient-to-r from-[#FF6B00] to-orange-400 py-16 px-4">
+      <section className="bg-slate-900 py-16 px-4">
         <div className="max-w-7xl mx-auto text-center">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl sm:text-5xl font-black text-white tracking-tighter mb-6"
-          >
-            Join the batch that creates rank holders
-          </motion.h2>
-          <p className="text-orange-950/60 font-bold mb-10 text-lg sm:text-xl">
-            Class 11th Admissions Open · IIT-JEE & NEET 2026-28
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link 
-              href="/contact"
-              className="bg-white text-[#FF6B00] px-10 py-5 rounded-2xl font-black uppercase tracking-widest hover:bg-slate-50 transition-colors shadow-2xl flex items-center justify-center gap-2"
-            >
-              Enroll Now <ArrowRight size={18} />
-            </Link>
-            <a 
-              href={`tel:${INSTITUTE.phones[0]}`}
-              className="bg-transparent border-4 border-white/30 text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest hover:bg-white/10 transition-colors flex items-center justify-center gap-2"
-            >
-              <Phone size={18} /> Call Us
-            </a>
-          </div>
+          <AnimatedSection>
+            <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tighter mb-6">
+              Join the batch that creates rank holders
+            </h2>
+            <p className="text-blue-200 font-bold mb-10 text-lg sm:text-xl">
+              Class 11th Admissions Open · IIT-JEE & NEET 2026-28
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <GlowButton variant="amber" asChild>
+                <Link href="/contact" className="uppercase tracking-widest px-10 py-4">
+                  Enroll Now <ArrowRight size={18} />
+                </Link>
+              </GlowButton>
+              <GlowButton variant="blue" asChild>
+                <a href={`tel:${INSTITUTE.phones[0]}`} className="uppercase tracking-widest px-10 py-4 border-2 border-blue-500 bg-transparent hover:bg-blue-600/20">
+                  <Phone size={18} /> Call Us
+                </a>
+              </GlowButton>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
     </div>

@@ -10,6 +10,7 @@ import {
   ArrowLeft, ArrowRight, Clock, User, CalendarDays,
   BookOpen, MessageCircle, Share2, ChevronRight
 } from "lucide-react";
+import { BlackCard, GlassCard, UnifiedContainer, GlowButton } from "@/components/public/ui";
 
 // Generate static pages for all blog posts
 export function generateStaticParams() {
@@ -85,49 +86,49 @@ export default async function BlogPostPage({
       <div className="h-16" />
 
       {/* ═══ HERO ═══ */}
-      <section
-        className={`bg-gradient-to-br ${post.heroColor} py-16 sm:py-24 px-5 relative overflow-hidden`}
-      >
-        <div className="absolute inset-0 opacity-[0.04]"
-          style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` }} />
+      <div className="pt-8 pb-16 px-4 max-w-5xl mx-auto">
+        <BlackCard glowColor="blue" className="relative overflow-hidden rounded-[2rem] p-8 sm:p-14">
+          <div className="absolute inset-0 opacity-[0.04]"
+            style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` }} />
 
-        <div className="relative z-10 max-w-4xl mx-auto">
-          {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-xs text-white/50 mb-8">
-            <Link href="/" className="hover:text-white/80 transition-colors">Home</Link>
-            <ChevronRight size={10} />
-            <Link href="/blog" className="hover:text-white/80 transition-colors">Blog</Link>
-            <ChevronRight size={10} />
-            <span className="text-white/70">{post.category}</span>
-          </nav>
+          <div className="relative z-10 max-w-4xl mx-auto">
+            {/* Breadcrumb */}
+            <nav className="flex items-center gap-2 text-xs text-white/50 mb-8 uppercase tracking-widest font-bold">
+              <Link href="/" className="hover:text-white transition-colors">Home</Link>
+              <ChevronRight size={10} />
+              <Link href="/blog" className="hover:text-white transition-colors">Blog</Link>
+              <ChevronRight size={10} />
+              <span className="text-blue-300">{post.category}</span>
+            </nav>
 
-          <span className={`inline-block px-3 py-1 text-[10px] font-extrabold uppercase tracking-widest rounded-full border mb-6 ${categoryColors[post.category]}`}>
-            {post.category}
-          </span>
-
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight mb-6">
-            {post.title}
-          </h1>
-
-          <p className="text-blue-100/70 text-lg max-w-3xl leading-relaxed mb-8">
-            {post.description}
-          </p>
-
-          <div className="flex flex-wrap items-center gap-5 text-sm text-white/60">
-            <span className="flex items-center gap-2">
-              <div className="h-8 w-8 rounded-full bg-white/10 flex items-center justify-center text-white text-xs font-bold">
-                {post.author.charAt(0)}
-              </div>
-              <div>
-                <span className="text-white font-bold block text-sm leading-none">{post.author}</span>
-                <span className="text-[10px] text-white/40">{post.authorRole}</span>
-              </div>
+            <span className={`inline-block px-3 py-1 text-[10px] font-black uppercase tracking-widest rounded-full border mb-6 ${categoryColors[post.category]}`}>
+              {post.category}
             </span>
-            <span className="flex items-center gap-1.5"><CalendarDays size={14} /> {post.date}</span>
-            <span className="flex items-center gap-1.5"><Clock size={14} /> {post.readTime} read</span>
+
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight mb-6">
+              {post.title}
+            </h1>
+
+            <p className="text-blue-100/70 text-lg max-w-3xl leading-relaxed mb-8">
+              {post.description}
+            </p>
+
+            <div className="flex flex-wrap items-center gap-5 text-sm text-white/60">
+              <span className="flex items-center gap-2">
+                <div className="h-8 w-8 rounded-full bg-white/10 flex items-center justify-center text-white text-xs font-black">
+                  {post.author.charAt(0)}
+                </div>
+                <div>
+                  <span className="text-white font-black block text-sm leading-none uppercase tracking-wider">{post.author}</span>
+                  <span className="text-[10px] text-white/40 uppercase tracking-widest">{post.authorRole}</span>
+                </div>
+              </span>
+              <span className="flex items-center gap-1.5 uppercase tracking-widest font-bold text-xs"><CalendarDays size={14} /> {post.date}</span>
+              <span className="flex items-center gap-1.5 uppercase tracking-widest font-bold text-xs"><Clock size={14} /> {post.readTime} read</span>
+            </div>
           </div>
-        </div>
-      </section>
+        </BlackCard>
+      </div>
 
       {/* ═══ CONTENT ═══ */}
       <article className="py-12 sm:py-16 px-5">
@@ -213,23 +214,24 @@ export default async function BlogPostPage({
       {related.length > 0 && (
         <section className="py-12 sm:py-16 bg-slate-50 border-t border-slate-200 px-5">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-2xl font-extrabold text-slate-900 mb-8 flex items-center gap-3">
+            <h2 className="text-2xl font-black text-slate-900 mb-8 flex items-center gap-3">
               <BookOpen size={20} className="text-blue-600" /> Related Articles
             </h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {related.map((rp) => (
-                <Link key={rp.slug} href={`/blog/${rp.slug}`}
-                  className="bg-white border border-slate-200 rounded-2xl p-6 hover:shadow-lg hover:border-blue-200 transition-all group">
-                  <span className={`inline-block px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider rounded-full border mb-3 ${categoryColors[rp.category]}`}>
-                    {rp.category}
-                  </span>
-                  <h3 className="text-base font-extrabold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors line-clamp-2 leading-tight">
-                    {rp.title}
-                  </h3>
-                  <p className="text-sm text-slate-500 line-clamp-2">{rp.description}</p>
-                  <div className="mt-4 flex items-center gap-2 text-xs text-slate-400">
-                    <Clock size={11} /> {rp.readTime} • {rp.author}
-                  </div>
+                <Link href={`/blog/${rp.slug}`} key={rp.slug} className="block group">
+                  <GlassCard className="p-6 hover:border-blue-300 h-full">
+                    <span className={`inline-block px-2.5 py-0.5 text-[10px] font-black uppercase tracking-wider rounded-full border mb-3 ${categoryColors[rp.category]}`}>
+                      {rp.category}
+                    </span>
+                    <h3 className="text-base font-black text-slate-900 mb-2 group-hover:text-blue-600 transition-colors line-clamp-2 leading-tight">
+                      {rp.title}
+                    </h3>
+                    <p className="text-sm text-slate-500 line-clamp-2">{rp.description}</p>
+                    <div className="mt-4 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                      <Clock size={11} /> {rp.readTime} • {rp.author}
+                    </div>
+                  </GlassCard>
                 </Link>
               ))}
             </div>

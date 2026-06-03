@@ -12,7 +12,7 @@ const SocialIcon = ({ d, href, label, color }: { d: string; href: string; label:
     target="_blank"
     rel="noopener noreferrer"
     aria-label={label}
-    className={`h-8 w-8 rounded-lg bg-slate-800 flex items-center justify-center hover:${color} transition-all duration-300 group shadow-sm`}
+    className={`h-8 w-8 rounded-lg bg-slate-800 flex items-center justify-center hover:${color} transition-all duration-300 group shadow-sm hover:scale-110`}
   >
     <svg
       viewBox="0 0 24 24"
@@ -31,7 +31,7 @@ export default function PublicFooter() {
       label: "Facebook",
       href: data.facebook,
       color: "bg-blue-600",
-      d: "M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z",
+      d: "M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z",
     });
     if (data.instagram) links.push({
       label: "Instagram",
@@ -58,15 +58,16 @@ export default function PublicFooter() {
   const schoolLinks = getSocialLinks(INSTITUTE.social.school);
 
   return (
-    <footer className="border-t-4 border-amber-500">
+    <footer>
       {/* ─── SECTION 1: DARK FOOTER (Grid) ─── */}
-      <div className="bg-slate-900 text-slate-300">
-        <div className="max-w-7xl mx-auto px-5 sm:px-8 py-16">
+      <div className="bg-slate-900/95 backdrop-blur-md text-slate-300 relative border-t-4 border-amber-500 overflow-hidden">
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 py-16 relative z-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
             {/* Brand */}
             <div>
-              <div className="flex items-center gap-2.5 mb-6">
-                <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center shadow-lg">
+              <div className="flex items-center gap-2.5 mb-6 group">
+                <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center shadow-[0_0_20px_rgba(245,158,11,0.3)] group-hover:scale-105 transition-transform">
                   <GraduationCap size={24} className="text-white" />
                 </div>
                 <div>
@@ -102,7 +103,7 @@ export default function PublicFooter() {
                   <p className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] mb-3">Portal Access</p>
                   <a
                     href="/login"
-                    className="inline-flex items-center gap-2 px-4 py-2.5 bg-amber-500/10 border border-amber-500/30 rounded-xl text-amber-400 text-xs font-bold hover:bg-amber-500/20 hover:border-amber-400/60 transition-all duration-300"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-amber-500 to-orange-500 rounded-lg text-white text-xs font-bold hover:from-amber-600 hover:to-orange-600 transition-all duration-300 shadow-lg shadow-amber-500/20 hover:scale-[1.02]"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>

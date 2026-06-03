@@ -8,6 +8,7 @@ import {
   Phone, MessageCircle, Gift, Percent, BookOpen,
   Clock, Award, GraduationCap, Zap, Users
 } from "lucide-react";
+import { BlackCard, GlassCard, AnimatedSection, GlowButton, SectionBadge, UnifiedContainer } from "@/components/public/ui";
 
 export const metadata: Metadata = {
   title: "Scholarship Exam 2026 | Free Coaching Scholarship | LakshyaMarch Begusarai",
@@ -120,24 +121,19 @@ export default function ScholarshipPage() {
       <div className="h-24 bg-slate-900 border-b border-white/10" />
 
       {/* ═══ HERO ═══ */}
-      <section className="relative bg-gradient-to-br from-slate-900 via-[hsl(30,50%,12%)] to-slate-900 overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.04]"
-          style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` }} />
-        <div className="absolute top-0 right-0 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-96 h-64 bg-amber-500/8 rounded-full blur-3xl" />
+      <div className="pt-12 pb-16 px-4 max-w-7xl mx-auto">
+        <BlackCard glowColor="amber" className="relative overflow-hidden rounded-[2rem] p-8 sm:p-14">
+          <div className="absolute top-0 right-0 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-96 h-64 bg-amber-500/8 rounded-full blur-3xl" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
             <div>
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-amber-500/15 border border-amber-400/30 rounded-full mb-6">
-                <Gift size={12} className="text-amber-400" />
-                <span className="text-xs font-bold text-amber-200 tracking-widest uppercase">
-                  Registration Free — Scholarship Up to 100%
-                </span>
-              </div>
+              <SectionBadge color="amber" className="bg-amber-500/15 border-amber-400/30 text-amber-200 mb-6">
+                <Gift size={12} className="text-amber-400 mr-2" />
+                Registration Free — Scholarship Up to 100%
+              </SectionBadge>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] tracking-tight">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.1] tracking-tight">
                 LakshyaMarch
                 <span className="block text-amber-400 mt-1">Scholarship Exam</span>
                 <span className="block text-slate-300 text-2xl sm:text-3xl font-bold mt-2">2026 — Win Free Coaching</span>
@@ -155,39 +151,42 @@ export default function ScholarshipPage() {
                   { icon: Gift, val: "FREE", label: "Registration" },
                   { icon: Clock, val: "Multiple Dates", label: "Exam Timing" },
                 ].map((s) => (
-                  <div key={s.label} className="flex items-center gap-3 bg-white/5 rounded-xl border border-white/10 px-4 py-3">
+                  <GlassCard key={s.label} className="flex items-center gap-3 bg-white/5 border-white/10 px-4 py-3 hover:bg-white/10">
                     <s.icon size={18} className="text-amber-400 shrink-0" />
                     <div>
-                      <p className="text-sm font-extrabold text-white">{s.val}</p>
+                      <p className="text-sm font-black text-white">{s.val}</p>
                       <p className="text-[10px] text-slate-400 uppercase tracking-widest">{s.label}</p>
                     </div>
-                  </div>
+                  </GlassCard>
                 ))}
               </div>
 
               <div className="mt-8 flex flex-wrap gap-4">
-                <a href={whatsappLink("Hi, I want to register for LakshyaMarch Scholarship Exam 2026.")} target="_blank" rel="noopener noreferrer"
-                  className="h-12 px-7 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold text-sm shadow-lg hover:from-amber-600 hover:to-orange-600 transition-all">
-                  Register Free <ArrowRight size={15} />
-                </a>
-                <a href={`tel:+91${INSTITUTE.primaryPhone}`} className="h-12 px-7 inline-flex items-center gap-2 rounded-xl bg-white/10 border border-white/20 text-white font-bold text-sm hover:bg-white/20 transition-all">
-                  <Phone size={15} /> Call to Register
-                </a>
+                <GlowButton variant="amber" asChild>
+                  <a href={whatsappLink("Hi, I want to register for LakshyaMarch Scholarship Exam 2026.")} target="_blank" rel="noopener noreferrer" className="px-7 py-4">
+                    Register Free <ArrowRight size={15} className="ml-2" />
+                  </a>
+                </GlowButton>
+                <GlowButton variant="blue" asChild>
+                  <a href={`tel:+91${INSTITUTE.primaryPhone}`} className="px-7 py-4 bg-white/10 hover:bg-white/20 border-white/20 text-white">
+                    <Phone size={15} className="mr-2" /> Call to Register
+                  </a>
+                </GlowButton>
               </div>
             </div>
 
-            <div id="enquiry">
+            <GlassCard className="p-6 bg-slate-900/60 border-slate-800 shadow-2xl" id="enquiry">
               <EnquiryForm />
-            </div>
+            </GlassCard>
           </div>
-        </div>
-      </section>
+        </BlackCard>
+      </div>
 
       {/* ═══ SCHOLARSHIP SLABS ═══ */}
-      <section className="py-20 sm:py-24 bg-white">
+      <AnimatedSection className="py-20 sm:py-24 bg-white">
         <div className="max-w-5xl mx-auto px-5 sm:px-8">
           <div className="text-center mb-14">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
               Scholarship <span className="text-amber-500">Prize Slabs</span>
             </h2>
             <p className="mt-4 text-slate-500">Based on your rank in the scholarship exam:</p>
@@ -195,21 +194,21 @@ export default function ScholarshipPage() {
 
           <div className="space-y-4">
             {slabs.map((s) => (
-              <div key={s.rank} className={`flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-5 rounded-2xl border ${s.bg} transition-all hover:shadow-md`}>
+              <GlassCard key={s.rank} className={`flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-5 ${s.bg} hover:border-amber-300 hover:shadow-lg hover:-translate-y-0.5`}>
                 <div className="flex items-center gap-4">
                   <div className={`h-14 w-14 rounded-xl bg-gradient-to-br ${s.color} flex items-center justify-center shrink-0 shadow-md`}>
                     <s.icon size={24} className="text-white" />
                   </div>
                   <div>
-                    <p className="font-extrabold text-slate-900 text-lg">{s.rank}</p>
+                    <p className="font-black text-slate-900 text-lg">{s.rank}</p>
                     <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">{s.label}</p>
                   </div>
                 </div>
                 <div className="sm:text-right">
-                  <p className="text-2xl font-extrabold text-slate-900">{s.scholarship}</p>
+                  <p className="text-2xl font-black text-slate-900">{s.scholarship}</p>
                   <p className="text-xs text-slate-500">on total coaching fee</p>
                 </div>
-              </div>
+              </GlassCard>
             ))}
           </div>
 
@@ -217,83 +216,85 @@ export default function ScholarshipPage() {
             * Scholarship is applicable on LakshyaMarch coaching / school admission fee. Conditions apply. Final scholarship amount confirmed after counselling.
           </p>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* ═══ EXAM SYLLABUS ═══ */}
-      <section className="py-20 sm:py-24 bg-slate-50 border-t border-slate-200">
-        <div className="max-w-5xl mx-auto px-5 sm:px-8">
+      <AnimatedSection className="py-20 sm:py-24 bg-slate-50 border-t border-slate-200">
+        <div className="max-w-6xl mx-auto px-5 sm:px-8">
           <div className="text-center mb-14">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
               Exam <span className="text-blue-600">Syllabus & Pattern</span>
             </h2>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                title: "Class 6–8",
-                color: "bg-blue-600",
-                subjects: ["Mathematics (NCERT)", "Science (Physics + Biology)", "Mental Ability / Reasoning"],
-                duration: "60 minutes",
-                questions: "60 MCQs",
-              },
-              {
-                title: "Class 9–10",
-                color: "bg-emerald-600",
-                subjects: ["Mathematics", "Physics", "Chemistry", "Biology"],
-                duration: "90 minutes",
-                questions: "90 MCQs",
-              },
-              {
-                title: "Class 11–12 (JEE)",
-                color: "bg-amber-500",
-                subjects: ["Physics (PCM level)", "Chemistry", "Mathematics"],
-                duration: "90 minutes",
-                questions: "90 MCQs",
-              },
-              {
-                title: "Class 11–12 (NEET)",
-                color: "bg-rose-600",
-                subjects: ["Physics (PCB level)", "Chemistry", "Biology"],
-                duration: "90 minutes",
-                questions: "90 MCQs",
-              },
-              {
-                title: "Dropper (JEE)",
-                color: "bg-purple-600",
-                subjects: ["Physics (JEE Adv level)", "Chemistry", "Mathematics"],
-                duration: "90 minutes",
-                questions: "90 MCQs",
-              },
-              {
-                title: "Dropper (NEET)",
-                color: "bg-teal-600",
-                subjects: ["Biology (full NEET)", "Physics", "Chemistry"],
-                duration: "90 minutes",
-                questions: "90 MCQs",
-              },
-            ].map((cat) => (
-              <div key={cat.title} className="bg-white rounded-2xl border border-slate-200 p-6 hover:shadow-lg hover:border-blue-200 transition-all">
-                <div className={`${cat.color} text-white text-sm font-extrabold px-4 py-2 rounded-xl inline-block mb-4 uppercase tracking-wider`}>
-                  {cat.title}
-                </div>
-                <ul className="space-y-2 mb-5">
-                  {cat.subjects.map((sub) => (
-                    <li key={sub} className="flex gap-2 text-sm text-slate-700">
-                      <CheckCircle2 size={14} className="text-emerald-500 shrink-0 mt-0.5" /> {sub}
-                    </li>
-                  ))}
-                </ul>
-                <div className="flex gap-3 text-[11px] font-bold text-slate-500 uppercase tracking-widest pt-4 border-t border-slate-100">
-                  <span className="flex items-center gap-1"><Clock size={11} /> {cat.duration}</span>
-                  <span>·</span>
-                  <span className="flex items-center gap-1"><BookOpen size={11} /> {cat.questions}</span>
-                </div>
-              </div>
-            ))}
-          </div>
+          <UnifiedContainer className="p-2 sm:p-4">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                {
+                  title: "Class 6–8",
+                  color: "bg-blue-600",
+                  subjects: ["Mathematics (NCERT)", "Science (Physics + Biology)", "Mental Ability / Reasoning"],
+                  duration: "60 minutes",
+                  questions: "60 MCQs",
+                },
+                {
+                  title: "Class 9–10",
+                  color: "bg-emerald-600",
+                  subjects: ["Mathematics", "Physics", "Chemistry", "Biology"],
+                  duration: "90 minutes",
+                  questions: "90 MCQs",
+                },
+                {
+                  title: "Class 11–12 (JEE)",
+                  color: "bg-amber-500",
+                  subjects: ["Physics (PCM level)", "Chemistry", "Mathematics"],
+                  duration: "90 minutes",
+                  questions: "90 MCQs",
+                },
+                {
+                  title: "Class 11–12 (NEET)",
+                  color: "bg-rose-600",
+                  subjects: ["Physics (PCB level)", "Chemistry", "Biology"],
+                  duration: "90 minutes",
+                  questions: "90 MCQs",
+                },
+                {
+                  title: "Dropper (JEE)",
+                  color: "bg-purple-600",
+                  subjects: ["Physics (JEE Adv level)", "Chemistry", "Mathematics"],
+                  duration: "90 minutes",
+                  questions: "90 MCQs",
+                },
+                {
+                  title: "Dropper (NEET)",
+                  color: "bg-teal-600",
+                  subjects: ["Biology (full NEET)", "Physics", "Chemistry"],
+                  duration: "90 minutes",
+                  questions: "90 MCQs",
+                },
+              ].map((cat) => (
+                <GlassCard key={cat.title} className="p-6 hover:shadow-lg hover:border-blue-300">
+                  <div className={`${cat.color} text-white text-sm font-black px-4 py-2 rounded-xl inline-block mb-4 uppercase tracking-wider`}>
+                    {cat.title}
+                  </div>
+                  <ul className="space-y-2 mb-5">
+                    {cat.subjects.map((sub) => (
+                      <li key={sub} className="flex gap-2 text-sm text-slate-700">
+                        <CheckCircle2 size={14} className="text-emerald-500 shrink-0 mt-0.5" /> {sub}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="flex gap-3 text-[11px] font-bold text-slate-500 uppercase tracking-widest pt-4 border-t border-slate-200/50">
+                    <span className="flex items-center gap-1"><Clock size={11} /> {cat.duration}</span>
+                    <span>·</span>
+                    <span className="flex items-center gap-1"><BookOpen size={11} /> {cat.questions}</span>
+                  </div>
+                </GlassCard>
+              ))}
+            </div>
+          </UnifiedContainer>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* ═══ HOW TO REGISTER ═══ */}
       <section className="py-16 bg-white border-t border-slate-200">
@@ -347,25 +348,28 @@ export default function ScholarshipPage() {
       </section>
 
       {/* ═══ FINAL CTA ═══ */}
-      <section className="py-16 bg-gradient-to-r from-amber-600 to-orange-700 text-center px-5">
+      <AnimatedSection className="py-16 bg-slate-900 text-center px-5 border-t-4 border-amber-500">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
-            Register Now — It's <span className="text-slate-900">100% Free!</span>
+          <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight mb-4">
+            Register Now — It's <span className="text-amber-400">100% Free!</span>
           </h2>
-          <p className="text-amber-100 mb-8 text-lg">
+          <p className="text-amber-100/80 mb-8 text-lg">
             Limited seats for the scholarship exam. Don't miss your chance to win up to 100% fee waiver.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
-            <a href={whatsappLink("Hi, I want to register for LakshyaMarch Scholarship Exam 2026.")} target="_blank" rel="noopener noreferrer"
-              className="h-14 px-10 inline-flex items-center gap-3 rounded-full bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-sm shadow-xl uppercase tracking-widest transition-all">
-              <MessageCircle size={18} /> Register on WhatsApp
-            </a>
-            <a href={`tel:+91${INSTITUTE.primaryPhone}`} className="h-14 px-10 inline-flex items-center gap-3 rounded-full bg-white/20 border border-white/30 text-white font-bold text-sm hover:bg-white/30 transition-all">
-              <Phone size={18} /> {INSTITUTE.primaryPhone}
-            </a>
+            <GlowButton variant="amber" asChild>
+              <a href={whatsappLink("Hi, I want to register for LakshyaMarch Scholarship Exam 2026.")} target="_blank" rel="noopener noreferrer" className="px-10 py-4 uppercase tracking-widest">
+                <MessageCircle size={18} className="mr-2" /> Register on WhatsApp
+              </a>
+            </GlowButton>
+            <GlowButton variant="blue" asChild>
+              <a href={`tel:+91${INSTITUTE.primaryPhone}`} className="px-10 py-4 bg-transparent border-2 border-slate-200 text-white hover:bg-slate-800 uppercase tracking-widest">
+                <Phone size={18} className="mr-2" /> {INSTITUTE.primaryPhone}
+              </a>
+            </GlowButton>
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       <PublicFooter />
     </div>

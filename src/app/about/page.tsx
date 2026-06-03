@@ -4,6 +4,7 @@ import FaqSchema from "@/components/seo/FaqSchema";
 import { INSTITUTE, FOUNDER, PROGRAMS, HIGHLIGHTS } from "@/lib/siteData";
 import { DIRECTOR_DATA, INST_VALUES } from "@/lib/contactData";
 import { Shield, Target, Lightbulb, Users, CheckCircle2, Quote } from "lucide-react";
+import { BlackCard, GlassCard, AnimatedSection, UnifiedContainer } from "@/components/public/ui";
 
 const aboutFaqs = [
   { q: "When was LakshyaMarch established?", a: "LakshyaMarch Education was established in 2019 in Begusarai, Bihar by Ram Kumar Sir, a B.Tech graduate from IIT Kharagpur." },
@@ -31,57 +32,59 @@ export default function AboutPage() {
 
       <main className="flex-1">
         {/* Page Header */}
-        <div className="bg-slate-900 py-16 sm:py-24 text-center px-4 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-t from-blue-900/50 to-transparent mix-blend-overlay"></div>
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-4 relative z-10">About <span className="text-amber-400">LakshyaMarch</span></h1>
-          <p className="text-blue-200 text-lg max-w-2xl mx-auto relative z-10">
-            A Revolution in Education is Taking Shape in Begusarai. Established in {INSTITUTE.established}, we are dedicated to academic excellence.
-          </p>
+        <div className="pt-12 pb-16 px-4 max-w-7xl mx-auto">
+          <BlackCard glowColor="amber" className="py-16 sm:py-24 text-center rounded-[2rem] relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-t from-blue-900/50 to-transparent mix-blend-overlay"></div>
+            <h1 className="text-4xl sm:text-5xl font-black text-white mb-4 relative z-10">About <span className="text-amber-400">LakshyaMarch</span></h1>
+            <p className="text-blue-200 text-lg max-w-2xl mx-auto relative z-10">
+              A Revolution in Education is Taking Shape in Begusarai. Established in {INSTITUTE.established}, we are dedicated to academic excellence.
+            </p>
+          </BlackCard>
         </div>
 
         {/* Vision, Mission, Goals Section (Core Values) */}
-        <section className="py-20 sm:py-24 bg-slate-900 relative overflow-hidden border-t border-slate-800">
+        <AnimatedSection className="py-20 sm:py-24 bg-slate-900 relative overflow-hidden border-y border-slate-800">
           <div className="absolute top-0 right-0 w-1/2 h-full bg-blue-900/20 blur-[100px] pointer-events-none"></div>
           <div className="max-w-7xl mx-auto px-5 sm:px-8 relative z-10">
             <div className="text-center max-w-2xl mx-auto mb-16">
-              <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+              <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
                 Our <span className="text-amber-400">Core Values</span>
               </h2>
-              <p className="mt-5 text-blue-200/70 leading-relaxed font-medium">
+              <p className="mt-5 text-blue-200/70 leading-relaxed font-bold">
                 The pillars that guide our commitment to educational excellence and character building.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {Object.entries(INST_VALUES).map(([key, value]) => (
-                <div key={key} className="bg-slate-800/80 backdrop-blur-sm rounded-3xl p-8 border border-slate-700 hover:border-amber-500/50 transition-colors group">
+                <GlassCard key={key} className="bg-slate-800/80 backdrop-blur-sm rounded-3xl p-8 border border-slate-700 hover:border-amber-500/50 transition-colors group">
                   <div className="h-16 w-16 rounded-2xl bg-slate-900 border border-slate-700 flex items-center justify-center text-4xl mb-8 group-hover:scale-110 transition-transform shadow-inner">
                     {value.icon}
                   </div>
                   <h3 className="text-2xl font-black text-white mb-4">{value.title}</h3>
-                  <p className="text-slate-400 leading-relaxed">
+                  <p className="text-slate-400 leading-relaxed font-medium">
                     {value.text}
                   </p>
-                </div>
+                </GlassCard>
               ))}
             </div>
           </div>
-        </section>
+        </AnimatedSection>
 
         {/* Leadership Desk Section */}
-        <section className="py-20 sm:py-28 bg-white px-5 sm:px-8">
-          <div className="max-w-7xl mx-auto">
+        <AnimatedSection className="py-20 sm:py-28 bg-white px-5 sm:px-8">
+          <UnifiedContainer className="max-w-7xl mx-auto p-4 sm:p-8">
             <div className="text-center max-w-2xl mx-auto mb-16">
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+              <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
                 The Leadership <span className="text-blue-600">Desk</span>
               </h2>
-              <p className="mt-4 text-slate-500">Guided by experience, driven by a passion for education.</p>
+              <p className="mt-4 text-slate-500 font-bold uppercase tracking-widest text-xs">Guided by experience, driven by a passion for education.</p>
             </div>
             
             <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
               {/* Profile Card */}
               <div className="w-full lg:w-[400px] shrink-0 sticky top-32">
-                <div className="bg-slate-50 rounded-3xl p-8 border border-slate-200 shadow-xl relative overflow-hidden group">
+                <GlassCard className="bg-slate-50 rounded-3xl p-8 border border-slate-200 shadow-xl relative overflow-hidden group">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-blue-100 rounded-bl-full -z-10 group-hover:scale-110 transition-transform"></div>
                   
                   <div className="relative w-full aspect-square rounded-2xl overflow-hidden shadow-lg mb-8 border border-white">
@@ -103,15 +106,15 @@ export default function AboutPage() {
                     <p className="text-sm font-black text-blue-600 uppercase tracking-widest mt-2">{DIRECTOR_DATA.designation}</p>
                     
                     <div className="flex flex-col gap-2 mt-6">
-                      <span className="px-4 py-2 bg-white text-slate-700 text-xs font-bold rounded-xl border border-slate-200">
+                      <span className="px-4 py-2 bg-white text-slate-700 text-xs font-black uppercase tracking-wider rounded-xl border border-slate-200">
                         {DIRECTOR_DATA.qualification}
                       </span>
-                      <span className="px-4 py-2 bg-emerald-50 text-emerald-700 text-xs font-bold rounded-xl border border-emerald-100">
+                      <span className="px-4 py-2 bg-emerald-50 text-emerald-700 text-xs font-black uppercase tracking-wider rounded-xl border border-emerald-100">
                         {DIRECTOR_DATA.certification}
                       </span>
                     </div>
                   </div>
-                </div>
+                </GlassCard>
               </div>
 
               {/* Messages Column */}
@@ -119,7 +122,7 @@ export default function AboutPage() {
                 {/* Short Vision Quote (From siteData) */}
                 <div className="bg-slate-900 rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
                   <Quote className="absolute -top-4 -left-2 h-32 w-32 text-white/5 pointer-events-none" />
-                  <h3 className="text-amber-400 font-bold uppercase tracking-widest text-xs mb-6">Our Foundational Vision</h3>
+                  <h3 className="text-amber-400 font-black uppercase tracking-widest text-xs mb-6">Our Foundational Vision</h3>
                   <p className="text-xl sm:text-2xl text-white leading-relaxed font-serif italic relative z-10">
                     "{FOUNDER.message}"
                   </p>
@@ -127,10 +130,10 @@ export default function AboutPage() {
 
                 {/* Detailed Director's Message (From contactData) */}
                 <div>
-                  <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-6">
+                  <h3 className="text-2xl sm:text-3xl font-black text-slate-900 mb-6">
                     {DIRECTOR_DATA.title}
                   </h3>
-                  <div className="prose prose-lg text-slate-600">
+                  <div className="prose prose-lg text-slate-600 font-medium">
                     <p className="leading-relaxed">
                       {DIRECTOR_DATA.message}
                     </p>
@@ -141,27 +144,27 @@ export default function AboutPage() {
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </UnifiedContainer>
+        </AnimatedSection>
 
         {/* Highlights Section */}
-        <section className="py-16 sm:py-24 bg-slate-50 border-t border-slate-200">
+        <AnimatedSection className="py-16 sm:py-24 bg-slate-50 border-t border-slate-200">
           <div className="max-w-7xl mx-auto px-5 sm:px-8">
             <div className="text-center max-w-2xl mx-auto mb-14">
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+              <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
                 Why Choose <span className="text-blue-600">Us?</span>
               </h2>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
               {HIGHLIGHTS.map((h, i) => (
-                <div key={i} className="p-6 bg-white rounded-2xl shadow-sm border border-slate-100 flex gap-4 items-start">
+                <GlassCard key={i} className="p-6 bg-white flex gap-4 items-start hover:-translate-y-1">
                   <CheckCircle2 size={24} className="text-emerald-500 shrink-0" />
-                  <p className="text-sm font-semibold text-slate-700 leading-snug">{h}</p>
-                </div>
+                  <p className="text-sm font-bold text-slate-700 leading-snug">{h}</p>
+                </GlassCard>
               ))}
             </div>
           </div>
-        </section>
+        </AnimatedSection>
       </main>
 
       <PublicFooter />

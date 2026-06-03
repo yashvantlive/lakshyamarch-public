@@ -10,6 +10,7 @@ import {
   Target, Zap, Clock, Phone, MessageCircle, ChevronRight,
   GraduationCap, TrendingUp, Award
 } from "lucide-react";
+import { BlackCard, GlassCard, AnimatedSection, GlowButton, SectionBadge } from "@/components/public/ui";
 
 export const metadata: Metadata = {
   title: "Best IIT-JEE Coaching in Begusarai | LakshyaMarch Education",
@@ -124,24 +125,20 @@ export default function JEECoachingPage() {
       <div className="h-24 bg-slate-900 border-b border-white/10" />
 
       {/* ═══ HERO ═══ */}
-      <section className="relative bg-gradient-to-br from-slate-900 via-[hsl(224,71%,18%)] to-slate-900 overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.04]"
-          style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` }} />
-        <div className="absolute top-1/4 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-10 w-96 h-96 bg-amber-500/8 rounded-full blur-3xl" />
+      <div className="pt-12 pb-16 px-4 max-w-7xl mx-auto">
+        <BlackCard glowColor="blue" className="relative overflow-hidden rounded-[2rem] p-8 sm:p-14">
+          <div className="absolute top-1/4 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-10 w-96 h-96 bg-amber-500/8 rounded-full blur-3xl" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
             <div>
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-amber-500/15 border border-amber-400/30 rounded-full mb-6">
-                <Star size={12} className="text-amber-400" />
-                <span className="text-xs font-bold text-amber-200 tracking-widest uppercase">
-                  #1 IIT-JEE Coaching in Begusarai
-                </span>
-              </div>
+              <SectionBadge color="amber" className="bg-amber-500/15 border-amber-400/30 text-amber-200 mb-6">
+                <Star size={12} className="text-amber-400 mr-2" />
+                #1 IIT-JEE Coaching in Begusarai
+              </SectionBadge>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] tracking-tight">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.1] tracking-tight">
                 IIT-JEE Coaching
                 <span className="block text-amber-400 mt-1">in Begusarai</span>
               </h1>
@@ -157,40 +154,43 @@ export default function JEECoachingPage() {
                   { val: "IIT/NIT", label: "Faculty Alumni" },
                   { val: "2019", label: "Est. Batch" },
                 ].map((s) => (
-                  <div key={s.label} className="text-center p-3 bg-white/5 rounded-xl border border-white/10">
-                    <p className="text-2xl font-extrabold text-amber-400">{s.val}</p>
+                  <div key={s.label} className="text-center p-3 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 transition-colors">
+                    <p className="text-2xl font-black text-amber-400">{s.val}</p>
                     <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">{s.label}</p>
                   </div>
                 ))}
               </div>
 
               <div className="mt-8 flex flex-wrap gap-4">
-                <a href="#enquiry" className="h-12 px-7 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold text-sm shadow-lg hover:from-amber-600 hover:to-orange-600 transition-all">
-                  Free Counselling <ArrowRight size={15} />
-                </a>
-                <a href={whatsappLink("Hi, I want to know about IIT-JEE coaching at LakshyaMarch.")} target="_blank" rel="noopener noreferrer"
-                  className="h-12 px-7 inline-flex items-center gap-2 rounded-xl bg-emerald-600/90 text-white font-bold text-sm hover:bg-emerald-600 transition-all border border-emerald-500/30">
-                  <MessageCircle size={15} /> WhatsApp Now
-                </a>
+                <GlowButton variant="amber" asChild>
+                  <a href="#enquiry" className="px-7 py-4">
+                    Free Counselling <ArrowRight size={15} className="ml-2" />
+                  </a>
+                </GlowButton>
+                <GlowButton variant="blue" asChild>
+                  <a href={whatsappLink("Hi, I want to know about IIT-JEE coaching at LakshyaMarch.")} target="_blank" rel="noopener noreferrer" className="px-7 py-4 bg-emerald-600/90 hover:bg-emerald-600 border-emerald-500/30">
+                    <MessageCircle size={15} className="mr-2" /> WhatsApp Now
+                  </a>
+                </GlowButton>
               </div>
             </div>
 
             {/* Enquiry Form */}
-            <div id="enquiry">
+            <GlassCard className="p-6 bg-slate-900/60 border-slate-800 shadow-2xl" id="enquiry">
               <EnquiryForm />
-            </div>
+            </GlassCard>
           </div>
-        </div>
-      </section>
+        </BlackCard>
+      </div>
 
       {/* ═══ JEE RESULTS ═══ */}
-      <section className="py-20 sm:py-24 bg-slate-900 border-t-4 border-amber-500">
+      <AnimatedSection className="py-20 sm:py-24 bg-slate-900 border-t-4 border-amber-500">
         <div className="max-w-7xl mx-auto px-5 sm:px-8">
           <div className="text-center mb-14">
             <div className="inline-flex items-center justify-center h-14 w-14 rounded-full bg-amber-500/20 mb-5">
               <Trophy size={28} className="text-amber-400" />
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
               JEE Results That <span className="text-amber-400">Speak for Themselves</span>
             </h2>
             <p className="mt-4 text-slate-400 max-w-2xl mx-auto">
@@ -200,14 +200,14 @@ export default function JEECoachingPage() {
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
             {jeeToppers.map((r) => (
-              <div key={r.id} className="bg-slate-800 border border-slate-700 rounded-2xl p-4 text-center hover:border-amber-500/40 transition-all hover:bg-slate-750">
-                <p className="text-2xl font-extrabold text-emerald-400 mb-1">{r.stat}</p>
+              <GlassCard key={r.id} className="bg-slate-800/80 border-slate-700/80 p-4 text-center hover:border-amber-500/40 hover:bg-slate-800/90">
+                <p className="text-2xl font-black text-emerald-400 mb-1">{r.stat}</p>
                 <p className="text-sm font-bold text-white mb-1 truncate">{r.name}</p>
                 {r.college && (
                   <p className="text-[10px] font-bold text-amber-400 uppercase tracking-wider">{r.college}</p>
                 )}
                 <p className="text-[10px] text-slate-500 uppercase tracking-wider mt-1">{r.examType}</p>
-              </div>
+              </GlassCard>
             ))}
           </div>
 
@@ -217,13 +217,13 @@ export default function JEECoachingPage() {
             </a>
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* ═══ PROGRAMS / BATCHES ═══ */}
-      <section className="py-20 sm:py-24 bg-white">
+      <AnimatedSection className="py-20 sm:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-5 sm:px-8">
           <div className="text-center mb-14">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
               JEE Batches <span className="text-blue-600">Available Now</span>
             </h2>
             <p className="mt-4 text-slate-500 max-w-xl mx-auto">
@@ -266,11 +266,11 @@ export default function JEECoachingPage() {
                 cta: "Starts: Apr 2026",
               },
             ].map((batch) => (
-              <div key={batch.title} className="bg-slate-50 border border-slate-200 rounded-2xl p-6 flex flex-col hover:shadow-xl hover:border-blue-200 transition-all duration-300 group">
+              <GlassCard key={batch.title} className="p-6 flex flex-col hover:border-blue-300">
                 <div className={`h-12 w-12 rounded-xl ${batch.color} text-white flex items-center justify-center mb-5 group-hover:scale-110 transition-transform`}>
                   <batch.icon size={24} />
                 </div>
-                <h3 className="text-lg font-extrabold text-slate-900 leading-tight mb-1">{batch.title}</h3>
+                <h3 className="text-lg font-black text-slate-900 leading-tight mb-1">{batch.title}</h3>
                 <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-5">{batch.sub}</p>
                 <ul className="space-y-2 flex-1 mb-5">
                   {batch.points.map((p) => (
@@ -280,26 +280,24 @@ export default function JEECoachingPage() {
                   ))}
                 </ul>
                 <div className="pt-4 border-t border-slate-200">
-                  <p className="text-xs font-extrabold text-slate-500 uppercase tracking-widest">{batch.cta}</p>
+                  <p className="text-xs font-black text-slate-500 uppercase tracking-widest">{batch.cta}</p>
                 </div>
-              </div>
+              </GlassCard>
             ))}
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* ═══ WHY LM FOR JEE ═══ */}
-      <section className="py-20 sm:py-24 bg-slate-50 border-t border-slate-200">
+      <AnimatedSection className="py-20 sm:py-24 bg-slate-50 border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-5 sm:px-8">
           <div className="grid lg:grid-cols-2 gap-14 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-blue-50 border border-blue-200 rounded-full mb-6">
-                <span className="text-[10px] font-extrabold text-blue-600 uppercase tracking-[0.2em]">Why Choose LakshyaMarch?</span>
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight mb-8">
+              <SectionBadge color="blue" className="mb-6">Why Choose LakshyaMarch?</SectionBadge>
+              <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight mb-8">
                 Why LakshyaMarch is <span className="text-blue-600">Better than Allen</span> for Begusarai Students
               </h2>
-              <div className="space-y-5">
+              <div className="space-y-4">
                 {[
                   { icon: Users, title: "Small Batch Sizes", desc: "More personal attention. No getting lost in a crowd of 200+ students like in large national chains." },
                   { icon: GraduationCap, title: "IIT/NIT Alumni Faculty", desc: "Every teacher at LM is from a top institute — no local-level tutors." },
@@ -307,45 +305,45 @@ export default function JEECoachingPage() {
                   { icon: TrendingUp, title: "Proven Results", desc: "99.35 percentile in JEE Main 2025. IIT Bhilai, NIT Trichy, IIT Roorkee — real results." },
                   { icon: Award, title: "Stay in Begusarai", desc: "No need to leave home and go to Kota or Patna. Top-quality JEE coaching in your city." },
                 ].map((item) => (
-                  <div key={item.title} className="flex gap-4">
+                  <GlassCard key={item.title} className="p-5 flex gap-4 hover:-translate-y-0.5 hover:border-blue-300">
                     <div className="h-10 w-10 rounded-xl bg-blue-50 flex items-center justify-center shrink-0">
                       <item.icon size={20} className="text-blue-600" />
                     </div>
                     <div>
-                      <h4 className="font-extrabold text-slate-900 text-sm mb-0.5">{item.title}</h4>
-                      <p className="text-sm text-slate-500 leading-relaxed">{item.desc}</p>
+                      <h4 className="font-black text-slate-900 text-sm mb-0.5">{item.title}</h4>
+                      <p className="text-sm text-slate-600 leading-relaxed">{item.desc}</p>
                     </div>
-                  </div>
+                  </GlassCard>
                 ))}
               </div>
             </div>
 
             {/* Faculty Highlight */}
-            <div>
-              <h3 className="text-xl font-extrabold text-slate-900 mb-6 flex items-center gap-3">
+            <div className="self-start">
+              <h3 className="text-xl font-black text-slate-900 mb-6 flex items-center gap-3">
                 <span className="h-0.5 w-8 bg-amber-500" /> JEE Faculty Panel
               </h3>
               <div className="space-y-4">
                 {jeeFacultyList.map((f) => (
-                  <div key={f.name} className="bg-white border border-slate-200 rounded-2xl p-5 flex gap-4 items-center hover:shadow-lg hover:border-blue-200 transition-all">
-                    <div className="h-14 w-14 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center text-white font-extrabold text-xl shrink-0">
+                  <GlassCard key={f.name} className="p-5 flex gap-4 items-center hover:border-blue-300">
+                    <div className="h-14 w-14 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center text-white font-black text-xl shrink-0 shadow-inner">
                       {f.name.charAt(0)}
                     </div>
                     <div>
-                      <p className="font-extrabold text-slate-900">{f.name}</p>
+                      <p className="font-black text-slate-900">{f.name}</p>
                       <p className="text-xs font-bold text-blue-600 uppercase tracking-widest">{f.subject}</p>
                       <p className="text-xs text-slate-500 mt-0.5">{f.qual}</p>
                     </div>
-                  </div>
+                  </GlassCard>
                 ))}
-                <a href="/faculty" className="inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-700 transition-colors mt-2">
+                <a href="/faculty" className="inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-700 transition-colors mt-2 uppercase tracking-widest">
                   Meet All Faculty <ArrowRight size={15} />
                 </a>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* ═══ HIGHLIGHTS STRIP ═══ */}
       <div className="bg-blue-600 py-4 overflow-hidden">
@@ -383,24 +381,28 @@ export default function JEECoachingPage() {
       </section>
 
       {/* ═══ FINAL CTA ═══ */}
-      <section className="py-16 bg-gradient-to-r from-blue-700 to-indigo-800 text-center px-5">
+      <AnimatedSection className="py-16 bg-slate-900 text-center px-5 border-t-4 border-amber-500">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
+          <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight mb-4">
             Start Your IIT Journey Today
           </h2>
           <p className="text-blue-200 mb-8 text-lg">
             Book a free counselling session with our JEE experts in Begusarai.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
-            <a href="#enquiry" className="h-14 px-10 inline-flex items-center gap-3 rounded-full bg-amber-500 hover:bg-amber-400 text-slate-900 font-extrabold text-sm shadow-xl uppercase tracking-widest transition-all">
-              Apply Now <ArrowRight size={18} />
-            </a>
-            <a href={`tel:+91${INSTITUTE.primaryPhone}`} className="h-14 px-10 inline-flex items-center gap-3 rounded-full bg-white/10 border border-white/20 text-white font-bold text-sm hover:bg-white/20 transition-all">
-              <Phone size={18} /> Call: {INSTITUTE.primaryPhone}
-            </a>
+            <GlowButton variant="amber" asChild>
+              <a href="#enquiry" className="px-10 py-4 uppercase tracking-widest">
+                Apply Now <ArrowRight size={18} className="ml-2" />
+              </a>
+            </GlowButton>
+            <GlowButton variant="blue" asChild>
+              <a href={`tel:+91${INSTITUTE.primaryPhone}`} className="px-10 py-4 uppercase tracking-widest bg-transparent border-2 border-blue-500 hover:bg-blue-600/20">
+                <Phone size={18} className="mr-2" /> Call: {INSTITUTE.primaryPhone}
+              </a>
+            </GlowButton>
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       <PublicFooter />
     </div>

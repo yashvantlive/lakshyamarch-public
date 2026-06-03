@@ -8,6 +8,7 @@ import {
   FileText, Users, BookOpen, Star, Clock, GraduationCap,
   ClipboardList, BadgeCheck, CalendarDays
 } from "lucide-react";
+import { BlackCard, GlassCard, AnimatedSection, GlowButton, SectionBadge, UnifiedContainer } from "@/components/public/ui";
 
 export const metadata: Metadata = {
   title: "Admission 2026-27 | Apply Now | LakshyaMarch Begusarai",
@@ -119,21 +120,19 @@ export default function AdmissionPage() {
       <div className="h-24 bg-slate-900 border-b border-white/10" />
 
       {/* ═══ HERO ═══ */}
-      <section className="relative bg-gradient-to-br from-slate-900 via-[hsl(245,50%,18%)] to-slate-900 overflow-hidden">
-        <div className="absolute top-1/3 right-16 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-10 w-96 h-96 bg-amber-500/8 rounded-full blur-3xl" />
+      <div className="pt-12 pb-16 px-4 max-w-7xl mx-auto">
+        <BlackCard glowColor="blue" className="relative overflow-hidden rounded-[2rem] p-8 sm:p-14">
+          <div className="absolute top-1/3 right-16 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-10 w-96 h-96 bg-amber-500/8 rounded-full blur-3xl" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-indigo-500/15 border border-indigo-400/30 rounded-full mb-6">
-                <Star size={12} className="text-indigo-300" />
-                <span className="text-xs font-bold text-indigo-200 tracking-widest uppercase">
-                  Admissions Open — 2026-27 Session
-                </span>
-              </div>
+              <SectionBadge color="blue" className="bg-indigo-500/15 border-indigo-400/30 text-indigo-200 mb-6">
+                <Star size={12} className="text-indigo-300 mr-2" />
+                Admissions Open — 2026-27 Session
+              </SectionBadge>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] tracking-tight">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.1] tracking-tight">
                 Apply for
                 <span className="block text-amber-400 mt-1">LakshyaMarch</span>
                 <span className="block text-white text-3xl sm:text-4xl mt-2 font-bold">Admission 2026-27</span>
@@ -151,37 +150,40 @@ export default function AdmissionPage() {
                   { step: "3", text: "Submit documents & confirm seat" },
                 ].map((s) => (
                   <div key={s.step} className="flex items-center gap-4">
-                    <div className="h-8 w-8 rounded-full bg-amber-500 text-slate-900 font-extrabold text-sm flex items-center justify-center shrink-0">
+                    <div className="h-8 w-8 rounded-full bg-amber-500 text-slate-900 font-black text-sm flex items-center justify-center shrink-0">
                       {s.step}
                     </div>
-                    <p className="text-white/80 font-medium text-sm">{s.text}</p>
+                    <p className="text-white/80 font-bold text-sm uppercase tracking-wider">{s.text}</p>
                   </div>
                 ))}
               </div>
 
               <div className="mt-8 flex flex-wrap gap-4">
-                <a href={`tel:+91${INSTITUTE.primaryPhone}`} className="h-12 px-7 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold text-sm shadow-lg hover:from-amber-600 hover:to-orange-600 transition-all">
-                  <Phone size={15} /> Call to Apply
-                </a>
-                <a href={whatsappLink("Hi, I want to apply for admission at LakshyaMarch 2026-27.")} target="_blank" rel="noopener noreferrer"
-                  className="h-12 px-7 inline-flex items-center gap-2 rounded-xl bg-emerald-600/90 border border-emerald-500/30 text-white font-bold text-sm hover:bg-emerald-600 transition-all">
-                  <MessageCircle size={15} /> WhatsApp Apply
-                </a>
+                <GlowButton variant="amber" asChild>
+                  <a href={`tel:+91${INSTITUTE.primaryPhone}`} className="px-7 py-4">
+                    <Phone size={15} className="mr-2" /> Call to Apply
+                  </a>
+                </GlowButton>
+                <GlowButton variant="emerald" asChild>
+                  <a href={whatsappLink("Hi, I want to apply for admission at LakshyaMarch 2026-27.")} target="_blank" rel="noopener noreferrer" className="px-7 py-4 bg-emerald-600/90 hover:bg-emerald-600 border-emerald-500/30 text-white">
+                    <MessageCircle size={15} className="mr-2" /> WhatsApp Apply
+                  </a>
+                </GlowButton>
               </div>
             </div>
 
-            <div id="enquiry">
+            <GlassCard className="p-6 bg-slate-900/60 border-slate-800 shadow-2xl" id="enquiry">
               <AdmissionEnquiryForm />
-            </div>
+            </GlassCard>
           </div>
-        </div>
-      </section>
+        </BlackCard>
+      </div>
 
       {/* ═══ PROCESS STEPS ═══ */}
-      <section className="py-20 sm:py-24 bg-white">
-        <div className="max-w-5xl mx-auto px-5 sm:px-8">
+      <AnimatedSection className="py-20 sm:py-24 bg-white">
+        <div className="max-w-6xl mx-auto px-5 sm:px-8">
           <div className="text-center mb-14">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
               Simple <span className="text-indigo-600">Admission Process</span>
             </h2>
             <p className="mt-4 text-slate-500 max-w-xl mx-auto">
@@ -189,7 +191,7 @@ export default function AdmissionPage() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-3 gap-8">
+          <UnifiedContainer className="p-4 sm:p-8 grid sm:grid-cols-3 gap-8">
             {[
               {
                 icon: ClipboardList,
@@ -213,26 +215,26 @@ export default function AdmissionPage() {
                 color: "bg-emerald-600",
               },
             ].map((s) => (
-              <div key={s.step} className="relative text-center">
-                <div className="text-[80px] font-extrabold text-slate-100 absolute -top-6 left-1/2 -translate-x-1/2 leading-none select-none">{s.step}</div>
+              <GlassCard key={s.step} className="relative text-center pt-10 hover:-translate-y-1">
+                <div className="text-[80px] font-black text-slate-100/50 absolute -top-8 left-1/2 -translate-x-1/2 leading-none select-none">{s.step}</div>
                 <div className="relative z-10">
                   <div className={`h-16 w-16 rounded-2xl ${s.color} text-white flex items-center justify-center mx-auto mb-5 shadow-lg`}>
                     <s.icon size={30} />
                   </div>
-                  <h3 className="text-xl font-extrabold text-slate-900 mb-3">{s.title}</h3>
+                  <h3 className="text-xl font-black text-slate-900 mb-3">{s.title}</h3>
                   <p className="text-slate-500 text-sm leading-relaxed">{s.desc}</p>
                 </div>
-              </div>
+              </GlassCard>
             ))}
-          </div>
+          </UnifiedContainer>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* ═══ DOCUMENTS REQUIRED ═══ */}
-      <section className="py-16 bg-slate-50 border-t border-slate-200">
+      <AnimatedSection className="py-16 bg-slate-50 border-t border-slate-200">
         <div className="max-w-4xl mx-auto px-5 sm:px-8">
-          <div className="bg-white rounded-3xl border border-slate-200 p-8 sm:p-10 shadow-sm">
-            <h2 className="text-2xl font-extrabold text-slate-900 mb-2 flex items-center gap-3">
+          <GlassCard className="p-8 sm:p-10">
+            <h2 className="text-2xl font-black text-slate-900 mb-2 flex items-center gap-3">
               <FileText size={24} className="text-indigo-500" /> Documents Required for Admission
             </h2>
             <p className="text-slate-500 text-sm mb-8">Keep these ready before visiting the campus or applying online.</p>
@@ -246,15 +248,15 @@ export default function AdmissionPage() {
                 "School Transfer Certificate (if applicable)",
                 "Mobile number for OTP-based registration",
               ].map((doc) => (
-                <div key={doc} className="flex gap-3 items-start p-3 bg-slate-50 rounded-xl border border-slate-100">
+                <div key={doc} className="flex gap-3 items-start p-3 bg-white/50 rounded-xl border border-slate-200/50 hover:bg-white transition-colors">
                   <CheckCircle2 size={18} className="text-emerald-500 shrink-0 mt-0.5" />
-                  <p className="text-sm font-medium text-slate-700">{doc}</p>
+                  <p className="text-sm font-bold text-slate-700">{doc}</p>
                 </div>
               ))}
             </div>
-          </div>
+          </GlassCard>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* ═══ BATCH LIST ═══ */}
       <section className="py-20 sm:py-24 bg-white">
@@ -366,25 +368,28 @@ export default function AdmissionPage() {
       </section>
 
       {/* ═══ FINAL CTA ═══ */}
-      <section className="py-16 bg-slate-900 text-center px-5">
+      <AnimatedSection className="py-16 bg-slate-900 text-center px-5 border-t-4 border-indigo-500">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
+          <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight mb-4">
             Don't Wait — <span className="text-amber-400">Seats are Limited</span>
           </h2>
           <p className="text-slate-400 mb-8 text-lg">
             Contact us today for free counselling and batch selection guidance.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
-            <a href={whatsappLink("Hi, I want to apply for LakshyaMarch 2026-27 admission.")} target="_blank" rel="noopener noreferrer"
-              className="h-14 px-10 inline-flex items-center gap-3 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white font-extrabold text-sm shadow-xl uppercase tracking-widest transition-all">
-              <MessageCircle size={18} /> WhatsApp Apply
-            </a>
-            <a href={`tel:+91${INSTITUTE.primaryPhone}`} className="h-14 px-10 inline-flex items-center gap-3 rounded-full bg-white/10 border border-white/20 text-white font-bold text-sm hover:bg-white/20 transition-all">
-              <Phone size={18} /> {INSTITUTE.primaryPhone}
-            </a>
+            <GlowButton variant="emerald" asChild>
+              <a href={whatsappLink("Hi, I want to apply for LakshyaMarch 2026-27 admission.")} target="_blank" rel="noopener noreferrer" className="px-10 py-4 uppercase tracking-widest">
+                <MessageCircle size={18} className="mr-2" /> WhatsApp Apply
+              </a>
+            </GlowButton>
+            <GlowButton variant="blue" asChild>
+              <a href={`tel:+91${INSTITUTE.primaryPhone}`} className="px-10 py-4 bg-transparent border-2 border-slate-200 text-white hover:bg-slate-800 uppercase tracking-widest">
+                <Phone size={18} className="mr-2" /> {INSTITUTE.primaryPhone}
+              </a>
+            </GlowButton>
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       <PublicFooter />
     </div>

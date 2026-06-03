@@ -14,10 +14,11 @@ import {
   Sparkles,
   ChevronRight,
   Info,
-  Zap,
   Tag,
   Phone,
+  Zap,
 } from "lucide-react";
+import { BlackCard, GlassCard, AnimatedSection } from "@/components/public/ui";
 
 const MotionDiv = motion.div;
 
@@ -113,10 +114,10 @@ export default function ProgramsClient() {
                <button
                  key={value}
                  onClick={() => setActiveClass(value)}
-                 className={`px-6 py-2 rounded-full whitespace-nowrap text-sm font-bold transition-all border ${
+                 className={`px-6 py-2.5 rounded-full whitespace-nowrap text-sm font-black transition-all duration-300 border uppercase tracking-widest ${
                    activeClass === value
-                   ? "bg-blue-600 text-white border-blue-600 shadow-lg shadow-blue-600/20" 
-                   : "bg-white text-slate-600 border-slate-200 hover:border-blue-400 hover:text-blue-600"
+                   ? "bg-amber-500 text-slate-900 border-amber-500 shadow-[0_10px_20px_-10px_rgba(245,158,11,0.6)] scale-105" 
+                   : "bg-white text-slate-500 border-slate-200 hover:border-amber-300 hover:text-amber-600 hover:bg-amber-50"
                  }`}
                >
                  {label}
@@ -138,56 +139,56 @@ export default function ProgramsClient() {
           >
             {/* ═══════════ SCHOOL PREPARATION SECTION ═══════════ */}
             {filteredSchoolBatches.length > 0 && (
-              <section id="school">
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+              <AnimatedSection id="school">
+                <BlackCard glowColor="blue" className="p-8 mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6 rounded-[2rem]">
                   <div>
-                    <div className="flex items-center gap-2 text-blue-600 font-bold mb-2">
+                    <div className="flex items-center gap-2 text-blue-400 font-black mb-2">
                        <GraduationCap size={24} />
-                       <span className="uppercase tracking-widest text-xs">Category</span>
+                       <span className="uppercase tracking-[0.3em] text-xs">Category</span>
                     </div>
-                    <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                    <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
                       {PROGRAMS.school.name}
                     </h2>
-                    <p className="mt-2 text-slate-500 max-w-2xl">{PROGRAMS.school.description}</p>
+                    <p className="mt-2 text-blue-100/80 max-w-2xl font-medium">{PROGRAMS.school.description}</p>
                   </div>
-                  <button className="text-blue-600 font-bold flex items-center gap-2 hover:underline group">
+                  <button className="text-blue-400 font-bold flex items-center gap-2 hover:text-blue-300 group uppercase tracking-widest text-sm">
                     View All Batches <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
                   </button>
-                </div>
+                </BlackCard>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                   {filteredSchoolBatches.map((batch, idx) => (
                     <CourseCard key={batch.id} batch={batch} index={idx} color="blue" />
                   ))}
                 </div>
-              </section>
+              </AnimatedSection>
             )}
 
             {/* ═══════════ COACHING / COMPETITIVE SECTION ═══════════ */}
             {filteredCoachingBatches.length > 0 && (
-              <section id="coaching">
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+              <AnimatedSection id="coaching">
+                <BlackCard glowColor="amber" className="p-8 mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6 rounded-[2rem]">
                   <div>
-                    <div className="flex items-center gap-2 text-amber-600 font-bold mb-2">
+                    <div className="flex items-center gap-2 text-amber-500 font-black mb-2">
                        <Target size={24} />
-                       <span className="uppercase tracking-widest text-xs">Category</span>
+                       <span className="uppercase tracking-[0.3em] text-xs">Category</span>
                     </div>
-                    <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                    <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
                       {PROGRAMS.coaching.name}
                     </h2>
-                    <p className="mt-2 text-slate-500 max-w-2xl">{PROGRAMS.coaching.description}</p>
+                    <p className="mt-2 text-amber-100/60 max-w-2xl font-medium">{PROGRAMS.coaching.description}</p>
                   </div>
-                  <button className="text-amber-600 font-bold flex items-center gap-2 hover:underline group">
+                  <button className="text-amber-500 font-bold flex items-center gap-2 hover:text-amber-400 group uppercase tracking-widest text-sm">
                     Explore All <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
                   </button>
-                </div>
+                </BlackCard>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                   {filteredCoachingBatches.map((batch, idx) => (
                     <CourseCard key={batch.id} batch={batch} index={idx} color="amber" />
                   ))}
                 </div>
-              </section>
+              </AnimatedSection>
             )}
             
             {filteredSchoolBatches.length === 0 && filteredCoachingBatches.length === 0 && (
@@ -251,14 +252,12 @@ function CourseCard({ batch, index, color }: { batch: any, index: number, color:
   const borderAccent = color === "blue" ? "hover:border-blue-500/50" : "hover:border-amber-500/50";
 
   return (
-    <MotionDiv
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.05 }}
-      className={`group bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 ${borderAccent} flex flex-col`}
+    <GlassCard
+      glowColor={color as any}
+      className="group h-full flex flex-col p-0 overflow-hidden"
     >
       {/* Card Header Image */}
-      <div className="relative aspect-[16/9] overflow-hidden bg-slate-100 flex items-center justify-center">
+      <div className="relative aspect-[16/9] overflow-hidden bg-slate-100 flex items-center justify-center shrink-0">
         {batch.image ? (
           <img 
             src={batch.image} 
@@ -276,14 +275,12 @@ function CourseCard({ batch, index, color }: { batch: any, index: number, color:
           </div>
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-        
-
       </div>
 
       {/* Card Body */}
-      <div className="p-6 flex-1 flex flex-col">
+      <div className="p-6 flex-1 flex flex-col bg-white/60">
         <div className="mb-4">
-          <h3 className="text-xl font-black text-slate-900 leading-tight group-hover:text-blue-600 transition-colors uppercase tracking-tight">
+          <h3 className={`text-xl font-black text-slate-900 leading-tight group-hover:${textAccent} transition-colors uppercase tracking-tight`}>
             {batch.name}
           </h3>
           <p className="text-xs font-bold text-slate-400 mt-2 uppercase tracking-wider">{batch.target}</p>
@@ -304,7 +301,7 @@ function CourseCard({ batch, index, color }: { batch: any, index: number, color:
         </div>
 
         {/* Pricing */}
-        <div className={`mt-auto pt-6 border-t border-slate-100 ${batch.price === null ? 'flex items-center justify-center' : ''}`}>
+        <div className={`mt-auto pt-6 border-t border-slate-200/50 ${batch.price === null ? 'flex items-center justify-center' : ''}`}>
            {batch.price !== null && (
              <div className="flex items-center justify-between mb-6 w-full">
                 <div>
@@ -329,7 +326,7 @@ function CourseCard({ batch, index, color }: { batch: any, index: number, color:
               {batch.price !== null && (
                 <button 
                   onClick={() => window.open(whatsappLink(`I want to enroll in ${batch.name}`), '_blank')}
-                  className={`h-12 rounded-xl ${bgAccent} text-white text-xs font-bold uppercase tracking-widest shadow-lg shadow-blue-600/20 hover:scale-[1.02] active:scale-95 transition-all`}
+                  className={`h-12 rounded-xl ${bgAccent} text-white text-xs font-bold uppercase tracking-widest shadow-lg ${color === 'blue' ? 'shadow-blue-600/20' : 'shadow-amber-500/20'} hover:scale-[1.02] active:scale-95 transition-all`}
                 >
                   Buy Now
                 </button>
@@ -337,6 +334,6 @@ function CourseCard({ batch, index, color }: { batch: any, index: number, color:
            </div>
         </div>
       </div>
-    </MotionDiv>
+    </GlassCard>
   );
 }
