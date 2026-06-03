@@ -6,7 +6,7 @@ export default function JsonLd() {
     "@type": "EducationalOrganization",
     "name": INSTITUTE.name,
     "url": "https://lakshyamarch.com",
-    "logo": "https://lakshyamarch.com/logo.png", // Placeholder, check for actual logo
+    "logo": "https://lakshyamarch.com/lm_logo.jpeg",
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": `+91-${INSTITUTE.primaryPhone}`,
@@ -43,7 +43,7 @@ export default function JsonLd() {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": INSTITUTE.name,
-    "image": "https://lakshyamarch.com/logo.png",
+    "image": "https://lakshyamarch.com/lm_logo.jpeg",
     "@id": "https://lakshyamarch.com",
     "url": "https://lakshyamarch.com",
     "telephone": `+91-${INSTITUTE.primaryPhone}`,
@@ -77,8 +77,8 @@ export default function JsonLd() {
     },
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "4.2",
-      "reviewCount": "107",
+      "ratingValue": "4.9",
+      "reviewCount": "128",
       "bestRating": "5",
       "worstRating": "1"
     }

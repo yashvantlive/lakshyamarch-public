@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { Quote, Star, BadgeCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -33,11 +34,11 @@ export default function TestimonialCard({
     >
       <div className="mb-4 flex items-center gap-3">
         {testimonial.image ? (
-          /* eslint-disable-next-line @next/next/no-img-element */
-          <img
+          <Image
             src={testimonial.image}
             alt={testimonial.name}
-            loading="lazy"
+            width={48}
+            height={48}
             className="h-12 w-12 rounded-full object-cover"
           />
         ) : (

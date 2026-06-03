@@ -31,14 +31,33 @@ const aggregateRatingSchema = {
   }
 };
 
-export default function TestimonialsPage() {
+export const revalidate = 300; // Cache for 5 minutes (ISR)
+
+async function getTestimonials() {
+  try {
+    // We cannot use erpApiPath here on server if NEXT_PUBLIC_ERP_API_URL isn't fully absolute,
+    // but in Netlify it should be. We'll use the environment variable directly.
+    const erpUrl = process.env.NEXT_PUBLIC_ERP_API_URL || "http://localhost:3000";
+    const res = await fetch(`${erpUrl}/api/testimonials`, {
+      next: { revalidate: 300 }
+    });
+    const data = await res.json();
+    return data.success ? data.data : [];
+  } catch (e) {
+    return [];
+  }
+}
+
+export default async function TestimonialsPage() {
+  const testimonials = await getTestimonials();
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(aggregateRatingSchema) }}
       />
-      <TestimonialsClient />
+      <TestimonialsClient initialTestimonials={testimonials} />
     </>
   );
 }

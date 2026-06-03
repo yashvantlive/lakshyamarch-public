@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Turnstile } from "@marsidev/react-turnstile";
 import { Send, CheckCircle, Loader2, AlertCircle } from "lucide-react";
 import { PROGRAMS } from "@/lib/siteData";
 import { erpApiPath } from "@/lib/erpApi";
@@ -13,6 +14,7 @@ export default function AdmissionEnquiryForm() {
   const [saving,       setSaving]       = useState(false);
   const [success,      setSuccess]      = useState(false);
   const [error,        setError]        = useState("");
+  const [token,        setToken]        = useState("");
 
   const classOptions =
     program === "school"   ? PROGRAMS.school.classes   :
@@ -24,6 +26,10 @@ export default function AdmissionEnquiryForm() {
 
     if (!name.trim() || !phone.trim() || !classApplied || !program) {
       setError("Sare fields fill karna compulsory hai.");
+      return;
+    }
+    if (!token) {
+      setError("Please complete the security check.");
       return;
     }
     if (!/^[6-9]\d{9}$/.test(phone)) {
@@ -45,6 +51,7 @@ export default function AdmissionEnquiryForm() {
           source:        "admission_page",   // ← auto-tag for filtering in admin
           status:        "new",
           createdAt:     Date.now(),
+          turnstileToken: token,
         }),
       });
       if (!res.ok) throw new Error("Failed");

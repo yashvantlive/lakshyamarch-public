@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { Trophy, GraduationCap, TrendingUp } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ScholarshipRibbon } from "@/design-system/patterns";
@@ -88,12 +89,11 @@ export default function ResultCard({
       {/* Photo */}
       <div className="relative aspect-[4/5] overflow-hidden bg-ink-100">
         {student.image ? (
-          /* eslint-disable-next-line @next/next/no-img-element */
-          <img
+          <Image
             src={student.image}
             alt={student.name}
-            loading="lazy"
-            className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+            fill
+            className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
           />
         ) : (
           <div className="relative flex h-full w-full items-center justify-center bg-gradient-to-br from-ink-800 to-ink-950">

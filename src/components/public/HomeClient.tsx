@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import {
   GraduationCap, Target, Trophy, Users, Quote,
   ShieldCheck, BookOpen, Stethoscope, Sparkles, CheckCircle2,
@@ -161,10 +162,11 @@ function ThinkNeetSection() {
             <div className="relative overflow-hidden bg-ink-950 p-8 sm:p-12">
               <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-brand-green-600 via-brand-gold-400 to-brand-green-600" />
               <BannerLabel tone="green" icon={BookOpen}>ThinkNEET Test Series</BannerLabel>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src="/images/campaigns/think-neet/think-neet-logo.webp"
                 alt="ThinkNEET"
+                width={200}
+                height={48}
                 className="mt-6 h-12 w-auto object-contain"
               />
               <h2 className="mt-5 font-display text-[clamp(1.75rem,3.5vw,2.5rem)] font-extrabold leading-tight tracking-tight text-white">
@@ -194,11 +196,11 @@ function ThinkNeetSection() {
 
             {/* Right: clean framed poster (a real image, never a faded overlay) */}
             <div className="relative min-h-[320px] bg-ink-100">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src="/images/campaigns/think-neet/think-neet-poster.webp"
                 alt="ThinkNEET Test Series poster"
-                className="absolute inset-0 h-full w-full object-cover"
+                fill
+                className="object-cover"
               />
             </div>
           </div>
@@ -251,8 +253,7 @@ function FounderSection() {
             <div className="relative overflow-hidden rounded-lg border border-ink-200 bg-white p-6 shadow-brand-sm">
               <div className="relative mb-6 aspect-square overflow-hidden rounded-md border border-ink-200">
                 {FOUNDER.image ? (
-                  /* eslint-disable-next-line @next/next/no-img-element */
-                  <img src={FOUNDER.image} alt={FOUNDER.name} className="h-full w-full object-cover object-top" />
+                  <Image src={FOUNDER.image} alt={FOUNDER.name} fill className="object-cover object-top" />
                 ) : (
                   <div className="flex h-full w-full items-center justify-center bg-brand-blue-100 font-display text-5xl font-extrabold text-brand-blue-700">
                     {FOUNDER.name.charAt(0)}

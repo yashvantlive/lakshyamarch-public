@@ -22,28 +22,15 @@ interface Testimonial {
   createdAt: string;
 }
 
-export default function TestimonialsClient() {
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
-  const [loading, setLoading] = useState(true);
+export default function TestimonialsClient({ initialTestimonials = [] }: { initialTestimonials?: Testimonial[] }) {
+  const [testimonials, setTestimonials] = useState<Testimonial[]>(initialTestimonials);
+  const [loading, setLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [formSuccess, setFormSuccess] = useState(false);
   const [formData, setFormData] = useState({ name: "", content: "", rating: 5, studentClass: "" });
 
-  useEffect(() => {
-    async function fetchTestimonials() {
-      try {
-        const res = await fetch(erpApiPath("/api/testimonials"));
-        const data = await res.json();
-        if (data.success) setTestimonials(data.data);
-      } catch {
-        /* graceful: show empty state */
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchTestimonials();
-  }, []);
+  // Data is fetched server-side using ISR now
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

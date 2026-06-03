@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 /**
@@ -21,11 +22,10 @@ export default function BrandMark({
       )}
       style={{ width: size, height: size }}
     >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
+      <Image
         src="/lm_logo.jpeg"
         alt="LakshyaMarch"
-        className="h-full w-full object-contain rounded-lg"
+        className="object-contain rounded-lg"
         width={size}
         height={size}
       />

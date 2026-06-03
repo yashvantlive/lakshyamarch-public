@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Turnstile } from "@marsidev/react-turnstile";
 import { Send, CheckCircle, Loader2, AlertCircle } from "lucide-react";
 import { PROGRAMS } from "@/lib/siteData";
 import ClientOnly from "@/components/ClientOnly";
@@ -39,6 +40,7 @@ function EnquiryFormInner() {
   const [saving, setSaving] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
+  const [token, setToken] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,6 +48,10 @@ function EnquiryFormInner() {
 
     if (!name.trim() || !phone.trim() || !classApplied || !program) {
       setError("Please fill all fields.");
+      return;
+    }
+    if (!token) {
+      setError("Please complete the security check.");
       return;
     }
     if (!/^[6-9]\d{9}$/.test(phone)) {
@@ -67,6 +73,7 @@ function EnquiryFormInner() {
           source: "online",
           status: "inquiry",
           createdAt: Date.now(),
+          turnstileToken: token,
         })
       });
       if (!res.ok) throw new Error("Failed to submit");
@@ -197,6 +204,13 @@ function EnquiryFormInner() {
             </select>
           </div>
         </div>
+          
+          <div className="flex justify-center pt-2">
+            <Turnstile
+              siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "1x00000000000000000000AA"}
+              onSuccess={setToken}
+            />
+          </div>
 
         {program === "coaching" && (
           <div className="pt-1">

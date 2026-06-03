@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Turnstile } from "@marsidev/react-turnstile";
 import { User, Phone, CheckCircle2, AlertCircle, Loader2, GraduationCap, School, Target } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { erpApiPath } from "@/lib/erpApi";
@@ -9,6 +10,7 @@ export default function TestEnquiryForm() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
+  const [token, setToken] = useState("");
   const router = useRouter();
 
   // Selected Target determines class options
@@ -21,6 +23,12 @@ export default function TestEnquiryForm() {
     setLoading(true);
     setError("");
 
+    if (!token) {
+      setError("Please complete the security check.");
+      setLoading(false);
+      return;
+    }
+
     const fd = new FormData(e.currentTarget);
     const data = {
       name: fd.get("name") as string,
@@ -28,6 +36,7 @@ export default function TestEnquiryForm() {
       targetExam: fd.get("targetExam") as string,
       className: fd.get("className") as string,
       schoolName: fd.get("schoolName") as string,
+      turnstileToken: token,
     };
 
     try {
@@ -184,8 +193,8 @@ export default function TestEnquiryForm() {
             School / College Name <span className="text-slate-400 font-normal lowercase">(Optional)</span>
           </label>
           <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-              <School size={16} className="text-slate-400" />
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-ink-400">
+              <School size={18} strokeWidth={1.5} />
             </div>
             <input
               type="text"
@@ -194,6 +203,12 @@ export default function TestEnquiryForm() {
               placeholder="Your current school"
             />
           </div>
+        </div>
+        <div className="flex justify-center pt-2">
+          <Turnstile
+            siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "1x00000000000000000000AA"}
+            onSuccess={setToken}
+          />
         </div>
 
         <button
