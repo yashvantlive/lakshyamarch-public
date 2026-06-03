@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { GraduationCap, Quote } from "lucide-react";
 import { FaLinkedin, FaInstagram, FaFacebook } from "react-icons/fa";
 import { cn } from "@/lib/utils";
@@ -39,12 +40,12 @@ export default function FacultyCard({
       {/* Photo */}
       <div className="relative aspect-[4/5] overflow-hidden bg-ink-100">
         {faculty.image ? (
-          /* eslint-disable-next-line @next/next/no-img-element */
-          <img
+          <Image
             src={faculty.image}
             alt={faculty.name}
-            loading="lazy"
-            className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-brand-blue-700 to-brand-blue-900">
