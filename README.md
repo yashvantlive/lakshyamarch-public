@@ -1,0 +1,404 @@
+# 🏫 LakshyaMarch Public App: 210 Static Pages Catalog & Documentation
+
+Welcome to the comprehensive developer documentation for the **LakshyaMarch Public Next.js Website** (`lakshyamarch-public`). This website is compiled entirely to static HTML files (Static Site Generation - SSG) to guarantee maximum performance, instant page load times, and superior search engine optimization (SEO).
+
+Below is the complete catalog of all **210 routes** compiled by Next.js, along with a detailed explanation of how they work, the data they consume, and their interactive functionalities.
+
+---
+
+## 📂 Architecture & Routing Overview
+
+The app is built on **Next.js 16+ (App Router)** and utilizes static pre-rendering. 
+- **User-Facing Clean URLs**: Integrated rewrite rules in [next.config.ts](file:///d:/lm_admin/lakshyamarch-public/next.config.ts) map clean local SEO URLs to our internal parametric directories.
+- **Dynamic Content pre-rendering**: Dynamic routes retrieve data keys from static arrays inside `src/lib/` and run `generateStaticParams()` to create statically compiled HTML at build time.
+- **Global Components**: `<PublicNavbar />` and `<PublicFooter />` are included in the root [src/app/layout.tsx](file:///d:/lm_admin/lakshyamarch-public/src/app/layout.tsx) so individual subpages focus purely on their core section designs.
+
+---
+
+## 🗺️ Index of All 210 Compiled Pages
+
+### 1. Core Static Pages (32 Routes)
+
+These are the primary static landing pages and structural routes of the institute website.
+
+| # | Route / URL | Component Path | Purpose & How It Works |
+|---|---|---|---|
+| 1 | `/` | `src/app/page.tsx` | **Homepage**: Serves as the primary entry point. Features a Hero section with `QuickEnquiryForm`, a sliding CSS marquee highlights strip, recent toppers achievement grids, founders desk, testimonial slider, and localized FAQ schema. |
+| 2 | `/about` | `src/app/about/page.tsx` | **About Us**: Relates the establishment history (since 2019), Founder Ram Kumar Sir's story, core educational values, and regional stats. |
+| 3 | `/admission` | `src/app/admission/page.tsx` | **Admission Desk**: Explains the 3-step admission process. Integrates class grids, admission documents checklist, FAQs, and the interactive `AdmissionEnquiryForm`. |
+| 4 | `/admission-counselling` | `src/app/admission-counselling/page.tsx` | **Counselling Booking**: Landing page for booking 1-on-1 counseling sessions with Ram Sir for school, foundation, or JEE/NEET tracks. |
+| 5 | `/begusarai-coaching` | `src/app/begusarai-coaching/page.tsx` | **Campus Page**: Detailed campus information containing address, Google Maps embed, phone/email contact details, and physical infrastructure photos. |
+| 6 | `/blog` | `src/app/blog/page.tsx` | **Blog Hub**: Searchable and filterable archive of all 13 educational and strategy articles. Powered by client-side category tags and search queries. |
+| 7 | `/contact` | `src/app/contact/page.tsx` | **Contact Page**: Interactive page detailing contact numbers, map location, email, operational hours, and an FAQ accordian for quick assistance. |
+| 8 | `/faculty` | `src/app/faculty/page.tsx` | **Our Mentors**: Showcases our 8+ senior educators (IIT/NIT alumni) with details on their qualifications, subject expertise, and teaching methodologies. |
+| 9 | `/free-test` | `src/app/free-test/page.tsx` | **Diagnostic Mock Center**: Lists ongoing free mock tests and invites students to schedule a diagnostic test through enquiry forms. |
+| 10 | `/hostel-facilities` | `src/app/hostel-facilities/page.tsx` | **Hostel Page**: Details our secure, comfortable boarding rooms, hygienic mess dining facilities, safety features, and study environment details for outstation students. |
+| 11 | `/iit-jee-coaching-begusarai` | `src/app/iit-jee-coaching-begusarai/page.tsx` | **JEE Prep Landing**: Specialized landing page highlighting droppers batch details, JEE results, physics/chemistry/maths strategy, and admission forms. |
+| 12 | `/neet-campaign` | `src/app/neet-campaign/page.tsx` | **Medical Admissions Page**: Focuses on medical batches with a sticky header client CTA form tailored for NEET aspirants. |
+| 13 | `/neet-coaching-begusarai` | `src/app/neet-coaching-begusarai/page.tsx` | **NEET Prep Landing**: Highlights medical selections, AIR 499 ranks, biology NCERT prep plan, and medical target batches. |
+| 14 | `/notes` | `src/app/notes/page.tsx` | **Quick Revision Notes**: Central download list of quick cheat sheets, formula sheets, and chapter summaries. |
+| 15 | `/privacy-policy` | `src/app/privacy-policy/page.tsx` | **Privacy Policy**: Legal policy outlining user data collection, cookies, and communications terms. |
+| 16 | `/programs` | `src/app/programs/page.tsx` | **Academic Courses**: Features an interactive class-filtering system (Class 6th to Dropper JEE/NEET) showcasing syllabus details, course durations, pricing structure, and call-to-actions. |
+| 17 | `/results` | `src/app/results/page.tsx` | **Hall of Fame**: Features tabs to toggle between Board Exams, JEE Mains, and NEET results. Uses spring count-up counters to show topper numbers. |
+| 18 | `/scholarship` | `src/app/scholarship/page.tsx` | **LNAT Exam Portal**: Details the LakshyaMarch National Admission Test scholarship levels (up to 100% waiver), syllabi, and application forms. |
+| 19 | `/success-stories` | `src/app/success-stories/page.tsx` | **Success Journeys**: Grid of verified student interview profiles detailing their preparation roadmaps and ranks. |
+| 20 | `/terms` | `src/app/terms/page.tsx` | **Terms of Service**: Legal terms governing coaching admission rules, fees, refund rules, and classroom conduct guidelines. |
+| 21 | `/testimonials` | `src/app/testimonials/page.tsx` | **Student Reviews**: Detailed wall of feedback and video/text reviews from past students and parents. |
+| 22 | `/think-neet-test-series-begusarai` | `src/app/think-neet-test-series-begusarai/page.tsx` | **OMR Test Series**: Landing page outlining OMR-based test preparation schedules and registration for medical aspirants. |
+| 23 | `/study-material` | `src/app/(public)/study-material/page.tsx` | **Study Library Index**: Resource center interface linking books, DPPs, and notes sections. Includes search filters. |
+| 24 | `/study-material/dpps` | `src/app/(public)/study-material/dpps/page.tsx` | **DPP Downloads**: Lists Daily Practice Problems structured by class and subject, linking to Google Drive PDFs. |
+| 25 | `/study-material/ncert` | `src/app/(public)/study-material/ncert/page.tsx` | **NCERT Books**: Catalog of NCERT textbooks ready for digital download. |
+| 26 | `/study-material/notes` | `src/app/(public)/study-material/notes/page.tsx` | **Concept Sheets**: Offers downloadable formula cheat-sheets and handwritten summary files. |
+| 27 | `/study-material/syllabus` | `src/app/(public)/study-material/syllabus/page.tsx` | **Syllabus Trackers**: Displays chapter checklists for school boards and competitive entrance exams. |
+| 28 | `/_not-found` | `src/app/_not-found.tsx` | **404 Page**: Custom Next.js not-found fallback redirect page. |
+| 29 | `/social` | `src/app/social/page.tsx` | **Social Media Wall**: Live feeds from Facebook, YouTube, Instagram, and X. |
+| 30 | `/youtube` | `src/app/youtube/page.tsx` | **YouTube Gallery**: Video gallery showcasing IIT-JEE, NEET strategy videos and interviews. |
+| 31 | `/login` | `src/app/login/page.tsx` | **Portal Redirect**: Redirects users to the headless ERP login portal. |
+| 32 | `/robots.txt` | `src/app/robots.ts` | **Search Engine Robots**: Instructs web crawlers on which folders and files are indexed or disallowed. |
+
+---
+
+### 2. Dynamic Blog Posts (15 Routes)
+
+These 15 pages are generated by the dynamic directory `src/app/blog/[slug]/page.tsx` from blog entries in `src/lib/blogData.ts`. They provide SEO content, meta tags, and schema markups for target keywords.
+
+| # | Route Path | Focus Keyword | How It Works |
+|---|---|---|---|
+| 31 | `/blog/jee-mains-2026-results-lakshyamarch-begusarai` | JEE Main 2026 results | Pre-renders content celebrating the 7 qualified stars with an interactive student topper slider. |
+| 32 | `/blog/iit-jee-preparation-strategy-2026-class-11` | JEE preparation strategy | Month-by-month study guide for Class 11 students preparing for JEE 2026. |
+| 33 | `/blog/neet-2026-preparation-tips-toppers` | NEET 2026 preparation | Compilation of preparation timetables and routines from AIR 499 medical toppers. |
+| 34 | `/blog/best-coaching-in-begusarai-iit-jee-neet-2026` | best coaching Begusarai | Compares coaching features in the region and outlines why LakshyaMarch is rated #1. |
+| 35 | `/blog/iit-jee-vs-neet-which-one-class-10` | what to choose after 10th | A stream selection guidance article detailing differences in subjects, seats, and careers. |
+| 36 | `/blog/neet-dropper-strategy-how-to-crack-neet-second-attempt` | NEET dropper strategy | 8-month preparation planner and mental health advice for repeater candidates. |
+| 37 | `/blog/lakshyamarch-results-2025-complete-analysis` | LakshyaMarch results 2025 | Verifiable breakdown of all 2025 JEE, NEET, and board exam scores. |
+| 38 | `/blog/foundation-classes-class-6-7-8-why-start-early` | foundation classes | Discusses early competitive advantage for Olympiads, NTSE, and logical reasoning. |
+| 39 | `/blog/ram-kumar-sir-iit-kharagpur-lakshyamarch-founder` | Ram Kumar Sir | Explores the founder's corporate background, IIT Kharagpur education, and mission. |
+| 40 | `/blog/cbse-vs-icse-which-board-better-for-jee-neet` | CBSE vs ICSE | Analyzes syllabus overlaps between CBSE/ICSE textbooks and competitive NTA patterns. |
+| 41 | `/blog/neet-biology-study-plan-lakshyamarch-faculty` | NEET Biology study plan | Chapter-wise weightage analysis and memory tips by Nitish Sharma Sir. |
+| 42 | `/blog/top-5-neet-coaching-in-begusarai` | top NEET coaching Begusarai| Honest local comparison of medical coachings and board vs competitive curricula. |
+| 43 | `/blog/best-hostel-coaching-in-begusarai` | best hostel coaching Begusarai| Guides parents on finding a secure boarding environment and nutritious meals locally. |
+| 44 | `/blog/think-neet-lakshyamarch-begusarai` | Think NEET | Details the exclusive LakshyaMarch campaign for medical aspirants in Begusarai. |
+| 45 | `/blog/neet-preparation-begusarai-hindi` | NEET preparation Hindi | Guide and tips for NEET preparation focusing on Hindi-medium background students in Begusarai. |
+
+**Under the Hood**:
+- Uses `generateStaticParams()` to fetch all slugs from `BLOG_POSTS`.
+- Standardizes reading layouts with customizable title banners.
+- Includes social share widgets (WhatsApp, Twitter) and related article sliders at the bottom.
+
+---
+
+### 3. Topper Success Stories (3 Routes)
+
+These 3 pages are built by `src/app/success-stories/[slug]/page.tsx` from profiles in `src/lib/stories.ts`.
+
+| # | Route Path | Student Profile | Achievement & How It Works |
+|---|---|---|---|
+| 46 | `/success-stories/aradhya-bharti-neet-air-499-journey` | Aradhya Bharti | **AIR 499, NEET 2025**: Explains how she studied 14 hours a day at home to secure a seat at ABVIMS, Delhi. Uses Rank Math credentials schema. |
+| 47 | `/success-stories/akhnavya-jee-99-percentile-math-strategy` | Akhnavya | **99.35%ile, JEE Main 2025**: Outlines his core mathematics schedule and how he utilized the integrated schooling model. |
+| 48 | `/success-stories/abhijeet-neet-685-marks-topper-story` | Abhijeet | **685/720, NEET 2024**: Focuses on expert mentoring, mock exams, and his strategy for clinical MCQs. |
+
+**Under the Hood**:
+- Fetches parameters from `SUCCESS_STORIES`.
+- Pre-compiles customized interviews with blockquote highlights and checklists.
+- Renders `OccupationalCredentialMeasurement` schemas.
+
+---
+
+### 4. Local SEO Target Pages (156 Routes)
+
+To capture local search interest across Bihar, the application generates pages for **52 unique locations** across **3 coaching targets** (General, IIT-JEE, and NEET).
+
+**Clean URL Mapping**:
+1. **General local coaching**: `/{location}-coaching` (maps to `/seo/general/[location]`)
+2. **IIT-JEE local coaching**: `/iit-jee-coaching-{location}` (maps to `/seo/iit-jee/[location]`)
+3. **NEET local coaching**: `/neet-coaching-{location}` (maps to `/seo/neet/[location]`)
+
+#### 🗺️ List of the 52 Target Locations:
+- **Begusarai (18 Locations)**: `begusarai`, `matihani`, `shamho-akha-kurha`, `birpur`, `barauni`, `teghra`, `bhagwanpur`, `mansoorchak`, `bachhwara`, `cheria-bariarpur`, `chhaurahi`, `khodabandpur`, `balia`, `dandari`, `sahebpur-kamal`, `bakhri`, `nawkothi`, `garhpura`.
+- **Khagaria (7 Locations)**: `khagaria`, `gogri`, `alauli`, `chautham`, `mansi`, `beldaur`, `parbatta`.
+- **Lakhisarai (7 Locations)**: `lakhisarai`, `barahiya`, `pipariya`, `halsi`, `channan`, `ramgarh-chowk`, `surajgarha`.
+- **Samastipur (20 Locations)**: `samastipur`, `dalsinghsarai`, `rosera`, `pusa`, `sarairanjan`, `tajpur`, `patori`, `hasanpur`, `bibhutpur`, `bithan`, `kalyanpur`, `warisnagar`, `khanpur`, `singhia`, `morwa`, `vidyapatinagar`, `mohanpur`, `shivajinagar`, `shahpur-patori`, `musrigharari`.
+
+---
+
+#### 📋 Complete List of SEO Routes (156 Pages)
+
+##### A. General Local Coaching (52 Pages)
+Targeting keywords like *"Best coaching in [Location]"* and *"Top coaching institute in [Location]"*:
+
+```markdown
+47.  /begusarai-coaching
+48.  /matihani-coaching
+49.  /shamho-akha-kurha-coaching
+50.  /birpur-coaching
+51.  /barauni-coaching
+52.  /teghra-coaching
+53.  /bhagwanpur-coaching
+54.  /mansoorchak-coaching
+55.  /bachhwara-coaching
+56.  /cheria-bariarpur-coaching
+57.  /chhaurahi-coaching
+58.  /khodabandpur-coaching
+59.  /balia-coaching
+60.  /dandari-coaching
+61.  /sahebpur-kamal-coaching
+62.  /bakhri-coaching
+63.  /nawkothi-coaching
+64.  /garhpura-coaching
+65.  /khagaria-coaching
+66.  /gogri-coaching
+67.  /alauli-coaching
+68.  /chautham-coaching
+69.  /mansi-coaching
+70.  /beldaur-coaching
+71.  /parbatta-coaching
+72.  /lakhisarai-coaching
+73.  /barahiya-coaching
+74.  /pipariya-coaching
+75.  /halsi-coaching
+76.  /channan-coaching
+77.  /ramgarh-chowk-coaching
+78.  /surajgarha-coaching
+79.  /samastipur-coaching
+80.  /dalsinghsarai-coaching
+81.  /rosera-coaching
+82.  /pusa-coaching
+83.  /sarairanjan-coaching
+84.  /tajpur-coaching
+85.  /patori-coaching
+86.  /hasanpur-coaching
+87.  /bibhutpur-coaching
+88.  /bithan-coaching
+89.  /kalyanpur-coaching
+90.  /warisnagar-coaching
+91.  /khanpur-coaching
+92.  /singhia-coaching
+93.  /morwa-coaching
+94.  /vidyapatinagar-coaching
+95.  /mohanpur-coaching
+96.  /shivajinagar-coaching
+97.  /shahpur-patori-coaching
+98.  /musrigharari-coaching
+```
+
+##### B. IIT-JEE Local Coaching (52 Pages)
+Targeting keywords like *"IIT JEE coaching in [Location]"* and *"Best engineering preparation in [Location]"*:
+
+```markdown
+99.  /iit-jee-coaching-begusarai
+100. /iit-jee-coaching-matihani
+101. /iit-jee-coaching-shamho-akha-kurha
+102. /iit-jee-coaching-birpur
+103. /iit-jee-coaching-barauni
+104. /iit-jee-coaching-teghra
+105. /iit-jee-coaching-bhagwanpur
+106. /iit-jee-coaching-mansoorchak
+107. /iit-jee-coaching-bachhwara
+108. /iit-jee-coaching-cheria-bariarpur
+109. /iit-jee-coaching-chhaurahi
+110. /iit-jee-coaching-khodabandpur
+111. /iit-jee-coaching-balia
+112. /iit-jee-coaching-dandari
+113. /iit-jee-coaching-sahebpur-kamal
+114. /iit-jee-coaching-bakhri
+115. /iit-jee-coaching-nawkothi
+116. /iit-jee-coaching-garhpura
+117. /iit-jee-coaching-khagaria
+118. /iit-jee-coaching-gogri
+119. /iit-jee-coaching-alauli
+120. /iit-jee-coaching-chautham
+121. /iit-jee-coaching-mansi
+122. /iit-jee-coaching-beldaur
+123. /iit-jee-coaching-parbatta
+124. /iit-jee-coaching-lakhisarai
+125. /iit-jee-coaching-barahiya
+126. /iit-jee-coaching-pipariya
+127. /iit-jee-coaching-halsi
+128. /iit-jee-coaching-channan
+129. /iit-jee-coaching-ramgarh-chowk
+130. /iit-jee-coaching-surajgarha
+131. /iit-jee-coaching-samastipur
+132. /iit-jee-coaching-dalsinghsarai
+133. /iit-jee-coaching-rosera
+134. /iit-jee-coaching-pusa
+135. /iit-jee-coaching-sarairanjan
+136. /iit-jee-coaching-tajpur
+137. /iit-jee-coaching-patori
+138. /iit-jee-coaching-hasanpur
+139. /iit-jee-coaching-bibhutpur
+140. /iit-jee-coaching-bithan
+141. /iit-jee-coaching-kalyanpur
+142. /iit-jee-coaching-warisnagar
+143. /iit-jee-coaching-khanpur
+144. /iit-jee-coaching-singhia
+145. /iit-jee-coaching-morwa
+146. /iit-jee-coaching-vidyapatinagar
+147. /iit-jee-coaching-mohanpur
+148. /iit-jee-coaching-shivajinagar
+149. /iit-jee-coaching-shahpur-patori
+150. /iit-jee-coaching-musrigharari
+```
+
+##### C. NEET Local Coaching (52 Pages)
+Targeting keywords like *"NEET coaching classes in [Location]"* and *"Best medical preparation in [Location]"*:
+
+```markdown
+151. /neet-coaching-begusarai
+152. /neet-coaching-matihani
+153. /neet-coaching-shamho-akha-kurha
+154. /neet-coaching-birpur
+155. /neet-coaching-barauni
+156. /neet-coaching-teghra
+157. /neet-coaching-bhagwanpur
+158. /neet-coaching-mansoorchak
+159. /neet-coaching-bachhwara
+160. /neet-coaching-cheria-bariarpur
+161. /neet-coaching-chhaurahi
+162. /neet-coaching-khodabandpur
+163. /neet-coaching-balia
+164. /neet-coaching-dandari
+165. /neet-coaching-sahebpur-kamal
+166. /neet-coaching-bakhri
+167. /neet-coaching-nawkothi
+168. /neet-coaching-garhpura
+169. /neet-coaching-khagaria
+170. /neet-coaching-gogri
+171. /neet-coaching-alauli
+172. /neet-coaching-chautham
+173. /neet-coaching-mansi
+174. /neet-coaching-beldaur
+175. /neet-coaching-parbatta
+176. /neet-coaching-lakhisarai
+177. /neet-coaching-barahiya
+178. /neet-coaching-pipariya
+179. /neet-coaching-halsi
+180. /neet-coaching-channan
+181. /neet-coaching-ramgarh-chowk
+182. /neet-coaching-surajgarha
+183. /neet-coaching-samastipur
+184. /neet-coaching-dalsinghsarai
+185. /neet-coaching-rosera
+186. /neet-coaching-pusa
+187. /neet-coaching-sarairanjan
+188. /neet-coaching-tajpur
+189. /neet-coaching-patori
+190. /neet-coaching-hasanpur
+191. /neet-coaching-bibhutpur
+192. /neet-coaching-bithan
+193. /neet-coaching-kalyanpur
+194. /neet-coaching-warisnagar
+195. /neet-coaching-khanpur
+196. /neet-coaching-singhia
+197. /neet-coaching-morwa
+198. /neet-coaching-vidyapatinagar
+199. /neet-coaching-mohanpur
+200. /neet-coaching-shivajinagar
+201. /neet-coaching-shahpur-patori
+202. /neet-coaching-musrigharari
+```
+
+##### D. Search Engine Metadata & Sitemap Indexing (Dynamic Sitemap Index)
+To optimize indexing in search engines like Google Search Console, the site compiles a **Sitemap Index** that splits URLs into smaller, hyper-focused sub-sitemaps:
+
+```markdown
+203. /robots.txt (Crawler instructions file pointing to the main sitemap index)
+204. /sitemap.xml (Main sitemap index linking to the following 5 sub-sitemaps)
+     ├── /sitemap/0.xml (Sub-sitemap containing all Core pages, Blog posts, and Success Stories)
+     ├── /sitemap/1.xml (Sub-sitemap containing all Begusarai SEO target URLs, deduplicated)
+     ├── /sitemap/2.xml (Sub-sitemap containing all Khagaria SEO target URLs, deduplicated)
+     ├── /sitemap/3.xml (Sub-sitemap containing all Lakhisarai SEO target URLs, deduplicated)
+     └── /sitemap/4.xml (Sub-sitemap containing all Samastipur SEO target URLs, deduplicated)
+```
+
+---
+
+#### ⚙️ How the SEO Target System Works
+
+All 156 local SEO target pages are generated dynamically from district parameters using Next.js rewrite patterns. Under the hood:
+
+1. **Parameters & Dedup**:
+   - `generateStaticParams()` retrieves structural data from `districtData.ts`. It maps the 4 main districts and all 48 sub-blocks to create 52 distinct slugs.
+2. **Meta Tag Generation**:
+   - The title, description, and tags are populated dynamically. For example, the NEET page for Rosera outputs: *"NEET Coaching Classes in Rosera | LakshyaMarch"* and adapts description content.
+3. **Structured Schema Integration**:
+   - Each page renders a custom, localized `FAQPage` JSON-LD schema containing questions such as: *"Which is the best coaching choice for students in Rosera?"*.
+4. **Adaptive Hostelling Prompts**:
+   - Since these pages target students from outside Begusarai campus, the page dynamically checks the slug. If the location is outside Begusarai town, it shows hostel recommendations, onboarding information, and travel guides. If the location is `begusarai`, it adapts to a local campus guide.
+
+---
+
+## 🛠️ Build and Verification Guide
+
+To compile and verify this configuration locally:
+
+### 1. Set Up Environment & Install Packages
+```bash
+npm install
+```
+
+### 2. Verify Code Compilation & TypeScript Integrity
+Ensure that all routes compile and type checks pass with zero warnings:
+```bash
+npx tsc --noEmit
+```
+
+### 3. Compile the Production Build
+Trigger Next.js Static Site Generation (SSG). This compiles the pages to static HTML directories inside `.next/server/app/`:
+```bash
+npm run build
+```
+During the compilation, Next.js will report:
+`✓ Generating static pages using 3 workers (209/209)`
+
+### 4. Run Development Server
+```bash
+npm run dev
+```
+The site will run on `http://localhost:3000`. Direct requests to `/{location}-coaching` will rewrite to the underlying SEO page templates seamlessly.
+
+## System Architecture & Integration Setup (Headless Approach)
+
+This project follows a **Decoupled (Headless) Microservices Architecture**. The public website and the internal ERP are strictly separated into two standalone applications.
+
+### 1. The Separation of Concerns
+- **Frontend / Public Site (`lakshyamarch-public`)**: This Next.js 16 (Static Site Generation) app handles all marketing pages, blogs, SEO routing, and fast initial page loads. It acts as the "Client".
+  - **Proposed Domain**: `https://lakshyamarch.com`
+- **Backend / Internal ERP (`lakshyamarch`)**: A separate Next.js app serving as the internal admin panel, student/teacher dashboards, and the central API server. It manages MongoDB database operations, face-recognition attendance, and secure backend functions.
+  - **Proposed Domain/Subdomain**: `https://erp.lakshyamarch.com` or `https://lakshyamarch.in`
+
+### 2. Frontend-to-Backend Communication
+For interactive elements on the public site (e.g., Test Forms, Enquiry Forms, Contact Forms), this frontend will make Cross-Origin (CORS) API requests to the ERP backend.
+
+**Flow of Data:**
+1. A user fills out the Admission/Enquiry form on `lakshyamarch.com`.
+2. The form triggers an API `POST` request to `${process.env.NEXT_PUBLIC_ERP_API_URL}/api/admissions` (e.g., pointing to the ERP domain).
+3. The ERP server accepts the request, validates it, and saves it into the MongoDB database.
+
+### 3. Developer Prerequisites for Integration
+To ensure this system works locally or in production, developers or AI agents reading this must ensure the following configurations are set:
+
+#### A. Environment Variables
+In the root of this `lakshyamarch-public` project, ensure the `.env.local` contains the ERP API endpoint:
+```env
+NEXT_PUBLIC_ERP_API_URL=https://erp.lakshyamarch.com
+```
+
+#### B. CORS Configuration (On the ERP Server)
+Because the domains are different, the backend ERP must explicitly allow CORS requests from the public site. In the ERP's `next.config.js` or API routes, configure CORS headers:
+```javascript
+// Example Next.js config for the ERP server
+async headers() {
+  return [
+    {
+      source: "/api/:path*",
+      headers: [
+        { key: "Access-Control-Allow-Credentials", value: "true" },
+        { key: "Access-Control-Allow-Origin", value: "https://lakshyamarch.com" }, 
+        { key: "Access-Control-Allow-Methods", value: "GET,OPTIONS,PATCH,DELETE,POST,PUT" },
+        { key: "Access-Control-Allow-Headers", value: "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version" },
+      ]
+    }
+  ]
+}
+```
+*Note: This ensures the frontend can push leads to the CRM database without violating browser security policies.*
