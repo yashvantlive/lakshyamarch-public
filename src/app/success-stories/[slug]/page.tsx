@@ -61,52 +61,55 @@ export default async function SuccessStoryDetailPage({ params }: PageProps) {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-ink-50 flex flex-col font-sans">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <PublicNavbar />
-      
-      {/* 2. PREMIUM HEADER (Blog Style) */}
-      <div className="h-32 bg-[#0A0F2C]" />
-      
+
+      {/* Institutional masthead band */}
+      <div className="relative h-32 overflow-hidden bg-ink-950">
+        <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-brand-red-600 via-brand-gold-400 to-brand-red-600" />
+        <div className="surface-exam-sheet-dark absolute inset-0 opacity-[0.06]" />
+      </div>
+
       <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           
           {/* LEFT: Main Content Area (Column 8/12) */}
-          <article className="lg:col-span-8 bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden">
+          <article className="lg:col-span-8 bg-white rounded-lg shadow-brand-sm border border-ink-200 overflow-hidden">
             
             {/* Breadcrumbs */}
             <div className="px-8 pt-8 pb-4">
-              <nav className="flex items-center gap-2 text-[10px] uppercase tracking-widest font-bold text-slate-400">
-                <Link href="/" className="hover:text-blue-600 transition-colors">Home</Link>
+              <nav className="flex items-center gap-2 text-[10px] uppercase tracking-widest font-bold text-ink-400">
+                <Link href="/" className="hover:text-brand-blue-700 transition-colors">Home</Link>
                 <span>/</span>
-                <Link href="/results" className="hover:text-blue-600 transition-colors">Results</Link>
+                <Link href="/results" className="hover:text-brand-blue-700 transition-colors">Results</Link>
                 <span>/</span>
-                <span className="text-slate-900">{story.category} Success</span>
+                <span className="text-ink-900">{story.category} Success</span>
               </nav>
             </div>
 
             {/* Title & Meta */}
             <div className="px-8 pb-10">
-              <h1 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-[1.1] mb-6">
+              <h1 className="text-3xl sm:text-5xl font-extrabold text-ink-900 tracking-tight leading-[1.1] mb-6">
                 {story.title}
               </h1>
               
-              <div className="flex flex-wrap items-center gap-6 text-sm text-slate-500 font-medium">
+              <div className="flex flex-wrap items-center gap-6 text-sm text-ink-500 font-medium">
                 <div className="flex items-center gap-2">
-                  <div className="h-8 w-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-600">
+                  <div className="h-8 w-8 rounded-md bg-brand-blue-50 flex items-center justify-center text-brand-blue-700">
                     <User size={14} />
                   </div>
                   <span>{story.author}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Calendar size={14} className="text-slate-400" />
+                  <Calendar size={14} className="text-ink-400" />
                   <span>{new Date().toLocaleDateString('en-IN', { month: 'long', year: 'numeric' })}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="px-3 py-1 rounded-full bg-amber-50 text-amber-600 text-[10px] font-black uppercase tracking-wider border border-amber-100">
+                  <div className="border-l-2 border-brand-gold-500 bg-brand-gold-50 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-brand-gold-700">
                     {story.category} Topper
                   </div>
                 </div>
@@ -114,7 +117,7 @@ export default async function SuccessStoryDetailPage({ params }: PageProps) {
             </div>
 
             {/* Featured Image */}
-            <div className="relative aspect-video w-full bg-slate-100 flex items-center justify-center">
+            <div className="relative aspect-video w-full bg-ink-100 flex items-center justify-center">
               {story.image ? (
                 <Image 
                   src={story.image} 
@@ -124,24 +127,24 @@ export default async function SuccessStoryDetailPage({ params }: PageProps) {
                   priority
                 />
               ) : (
-                <Trophy size={80} className="text-slate-300 opacity-50" />
+                <Trophy size={80} className="text-ink-300 opacity-50" />
               )}
             </div>
 
             {/* Article Content (Premium Typography) */}
             <div className="px-8 py-12 sm:px-12 prose prose-slate prose-lg max-w-none">
               <div 
-                className="text-slate-700 leading-relaxed space-y-6"
+                className="text-ink-700 leading-relaxed space-y-6"
                 dangerouslySetInnerHTML={{ __html: story.content }} 
               />
             </div>
 
             {/* Footer of Article */}
-            <div className="px-8 py-8 border-t border-slate-50 flex items-center justify-between">
-              <Link href="/results" className="flex items-center gap-2 text-sm font-black text-blue-600 hover:gap-4 transition-all">
+            <div className="px-8 py-8 border-t border-ink-100 flex items-center justify-between">
+              <Link href="/results" className="flex items-center gap-2 text-sm font-bold text-brand-blue-700 hover:gap-4 transition-all">
                 <ArrowLeft size={16} /> Back to Results
               </Link>
-              <button className="flex items-center gap-2 text-sm font-black text-slate-400 hover:text-slate-900 transition-colors">
+              <button className="flex items-center gap-2 text-sm font-bold text-ink-400 hover:text-ink-900 transition-colors">
                 <Share2 size={16} /> Share Story
               </button>
             </div>
@@ -151,57 +154,57 @@ export default async function SuccessStoryDetailPage({ params }: PageProps) {
           <aside className="lg:col-span-4 space-y-8">
             
             {/* 1. Admission CTA Box */}
-            <div className="bg-[#FF6B00] rounded-3xl p-8 text-white relative overflow-hidden shadow-xl shadow-orange-500/20">
-              <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-3xl pointer-events-none" />
-              <h3 className="text-2xl font-black tracking-tight mb-4 relative z-10">Start Your Own Success Story</h3>
-              <p className="text-orange-100 text-sm mb-8 leading-relaxed opacity-90 relative z-10">
+            <div className="relative overflow-hidden rounded-lg bg-brand-red-600 p-8 text-white shadow-brand-lg">
+              <div className="absolute inset-x-0 top-0 h-1 bg-brand-gold-400" />
+              <h3 className="text-2xl font-extrabold tracking-tight mb-4">Start Your Own Success Story</h3>
+              <p className="text-white/85 text-sm mb-8 leading-relaxed">
                 Join LakshyaMarch and get elite mentorship in your hometown Begusarai. Admissions open for 2026-28.
               </p>
               <Link 
                 href="/contact" 
-                className="block w-full text-center bg-white text-[#FF6B00] py-4 rounded-2xl font-black uppercase tracking-widest hover:bg-orange-50 transition-colors relative z-10"
+                className="block w-full text-center bg-white text-brand-red-700 py-4 rounded-md font-bold uppercase tracking-widest hover:bg-brand-gold-50 transition-colors"
               >
                 Apply for Admission
               </Link>
             </div>
 
             {/* 2. Quick Links / Popular Stats */}
-            <div className="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
-              <h4 className="text-sm font-black text-slate-900 uppercase tracking-widest mb-6 flex items-center gap-3">
-                <div className="w-1.5 h-6 bg-blue-600 rounded-full" /> Quick Highlights
+            <div className="bg-white rounded-lg p-8 border border-ink-200 shadow-brand-sm">
+              <h4 className="text-sm font-bold text-ink-900 uppercase tracking-widest mb-6 flex items-center gap-3">
+                <div className="w-1.5 h-6 bg-brand-blue-700" /> Quick Highlights
               </h4>
               <ul className="space-y-6">
                 <li className="flex gap-4">
-                  <div className="h-10 w-10 rounded-xl bg-orange-50 text-orange-500 flex items-center justify-center shrink-0">
+                  <div className="h-10 w-10 rounded-md bg-brand-green-50 text-brand-green-600 flex items-center justify-center shrink-0">
                     <GraduationCap size={20} />
                   </div>
                   <div>
-                    <h5 className="text-sm font-black text-slate-900">AIR-499 NEET</h5>
-                    <p className="text-xs text-slate-500 font-medium">Best medical rank in city</p>
+                    <h5 className="text-sm font-bold text-ink-900">AIR-499 NEET</h5>
+                    <p className="text-xs text-ink-500 font-medium">Best medical rank in city</p>
                   </div>
                 </li>
                 <li className="flex gap-4">
-                  <div className="h-10 w-10 rounded-xl bg-blue-50 text-blue-500 flex items-center justify-center shrink-0">
+                  <div className="h-10 w-10 rounded-md bg-brand-blue-50 text-brand-blue-700 flex items-center justify-center shrink-0">
                     <BookOpen size={20} />
                   </div>
                   <div>
-                    <h5 className="text-sm font-black text-slate-900">99.35% JEE</h5>
-                    <p className="text-xs text-slate-500 font-medium">Physics & Math excellence</p>
+                    <h5 className="text-sm font-bold text-ink-900">99.35% JEE</h5>
+                    <p className="text-xs text-ink-500 font-medium">Physics & Math excellence</p>
                   </div>
                 </li>
               </ul>
             </div>
 
             {/* 3. Social Follow */}
-            <div className="bg-slate-900 rounded-3xl p-8 text-white">
-              <h4 className="text-sm font-black text-slate-400 uppercase tracking-widest mb-4">Follow Daily Updates</h4>
-              <p className="text-xs text-slate-300 mb-6 leading-relaxed opacity-70 font-medium">
+            <div className="bg-ink-900 rounded-lg p-8 text-white">
+              <h4 className="text-sm font-bold text-white/60 uppercase tracking-widest mb-4">Follow Daily Updates</h4>
+              <p className="text-xs text-white/70 mb-6 leading-relaxed font-medium">
                 Get preparation tips, exam news and updates on your phone.
               </p>
               <div className="flex gap-3">
-                <Link href="#" className="h-10 w-10 rounded-xl bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all text-white font-black text-lg">f</Link>
-                <Link href="#" className="h-10 w-10 rounded-xl bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all text-white font-black text-lg">y</Link>
-                <Link href="#" className="h-10 w-10 rounded-xl bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all text-white font-black text-lg">in</Link>
+                <Link href="#" className="h-10 w-10 rounded-md bg-ink-800 flex items-center justify-center hover:bg-ink-700 transition-all text-white font-bold text-lg">f</Link>
+                <Link href="#" className="h-10 w-10 rounded-md bg-ink-800 flex items-center justify-center hover:bg-ink-700 transition-all text-white font-bold text-lg">y</Link>
+                <Link href="#" className="h-10 w-10 rounded-md bg-ink-800 flex items-center justify-center hover:bg-ink-700 transition-all text-white font-bold text-lg">in</Link>
               </div>
             </div>
           </aside>

@@ -367,7 +367,6 @@ export const FACULTY = [
     qual: "B.Tech, BEU Patna",
     prev: "3 years exp",
     usp: "Passionate faculty. Here to guide, support, and inspire students.",
-    // social: "https://www.linkedin.com/in/gautam-ishwar-520318299/"
   },
 ];
 

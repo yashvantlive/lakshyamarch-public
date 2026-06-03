@@ -1,7 +1,11 @@
 import PublicNavbar from "@/components/public/PublicNavbar";
 import PublicFooter from "@/components/public/PublicFooter";
-import Link from "next/link";
-import { Phone, ArrowRight, GraduationCap, Library } from "lucide-react";
+import { Phone, GraduationCap, Library, Target, Users } from "lucide-react";
+import {
+  Badge, SectionHeader, HeroSection, ProgramCard, CTASection, Button, Reveal, Stagger, StaggerItem,
+} from "@/components/brand";
+import { layout } from "@/design-system/spacing";
+import { cn } from "@/lib/utils";
 
 export const metadata = {
   title: "Admission Counselling | LakshyaMarch Education",
@@ -9,209 +13,101 @@ export const metadata = {
 };
 
 const COUNSELORS = [
-  {
-    name: "Ramayan Kumar",
-    role: "Admission Counselor",
-    subject: "Admissions",
-    image: "",
-    qual: "Expert Admission Counselor",
-    prev: "5+ Years Experience",
-    phone: "8405906260",
-    usp: "Helps parents and students understand the right batch for School, Boards and Competition."
-  },
-  {
-    name: "Dheeraj Kumar",
-    role: "Admission Counselor",
-    subject: "Admissions",
-    image: "",
-    qual: "Expert Admission Counselor",
-    prev: "5+ Years Experience",
-    phone: "7858878922",
-    usp: "Helps parents and students understand the right batch for School, Boards and Competition."
-  }
+  { name: "Ramayan Kumar", role: "Admission Counselor", qual: "Expert Admission Counselor", prev: "5+ Years Experience", phone: "8405906260", usp: "Helps parents and students choose the right batch for School, Boards and Competition." },
+  { name: "Dheeraj Kumar", role: "Admission Counselor", qual: "Expert Admission Counselor", prev: "5+ Years Experience", phone: "7858878922", usp: "Helps parents and students choose the right batch for School, Boards and Competition." },
 ];
 
-const PROGRAMS = [
-  {
-    title: "School Wing (Class 6th to 10th)",
-    icon: <Library className="h-6 w-6 text-emerald-500" />,
-    desc: "Integrated schooling with a strong focus on core concepts, board exam preparation, and extracurricular growth.",
-    tags: ["CBSE", "BSEB", "ICSE"],
-    link: "/admission",
-    color: "emerald"
-  },
-  {
-    title: "Foundation Coaching (7th to 10th)",
-    icon: <GraduationCap className="h-6 w-6 text-blue-500" />,
-    desc: "Early preparation for Olympiads, NTSE, and building a solid base for future competitive exams like JEE & NEET.",
-    tags: ["NTSE", "Olympiads", "Pre-Foundation"],
-    link: "/admission",
-    color: "blue"
-  },
-  {
-    title: "Target JEE / NEET (11th, 12th & Droppers)",
-    icon: <ArrowRight className="h-6 w-6 text-rose-500" />,
-    desc: "Intensive target batches taught by elite IITian and NITian faculty. Specialized dropper batches available.",
-    tags: ["IIT-JEE", "NEET", "Board Prep"],
-    link: "/admission",
-    color: "rose"
-  }
+const PROGRAMS_LIST = [
+  { title: "School Wing (Class 6–10)", icon: Library, accent: "blue" as const, desc: "Integrated schooling with a strong focus on core concepts, board exam preparation, and extracurricular growth.", tags: ["CBSE", "BSEB", "ICSE"] },
+  { title: "Foundation Coaching (7–10)", icon: GraduationCap, accent: "green" as const, desc: "Early preparation for Olympiads, NTSE, and a solid base for future competitive exams like JEE & NEET.", tags: ["NTSE", "Olympiads", "Pre-Foundation"] },
+  { title: "Target JEE / NEET (11, 12 & Droppers)", icon: Target, accent: "red" as const, desc: "Intensive target batches taught by elite IITian and NITian faculty, with specialized dropper batches.", tags: ["IIT-JEE", "NEET", "Board Prep"] },
 ];
 
 export default function AdmissionCounsellingPage() {
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col">
+    <div className="flex min-h-screen flex-col bg-ink-50">
       <PublicNavbar />
-      <div className="h-24 bg-slate-900 border-b border-white/10" />
+
+      <HeroSection accent="blue" minHeight="min-h-[52vh]">
+        <div className="mx-auto max-w-3xl text-center">
+          <Reveal><Badge tone="onDark" icon={Users}>Free Guidance</Badge></Reveal>
+          <Reveal delay={0.05}>
+            <h1 className="mt-6 font-display text-[clamp(2.25rem,5vw,3.5rem)] font-extrabold leading-tight tracking-tight text-white">
+              Admission <span className="text-brand-gold-400">Counselling</span>
+            </h1>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="mx-auto mt-5 max-w-2xl font-sans text-lg leading-relaxed text-white/70">
+              Confused about the right batch? Connect with our expert counselors to navigate your path from School Wing to elite coaching.
+            </p>
+          </Reveal>
+        </div>
+      </HeroSection>
 
       <main className="flex-1">
-        {/* Header Section */}
-        <div className="bg-slate-900 py-16 sm:py-24 text-center px-4 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-t from-blue-900/50 to-transparent mix-blend-overlay"></div>
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-4 relative z-10">
-            Admission <span className="text-amber-400">Counselling</span>
-          </h1>
-          <p className="text-blue-200 text-lg max-w-2xl mx-auto relative z-10">
-            Confused about the right batch? Connect with our expert counselors to navigate your path from School Wing to Elite Coaching.
-          </p>
-        </div>
-
-        {/* Counselors Section */}
-        <section className="py-16 bg-white px-5 sm:px-8 shadow-sm relative z-20">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-black text-slate-800 uppercase tracking-tight">Our Counseling Experts</h2>
-              <div className="h-1 w-16 bg-amber-500 mx-auto mt-4 rounded-full"></div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-              {COUNSELORS.map((f) => (
-                <div key={f.name} className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-2xl transition-all duration-300 relative group flex flex-col h-full">
-                  <div className="grid sm:grid-cols-5 gap-6 h-full">
-                    {/* Left Column: Image Area */}
-                    <div className="sm:col-span-2">
-                      <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-lg bg-slate-100 border-4 border-white ring-1 ring-slate-100">
-                        {f.image ? (
-                          <img src={f.image} alt={f.name} className="w-full h-full object-cover" />
-                        ) : (
-                          <div className="w-full h-full bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center text-white font-black text-4xl uppercase">
-                            {f.name.charAt(0)}
-                          </div>
-                        )}
+        <section className={cn(layout.section, "bg-white")}>
+          <div className={layout.container}>
+            <SectionHeader eyebrow="The Desk" title="Our Counselling Experts" accentWord="Experts" accent="red" className="mb-14" />
+            <Stagger className="mx-auto grid max-w-4xl gap-8 md:grid-cols-2">
+              {COUNSELORS.map((c) => (
+                <StaggerItem key={c.name}>
+                  <div className="flex h-full flex-col rounded-lg border border-ink-200 bg-white p-7 shadow-brand-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg">
+                    <div className="flex items-center gap-4">
+                      <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-gradient-to-br from-brand-blue-700 to-brand-blue-900 font-display text-2xl font-extrabold text-white">
+                        {c.name.charAt(0)}
+                      </div>
+                      <div>
+                        <h3 className="font-display text-xl font-bold text-ink-900">{c.name}</h3>
+                        <p className="font-sans text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-brand-blue-700">{c.role}</p>
                       </div>
                     </div>
-
-                    {/* Right Column: Info Area */}
-                    <div className="sm:col-span-3 flex flex-col pt-2">
-                      <div className="mb-6">
-                        <h4 className="text-2xl font-black text-slate-900 leading-tight">
-                          {f.name}
-                        </h4>
-                        <p className="mt-1 text-sm font-black text-blue-600 uppercase tracking-widest flex items-center gap-2">
-                          {f.role} <span className="h-1 w-1 bg-slate-300 rounded-full"></span> {f.subject}
-                        </p>
-                      </div>
-
-                      <div className="space-y-5 flex-1">
-                        <div>
-                          <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1.5 flex items-center gap-2">
-                            <span className="h-px w-4 bg-slate-200"></span> Profile
-                          </p>
-                          <p className="text-sm font-bold text-slate-800 leading-relaxed">{f.qual}</p>
-                          {f.prev && (
-                            <div className="mt-2 text-xs font-medium text-slate-500 bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-100 inline-block">
-                              {f.prev}
-                            </div>
-                          )}
-                        </div>
-
-                        <div className="bg-blue-50/50 p-4 rounded-xl border border-blue-100/50">
-                          <p className="text-[10px] font-black text-blue-400 uppercase tracking-[0.2em] mb-1.5">Guidance Strategy</p>
-                          <p className="text-xs text-slate-700 italic font-bold leading-relaxed">
-                            "{f.usp}"
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between">
-                        <div className="text-[10px] font-black text-slate-300 uppercase tracking-widest">
-                          LakshyaMarch Admission Desk
-                        </div>
-                        <a 
-                          href={`tel:+91${f.phone}`}
-                          className="flex items-center gap-1.5 bg-blue-600 text-white px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-widest hover:bg-blue-700 transition-colors shadow-sm"
-                        >
-                          <Phone size={10} fill="currentColor" />
-                          Call Direct
-                        </a>
-                      </div>
+                    <div className="mt-5 rounded-xl border border-brand-blue-100 bg-brand-blue-50/60 p-4">
+                      <p className="font-sans text-sm italic leading-relaxed text-ink-700">{c.usp}</p>
+                    </div>
+                    <div className="mt-auto flex items-center justify-between pt-6">
+                      <Badge tone="neutral">{c.prev}</Badge>
+                      <Button href={`tel:+91${c.phone}`} variant="secondary" size="sm">
+                        <Phone size={14} strokeWidth={1.75} /> Call Direct
+                      </Button>
                     </div>
                   </div>
-                </div>
+                </StaggerItem>
               ))}
-            </div>
+            </Stagger>
           </div>
         </section>
 
-        {/* Call to Action Section for Programs */}
-        <section className="py-16 sm:py-24 bg-slate-50 px-5 sm:px-8 border-t border-slate-200">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl font-black text-slate-800 uppercase tracking-tight">Explore Our Programs</h2>
-              <p className="text-slate-500 font-medium mt-4 max-w-2xl mx-auto">
-                Whether you need pure school education, early foundation coaching, or extreme target preparation for IIT-JEE/NEET — we have a batch customized for you.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {PROGRAMS.map((program) => (
-                <div key={program.title} className="bg-white rounded-3xl p-8 shadow-sm border border-slate-200 hover:-translate-y-2 transition-all duration-300 flex flex-col group">
-                  <div className={`h-14 w-14 rounded-2xl bg-${program.color}-50 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                    {program.icon}
-                  </div>
-                  <h3 className="text-xl font-black text-slate-900 leading-tight mb-3">{program.title}</h3>
-                  <p className="text-sm text-slate-500 leading-relaxed mb-6 flex-1">
-                    {program.desc}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mb-8">
-                    {program.tags.map(tag => (
-                      <span key={tag} className="text-[10px] font-black text-slate-400 uppercase tracking-widest bg-slate-50 px-3 py-1 rounded-full border border-slate-100">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <Link 
-                    href={program.link}
-                    className={`w-full py-4 text-center text-sm font-black uppercase tracking-widest text-white transition-all rounded-xl shadow-lg
-                      ${program.color === 'emerald' ? 'bg-emerald-500 hover:bg-emerald-600 shadow-emerald-500/20' : ''}
-                      ${program.color === 'blue' ? 'bg-blue-600 hover:bg-blue-700 shadow-blue-600/20' : ''}
-                      ${program.color === 'rose' ? 'bg-rose-500 hover:bg-rose-600 shadow-rose-500/20' : ''}
-                    `}
-                  >
-                    Apply Now
-                  </Link>
-                </div>
+        <section className={cn(layout.section, "bg-ink-50")}>
+          <div className={layout.container}>
+            <SectionHeader eyebrow="Explore" title="Our Programs" accentWord="Programs" accent="blue" lead="Whether you need school education, early foundation, or extreme target prep — there's a batch for you." className="mb-14" />
+            <Stagger className="grid gap-6 md:grid-cols-3">
+              {PROGRAMS_LIST.map((p) => (
+                <StaggerItem key={p.title}>
+                  <ProgramCard
+                    title={p.title}
+                    icon={p.icon}
+                    accentColor={p.accent}
+                    target={p.desc}
+                    features={p.tags}
+                    href="/admission"
+                    ctaLabel="Apply Now"
+                  />
+                </StaggerItem>
               ))}
-            </div>
-
-            <div className="mt-16 bg-slate-900 rounded-3xl p-8 sm:p-12 text-center shadow-xl">
-              <h3 className="text-2xl font-black text-white uppercase tracking-tight mb-4">Still Not Sure Which Batch Is Right For You?</h3>
-              <p className="text-slate-400 text-sm max-w-2xl mx-auto mb-8">
-                Request a callback from our admission counseling team today. We'll map your academic goals and help you pick the winning path.
-              </p>
-              <a 
-                href="tel:+916206323869" 
-                className="inline-flex items-center gap-3 bg-white text-slate-900 px-8 py-4 rounded-xl font-black text-sm uppercase tracking-widest hover:bg-amber-400 transition-all shadow-lg"
-              >
-                <Phone size={18} />
-                Call Helpline Now
-              </a>
-            </div>
+            </Stagger>
           </div>
         </section>
-
       </main>
 
+      <CTASection
+        title="Still Not Sure Which Batch Fits?"
+        accentWord="Fits?"
+        lead="Request a callback from our admission counselling team. We'll map your academic goals and help you pick the winning path."
+        actions={[
+          { label: "Call Helpline", href: "tel:+916206323869", variant: "primary", withArrow: true },
+          { label: "Apply Online", href: "/admission", variant: "ghost" },
+        ]}
+      />
       <PublicFooter />
     </div>
   );

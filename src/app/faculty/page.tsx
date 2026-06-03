@@ -1,14 +1,18 @@
 import PublicNavbar from "@/components/public/PublicNavbar";
 import PublicFooter from "@/components/public/PublicFooter";
 import FaqSchema from "@/components/seo/FaqSchema";
-import { INSTITUTE, FACULTY } from "@/lib/siteData";
-import { BlackCard, GlassCard, AnimatedSection, GlowButton } from "@/components/public/ui";
-import { ArrowRight } from "lucide-react";
+import { FACULTY, whatsappLink } from "@/lib/siteData";
+import { Users } from "lucide-react";
+import {
+  Badge, SectionHeader, HeroSection, FacultyCard, CTASection, Reveal, Stagger, StaggerItem,
+} from "@/components/brand";
+import { layout } from "@/design-system/spacing";
+import { cn } from "@/lib/utils";
 
 const facultyFaqs = [
   { q: "Are LakshyaMarch teachers from IIT?", a: "Yes, LakshyaMarch faculty includes graduates from IIT Kharagpur, NIT Allahabad, IIT Dhanbad, NIT Agartala, NIT Patna, and other top-tier institutes. No local-level or part-time tutors are hired." },
   { q: "How many teachers does LakshyaMarch have?", a: "LakshyaMarch has 8+ full-time dedicated faculty members covering Mathematics, Physics, Chemistry, and Biology for both JEE and NEET streams." },
-  { q: "Who is the best Physics teacher at LakshyaMarch?", a: "Chandan Kumar Sir (B.Tech, NIT Agartala) is highly rated for his engaging teaching style. Students say 'He makes you fall in love with Physics.' L.K.P. Sir (B.Tech, MIT Muzaffarpur) is also a senior Physics faculty." },
+  { q: "Who is the best Physics teacher at LakshyaMarch?", a: "Chandan Kumar Sir (B.Tech, NIT Agartala) is highly rated for his engaging teaching style. L.K.P. Sir (B.Tech, MIT Muzaffarpur) is also a senior Physics faculty." },
   { q: "Who teaches Biology for NEET at LakshyaMarch?", a: "Nitish Sharma Sir (AIR-82 in GATE-XL, 5 years experience) leads the Biology department. Rahul Kumar Sir (M.Sc Biotechnology, CUSB) supports with 4 years of dedicated NEET Biology teaching." },
 ];
 
@@ -20,100 +24,60 @@ export const metadata = {
 
 export default function FacultyPage() {
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col">
+    <div className="flex min-h-screen flex-col bg-ink-50">
       <FaqSchema faqs={facultyFaqs} />
       <PublicNavbar />
-      <div className="h-24 bg-slate-900 border-b border-white/10" />
+
+      <HeroSection accent="blue" minHeight="min-h-[58vh]">
+        <div className="mx-auto max-w-3xl text-center">
+          <Reveal>
+            <Badge tone="onDark" icon={Users}>Faculty Excellence</Badge>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <h1 className="mt-6 font-display text-[clamp(2.25rem,5vw,3.5rem)] font-extrabold leading-tight tracking-tight text-white">
+              India's Top-Tier <span className="text-brand-gold-400">Educators</span>
+            </h1>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="mx-auto mt-5 max-w-2xl font-sans text-lg leading-relaxed text-white/70">
+              We don't hire part-time local tutors. Every mentor is a highly experienced IITian, NITian, or subject
+              expert holding national ranks (GATE / Olympiad).
+            </p>
+          </Reveal>
+        </div>
+      </HeroSection>
 
       <main className="flex-1">
-        <div className="pt-8 pb-16 sm:py-24 px-4 max-w-7xl mx-auto">
-          <BlackCard glowColor="blue" className="text-center py-20 px-4 sm:px-10 rounded-[2rem]">
-            <h1 className="text-4xl sm:text-6xl font-black text-white tracking-tight mb-4 relative z-10">
-              Elite <span className="text-amber-400">Faculty</span>
-            </h1>
-            <p className="text-blue-200 text-lg max-w-2xl mx-auto relative z-10">
-              India's Top Tier Educators. We don't hire part-time local tutors. All our teachers are highly experienced IITians, NITians, and subject experts holding national ranks.
-            </p>
-          </BlackCard>
-        </div>
-
-        <section className="pb-16 sm:pb-24 px-5 sm:px-8 bg-slate-50">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-            {FACULTY.map((f, idx) => (
-              <AnimatedSection key={f.name} delay={idx * 0.1}>
-                <GlassCard className="p-6 h-full border-t-4 border-t-blue-500 hover:-translate-y-1">
-                  <div className="grid sm:grid-cols-5 gap-6 h-full">
-                    {/* Left Column: Image Area */}
-                    <div className="sm:col-span-2">
-                      <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-[0_10px_20px_-5px_rgba(59,130,246,0.15)] bg-slate-100 ring-1 ring-slate-200">
-                        {f.image ? (
-                          <img src={f.image} alt={f.name} className="w-full h-full object-cover" />
-                        ) : (
-                          <div className="w-full h-full bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center text-white font-black text-4xl uppercase">
-                            {f.name.charAt(0)}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Right Column: Info Area */}
-                    <div className="sm:col-span-3 flex flex-col pt-2">
-                      <div className="mb-6">
-                        <h4 className="text-2xl font-black text-slate-900 leading-tight tracking-tight">
-                          {f.name}
-                        </h4>
-                        <p className="mt-1 text-sm font-black text-blue-600 uppercase tracking-widest flex items-center gap-2">
-                          {f.role} <span className="h-1 w-1 bg-slate-300 rounded-full"></span> {f.subject}
-                        </p>
-                      </div>
-
-                      <div className="space-y-5 flex-1">
-                        <div>
-                          <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1.5 flex items-center gap-2">
-                            <span className="h-px w-4 bg-slate-200"></span> Qualification
-                          </p>
-                          <p className="text-sm font-bold text-slate-800 leading-relaxed">{f.qual}</p>
-                          {f.prev && (
-                            <div className="mt-2 text-xs font-black text-slate-500 bg-slate-100/80 px-3 py-1.5 rounded-lg border border-slate-200 inline-block">
-                              {f.prev}
-                            </div>
-                          )}
-                        </div>
-
-                        <div className="bg-blue-50/50 p-4 rounded-xl border border-blue-100/50 shadow-inner">
-                          <p className="text-[10px] font-black text-blue-400 uppercase tracking-[0.2em] mb-1.5">Expertise & Style</p>
-                          <p className="text-xs text-slate-700 italic font-bold leading-relaxed">
-                            "{f.usp}"
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="mt-6 pt-4 border-t border-slate-200/50 text-[10px] font-black text-slate-400 uppercase tracking-widest text-center">
-                        LakshyaMarch Elite Faculty Panel
-                      </div>
-                    </div>
-                  </div>
-                </GlassCard>
-              </AnimatedSection>
-            ))}
+        <section className={cn(layout.section, "bg-white")}>
+          <div className={layout.container}>
+            <SectionHeader
+              eyebrow="The Panel"
+              title="Meet Our Mentors"
+              accentWord="Mentors"
+              accent="red"
+              lead="Subject experts who have walked the path themselves and now guide the next generation."
+              className="mb-14"
+            />
+            <Stagger className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {FACULTY.map((f) => (
+                <StaggerItem key={f.name}>
+                  <FacultyCard faculty={f} />
+                </StaggerItem>
+              ))}
+            </Stagger>
           </div>
-
-          <AnimatedSection delay={0.2} className="max-w-7xl mx-auto mt-20">
-            <BlackCard glowColor="purple" className="p-10 text-center flex flex-col items-center justify-center rounded-[2rem]">
-              <h3 className="text-3xl font-black text-white mb-4 tracking-tight">Join our Faculty Panel</h3>
-              <p className="text-purple-200 mb-8 max-w-xl">
-                Are you an IITian or subject expert passionate about teaching? We are always looking for top talent to join our team in Begusarai.
-              </p>
-              <GlowButton variant="blue" asChild>
-                <a href="/contact" className="uppercase tracking-widest px-8 py-4">
-                  Apply Now <ArrowRight size={18} />
-                </a>
-              </GlowButton>
-            </BlackCard>
-          </AnimatedSection>
         </section>
       </main>
 
+      <CTASection
+        title="Learn From the Best"
+        accentWord="Best"
+        lead="Get mentored by IIT/NIT alumni who turn concepts into ranks. Admissions open for 2026–27."
+        actions={[
+          { label: "Apply Now", href: "/admission", variant: "primary", withArrow: true },
+          { label: "Book Counselling", href: whatsappLink(), variant: "ghost", external: true },
+        ]}
+      />
       <PublicFooter />
     </div>
   );

@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import PublicNavbar from "@/components/public/PublicNavbar";
 import PublicFooter from "@/components/public/PublicFooter";
-import { ExternalLink, Activity } from "lucide-react";
+import { ExternalLink, Activity, CheckCircle2 } from "lucide-react";
 import { FaFacebook, FaInstagram, FaYoutube, FaXTwitter } from "react-icons/fa6";
 import Script from "next/script";
 import { Suspense } from "react";
 import SocialCard, { SocialCardSkeleton } from "@/components/public/SocialCard";
 import { getNormalizedFeed } from "@/lib/socialService";
 import { getLatestYouTubeVideos, timeAgo } from "@/lib/youtubeService";
+import { ExamSheetTexture, StaircaseEmblem } from "@/design-system/patterns";
 
 export const revalidate = 3600; // Cache the whole page optionally, but Suspense handles the rest
 
@@ -22,10 +23,7 @@ export default function SocialWallPage() {
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">
       <PublicNavbar />
-      
-      {/* Spacer */}
-      <div className="h-20 sm:h-24 bg-slate-900 border-b border-white/10" />
-      
+
       {/* JSON-LD Schema for SEO */}
       <Script id="social-schema" type="application/ld+json">
         {JSON.stringify({
@@ -44,23 +42,21 @@ export default function SocialWallPage() {
       </Script>
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-slate-900 via-[hsl(224,71%,18%)] to-slate-900 py-16 overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.04]"
-          style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` }} />
-        <div className="absolute top-1/2 left-10 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl -translate-y-1/2" />
-        
+      <section className="relative overflow-hidden bg-ink-950 pt-32 pb-16 sm:pt-40">
+        <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-brand-blue-700 via-brand-gold-400 to-brand-blue-700" />
+        <div className="absolute inset-0 bg-gradient-to-b from-ink-900 to-ink-950" />
+        <ExamSheetTexture dark opacity={6} />
+        <StaircaseEmblem className="pointer-events-none absolute -left-12 -bottom-12 h-72 w-72 text-brand-blue-400/12" />
+
         <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-amber-500/15 border border-amber-400/30 rounded-full mb-6">
-            <Activity size={14} className="text-amber-400 animate-pulse" />
-            <span className="text-xs font-bold text-amber-200 tracking-widest uppercase">
-              Live Campus Updates
-            </span>
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-ink-700 bg-ink-800 px-4 py-1.5 font-sans text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-brand-gold-400">
+            <Activity size={14} className="animate-pulse" /> Live Campus Updates
           </div>
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-6 leading-tight">
-            LakshyaMarch <span className="text-amber-400">Social Wall</span>
+          <h1 className="font-display text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-6 leading-tight">
+            LakshyaMarch <span className="text-brand-gold-400">Social Wall</span>
           </h1>
-          <p className="text-blue-100/75 max-w-3xl mx-auto text-lg leading-relaxed">
-            Welcome to the digital community of Begusarai's leading coaching institute for IIT-JEE and NEET. Follow our social feeds for real-time announcements, free educational videos, daily quizzes, and motivation from our expert faculty.
+          <p className="text-white/70 max-w-3xl mx-auto text-lg leading-relaxed font-sans">
+            The digital community of Begusarai's leading IIT-JEE and NEET coaching institute. Follow our feeds for real-time announcements, free educational videos, daily quizzes, and motivation from expert faculty.
           </p>
         </div>
       </section>
@@ -85,7 +81,7 @@ export default function SocialWallPage() {
             <div className="flex flex-col gap-6">
               
               {/* YOUTUBE */}
-              <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm flex flex-col relative overflow-hidden group">
+              <div className="bg-white rounded-lg border border-slate-200 p-6 shadow-sm flex flex-col relative overflow-hidden group">
                 <div className="absolute top-0 left-0 w-full h-1 bg-[#FF0000]" />
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center gap-3">
@@ -130,7 +126,7 @@ export default function SocialWallPage() {
               </div>
 
               {/* FACEBOOK */}
-              <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm h-[600px] flex flex-col relative overflow-hidden group">
+              <div className="bg-white rounded-lg border border-slate-200 p-6 shadow-sm h-[600px] flex flex-col relative overflow-hidden group">
                 <div className="absolute top-0 left-0 w-full h-1 bg-[#1877F2]" />
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center gap-3">
@@ -170,7 +166,7 @@ export default function SocialWallPage() {
             <div className="flex flex-col gap-6">
               
               {/* INSTAGRAM (Fallback card as IG blocks iframe) */}
-              <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm flex-1 flex flex-col relative overflow-hidden group">
+              <div className="bg-white rounded-lg border border-slate-200 p-6 shadow-sm flex-1 flex flex-col relative overflow-hidden group">
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#f09433] via-[#dc2743] to-[#bc1888]" />
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center gap-3">
@@ -206,7 +202,7 @@ export default function SocialWallPage() {
 
             {/* ═══ COLUMN 3: X (TWITTER) ═══ */}
             <div className="flex flex-col gap-6">
-              <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm flex-1 flex flex-col relative overflow-hidden group">
+              <div className="bg-white rounded-lg border border-slate-200 p-6 shadow-sm flex-1 flex flex-col relative overflow-hidden group">
                 <div className="absolute top-0 left-0 w-full h-1 bg-black" />
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center gap-3">
@@ -244,39 +240,39 @@ export default function SocialWallPage() {
       </main>
 
       {/* SEO Concluding Content & Community Benefits */}
-      <section className="bg-slate-900 text-white py-16 border-t border-slate-800">
+      <section className="bg-ink-950 text-white py-16 border-t border-ink-800">
         <div className="max-w-7xl mx-auto px-5 sm:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl font-extrabold mb-4">Why Join Our Digital Community?</h2>
-              <p className="text-slate-400 mb-6 leading-relaxed">
+              <p className="text-white/60 mb-6 leading-relaxed">
                 At LakshyaMarch, we believe that education extends beyond the four walls of a classroom. Our social media channels are curated specifically for serious medical and engineering aspirants.
               </p>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
-                  <div className="h-6 w-6 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 shrink-0 mt-0.5">✓</div>
-                  <p className="text-slate-300"><strong className="text-white">Daily Practice Problems (DPPs):</strong> Regular quizzes and conceptual questions posted on Instagram and X.</p>
+                  <CheckCircle2 size={20} strokeWidth={1.75} className="mt-0.5 shrink-0 text-brand-blue-300" />
+                  <p className="text-white/75"><strong className="text-white">Daily Practice Problems (DPPs):</strong> Regular quizzes and conceptual questions posted on Instagram and X.</p>
                 </li>
                 <li className="flex items-start gap-3">
-                  <div className="h-6 w-6 rounded-full bg-red-500/20 flex items-center justify-center text-red-400 shrink-0 mt-0.5">✓</div>
-                  <p className="text-slate-300"><strong className="text-white">Strategy & Motivation:</strong> Exclusive interviews with our NEET and JEE toppers from Begusarai on YouTube.</p>
+                  <CheckCircle2 size={20} strokeWidth={1.75} className="mt-0.5 shrink-0 text-brand-red-400" />
+                  <p className="text-white/75"><strong className="text-white">Strategy & Motivation:</strong> Exclusive interviews with our NEET and JEE toppers from Begusarai on YouTube.</p>
                 </li>
                 <li className="flex items-start gap-3">
-                  <div className="h-6 w-6 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400 shrink-0 mt-0.5">✓</div>
-                  <p className="text-slate-300"><strong className="text-white">Instant Updates:</strong> Never miss a scholarship test (Think NEET), admission deadline, or batch launch announcement.</p>
+                  <CheckCircle2 size={20} strokeWidth={1.75} className="mt-0.5 shrink-0 text-brand-gold-400" />
+                  <p className="text-white/75"><strong className="text-white">Instant Updates:</strong> Never miss a scholarship test (Think NEET), admission deadline, or batch launch announcement.</p>
                 </li>
               </ul>
             </div>
-            <div className="bg-slate-800 rounded-3xl p-8 text-center border border-slate-700">
+            <div className="bg-ink-800 rounded-lg p-8 text-center border border-ink-700">
               <h3 className="text-2xl font-bold mb-4">Be Part of The Legacy</h3>
-              <p className="text-slate-400 mb-8">
+              <p className="text-white/60 mb-8">
                 Join thousands of students who are marching towards their Lakshya. Hit subscribe, follow, and engage with the best teaching faculty in Bihar.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
-                <a href="https://youtube.com/@lakshyamarch" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-[#FF0000] hover:bg-red-600 text-white rounded-xl font-bold transition-colors">
+                <a href="https://youtube.com/@lakshyamarch" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-[#FF0000] hover:bg-red-600 text-white rounded-md font-bold transition-colors">
                   Subscribe on YouTube
                 </a>
-                <a href="https://instagram.com/lakshyamarch" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-gradient-to-r from-[#f09433] to-[#bc1888] hover:opacity-90 text-white rounded-xl font-bold transition-opacity">
+                <a href="https://instagram.com/lakshyamarch" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-gradient-to-r from-[#f09433] to-[#bc1888] hover:opacity-90 text-white rounded-md font-bold transition-opacity">
                   Follow on Instagram
                 </a>
               </div>

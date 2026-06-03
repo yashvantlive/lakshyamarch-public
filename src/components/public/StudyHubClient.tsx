@@ -1,116 +1,97 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { BookText, ClipboardList, ArrowRight, Laptop, Clock, ShieldCheck, Search } from "lucide-react";
 import Link from "next/link";
+import { Badge, HeroSection, SectionHeader, Reveal, Stagger, StaggerItem } from "@/components/brand";
+import { layout } from "@/design-system/spacing";
+import { cn } from "@/lib/utils";
+
+const CATEGORIES = [
+  {
+    title: "Daily Practice Problems (DPP)",
+    description: "Chapter-wise assignments and tiered practice sets for JEE, NEET, and Board exams — Mole Concept, Kinematics, and more.",
+    href: "/study-material/dpps",
+    icon: ClipboardList,
+    tag: "Practice",
+    accent: "blue" as const,
+  },
+  {
+    title: "Concept Notes & Formula Sheets",
+    description: "Quick revision notes, high-fidelity formula sheets, and mind maps curated by LakshyaMarch expert faculty.",
+    href: "/study-material/notes",
+    icon: BookText,
+    tag: "Revision",
+    accent: "red" as const,
+  },
+];
+
+const chip: Record<string, string> = {
+  blue: "bg-brand-blue-50 text-brand-blue-700",
+  red: "bg-brand-red-50 text-brand-red-600",
+};
+
+const TRUST = [
+  { icon: Clock, label: "Regularly Updated" },
+  { icon: Laptop, label: "Native In-App Viewing" },
+  { icon: ShieldCheck, label: "Curated by IIT/NIT Faculty" },
+];
 
 export default function StudyHubClient() {
-  const CATEGORIES = [
-    {
-      title: "Daily Practice Problems (DPP)",
-      description: "Chapter-wise assignments and tiered practice sets for JEE, NEET, and Board exams. Includes Mole Concept, Kinematics, and more.",
-      href: "/study-material/dpps",
-      icon: <ClipboardList size={32} className="text-blue-600" />,
-      tag: "Practice",
-      color: "blue"
-    },
-    {
-      title: "Concept Notes & Formula Sheets",
-      description: "Quick revision notes, high-fidelity formula sheets, and mind maps curated by LakshyaMarch expert faculty.",
-      href: "/study-material/notes",
-      icon: <BookText size={32} className="text-amber-600" />,
-      tag: "Revision",
-      color: "amber"
-    }
-  ];
-
   return (
-    <main className="flex-1 uppercase-none">
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-6 overflow-hidden bg-slate-900 mx-0">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10" />
-        <div className="max-w-6xl mx-auto relative z-10 text-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-[0.2em] mb-8"
-          >
-            <Search size={14} /> Knowledge Repository
-          </motion.div>
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-7xl font-black text-white mb-6 tracking-tight leading-none"
-          >
-            LakshyaMarch <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">Study Hub</span>
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
-          >
-            Access premium academic resources curated by IIT & NIT alumni. From foundational concepts to advanced problem solving, everything you need is right here.
-          </motion.p>
+    <main className="flex-1">
+      <HeroSection accent="blue" minHeight="min-h-[56vh]">
+        <div className="mx-auto max-w-3xl text-center">
+          <Reveal><Badge tone="onDark" icon={Search}>Academic Resource Library</Badge></Reveal>
+          <Reveal delay={0.05}>
+            <h1 className="mt-6 font-display text-[clamp(2.5rem,5.5vw,4rem)] font-extrabold leading-[1.05] tracking-tight text-white">
+              LakshyaMarch <span className="text-brand-gold-400">Study Hub</span>
+            </h1>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="mx-auto mt-5 max-w-2xl font-sans text-lg leading-relaxed text-white/70">
+              Premium academic resources curated by IIT & NIT alumni. From foundational concepts to advanced problem
+              solving — everything you need, in one place.
+            </p>
+          </Reveal>
         </div>
-        
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent" />
-      </section>
+      </HeroSection>
 
-      {/* Categories Section */}
-      <section className="py-24 px-6 max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          {CATEGORIES.map((cat, idx) => (
-            <motion.div
-              key={cat.href}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: idx * 0.1 + 0.2 }}
-              className="group relative"
-            >
-              <Link href={cat.href} className="block h-full transition-transform active:scale-[0.98]">
-                <div className={`h-full p-10 bg-white border-2 border-slate-100 shadow-xl shadow-slate-200/50 hover:shadow-2xl hover:shadow-${cat.color}-500/10 transition-all duration-500 overflow-hidden rounded-none`}>
-                  <div className="flex items-center justify-between mb-8">
-                    <div className={`p-5 bg-${cat.color}-50 text-${cat.color}-600 group-hover:bg-slate-900 group-hover:text-white transition-all duration-500 rounded-none`}>
-                      {cat.icon}
-                    </div>
-                    <span className={`px-4 py-1.5 text-[10px] font-black uppercase tracking-widest border border-${cat.color}-100 bg-${cat.color}-50 text-${cat.color}-600 rounded-none`}>
-                      {cat.tag}
+      <section className={layout.section}>
+        <div className={layout.containerMedium}>
+          <Stagger className="grid gap-8 md:grid-cols-2">
+            {CATEGORIES.map((cat) => (
+              <StaggerItem key={cat.href}>
+                <Link
+                  href={cat.href}
+                  className="group flex h-full flex-col rounded-lg border border-ink-200 bg-white p-9 shadow-brand-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg"
+                >
+                  <div className="mb-7 flex items-center justify-between">
+                    <span className={cn("flex h-16 w-16 items-center justify-center rounded-lg transition-colors group-hover:bg-ink-900 group-hover:text-white", chip[cat.accent])}>
+                      <cat.icon size={30} strokeWidth={1.75} />
                     </span>
+                    <Badge tone={cat.accent}>{cat.tag}</Badge>
                   </div>
-
-                  <h3 className="text-3xl font-black text-slate-800 mb-4 group-hover:text-blue-600 transition-colors uppercase tracking-tight">
+                  <h3 className="font-display text-2xl font-extrabold text-ink-900 transition-colors group-hover:text-brand-red-600">
                     {cat.title}
                   </h3>
-                  <p className="text-slate-500 text-lg leading-relaxed mb-10">
-                    {cat.description}
-                  </p>
+                  <p className="mt-4 flex-1 font-sans leading-relaxed text-ink-500">{cat.description}</p>
+                  <span className="mt-8 inline-flex items-center gap-2 font-display text-sm font-semibold text-ink-400 transition-colors group-hover:text-brand-red-600">
+                    Enter Portal
+                    <ArrowRight size={18} strokeWidth={1.75} className="transition-transform group-hover:translate-x-1" />
+                  </span>
+                </Link>
+              </StaggerItem>
+            ))}
+          </Stagger>
 
-                  <div className="flex items-center gap-2 text-sm font-black text-slate-400 group-hover:text-blue-600 transition-colors uppercase tracking-widest">
-                    Enter Portal <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
+          <Reveal className="mt-16 flex flex-wrap items-center justify-center gap-8 sm:gap-12">
+            {TRUST.map((t) => (
+              <div key={t.label} className="flex items-center gap-2.5 font-sans text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-ink-400">
+                <t.icon size={16} strokeWidth={1.75} className="text-brand-blue-600" /> {t.label}
+              </div>
+            ))}
+          </Reveal>
         </div>
-
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6 }}
-          className="mt-20 flex flex-wrap items-center justify-center gap-8 md:gap-12"
-        >
-          <div className="flex items-center gap-3 text-slate-400 font-bold uppercase tracking-widest text-[10px]">
-            <Clock size={16} className="text-blue-500" /> Hourly Updates
-          </div>
-          <div className="flex items-center gap-3 text-slate-400 font-bold uppercase tracking-widest text-[10px]">
-            <Laptop size={16} className="text-sky-500" /> Native Viewing
-          </div>
-          <div className="flex items-center gap-3 text-slate-400 font-bold uppercase tracking-widest text-[10px]">
-            <ShieldCheck size={16} className="text-emerald-500" /> Secure Access
-          </div>
-        </motion.div>
       </section>
     </main>
   );
