@@ -41,6 +41,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "LakshyaMarch Education" }],
   creator: "LakshyaMarch Education",
+  icons: {
+    icon: "/lm_logo.jpeg",
+  },
   openGraph: {
     title: "LakshyaMarch Education | Best Coaching in Begusarai",
     description:

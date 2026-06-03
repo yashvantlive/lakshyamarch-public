@@ -84,52 +84,44 @@ export default function HomeClient() {
 function Hero() {
   return (
     <HeroSection accent="red" minHeight="min-h-screen">
-      <div className="grid items-start gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
-        {/* Left: brochure masthead */}
-        <div className="pt-2">
-          <Reveal>
-            <BannerLabel tone="red" icon={Trophy}>Top Results Since {INSTITUTE.established}</BannerLabel>
-          </Reveal>
+      <div className="mx-auto max-w-4xl text-center flex flex-col items-center pt-10 pb-20">
+        <Reveal>
+          <BannerLabel tone="red" icon={Trophy}>Top Results Since {INSTITUTE.established}</BannerLabel>
+        </Reveal>
 
-          <Reveal delay={0.05}>
-            <p className="mt-7 font-sans text-sm font-bold uppercase tracking-[0.22em] text-brand-gold-400">
-              Begusarai&apos;s Premier IIT-JEE &amp; NEET Institute
-            </p>
-            <h1 className="mt-3 font-display text-[clamp(2.5rem,5.5vw,4.25rem)] font-extrabold leading-[1.02] tracking-tight text-white">
-              Lakshya<span className="text-brand-red-500">March</span>
-              <span className="mt-2 block text-[0.42em] font-bold uppercase tracking-[0.16em] text-white/70">
-                Education · Integrated School &amp; Coaching
-              </span>
-            </h1>
-          </Reveal>
+        <Reveal delay={0.05}>
+          <p className="mt-7 font-sans text-sm font-bold uppercase tracking-[0.22em] text-brand-gold-400">
+            Begusarai&apos;s Premier IIT-JEE &amp; NEET Institute
+          </p>
+          <h1 className="mt-3 font-display text-[clamp(2rem,4.2vw,3.5rem)] font-extrabold leading-[1.02] tracking-tight text-white">
+            Lakshya<span className="text-brand-red-500">March</span> Education
+            <span className="mt-2 block text-[0.45em] font-bold uppercase tracking-[0.16em] text-white/70">
+              Integrated School &amp; Coaching
+            </span>
+          </h1>
+        </Reveal>
 
-          <Reveal delay={0.1}>
-            <p className="mt-6 max-w-xl font-sans text-lg leading-relaxed text-white/75">
-              Quality education, strict discipline, and consistent ranks — all under one roof in {INSTITUTE.address.city}.
-              Mentored by IIT &amp; NIT alumni faculty.
-            </p>
-          </Reveal>
-
-          {/* Achievement anchors — poster result strip */}
-          <Reveal delay={0.15} className="mt-9">
-            <AchievementStrip items={HERO_STATS} theme="dark" className="border-ink-700" />
-          </Reveal>
-
-          <Reveal delay={0.2}>
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <Button href="/results" variant="gold" size="lg" withArrow magnetic>
-                <Trophy size={18} strokeWidth={1.75} /> View Hall of Achievements
-              </Button>
-              <Button href="/programs" variant="ghost" size="lg" withArrow>
-                Explore Programs
-              </Button>
-            </div>
-          </Reveal>
-        </div>
-
-        {/* Right: official admission registration panel */}
         <Reveal delay={0.1}>
-          <EnquiryForm />
+          <p className="mt-6 font-sans text-lg leading-relaxed text-white/75 max-w-2xl mx-auto">
+            Quality education, strict discipline, and consistent ranks — all under one roof in {INSTITUTE.address.city}.
+            Mentored by IIT &amp; NIT alumni faculty.
+          </p>
+        </Reveal>
+
+        {/* Achievement anchors — poster result strip */}
+        <Reveal delay={0.15} className="mt-9 w-full flex justify-center">
+          <AchievementStrip items={HERO_STATS} theme="dark" className="border-ink-700 max-w-3xl" />
+        </Reveal>
+
+        <Reveal delay={0.2}>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+            <Button href="/admission" variant="gold" size="lg" withArrow magnetic>
+               Apply for Admission 2026-27
+            </Button>
+            <Button href="/programs" variant="ghost" size="lg" withArrow>
+              Explore Programs
+            </Button>
+          </div>
         </Reveal>
       </div>
     </HeroSection>

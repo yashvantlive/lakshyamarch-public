@@ -23,9 +23,9 @@ export default function BrandMark({
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/company_logo.png"
+        src="/lm_logo.jpeg"
         alt="LakshyaMarch"
-        className="h-full w-full object-contain"
+        className="h-full w-full object-contain rounded-lg"
         width={size}
         height={size}
       />

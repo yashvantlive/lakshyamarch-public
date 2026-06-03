@@ -86,17 +86,17 @@ function EnquiryFormInner() {
 
   if (success) {
     return (
-      <div className="bg-white rounded-lg border border-ink-200 p-8 text-center max-w-md mx-auto shadow-brand-xl">
-        <div className="h-16 w-16 rounded-full bg-brand-green-50 flex items-center justify-center mx-auto mb-4">
-          <CheckCircle size={32} className="text-brand-green-600" strokeWidth={1.75} />
+      <div className="bg-ink-900/80 backdrop-blur-md rounded-xl border border-ink-800 p-8 text-center max-w-md mx-auto shadow-2xl ring-1 ring-white/5">
+        <div className="h-16 w-16 rounded-full bg-brand-green-500/10 flex items-center justify-center mx-auto mb-4">
+          <CheckCircle size={32} className="text-brand-green-500" strokeWidth={1.75} />
         </div>
-        <h3 className="text-xl font-display font-bold text-ink-900 mb-2">Enquiry Submitted</h3>
-        <p className="text-sm text-ink-500 mb-5">
+        <h3 className="text-xl font-display font-bold text-white mb-2">Enquiry Submitted</h3>
+        <p className="text-sm text-ink-300 mb-5">
           Thank you for your interest in LakshyaMarch. Our counsellor will call you within 24 hours.
         </p>
         <button
           onClick={() => setSuccess(false)}
-          className="text-sm font-medium text-brand-red-600 hover:text-brand-red-700 underline underline-offset-4 transition-colors"
+          className="text-sm font-medium text-brand-red-400 hover:text-brand-red-300 underline underline-offset-4 transition-colors"
         >
           Submit another enquiry
         </button>
@@ -110,20 +110,33 @@ function EnquiryFormInner() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mx-auto max-w-md overflow-hidden rounded-lg border border-ink-200 bg-white shadow-brand-xl"
+      className="mx-auto max-w-md overflow-hidden rounded-xl border border-ink-800 bg-ink-900/80 backdrop-blur-md shadow-2xl ring-1 ring-white/5 transition-all duration-300 relative"
     >
+      <div className="absolute left-0 top-0 bottom-0 w-1 bg-brand-gold-500" />
+      
       {/* Official admission-form header bar */}
-      <div className="bg-brand-blue-800 px-6 py-4 sm:px-8">
-        <p className="font-sans text-[0.625rem] font-bold uppercase tracking-[0.2em] text-brand-gold-400">
-          Admission Registration · 2026–27
-        </p>
-        <h3 className="mt-1 font-display text-xl font-extrabold text-white">Begin Your Journey</h3>
+      <div className="bg-gradient-to-br from-brand-blue-900 via-brand-blue-950 to-brand-blue-900 px-6 py-5 sm:px-8 border-b border-ink-800 relative pl-8">
+        <div className="inline-block px-2.5 py-1 rounded bg-brand-blue-950 border border-brand-blue-800/50 mb-3 shadow-inner">
+          <p className="font-sans text-[0.625rem] font-bold uppercase tracking-[0.2em] text-brand-gold-400">
+            Admission Registration · 2026–27
+          </p>
+        </div>
+        <h3 className="font-display text-2xl font-extrabold text-white tracking-tight drop-shadow-sm">
+          Begin Your Journey
+        </h3>
+      </div>
+      
+      {/* Ticket Perforation effect */}
+      <div className="flex justify-between items-center h-4 bg-ink-900/80 backdrop-blur-md relative overflow-hidden -mt-2 z-10 px-4">
+        <div className="w-full border-t-[1.5px] border-dashed border-ink-700/50"></div>
+        <div className="absolute left-0 w-3 h-3 rounded-full bg-ink-950 -translate-x-1.5 shadow-inner"></div>
+        <div className="absolute right-0 w-3 h-3 rounded-full bg-ink-950 translate-x-1.5 shadow-inner"></div>
       </div>
 
-      <div className="p-6 sm:p-8">
+      <div className="p-6 sm:p-8 pt-4">
       <div className="space-y-4">
         <div>
-          <label className="block text-[11px] font-bold text-ink-500 uppercase tracking-wider mb-1.5">
+          <label className="block text-[11px] font-bold text-ink-400 uppercase tracking-wider mb-1.5 ml-1">
             Student Name
           </label>
           <input
@@ -131,12 +144,12 @@ function EnquiryFormInner() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Enter Your Name"
-            className="w-full h-11 px-4 rounded-md bg-ink-50 border border-ink-200 text-ink-900 placeholder:text-ink-400 text-sm focus:outline-none focus:ring-2 focus:ring-brand-red-500/30 focus:border-brand-red-500 transition-all"
+            className="w-full h-11 px-4 rounded-lg bg-ink-950/50 border border-ink-800 text-white placeholder:text-ink-600 text-sm focus:outline-none focus:ring-4 focus:ring-brand-red-500/20 focus:border-brand-red-500 hover:border-ink-700 transition-all duration-200"
           />
         </div>
 
         <div>
-          <label className="block text-[11px] font-bold text-ink-500 uppercase tracking-wider mb-1.5">
+          <label className="block text-[11px] font-bold text-ink-400 uppercase tracking-wider mb-1.5 ml-1">
             Mobile Number
           </label>
           <input
@@ -145,19 +158,19 @@ function EnquiryFormInner() {
             onChange={(e) => setPhone(e.target.value)}
             placeholder="10-digit number"
             maxLength={10}
-            className="w-full h-11 px-4 rounded-md bg-ink-50 border border-ink-200 text-ink-900 placeholder:text-ink-400 text-sm focus:outline-none focus:ring-2 focus:ring-brand-red-500/30 focus:border-brand-red-500 transition-all"
+            className="w-full h-11 px-4 rounded-lg bg-ink-950/50 border border-ink-800 text-white placeholder:text-ink-600 text-sm focus:outline-none focus:ring-4 focus:ring-brand-red-500/20 focus:border-brand-red-500 hover:border-ink-700 transition-all duration-200"
           />
         </div>
 
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <label className="block text-[11px] font-bold text-ink-500 uppercase tracking-wider mb-1.5">
+            <label className="block text-[11px] font-bold text-ink-400 uppercase tracking-wider mb-1.5 ml-1">
               Program
             </label>
             <select
               value={program}
               onChange={(e) => { setProgram(e.target.value as any); setClassApplied(""); }}
-              className="w-full h-11 px-3 rounded-md bg-ink-50 border border-ink-200 text-ink-900 text-sm focus:outline-none focus:ring-2 focus:ring-brand-red-500/30 focus:border-brand-red-500 transition-all appearance-none cursor-pointer"
+              className="w-full h-11 px-3 rounded-lg bg-ink-950/50 border border-ink-800 text-white text-sm focus:outline-none focus:ring-4 focus:ring-brand-red-500/20 focus:border-brand-red-500 hover:border-ink-700 transition-all duration-200 appearance-none cursor-pointer"
             >
               <option value="">Select...</option>
               <option value="coaching">Coaching (7-12)</option>
@@ -166,14 +179,14 @@ function EnquiryFormInner() {
           </div>
 
           <div>
-            <label className="block text-[11px] font-bold text-ink-500 uppercase tracking-wider mb-1.5">
+            <label className="block text-[11px] font-bold text-ink-400 uppercase tracking-wider mb-1.5 ml-1">
               Class
             </label>
             <select
               value={classApplied}
               onChange={(e) => setClassApplied(e.target.value)}
               disabled={!program}
-              className="w-full h-11 px-3 rounded-md bg-ink-50 border border-ink-200 text-ink-900 text-sm focus:outline-none focus:ring-2 focus:ring-brand-red-500/30 focus:border-brand-red-500 transition-all appearance-none cursor-pointer disabled:opacity-50"
+              className="w-full h-11 px-3 rounded-lg bg-ink-950/50 border border-ink-800 text-white text-sm focus:outline-none focus:ring-4 focus:ring-brand-red-500/20 focus:border-brand-red-500 hover:border-ink-700 transition-all duration-200 appearance-none cursor-pointer disabled:opacity-40"
             >
               <option value="">Class</option>
               {classOptions.map((c) => (
@@ -187,12 +200,12 @@ function EnquiryFormInner() {
 
         {program === "coaching" && (
           <div className="pt-1">
-            <label className="block text-[11px] font-bold text-ink-500 uppercase tracking-wider mb-1.5">
+            <label className="block text-[11px] font-bold text-ink-400 uppercase tracking-wider mb-1.5 ml-1">
               Target Exam
             </label>
             <select
               required
-              className="w-full h-11 px-3 rounded-md bg-ink-50 border border-ink-200 text-ink-900 text-sm focus:outline-none focus:ring-2 focus:ring-brand-red-500/30 focus:border-brand-red-500 transition-all appearance-none cursor-pointer"
+              className="w-full h-11 px-3 rounded-lg bg-ink-950/50 border border-ink-800 text-white text-sm focus:outline-none focus:ring-4 focus:ring-brand-red-500/20 focus:border-brand-red-500 hover:border-ink-700 transition-all duration-200 appearance-none cursor-pointer"
             >
               <option value="">Select Target</option>
               <option value="IIT-JEE">IIT-JEE (Engineering)</option>
@@ -204,15 +217,15 @@ function EnquiryFormInner() {
       </div>
 
       {error && (
-        <p className="mt-4 text-[13px] font-medium text-brand-red-700 bg-brand-red-50 rounded-lg px-3 py-2 border border-brand-red-100 flex items-center gap-2">
-          <AlertCircle size={15} strokeWidth={1.75} className="shrink-0" /> {error}
+        <p className="mt-4 text-[13px] font-medium text-brand-red-400 bg-brand-red-500/10 rounded-lg px-3 py-2 border border-brand-red-500/20 flex items-center gap-2 shadow-inner">
+          <AlertCircle size={15} strokeWidth={1.75} className="shrink-0 text-brand-red-400" /> {error}
         </p>
       )}
 
       <button
         type="submit"
         disabled={saving}
-        className="mt-6 w-full h-12 rounded-md bg-brand-red-600 hover:bg-brand-red-700 text-white font-display font-semibold tracking-wide text-sm shadow-brand-md hover:shadow-brand-glow-red disabled:opacity-60 transition-all flex items-center justify-center gap-2 cursor-pointer"
+        className="mt-6 w-full h-12 rounded-lg bg-gradient-to-r from-brand-red-600 to-brand-red-500 hover:from-brand-red-500 hover:to-brand-red-400 text-white font-display font-semibold tracking-wide text-sm shadow-lg hover:shadow-brand-glow-red disabled:opacity-60 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer border border-brand-red-500/50"
       >
         {saving ? (
           <>
@@ -227,7 +240,7 @@ function EnquiryFormInner() {
         )}
       </button>
 
-      <p className="mt-4 text-[10px] text-ink-400 text-center uppercase tracking-wider font-semibold">
+      <p className="mt-4 text-[10px] text-ink-500 text-center uppercase tracking-wider font-semibold">
         No Spam • Expert Counselling
       </p>
       </div>

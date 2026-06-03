@@ -331,7 +331,7 @@ export default function PublicNavbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25 }}
-            className="overflow-hidden border-t border-ink-200 bg-white lg:hidden"
+            className="overflow-y-auto max-h-[calc(100dvh-64px)] sm:max-h-[calc(100dvh-72px)] border-t border-ink-200 bg-white lg:hidden"
           >
             <div className="space-y-1 px-5 py-4">
               {MAIN_LINKS.map((link) => (
