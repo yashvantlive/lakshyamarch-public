@@ -53,7 +53,7 @@ export const staggerItem: Variants = {
 };
 
 /** Standard "once" viewport config for scroll reveals. */
-export const viewportOnce = { once: true, amount: 0.2 } as const;
+export const viewportOnce = { once: true, margin: "0px 0px -10% 0px" } as const;
 
 /** Page transition variants (paired with View Transitions where supported). */
 export const pageVariants: Variants = {

@@ -1,5 +1,7 @@
 import React from "react";
+import Image from "next/image";
 import { GraduationCap, Quote } from "lucide-react";
+import { FaLinkedin, FaInstagram, FaFacebook } from "react-icons/fa";
 import { cn } from "@/lib/utils";
 
 export type Faculty = {
@@ -10,6 +12,9 @@ export type Faculty = {
   qual: string;
   prev?: string;
   usp?: string;
+  linkedin?: string;
+  instagram?: string;
+  facebook?: string;
 };
 
 /**
@@ -35,12 +40,12 @@ export default function FacultyCard({
       {/* Photo */}
       <div className="relative aspect-[4/5] overflow-hidden bg-ink-100">
         {faculty.image ? (
-          /* eslint-disable-next-line @next/next/no-img-element */
-          <img
+          <Image
             src={faculty.image}
             alt={faculty.name}
-            loading="lazy"
-            className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-brand-blue-700 to-brand-blue-900">
@@ -83,6 +88,27 @@ export default function FacultyCard({
           <div className="mt-auto rounded-sm border-l-2 border-brand-blue-700 bg-brand-blue-50/60 p-3">
             <Quote size={14} strokeWidth={1.75} className="mb-1 text-brand-blue-400" />
             <p className="font-sans text-xs italic leading-relaxed text-ink-700">{faculty.usp}</p>
+          </div>
+        )}
+
+        {/* Social Links */}
+        {(faculty.linkedin || faculty.instagram || faculty.facebook) && (
+          <div className="mt-4 flex items-center gap-3 border-t border-ink-100 pt-3">
+            {faculty.linkedin && (
+              <a href={faculty.linkedin} target="_blank" rel="noopener noreferrer" className="text-ink-400 hover:text-[#0A66C2] transition-colors" aria-label="LinkedIn">
+                <FaLinkedin size={18} />
+              </a>
+            )}
+            {faculty.facebook && (
+              <a href={faculty.facebook} target="_blank" rel="noopener noreferrer" className="text-ink-400 hover:text-[#1877F2] transition-colors" aria-label="Facebook">
+                <FaFacebook size={18} />
+              </a>
+            )}
+            {faculty.instagram && (
+              <a href={faculty.instagram} target="_blank" rel="noopener noreferrer" className="text-ink-400 hover:text-[#E4405F] transition-colors" aria-label="Instagram">
+                <FaInstagram size={18} />
+              </a>
+            )}
           </div>
         )}
       </div>

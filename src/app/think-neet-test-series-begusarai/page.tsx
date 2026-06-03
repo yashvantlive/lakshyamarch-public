@@ -157,7 +157,7 @@ export default function ThinkNeetPage() {
                   <h4 className="font-display font-bold text-ink-900">Expert Preparation Strategy</h4>
                   <p className="font-sans text-sm text-ink-500">Read our detailed blog on using ThinkNEET to crack the medical entrance.</p>
                 </div>
-                <Button href="/blog/think-neet-test-series-begusarai-launch" variant="outline" size="sm">
+                <Button href="/blog/think-neet-lakshyamarch-begusarai" variant="outline" size="sm">
                   Read Blog <ArrowRight size={15} strokeWidth={1.75} />
                 </Button>
               </div>
