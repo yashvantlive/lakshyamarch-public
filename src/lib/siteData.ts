@@ -295,6 +295,9 @@ export const FACULTY = [
     qual: "B.Tech NIT Allahabad (16 yrs exp)",
     prev: "ex-Bansal Classes Kota/Jaipur",
     usp: "Best mentorship, guidance and disciplinarian with caring attitude.",
+    linkedin: "https://linkedin.com/",
+    facebook: "https://facebook.com/",
+    instagram: "https://instagram.com/",
   },
   {
     name: "M.P.B Sir",
