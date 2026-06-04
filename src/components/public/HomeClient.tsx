@@ -167,6 +167,7 @@ function ThinkNeetSection() {
                 alt="ThinkNEET"
                 width={200}
                 height={48}
+                style={{ width: "auto", height: "auto" }}
                 className="mt-6 h-12 w-auto object-contain"
               />
               <h2 className="mt-5 font-display text-[clamp(1.75rem,3.5vw,2.5rem)] font-extrabold leading-tight tracking-tight text-white">

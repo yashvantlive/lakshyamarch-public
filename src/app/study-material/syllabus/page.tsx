@@ -111,7 +111,7 @@ export default function SyllabusPage() {
                   >
                     <div className="w-24 h-24 mx-auto mb-4 relative bg-white rounded-xl shadow-sm border border-ink-100 flex items-center justify-center p-2 overflow-hidden">
                       {board.logo ? (
-                        <Image src={board.logo} alt={`${board.name} logo`} fill className="object-contain p-2" />
+                        <Image src={board.logo} alt={`${board.name} logo`} fill sizes="(max-width: 768px) 100px, 150px" className="object-contain p-2" />
                       ) : (
                         <ExternalLink size={32} className="text-ink-300" />
                       )}

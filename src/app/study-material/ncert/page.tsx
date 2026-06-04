@@ -58,7 +58,7 @@ export default function NcertPage() {
                           </h3>
                         </div>
                         
-                        <div className="flex-1 flex flex-col gap-3">
+                        <div className="flex-1 flex flex-col gap-3 max-h-[350px] overflow-y-auto pr-2 pb-2 scrollbar-thin scrollbar-thumb-ink-200 scrollbar-track-transparent hover:scrollbar-thumb-brand-red-200 transition-colors">
                           {subject.books.map((book, bookIdx) => (
                             <div key={bookIdx}>
                               {book.url ? (
