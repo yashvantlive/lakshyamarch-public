@@ -76,7 +76,14 @@ function EnquiryFormInner() {
           turnstileToken: token,
         })
       });
-      if (!res.ok) throw new Error("Failed to submit");
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        if (res.status === 409 || (data.error && data.error.includes("E11000") && data.error.includes("phone"))) {
+          throw new Error("This phone number is already registered. Please use a different one.");
+        }
+        throw new Error(data.error || "Failed to submit");
+      }
 
       setSuccess(true);
       setName("");
@@ -85,7 +92,7 @@ function EnquiryFormInner() {
       setClassApplied("");
     } catch (err) {
       console.error(err);
-      setError("Something went wrong. Please call us directly.");
+      setError(err instanceof Error ? err.message : "Something went wrong. Please call us directly.");
     } finally {
       setSaving(false);
     }

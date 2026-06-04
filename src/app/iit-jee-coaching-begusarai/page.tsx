@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import PublicNavbar from "@/components/public/PublicNavbar";
 import PublicFooter from "@/components/public/PublicFooter";
-import EnquiryForm from "@/components/public/EnquiryForm";
+
 import { INSTITUTE, FACULTY, RESULTS_JEE, whatsappLink } from "@/lib/siteData";
 import {
   Trophy, CheckCircle2, Star, Users, BookOpen, Target, Zap, Clock,
@@ -87,30 +87,29 @@ export default function JEECoachingPage() {
       <PublicNavbar />
 
       <HeroSection accent="blue">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          <div>
-            <Reveal><Badge tone="onDark" icon={Star}>#1 IIT-JEE Coaching in Begusarai</Badge></Reveal>
-            <Reveal delay={0.05}>
-              <h1 className="mt-6 font-display text-[clamp(2.25rem,5vw,3.5rem)] font-extrabold leading-[1.08] tracking-tight text-white">
-                IIT-JEE Coaching in <span className="text-brand-gold-400">Begusarai</span>
-              </h1>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <p className="mt-5 max-w-xl font-sans text-lg leading-relaxed text-white/70">
-                Bihar's most result-oriented JEE institute. Study under <strong className="text-white">IIT Kharagpur alumni</strong> with 99.35 percentile results — without leaving Begusarai.
-              </p>
-            </Reveal>
-            <Reveal delay={0.15} className="mt-8"><StatsGrid stats={STATS} theme="dark" columns={3} /></Reveal>
-            <Reveal delay={0.2}>
-              <div className="mt-8 flex flex-wrap gap-4">
-                <Button href="#enquiry" variant="primary" size="md" withArrow>Free Counselling</Button>
-                <Button href={whatsappLink("Hi, I want to know about IIT-JEE coaching at LakshyaMarch.")} variant="ghost" size="md" target="_blank" rel="noopener noreferrer">
-                  <MessageCircle size={16} strokeWidth={1.75} /> WhatsApp Now
-                </Button>
-              </div>
-            </Reveal>
-          </div>
-          <Reveal delay={0.1} id="enquiry"><EnquiryForm /></Reveal>
+        <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
+          <Reveal><Badge tone="onDark" icon={Star}>#1 IIT-JEE Coaching in Begusarai</Badge></Reveal>
+          <Reveal delay={0.05}>
+            <h1 className="mt-6 font-display text-[clamp(2.25rem,5vw,3.5rem)] font-extrabold leading-[1.08] tracking-tight text-white">
+              IIT-JEE Coaching in <span className="text-brand-gold-400">Begusarai</span>
+            </h1>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="mx-auto mt-5 max-w-xl font-sans text-lg leading-relaxed text-white/70">
+              Bihar's most result-oriented JEE institute. Study under <strong className="text-white">IIT Kharagpur alumni</strong> with 99.35 percentile results — without leaving Begusarai.
+            </p>
+          </Reveal>
+          <Reveal delay={0.15} className="mt-8 w-full max-w-3xl">
+            <StatsGrid stats={STATS} theme="dark" columns={3} />
+          </Reveal>
+          <Reveal delay={0.2}>
+            <div className="mt-10 flex flex-wrap justify-center gap-4">
+              <Button href="/admission" variant="primary" size="md" withArrow magnetic>Free Counselling</Button>
+              <Button href={whatsappLink("Hi, I want to know about IIT-JEE coaching at LakshyaMarch.")} variant="ghost" size="md" target="_blank" rel="noopener noreferrer">
+                <MessageCircle size={16} strokeWidth={1.75} /> WhatsApp Now
+              </Button>
+            </div>
+          </Reveal>
         </div>
       </HeroSection>
 

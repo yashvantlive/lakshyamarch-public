@@ -46,7 +46,13 @@ export default function TestEnquiryForm() {
         body: JSON.stringify(data),
       });
 
-      if (!res.ok) throw new Error("Failed to submit form");
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        if (res.status === 409 || (data.error && data.error.includes("E11000") && data.error.includes("phone"))) {
+          throw new Error("This phone number is already registered. Please use a different one.");
+        }
+        throw new Error(data.error || "Failed to submit");
+      }
 
       setSuccess(true);
       setTimeout(() => {
@@ -56,8 +62,8 @@ export default function TestEnquiryForm() {
       (e.target as HTMLFormElement).reset();
       setTargetExam("");
     } catch (err) {
-      const e = err as any;
-      setError(e.message || "Something went wrong.");
+      console.error(err);
+      setError(err instanceof Error ? err.message : "Something went wrong. Please call us directly.");
     } finally {
       setLoading(false);
     }

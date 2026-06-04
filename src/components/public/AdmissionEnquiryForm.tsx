@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Turnstile } from "@marsidev/react-turnstile";
-import { Send, CheckCircle, Loader2, AlertCircle } from "lucide-react";
+import { Send, Loader2, AlertCircle, CheckCircle } from "lucide-react";
 import { PROGRAMS } from "@/lib/siteData";
 import { erpApiPath } from "@/lib/erpApi";
 
@@ -54,11 +54,18 @@ export default function AdmissionEnquiryForm() {
           turnstileToken: token,
         }),
       });
-      if (!res.ok) throw new Error("Failed");
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        if (res.status === 409 || (data.error && data.error.includes("E11000") && data.error.includes("phone"))) {
+          throw new Error("This phone number is already registered. Please use a different one.");
+        }
+        throw new Error(data.error || "Failed to submit");
+      }
       setSuccess(true);
       setName(""); setPhone(""); setProgram(""); setClassApplied("");
-    } catch {
-      setError("Kuch galat hua. Please directly call karo.");
+    } catch (err) {
+      console.error(err);
+      setError(err instanceof Error ? err.message : "Something went wrong. Please call us directly.");
     } finally {
       setSaving(false);
     }
@@ -169,6 +176,13 @@ export default function AdmissionEnquiryForm() {
           <AlertCircle size={15} strokeWidth={1.75} className="shrink-0" /> {error}
         </p>
       )}
+
+      <div className="flex justify-center pt-2">
+        <Turnstile
+          siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "1x00000000000000000000AA"}
+          onSuccess={setToken}
+        />
+      </div>
 
       <button
         type="submit"
