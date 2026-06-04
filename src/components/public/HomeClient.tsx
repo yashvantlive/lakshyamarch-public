@@ -200,6 +200,7 @@ function ThinkNeetSection() {
                 src="/images/campaigns/think-neet/think-neet-poster.webp"
                 alt="ThinkNEET Test Series poster"
                 fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>
@@ -253,7 +254,7 @@ function FounderSection() {
             <div className="relative overflow-hidden rounded-lg border border-ink-200 bg-white p-6 shadow-brand-sm">
               <div className="relative mb-6 aspect-square overflow-hidden rounded-md border border-ink-200">
                 {FOUNDER.image ? (
-                  <Image src={FOUNDER.image} alt={FOUNDER.name} fill className="object-cover object-top" />
+                  <Image src={FOUNDER.image} alt={FOUNDER.name} fill sizes="(max-width: 1024px) 100vw, 380px" className="object-cover object-top" />
                 ) : (
                   <div className="flex h-full w-full items-center justify-center bg-brand-blue-100 font-display text-5xl font-extrabold text-brand-blue-700">
                     {FOUNDER.name.charAt(0)}
