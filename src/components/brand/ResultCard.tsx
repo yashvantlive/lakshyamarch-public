@@ -93,6 +93,7 @@ export default function ResultCard({
             src={student.image}
             alt={student.name}
             fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 33vw, 20vw"
             className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
           />
         ) : (
