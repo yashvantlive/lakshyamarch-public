@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import PublicNavbar from "@/components/public/PublicNavbar";
 import PublicFooter from "@/components/public/PublicFooter";
-import EnquiryForm from "@/components/public/EnquiryForm";
+
 import { INSTITUTE, whatsappLink } from "@/lib/siteData";
 import {
   CheckCircle2, BookOpen, Trophy, BarChart3, ClipboardList,
@@ -51,34 +51,31 @@ export default function ThinkNeetPage() {
       <PublicNavbar />
 
       <HeroSection accent="green">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          <div>
-            <Reveal><Badge tone="onDark" icon={Sparkles}>The Ultimate NEET Prep</Badge></Reveal>
-            <Reveal delay={0.05}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/images/campaigns/think-neet/think-neet-logo.webp" alt="ThinkNEET" className="mt-6 h-14 w-auto object-contain" />
-            </Reveal>
-            <Reveal delay={0.1}>
-              <h1 className="mt-5 font-display text-[clamp(2.25rem,5vw,3.5rem)] font-extrabold leading-[1.08] tracking-tight text-white">
-                Master NEET with <span className="text-brand-gold-400">ThinkNEET</span>
-              </h1>
-            </Reveal>
-            <Reveal delay={0.15}>
-              <p className="mt-5 max-w-xl font-sans text-lg leading-relaxed text-white/70">
-                Begusarai's most scientific and structured test series — designed by experts to help you crack the
-                medical entrance with confidence.
-              </p>
-            </Reveal>
-            <Reveal delay={0.2}>
-              <div className="mt-8 flex flex-wrap gap-4">
-                <Button href="#register" variant="primary" size="lg" withArrow magnetic>Enroll Now</Button>
-                <Button href={whatsappLink("Hi, I want more details about ThinkNEET Test Series.")} variant="ghost" size="lg" target="_blank" rel="noopener noreferrer">
-                  Download Schedule
-                </Button>
-              </div>
-            </Reveal>
-          </div>
-          <Reveal delay={0.1} id="register"><EnquiryForm /></Reveal>
+        <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
+          <Reveal><Badge tone="onDark" icon={Sparkles}>The Ultimate NEET Prep</Badge></Reveal>
+          <Reveal delay={0.05}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/campaigns/think-neet/think-neet-logo.webp" alt="ThinkNEET" className="mt-6 h-14 w-auto object-contain mx-auto" />
+          </Reveal>
+          <Reveal delay={0.1}>
+            <h1 className="mt-5 font-display text-[clamp(2.25rem,5vw,3.5rem)] font-extrabold leading-[1.08] tracking-tight text-white">
+              Master NEET with <span className="text-brand-gold-400">ThinkNEET</span>
+            </h1>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <p className="mx-auto mt-5 max-w-xl font-sans text-lg leading-relaxed text-white/70">
+              Begusarai's most scientific and structured test series — designed by experts to help you crack the
+              medical entrance with confidence.
+            </p>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <div className="mt-10 flex flex-wrap justify-center gap-4">
+              <Button href="/admission" variant="primary" size="lg" withArrow magnetic>Enroll Now</Button>
+              <Button href={whatsappLink("Hi, I want more details about ThinkNEET Test Series.")} variant="ghost" size="lg" target="_blank" rel="noopener noreferrer">
+                WhatsApp Us
+              </Button>
+            </div>
+          </Reveal>
         </div>
       </HeroSection>
 
@@ -163,7 +160,7 @@ export default function ThinkNeetPage() {
               </div>
             </Reveal>
             <Reveal delay={0.15} className="mt-10 flex flex-wrap justify-center gap-4">
-              <Button href="#register" variant="primary" size="lg" withArrow magnetic>Join ThinkNEET Today</Button>
+              <Button href="/admission" variant="primary" size="lg" withArrow magnetic>Join ThinkNEET Today</Button>
               <Button href={`tel:+91${INSTITUTE.primaryPhone}`} variant="outline" size="lg">Call for Schedule</Button>
             </Reveal>
           </div>

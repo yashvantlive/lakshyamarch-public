@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import PublicNavbar from "@/components/public/PublicNavbar";
 import PublicFooter from "@/components/public/PublicFooter";
-import EnquiryForm from "@/components/public/EnquiryForm";
+
 import { INSTITUTE, whatsappLink } from "@/lib/siteData";
 import {
   Trophy, CheckCircle2, Gift, BookOpen, Clock,
@@ -93,34 +93,57 @@ export default function ScholarshipPage() {
       <PublicNavbar />
 
       <HeroSection accent="gold">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          <div>
-            <Reveal>
-              <Badge tone="onDark" icon={Gift}>Free Registration · Up to 100% Waiver</Badge>
-            </Reveal>
-            <Reveal delay={0.05}>
-              <h1 className="mt-6 font-display text-[clamp(2.25rem,5vw,3.5rem)] font-extrabold leading-[1.08] tracking-tight text-white">
-                Scholarship Exam <span className="text-brand-gold-400">2026</span>
-              </h1>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <p className="mt-5 max-w-xl font-sans text-lg leading-relaxed text-white/70">
-                Talent deserving quality education shouldn't be stopped by fees. Register free and win up to{" "}
-                <strong className="text-brand-gold-400">100% fee waiver</strong> on JEE, NEET, or Foundation coaching.
-              </p>
-            </Reveal>
-            <Reveal delay={0.15} className="mt-8">
-              <StatsGrid stats={QUICK_STATS} theme="dark" />
-            </Reveal>
-          </div>
-
+        <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
+          <Reveal>
+            <Badge tone="onDark" icon={Gift}>Free Registration · Up to 100% Waiver</Badge>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <h1 className="mt-6 font-display text-[clamp(2.25rem,5vw,3.5rem)] font-extrabold leading-[1.08] tracking-tight text-white">
+              Scholarship Exam <span className="text-brand-gold-400">2026</span>
+            </h1>
+          </Reveal>
           <Reveal delay={0.1}>
-            <EnquiryForm />
+            <p className="mx-auto mt-5 max-w-xl font-sans text-lg leading-relaxed text-white/70">
+              Talent deserving quality education shouldn't be stopped by fees. Register free and win up to{" "}
+              <strong className="text-brand-gold-400">100% fee waiver</strong> on JEE, NEET, or Foundation coaching.
+            </p>
+          </Reveal>
+          <Reveal delay={0.15} className="mt-8 w-full max-w-3xl">
+            <StatsGrid stats={QUICK_STATS} theme="dark" />
           </Reveal>
         </div>
       </HeroSection>
 
       <main className="flex-1">
+        {/* Register steps (moved up) */}
+        <section className={cn(layout.section, "bg-white")}>
+          <div className={layout.containerMedium}>
+            <SectionHeader eyebrow="Get Started" title="How to Register for Free" accentWord="Free" accent="gold" className="mb-14" />
+            <Stagger className="grid gap-8 sm:grid-cols-3">
+              {REGISTER_STEPS.map((s) => (
+                <StaggerItem key={s.step} className="relative text-center">
+                  <span className="pointer-events-none absolute -top-5 left-1/2 -translate-x-1/2 font-display text-[4.5rem] font-extrabold leading-none text-ink-200/70 select-none">{s.step}</span>
+                  <div className="relative">
+                    <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-lg bg-brand-gold-400 text-ink-900 shadow-brand-md">
+                      <s.icon size={26} strokeWidth={1.75} />
+                    </div>
+                    <h3 className="font-display text-base font-bold text-ink-900">{s.title}</h3>
+                    <p className="mx-auto mt-2 max-w-xs font-sans text-sm text-ink-500">{s.desc}</p>
+                  </div>
+                </StaggerItem>
+              ))}
+            </Stagger>
+            <Reveal className="mt-12 flex flex-wrap justify-center gap-4">
+              <Button href={whatsappLink("Hi, I want to register for LakshyaMarch Scholarship Exam 2026.")} variant="gold" size="lg" withArrow magnetic target="_blank" rel="noopener noreferrer">
+                Register on WhatsApp
+              </Button>
+              <Button href={`tel:+91${INSTITUTE.primaryPhone}`} variant="outline" size="lg">
+                <Phone size={18} strokeWidth={1.75} /> {INSTITUTE.primaryPhone}
+              </Button>
+            </Reveal>
+          </div>
+        </section>
+
         {/* Slabs */}
         <section className={cn(layout.section, "bg-white")}>
           <div className={layout.containerMedium}>
@@ -165,34 +188,7 @@ export default function ScholarshipPage() {
           </div>
         </section>
 
-        {/* Register steps */}
-        <section className={cn(layout.sectionTight, "bg-white")}>
-          <div className={layout.containerMedium}>
-            <SectionHeader eyebrow="Get Started" title="How to Register for Free" accentWord="Free" accent="gold" className="mb-14" />
-            <Stagger className="grid gap-8 sm:grid-cols-3">
-              {REGISTER_STEPS.map((s) => (
-                <StaggerItem key={s.step} className="relative text-center">
-                  <span className="pointer-events-none absolute -top-5 left-1/2 -translate-x-1/2 font-display text-[4.5rem] font-extrabold leading-none text-ink-200/70 select-none">{s.step}</span>
-                  <div className="relative">
-                    <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-lg bg-brand-gold-400 text-ink-900 shadow-brand-md">
-                      <s.icon size={26} strokeWidth={1.75} />
-                    </div>
-                    <h3 className="font-display text-base font-bold text-ink-900">{s.title}</h3>
-                    <p className="mx-auto mt-2 max-w-xs font-sans text-sm text-ink-500">{s.desc}</p>
-                  </div>
-                </StaggerItem>
-              ))}
-            </Stagger>
-            <Reveal className="mt-12 flex flex-wrap justify-center gap-4">
-              <Button href={whatsappLink("Hi, I want to register for LakshyaMarch Scholarship Exam 2026.")} variant="gold" size="lg" withArrow magnetic target="_blank" rel="noopener noreferrer">
-                Register on WhatsApp
-              </Button>
-              <Button href={`tel:+91${INSTITUTE.primaryPhone}`} variant="outline" size="lg">
-                <Phone size={18} strokeWidth={1.75} /> {INSTITUTE.primaryPhone}
-              </Button>
-            </Reveal>
-          </div>
-        </section>
+        {/* Ends main content */}
       </main>
 
       <FAQSection faqs={scholarshipFaqs} eyebrow="Scholarship FAQs" title="Questions, Answered" accentWord="Answered" accent="gold" />
