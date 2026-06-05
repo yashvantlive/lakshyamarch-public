@@ -418,7 +418,7 @@ function ScholarshipSection() {
           ))}
         </Stagger>
         <Reveal className="mt-12 text-center">
-          <Button href="/scholarship" variant="gold" size="lg" withArrow magnetic>
+          <Button href="/scholarship" variant="gold" size="lg" withArrow magnetic className="max-w-[90vw] h-auto whitespace-normal py-3 px-6 leading-tight">
             Register Free for Scholarship Exam
           </Button>
         </Reveal>
