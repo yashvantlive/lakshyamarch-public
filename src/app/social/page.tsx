@@ -31,7 +31,7 @@ export default function SocialWallPage() {
           "@type": "Organization",
           "name": "LakshyaMarch Education",
           "url": "https://lakshyamarch.com",
-          "logo": "https://lakshyamarch.com/images/logo.png",
+          "logo": "https://lakshyamarch.com/lm_logo.jpeg",
           "sameAs": [
             "https://www.facebook.com/lakshyamarch",
             "https://www.instagram.com/lakshyamarch",

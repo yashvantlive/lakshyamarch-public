@@ -136,6 +136,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  overflow-x: hidden; /* Prevent horizontal scroll from any overflowing element */
 }
 
 /* Headings default to the display family. */

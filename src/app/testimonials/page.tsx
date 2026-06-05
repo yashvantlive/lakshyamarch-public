@@ -21,7 +21,7 @@ const aggregateRatingSchema = {
   "@type": "EducationalOrganization",
   "name": INSTITUTE.name,
   "url": "https://lakshyamarch.com",
-  "logo": "https://lakshyamarch.com/logo.png",
+  "logo": "https://lakshyamarch.com/lm_logo.jpeg",
   "aggregateRating": {
     "@type": "AggregateRating",
     "ratingValue": "4.9",

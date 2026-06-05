@@ -39,7 +39,7 @@ export default function ArticleSchema({
       "name": INSTITUTE.name,
       "logo": {
         "@type": "ImageObject",
-        "url": "https://lakshyamarch.com/logo.png"
+        "url": "https://lakshyamarch.com/lm_logo.jpeg"
       }
     },
     "datePublished": datePublished,
