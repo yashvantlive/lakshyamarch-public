@@ -25,10 +25,12 @@ export default function FacultyCard({
   faculty,
   className,
   compact = false,
+  priority = false,
 }: {
   faculty: Faculty;
   className?: string;
   compact?: boolean;
+  priority?: boolean;
 }) {
   return (
     <div
@@ -44,6 +46,7 @@ export default function FacultyCard({
             src={faculty.image}
             alt={faculty.name}
             fill
+            priority={priority}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
           />

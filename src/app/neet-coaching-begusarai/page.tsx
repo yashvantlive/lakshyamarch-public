@@ -33,7 +33,12 @@ export const metadata: Metadata = {
   },
 };
 
-const neetFacultyList = FACULTY.filter((f) => ["Biology", "Chemistry", "Physics"].includes(f.subject)).slice(0, 4);
+const neetFacultyList = FACULTY.filter((f) => f.team?.includes("NEET"))
+  .sort((a, b) => {
+    if (a.role === "Senior Faculty" && b.role !== "Senior Faculty") return -1;
+    if (a.role !== "Senior Faculty" && b.role === "Senior Faculty") return 1;
+    return 0;
+  });
 
 const neetFaqs = [
   { q: "Is LakshyaMarch good for NEET preparation?", a: "Yes! LakshyaMarch students secured AIR 499 in NEET 2025 with a score of 619/720 (Aradhya Bharti – ABVIMS Delhi). Our NEET results include multiple selections in PMCH Patna, ANMMCH Gaya, and other top government medical colleges." },
@@ -156,8 +161,8 @@ export default function NEETCoachingPage() {
               <div>
                 <SectionHeader align="left" eyebrow="Faculty" title="NEET Faculty Panel" accentWord="Panel" accent="green" className="mb-8" />
                 <Stagger className="grid grid-cols-2 gap-5">
-                  {neetFacultyList.map((f) => (
-                    <StaggerItem key={f.name}><FacultyCard faculty={f} compact /></StaggerItem>
+                  {neetFacultyList.map((f, i) => (
+                    <StaggerItem key={f.name}><FacultyCard faculty={f} compact priority={i < 4} /></StaggerItem>
                   ))}
                 </Stagger>
                 <Reveal className="mt-6"><Button href="/faculty" variant="secondary" size="sm" withArrow>Meet All Faculty</Button></Reveal>

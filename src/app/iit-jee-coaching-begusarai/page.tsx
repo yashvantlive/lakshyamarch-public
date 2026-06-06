@@ -33,7 +33,12 @@ export const metadata: Metadata = {
   },
 };
 
-const jeeFacultyList = FACULTY.filter((f) => ["Mathematics", "Physics", "Chemistry"].includes(f.subject)).slice(0, 4);
+const jeeFacultyList = FACULTY.filter((f) => f.team?.includes("IIT-JEE"))
+  .sort((a, b) => {
+    if (a.role === "Senior Faculty" && b.role !== "Senior Faculty") return -1;
+    if (a.role !== "Senior Faculty" && b.role === "Senior Faculty") return 1;
+    return 0;
+  });
 const jeeToppers = (RESULTS_JEE as ResultStudent[]).filter((r) => (r.percentile ?? 0) >= 98);
 
 const jeeFaqs = [
@@ -157,8 +162,8 @@ export default function JEECoachingPage() {
               <div>
                 <SectionHeader align="left" eyebrow="Faculty" title="JEE Faculty Panel" accentWord="Panel" accent="red" className="mb-8" />
                 <Stagger className="grid grid-cols-2 gap-5">
-                  {jeeFacultyList.map((f) => (
-                    <StaggerItem key={f.name}><FacultyCard faculty={f} compact /></StaggerItem>
+                  {jeeFacultyList.map((f, i) => (
+                    <StaggerItem key={f.name}><FacultyCard faculty={f} compact priority={i < 4} /></StaggerItem>
                   ))}
                 </Stagger>
                 <Reveal className="mt-6"><Button href="/faculty" variant="secondary" size="sm" withArrow>Meet All Faculty</Button></Reveal>
