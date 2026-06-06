@@ -59,9 +59,9 @@ export default function FacultyPage() {
               className="mb-14"
             />
             <Stagger className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {FACULTY.map((f) => (
+              {FACULTY.map((f, i) => (
                 <StaggerItem key={f.name}>
-                  <FacultyCard faculty={f} />
+                  <FacultyCard faculty={f} priority={i < 6} />
                 </StaggerItem>
               ))}
             </Stagger>
