@@ -1,11 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import PublicNavbar from "@/components/public/PublicNavbar";
 import PublicFooter from "@/components/public/PublicFooter";
-import { Star, MessageSquare, Send, Loader2 } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
-import { erpApiPath } from "@/lib/erpApi";
+import { Star, MessageSquare, Loader2 } from "lucide-react";
 import {
   Badge, HeroSection, TestimonialCard, Button, Reveal, Stagger, StaggerItem,
 } from "@/components/brand";
@@ -25,37 +23,8 @@ interface Testimonial {
 export default function TestimonialsClient({ initialTestimonials = [] }: { initialTestimonials?: Testimonial[] }) {
   const [testimonials, setTestimonials] = useState<Testimonial[]>(initialTestimonials);
   const [loading, setLoading] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
-  const [showForm, setShowForm] = useState(false);
-  const [formSuccess, setFormSuccess] = useState(false);
-  const [formData, setFormData] = useState({ name: "", content: "", rating: 5, studentClass: "" });
 
   // Data is fetched server-side using ISR now
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitting(true);
-    try {
-      const res = await fetch(erpApiPath("/api/testimonials"), {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-      const data = await res.json();
-      if (data.success) {
-        setFormSuccess(true);
-        setFormData({ name: "", content: "", rating: 5, studentClass: "" });
-        setTimeout(() => { setFormSuccess(false); setShowForm(false); }, 3000);
-      }
-    } catch {
-      /* silent */
-    } finally {
-      setSubmitting(false);
-    }
-  };
-
-  const inputCls =
-    "w-full rounded-xl border border-ink-200 bg-ink-50 px-5 py-3 font-sans font-medium text-ink-900 transition-colors focus:border-brand-red-500 focus:bg-white focus:outline-none";
 
   return (
     <div className="flex min-h-screen flex-col bg-ink-50">
@@ -76,69 +45,13 @@ export default function TestimonialsClient({ initialTestimonials = [] }: { initi
           </Reveal>
           <Reveal delay={0.15}>
             <div className="mt-9">
-              <Button onClick={() => setShowForm((v) => !v)} variant="gold" size="lg" magnetic>
-                <MessageSquare size={18} strokeWidth={1.75} /> Share Your Experience
+              <Button href="https://www.google.com/search?q=Lakshyamarch+Education+Begusarai" target="_blank" rel="noopener noreferrer" variant="gold" size="lg" magnetic>
+                <Star size={18} strokeWidth={1.75} className="mr-2" /> Write a Google Review
               </Button>
             </div>
           </Reveal>
         </div>
       </HeroSection>
-
-      {/* Submission form */}
-      <AnimatePresence>
-        {showForm && (
-          <motion.section
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="overflow-hidden border-b border-ink-200 bg-white"
-          >
-            <div className="mx-auto max-w-3xl px-5 py-14 sm:px-8">
-              {formSuccess ? (
-                <div className="text-center">
-                  <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-brand-green-50 text-brand-green-600">
-                    <Send size={32} strokeWidth={1.75} />
-                  </div>
-                  <h3 className="font-display text-2xl font-extrabold text-ink-900">Message Received</h3>
-                  <p className="mt-2 font-sans text-ink-500">Thank you for sharing your story. Our team will verify and publish it soon.</p>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid gap-6 sm:grid-cols-2">
-                    <div className="space-y-2">
-                      <label className="font-sans text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-ink-400">Full Name</label>
-                      <input required type="text" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} placeholder="e.g. Rahul Kumar" className={inputCls} />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="font-sans text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-ink-400">Class / Batch</label>
-                      <input required type="text" value={formData.studentClass} onChange={(e) => setFormData({ ...formData, studentClass: e.target.value })} placeholder="e.g. 12th NEET 2025" className={inputCls} />
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <label className="font-sans text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-ink-400">Your Message</label>
-                    <textarea required value={formData.content} onChange={(e) => setFormData({ ...formData, content: e.target.value })} rows={4} placeholder="Share your experience at LakshyaMarch..." className={cn(inputCls, "resize-none")} />
-                  </div>
-                  <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
-                    <div className="flex items-center gap-3">
-                      <span className="font-sans text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-ink-400">Rating</span>
-                      <div className="flex gap-1">
-                        {[1, 2, 3, 4, 5].map((s) => (
-                          <button key={s} type="button" onClick={() => setFormData({ ...formData, rating: s })} className="transition-transform hover:scale-110">
-                            <Star size={26} className={formData.rating >= s ? "text-brand-gold-400" : "text-ink-200"} fill={formData.rating >= s ? "currentColor" : "none"} />
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                    <Button type="submit" disabled={submitting} variant="primary" size="md" className="w-full sm:w-auto">
-                      {submitting ? <Loader2 size={18} className="animate-spin" /> : "Submit Feedback"}
-                    </Button>
-                  </div>
-                </form>
-              )}
-            </div>
-          </motion.section>
-        )}
-      </AnimatePresence>
 
       {/* Wall */}
       <section className={cn(layout.section, "flex-1")}>
