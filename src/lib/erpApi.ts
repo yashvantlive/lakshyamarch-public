@@ -10,6 +10,19 @@ export function erpApiPath(path: string): string {
   return `${base}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
+export function getChatApiUrl(): string {
+  const url = process.env.NEXT_PUBLIC_CHAT_API_URL?.trim();
+  // Return empty string if the URL is localhost:8000 or undefined, 
+  // so that requests use the Next.js rewrite proxy configured in next.config.ts
+  if (!url || url.includes("localhost:8000")) return "";
+  return url.replace(/\/$/, "");
+}
+
+export function chatApiPath(path: string): string {
+  const base = getChatApiUrl();
+  return `${base}${path.startsWith("/") ? path : `/${path}`}`;
+}
+
 /** Student / teacher / admin portal sign-in (hosted on ERP). */
 export function getPortalLoginUrl(): string {
   return `${getErpApiUrl()}/login`;

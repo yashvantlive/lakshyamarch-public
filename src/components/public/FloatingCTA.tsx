@@ -4,6 +4,7 @@ import { MessageCircle, Phone } from "lucide-react";
 import { whatsappLink, INSTITUTE } from "@/lib/siteData";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import Chatbot from "./Chatbot";
 
 export default function FloatingCTA() {
   const [isVisible, setIsVisible] = useState(false);
@@ -27,6 +28,9 @@ export default function FloatingCTA() {
 
   return (
     <div className={`fixed bottom-6 right-6 z-[90] flex flex-col gap-3 transition-all duration-700 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"}`}>
+      {/* Chatbot Support AI CTA (placed above the call button) */}
+      <Chatbot />
+
       {/* Phone CTA */}
       <a 
         href={`tel:+91${INSTITUTE.primaryPhone || "6206323869"}`} 
@@ -59,3 +63,4 @@ export default function FloatingCTA() {
     </div>
   );
 }
+
