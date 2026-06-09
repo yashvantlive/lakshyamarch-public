@@ -16,7 +16,7 @@ import {
   HIGHLIGHTS, FOUNDER, whatsappLink,
 } from "@/lib/siteData";
 import { SUCCESS_STORIES } from "@/lib/stories";
-import { BLOG_POSTS } from "@/lib/blogData";
+
 import {
   Button, Badge, BannerLabel, AchievementStrip, SectionHeader, HeroSection, ResultsShowcase,
   FacultyCard, ProgramCard, ScholarshipBadge, TestimonialCard, CTASection,
@@ -48,7 +48,7 @@ const ADMISSION_STEPS = [
   { icon: BadgeCheck, step: "03", title: "Confirm Seat", desc: "Submit documents, complete registration, and your seat is secured." },
 ];
 
-export default function HomeClient() {
+export default function HomeClient({ recentBlogs = [] }: { recentBlogs?: any[] }) {
   const stories = SUCCESS_STORIES.slice(0, 3).map((s) => ({
     name: s.title.split(" ").slice(2, 4).join(" ") || s.author,
     content: s.excerpt,
@@ -68,7 +68,7 @@ export default function HomeClient() {
       <FacultySection />
       <ScholarshipSection />
       <StoriesSection stories={stories} />
-      <BlogSection blogs={BLOG_POSTS} />
+      <BlogSection blogs={recentBlogs} />
       <AdmissionsSection />
       <CTASection
         title="Your March Towards Success Starts Here"
@@ -505,7 +505,7 @@ function AdmissionsSection() {
 }
 
 /* ─────────────────────── Blogs ──────────────────────── */
-function BlogSection({ blogs }: { blogs: typeof import("@/lib/blogData").BLOG_POSTS }) {
+function BlogSection({ blogs }: { blogs: any[] }) {
   return (
     <section className={cn(layout.section, "bg-ink-50")}>
       <div className={layout.container}>

@@ -1,11 +1,25 @@
 import { MetadataRoute } from "next";
 import { SUCCESS_STORIES } from "@/lib/stories";
-import { BLOG_POSTS } from "@/lib/blogData";
 import { districtData } from "@/lib/districtData";
+import { erpApiPath } from "@/lib/erpApi";
 
 const BASE_URL = "https://lakshyamarch.com";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+async function getBlogs() {
+  try {
+    const res = await fetch(erpApiPath("/api/public/blogs"), { next: { revalidate: 3600 } });
+    if (!res.ok) return [];
+    const json = await res.json();
+    return json.success ? json.data : [];
+  } catch (error) {
+    console.error("Failed to fetch blogs for sitemap", error);
+    return [];
+  }
+}
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const BLOG_POSTS = await getBlogs();
+
   // 1. Static Routes
   const staticRoutes = [
     "",
@@ -69,9 +83,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }];
 
-  const blogPostRoutes = BLOG_POSTS.map((post) => ({
+  const blogPostRoutes = BLOG_POSTS.map((post: any) => ({
     url: `${BASE_URL}/blog/${post.slug}`,
-    lastModified: post.date,
+    lastModified: post.date ? new Date(post.date).toISOString() : new Date().toISOString(),
     changeFrequency: "monthly" as const,
     priority: 0.75,
   }));

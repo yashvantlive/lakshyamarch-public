@@ -3,7 +3,7 @@ import Link from "next/link";
 import PublicNavbar from "@/components/public/PublicNavbar";
 import PublicFooter from "@/components/public/PublicFooter";
 import FaqSchema from "@/components/seo/FaqSchema";
-import { BLOG_POSTS } from "@/lib/blogData";
+import { erpApiPath } from "@/lib/erpApi";
 import { ArrowRight, Clock, User, BookOpen, CalendarDays } from "lucide-react";
 import {
   Badge, SectionHeader, HeroSection, CTASection, Reveal, Stagger, StaggerItem,
@@ -37,8 +37,23 @@ const catTone: Record<string, "blue" | "green" | "red" | "gold" | "neutral"> = {
   JEE: "blue", NEET: "green", Foundation: "gold", Board: "red", General: "neutral",
 };
 
-export default function BlogPage() {
-  const featured = BLOG_POSTS[0];
+export const revalidate = 3600;
+
+async function getBlogs() {
+  try {
+    const res = await fetch(erpApiPath("/api/public/blogs"), { next: { revalidate: 3600 } });
+    if (!res.ok) return [];
+    const json = await res.json();
+    return json.success ? json.data : [];
+  } catch (error) {
+    console.error("Failed to fetch blogs:", error);
+    return [];
+  }
+}
+
+export default async function BlogPage() {
+  const BLOG_POSTS = await getBlogs();
+  const featured = BLOG_POSTS[0] || null;
   const rest = BLOG_POSTS.slice(1);
 
   return (
@@ -61,30 +76,32 @@ export default function BlogPage() {
           </Reveal>
         </div>
 
-        <Reveal delay={0.15}>
-          <Link
-            href={`/blog/${featured.slug}`}
-            className="group grid overflow-hidden rounded-lg border border-white/10 bg-white/[0.04] transition-colors hover:border-white/20 lg:grid-cols-2"
-          >
-            <div className="flex flex-col justify-center gap-4 bg-gradient-to-br from-brand-blue-800 to-ink-900 p-10 sm:p-12">
-              <Badge tone="onDark">Featured Article</Badge>
-              <h2 className="font-display text-2xl font-extrabold leading-tight text-white transition-colors group-hover:text-brand-gold-300 sm:text-3xl">
-                {featured.title}
-              </h2>
-            </div>
-            <div className="flex flex-col justify-center gap-6 p-8 sm:p-10">
-              <p className="font-sans text-sm leading-relaxed text-white/70">{featured.description}</p>
-              <div className="flex flex-wrap items-center gap-4 font-sans text-xs text-white/50">
-                <span className="flex items-center gap-1.5"><User size={12} strokeWidth={1.75} /> {featured.author}</span>
-                <span className="flex items-center gap-1.5"><Clock size={12} strokeWidth={1.75} /> {featured.readTime}</span>
-                <span className="flex items-center gap-1.5"><CalendarDays size={12} strokeWidth={1.75} /> {featured.date}</span>
+        {featured && (
+          <Reveal delay={0.15}>
+            <Link
+              href={`/blog/${featured.slug}`}
+              className="group grid overflow-hidden rounded-lg border border-white/10 bg-white/[0.04] transition-colors hover:border-white/20 lg:grid-cols-2"
+            >
+              <div className={`flex flex-col justify-center gap-4 bg-gradient-to-br ${featured.heroColor || 'from-brand-blue-800 to-ink-900'} p-10 sm:p-12`}>
+                <Badge tone="onDark">Featured Article</Badge>
+                <h2 className="font-display text-2xl font-extrabold leading-tight text-white transition-colors group-hover:text-brand-gold-300 sm:text-3xl">
+                  {featured.title}
+                </h2>
               </div>
-              <span className="inline-flex items-center gap-2 font-display text-sm font-semibold text-brand-gold-400">
-                Read Full Article <ArrowRight size={15} strokeWidth={1.75} className="transition-transform group-hover:translate-x-1" />
-              </span>
-            </div>
-          </Link>
-        </Reveal>
+              <div className="flex flex-col justify-center gap-6 p-8 sm:p-10">
+                <p className="font-sans text-sm leading-relaxed text-white/70">{featured.description}</p>
+                <div className="flex flex-wrap items-center gap-4 font-sans text-xs text-white/50">
+                  <span className="flex items-center gap-1.5"><User size={12} strokeWidth={1.75} /> {featured.author}</span>
+                  <span className="flex items-center gap-1.5"><Clock size={12} strokeWidth={1.75} /> {featured.readTime}</span>
+                  <span className="flex items-center gap-1.5"><CalendarDays size={12} strokeWidth={1.75} /> {featured.date}</span>
+                </div>
+                <span className="inline-flex items-center gap-2 font-display text-sm font-semibold text-brand-gold-400">
+                  Read Full Article <ArrowRight size={15} strokeWidth={1.75} className="transition-transform group-hover:translate-x-1" />
+                </span>
+              </div>
+            </Link>
+          </Reveal>
+        )}
       </HeroSection>
 
       <main className="flex-1">
@@ -92,13 +109,19 @@ export default function BlogPage() {
           <div className={layout.container}>
             <SectionHeader align="left" eyebrow="All Articles" title="Latest from the Desk" accentWord="Desk" accent="blue" className="mb-12" />
             <Stagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {rest.map((post) => (
+              {rest.map((post: any) => (
                 <StaggerItem key={post.slug}>
                   <Link
                     href={`/blog/${post.slug}`}
                     className="group flex h-full flex-col overflow-hidden rounded-lg border border-ink-200 bg-white shadow-brand-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg"
                   >
-                    <div className="h-1.5 w-full bg-brand-red-600" />
+                    {post.thumbnailUrl ? (
+                      <div className="h-48 w-full overflow-hidden bg-ink-100">
+                        <img src={post.thumbnailUrl} alt={post.title} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                      </div>
+                    ) : (
+                      <div className="h-1.5 w-full bg-brand-red-600" />
+                    )}
                     <div className="flex flex-1 flex-col p-6">
                       <div className="mb-4 flex items-center gap-2">
                         <Badge tone={catTone[post.category]}>{post.category}</Badge>

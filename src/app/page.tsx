@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import HomeClient from "@/components/public/HomeClient";
 import FaqSchema from "@/components/seo/FaqSchema";
 import { INSTITUTE } from "@/lib/siteData";
+import { erpApiPath } from "@/lib/erpApi";
 
 export const metadata: Metadata = {
   title: "LakshyaMarch Education Begusarai | IIT JEE | NEET | 11th, 12th (CBSE/ICSE BOARD) | Foundation (Class 6-10)",
@@ -33,11 +34,24 @@ const homeFaqs = [
   { q: "How to take admission in LakshyaMarch?", a: "You can apply by filling the online enquiry form on our website, calling +91-6206323869, or visiting the campus directly. A free counselling session will guide you to the right batch." },
 ];
 
-export default function LandingPage() {
+
+async function getRecentBlogs() {
+  try {
+    const res = await fetch(erpApiPath("/api/public/blogs"), { next: { revalidate: 3600 } });
+    if (!res.ok) return [];
+    const json = await res.json();
+    return json.success ? json.data.slice(0, 3) : [];
+  } catch (error) {
+    return [];
+  }
+}
+
+export default async function LandingPage() {
+  const recentBlogs = await getRecentBlogs();
   return (
     <>
       <FaqSchema faqs={homeFaqs} />
-      <HomeClient />
+      <HomeClient recentBlogs={recentBlogs} />
     </>
   );
 }

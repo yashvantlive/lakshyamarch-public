@@ -3,7 +3,25 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import PublicNavbar from "@/components/public/PublicNavbar";
 import PublicFooter from "@/components/public/PublicFooter";
-import { BLOG_POSTS } from "@/lib/blogData";
+import { erpApiPath } from "@/lib/erpApi";
+
+async function getBlogs() {
+  try {
+    const res = await fetch(erpApiPath("/api/public/blogs"), { next: { revalidate: 3600 } });
+    if (!res.ok) return [];
+    const json = await res.json();
+    return json.success ? json.data : [];
+  } catch (e) { return []; }
+}
+
+async function getBlogBySlug(slug: string) {
+  try {
+    const res = await fetch(erpApiPath(`/api/public/blogs/${slug}`), { next: { revalidate: 3600 } });
+    if (!res.ok) return null;
+    const json = await res.json();
+    return json.success ? json.data : null;
+  } catch (e) { return null; }
+}
 import { whatsappLink } from "@/lib/siteData";
 import ArticleSchema from "@/components/seo/ArticleSchema";
 import {
@@ -13,13 +31,15 @@ import { Badge, Button } from "@/components/brand";
 import { ExamSheetTexture, StaircaseEmblem } from "@/design-system/patterns";
 import { cn } from "@/lib/utils";
 
-export function generateStaticParams() {
-  return BLOG_POSTS.map((post) => ({ slug: post.slug }));
+export async function generateStaticParams() {
+  const BLOG_POSTS = await getBlogs();
+  return BLOG_POSTS.map((post: any) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const BLOG_POSTS = await getBlogs();
   const { slug } = await params;
-  const post = BLOG_POSTS.find((p) => p.slug === slug);
+  const post = BLOG_POSTS.find((p: any) => p.slug === slug);
   if (!post) return { title: "Blog | LakshyaMarch" };
   return {
     title: `${post.title} | LakshyaMarch Blog`,
@@ -46,11 +66,12 @@ const catTone: Record<string, "blue" | "green" | "red" | "gold" | "neutral"> = {
 };
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const BLOG_POSTS = await getBlogs();
   const { slug } = await params;
-  const post = BLOG_POSTS.find((p) => p.slug === slug);
+  const post = BLOG_POSTS.find((p: any) => p.slug === slug);
   if (!post) notFound();
 
-  const related = BLOG_POSTS.filter((p) => p.category === post.category && p.slug !== post.slug).slice(0, 3);
+  const related = BLOG_POSTS.filter((p: any) => p.category === post.category && p.slug !== post.slug).slice(0, 3);
 
   return (
     <div className="flex min-h-screen flex-col bg-white">
@@ -97,11 +118,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <div className="mx-auto max-w-4xl">
           <div className="grid items-start gap-12 lg:grid-cols-[1fr_280px]">
             <div className="space-y-10">
-              {post.content.map((section, i) => (
+              {post.content.map((section: any, i: number) => (
                 <div key={i}>
                   {section.heading && <h2 className="mb-4 font-display text-2xl font-bold leading-tight text-ink-900">{section.heading}</h2>}
                   <div className="space-y-4 font-sans text-[15px] leading-[1.85] text-ink-600">
-                    {section.body.split("\n\n").map((para, pi) => (
+                    {section.body.split("\n\n").map((para: string, pi: number) => (
                       <p key={pi} className="whitespace-pre-line" dangerouslySetInnerHTML={{ __html: renderMarkdown(para) }} />
                     ))}
                   </div>
@@ -141,7 +162,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               <div className="rounded-lg border border-ink-200 bg-ink-50 p-5">
                 <p className="mb-3 font-sans text-[0.6875rem] font-bold uppercase tracking-widest text-ink-400">Keywords</p>
                 <div className="flex flex-wrap gap-2">
-                  {post.keywords.map((kw) => (
+                  {post.keywords.map((kw: string) => (
                     <span key={kw} className="rounded-lg border border-ink-200 bg-white px-2.5 py-1 font-sans text-[0.625rem] font-semibold text-ink-500">
                       {kw}
                     </span>
@@ -160,7 +181,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               <BookOpen size={22} strokeWidth={1.75} className="text-brand-blue-700" /> Related Articles
             </h2>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {related.map((rp) => (
+              {related.map((rp: any) => (
                 <Link key={rp.slug} href={`/blog/${rp.slug}`} className="group rounded-lg border border-ink-200 bg-white p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg">
                   <Badge tone={catTone[rp.category]} className="mb-3">{rp.category}</Badge>
                   <h3 className="font-display text-base font-bold leading-tight text-ink-900 transition-colors group-hover:text-brand-red-600 line-clamp-2">{rp.title}</h3>

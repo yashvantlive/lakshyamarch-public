@@ -9,6 +9,8 @@ interface ArticleSchemaProps {
   datePublished: string;
   dateModified?: string;
   authorName: string;
+  authorUrl?: string;
+  takeaways?: string[];
 }
 
 export default function ArticleSchema({ 
@@ -18,9 +20,11 @@ export default function ArticleSchema({
   imageUrl = "https://lakshyamarch.com/og-image.jpg", 
   datePublished, 
   dateModified, 
-  authorName 
+  authorName,
+  authorUrl,
+  takeaways
 }: ArticleSchemaProps) {
-  const articleData = {
+  const articleData: any = {
     "@context": "https://schema.org",
     "@type": "Article",
     "mainEntityOfPage": {
@@ -32,7 +36,8 @@ export default function ArticleSchema({
     "image": imageUrl,
     "author": {
       "@type": "Person",
-      "name": authorName
+      "name": authorName,
+      ...(authorUrl ? { "url": authorUrl } : {})
     },
     "publisher": {
       "@type": "EducationalOrganization",
@@ -43,7 +48,8 @@ export default function ArticleSchema({
       }
     },
     "datePublished": datePublished,
-    "dateModified": dateModified || datePublished
+    "dateModified": dateModified || datePublished,
+    ...(takeaways && takeaways.length > 0 ? { "abstract": takeaways.join(" ") } : {})
   };
 
   return (
