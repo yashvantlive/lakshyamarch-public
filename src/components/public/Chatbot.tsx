@@ -1,9 +1,11 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { 
   MessageSquare, Sparkles, X, Send, Trash2, Loader2, 
-  AlertCircle, ArrowRight, RefreshCw, HelpCircle, ExternalLink
+  AlertCircle, ArrowRight, RefreshCw, HelpCircle, ExternalLink,
+  Maximize2, Minimize2
 } from "lucide-react";
 import { chatApiPath } from "@/lib/erpApi";
 
@@ -38,17 +40,20 @@ function generateUUID(): string {
 
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isFullScreen, setIsFullScreen] = useState(false);
   const [sessionId, setSessionId] = useState<string>("");
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [inputMessage, setInputMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loadingHistory, setLoadingHistory] = useState(false);
+  const [mounted, setMounted] = useState(false);
   
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Initialize Session ID and Load Chat History on Mount
   useEffect(() => {
+    setMounted(true);
     let savedSessionId = localStorage.getItem("lm_chat_session_id");
     if (!savedSessionId) {
       savedSessionId = generateUUID();
@@ -68,6 +73,13 @@ export default function Chatbot() {
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
+
+  // Reset full screen mode when closing the chat
+  useEffect(() => {
+    if (!isOpen) {
+      setIsFullScreen(false);
+    }
+  }, [isOpen]);
 
   // 1. Fetch Chat History
   const loadChatHistory = async (sessId: string) => {
@@ -185,7 +197,7 @@ export default function Chatbot() {
       {/* FLOAT ACTION BUTTON */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="group relative h-12 w-12 sm:h-14 sm:w-14 rounded-full bg-ink-950 text-white flex items-center justify-center shadow-brand-lg hover:scale-110 border border-brand-gold-500/50 hover:border-brand-gold-400 transition-all duration-300 z-[95] cursor-pointer"
+        className={`group relative h-12 w-12 sm:h-14 sm:w-14 rounded-full bg-ink-950 text-white items-center justify-center shadow-brand-lg hover:scale-110 border border-brand-gold-500/50 hover:border-brand-gold-400 transition-all duration-300 z-[95] cursor-pointer ${isFullScreen ? 'hidden' : 'flex'}`}
         aria-label="Ask LakshyaMarch AI"
       >
         <span className="absolute right-full mr-4 whitespace-nowrap bg-ink-900 text-white text-xs font-bold px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none flex items-center gap-2 after:content-[''] after:absolute after:top-1/2 after:-translate-y-1/2 after:left-full after:border-4 after:border-transparent after:border-l-ink-900">
@@ -200,8 +212,20 @@ export default function Chatbot() {
       </button>
 
       {/* CHAT WINDOW INTERFACE */}
-      {isOpen && (
-        <div className="fixed bottom-24 right-6 w-[350px] sm:w-[400px] h-[550px] max-h-[80vh] rounded-xl border border-ink-800 bg-ink-900/95 backdrop-blur-md shadow-2xl z-[90] flex flex-col overflow-hidden ring-1 ring-white/5 animate-in slide-in-from-bottom-5 duration-300">
+      {isOpen && mounted && createPortal(
+        <>
+          {/* Backdrop Overlay */}
+          <div 
+            className="fixed inset-0 bg-ink-950/60 backdrop-blur-sm z-[99] transition-opacity duration-300 animate-fade-in"
+            onClick={() => setIsOpen(false)}
+          />
+          
+          <div className={`fixed z-[100] flex flex-col overflow-hidden bg-ink-900/98 backdrop-blur-xl shadow-2xl transition-all duration-300 ring-1 ring-white/5 animate-fade-in
+            ${isFullScreen
+              ? "inset-0 w-full h-[100dvh]"
+              : "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[92vw] sm:w-[480px] h-[80dvh] max-h-[700px] rounded-2xl border border-ink-800"
+            }
+          `}>
           {/* Header */}
           <div className="bg-gradient-to-br from-brand-blue-900 via-brand-blue-950 to-brand-blue-900 px-4 py-4 border-b border-ink-800 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
@@ -230,6 +254,13 @@ export default function Chatbot() {
                   <Trash2 size={15} />
                 </button>
               )}
+              <button
+                onClick={() => setIsFullScreen(!isFullScreen)}
+                title={isFullScreen ? "Minimize" : "Maximize"}
+                className="h-8 w-8 rounded-md hover:bg-white/10 text-ink-400 hover:text-white flex items-center justify-center transition-colors cursor-pointer"
+              >
+                {isFullScreen ? <Minimize2 size={16} /> : <Maximize2 size={16} />}
+              </button>
               <button
                 onClick={() => setIsOpen(false)}
                 className="h-8 w-8 rounded-md hover:bg-white/10 text-ink-400 hover:text-white flex items-center justify-center transition-colors cursor-pointer"
@@ -381,7 +412,9 @@ export default function Chatbot() {
             </div>
           </div>
         </div>
-      )}
-    </>
+      </>,
+      document.body
+    )}
+  </>
   );
 }
