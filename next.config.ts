@@ -26,6 +26,10 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
+        source: '/chat/:path*',
+        destination: 'http://localhost:8000/chat/:path*',
+      },
+      {
         source: '/:location-coaching',
         destination: '/seo/general/:location',
       },
