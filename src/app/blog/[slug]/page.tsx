@@ -66,11 +66,11 @@ const catTone: Record<string, "blue" | "green" | "red" | "gold" | "neutral"> = {
 };
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
-  const BLOG_POSTS = await getBlogs();
   const { slug } = await params;
-  const post = BLOG_POSTS.find((p: any) => p.slug === slug);
+  const post = await getBlogBySlug(slug);
   if (!post) notFound();
 
+  const BLOG_POSTS = await getBlogs();
   const related = BLOG_POSTS.filter((p: any) => p.category === post.category && p.slug !== post.slug).slice(0, 3);
 
   return (
