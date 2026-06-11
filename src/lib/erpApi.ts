@@ -12,9 +12,7 @@ export function erpApiPath(path: string): string {
 
 export function getChatApiUrl(): string {
   const url = process.env.NEXT_PUBLIC_CHAT_API_URL?.trim();
-  // Return empty string if the URL is localhost:8000 or undefined, 
-  // so that requests use the Next.js rewrite proxy configured in next.config.ts
-  if (!url || url.includes("localhost:8000")) return "";
+  if (!url) return "";
   return url.replace(/\/$/, "");
 }
 

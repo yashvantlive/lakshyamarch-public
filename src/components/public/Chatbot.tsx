@@ -29,6 +29,16 @@ const SUGGESTED_PROMPTS = [
   "What JEE & NEET results did you get?",
 ];
 
+const QUICK_QUESTIONS = [
+  "Fee structure?",
+  "Hostel facilities?",
+  "Admission process?",
+  "Scholarship details?",
+  "Batch timings?",
+  "Past results?",
+  "Contact support?"
+];
+
 // Helper to generate a basic UUID in client-side environment
 function generateUUID(): string {
   return "session-xxxx-xxxx-xxxx-xxxx".replace(/[xy]/g, (c) => {
@@ -87,7 +97,9 @@ export default function Chatbot() {
     setLoadingHistory(true);
     setError(null);
     try {
-      const res = await fetch(chatApiPath(`/chat/history/${sessId}`));
+      const res = await fetch(chatApiPath(`/chat/history/${sessId}`), {
+        credentials: "include"
+      });
       if (res.ok) {
         const data = await res.json();
         if (data.history && Array.isArray(data.history)) {
@@ -116,6 +128,7 @@ export default function Chatbot() {
     try {
       const res = await fetch(chatApiPath(`/chat/history/${sessionId}`), {
         method: "DELETE",
+        credentials: "include"
       });
       if (res.ok) {
         setMessages([]);
@@ -150,13 +163,22 @@ export default function Chatbot() {
       timestamp: Date.now(),
     };
     
-    setMessages((prev) => [...prev, userMsg]);
+    // Also create a placeholder for assistant's response
+    const assistantMsgPlaceholder: ChatMessage = {
+      role: "assistant",
+      content: "",
+      timestamp: Date.now(),
+      sources: [],
+    };
+    
+    setMessages((prev) => [...prev, userMsg, assistantMsgPlaceholder]);
     setLoading(true);
 
     try {
-      const res = await fetch(chatApiPath("/chat/message"), {
+      const res = await fetch(chatApiPath("/chat/message/stream"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        credentials: "include",
         body: JSON.stringify({
           message: trimmed,
           session_id: sessionId,
@@ -171,22 +193,70 @@ export default function Chatbot() {
         throw new Error(errData.detail || "Failed to send message");
       }
 
-      const replyData = await res.json();
-      
-      const assistantMsg: ChatMessage = {
-        role: "assistant",
-        content: replyData.reply,
-        timestamp: Date.now(),
-        sources: replyData.sources,
-      };
+      if (!res.body) throw new Error("No response body");
 
-      setMessages((prev) => [...prev, assistantMsg]);
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let done = false;
+      let buffer = "";
+
+      // Stream processor
+      while (!done) {
+        const { value, done: readerDone } = await reader.read();
+        done = readerDone;
+        if (value) {
+          buffer += decoder.decode(value, { stream: true });
+          
+          // Parse SSE lines
+          const lines = buffer.split('\n\n');
+          buffer = lines.pop() || ""; // Keep the last incomplete chunk in buffer
+          
+          for (const line of lines) {
+            if (line.startsWith("data: ")) {
+              const dataStr = line.substring(6);
+              try {
+                const data = JSON.parse(dataStr);
+                
+                if (data.type === "sources") {
+                  setMessages((prev) => {
+                    if (prev.length === 0) return prev;
+                    const newMessages = [...prev];
+                    const lastMsg = newMessages[newMessages.length - 1];
+                    if (lastMsg.role === "assistant") {
+                      newMessages[newMessages.length - 1] = {
+                        ...lastMsg,
+                        sources: data.sources,
+                      };
+                    }
+                    return newMessages;
+                  });
+                } else if (data.type === "chunk") {
+                  setMessages((prev) => {
+                    if (prev.length === 0) return prev;
+                    const newMessages = [...prev];
+                    const lastMsg = newMessages[newMessages.length - 1];
+                    if (lastMsg.role === "assistant") {
+                      newMessages[newMessages.length - 1] = {
+                        ...lastMsg,
+                        content: lastMsg.content + data.text,
+                      };
+                    }
+                    return newMessages;
+                  });
+                } else if (data.type === "done") {
+                  // Finalizing
+                }
+              } catch (e) {
+                console.error("Error parsing stream data:", e);
+              }
+            }
+          }
+        }
+      }
     } catch (err: any) {
       console.error("Chat message sending failed:", err);
       setError(err.message || "Something went wrong. Please check your connection.");
-      
-      // Remove the unsent user message or keep it with an error flag?
-      // For better UX, we just keep the message but show an error banner
+      // We might want to remove the placeholder if it failed completely
     } finally {
       setLoading(false);
     }
@@ -325,7 +395,13 @@ export default function Chatbot() {
                             : "bg-ink-950/60 border border-ink-800/80 text-ink-200 rounded-tl-none"
                         }`}
                       >
-                        {msg.content}
+                        {msg.content || (
+                          <div className="flex items-center gap-1.5 py-1 px-0.5">
+                            <span className="h-1.5 w-1.5 rounded-full bg-brand-gold-400 animate-bounce [animation-delay:-0.3s]"></span>
+                            <span className="h-1.5 w-1.5 rounded-full bg-brand-gold-400 animate-bounce [animation-delay:-0.15s]"></span>
+                            <span className="h-1.5 w-1.5 rounded-full bg-brand-gold-400 animate-bounce"></span>
+                          </div>
+                        )}
                       </div>
 
                       {/* Sources/Citations Display */}
@@ -349,7 +425,7 @@ export default function Chatbot() {
                     </div>
                   );
                 })}
-                {loading && (
+                {loading && messages.length > 0 && messages[messages.length - 1].role !== 'assistant' && (
                   <div className="flex flex-col items-start">
                     <div className="bg-ink-950/60 border border-ink-800/80 text-ink-300 rounded-2xl rounded-tl-none px-4 py-2.5 flex items-center gap-2">
                       <Loader2 size={14} className="animate-spin text-brand-gold-400" />
@@ -372,7 +448,22 @@ export default function Chatbot() {
           )}
 
           {/* Footer Input Area */}
-          <div className="p-3 bg-ink-950/80 border-t border-ink-800/60 flex flex-col gap-1.5">
+          <div className="p-3 bg-ink-950/80 border-t border-ink-800/60 flex flex-col gap-2">
+            {/* Quick Questions Row */}
+            <div className="flex items-center gap-2 overflow-x-auto scrollbar-none pb-1 -mx-1 px-1">
+              {QUICK_QUESTIONS.map((q) => (
+                <button
+                  key={q}
+                  type="button"
+                  onClick={() => handleSendMessage(q)}
+                  disabled={loading}
+                  className="whitespace-nowrap px-3 py-1.5 rounded-full bg-ink-900 border border-ink-800 hover:border-brand-gold-500/50 hover:bg-ink-800 text-[10px] sm:text-xs text-ink-300 hover:text-white transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
+                >
+                  {q}
+                </button>
+              ))}
+            </div>
+
             <form
               onSubmit={(e) => {
                 e.preventDefault();
