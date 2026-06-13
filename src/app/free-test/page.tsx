@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
 import PublicNavbar from "@/components/public/PublicNavbar";
 import PublicFooter from "@/components/public/PublicFooter";
-import TestEnquiryForm from "@/components/public/TestEnquiryForm";
 import FaqSchema from "@/components/seo/FaqSchema";
 import { INSTITUTE } from "@/lib/siteData";
 import {
-  Trophy, CheckCircle2, Star, BookOpen, GraduationCap, CalendarDays, ShieldCheck, Target, Clock,
+  Trophy, CheckCircle2, Star, BookOpen, GraduationCap, CalendarDays, ShieldCheck, Target, Clock, Sparkles
 } from "lucide-react";
 import {
-  Badge, SectionHeader, HeroSection, Reveal, Stagger, StaggerItem,
+  Badge, SectionHeader, HeroSection, Reveal, Stagger, StaggerItem, Button
 } from "@/components/brand";
 import { layout } from "@/design-system/spacing";
 import { cn } from "@/lib/utils";
@@ -113,7 +112,38 @@ export default function FreeTestPage() {
               </div>
             </Reveal>
           </div>
-          <Reveal delay={0.1}><TestEnquiryForm /></Reveal>
+          <Reveal delay={0.1}>
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-8 sm:p-10 shadow-brand-xl relative overflow-hidden backdrop-blur-sm">
+              <div className="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-brand-gold-400/10 blur-xl pointer-events-none" />
+              <h3 className="font-display text-xl font-bold text-white mb-6 flex items-center gap-2">
+                <Sparkles className="text-brand-gold-400 shrink-0 animate-pulse" size={20} />
+                Test Highlights & Details
+              </h3>
+              
+              <ul className="space-y-4 font-sans text-sm text-white/80 mb-8">
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="text-brand-gold-400 shrink-0 mt-0.5" size={16} strokeWidth={2.5} />
+                  <span>Curated by IIT & NIT Alumni based on latest patterns.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="text-brand-gold-400 shrink-0 mt-0.5" size={16} strokeWidth={2.5} />
+                  <span>Detailed chapter-wise strength & weakness report.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="text-brand-gold-400 shrink-0 mt-0.5" size={16} strokeWidth={2.5} />
+                  <span>Free career counselling post-exam with mentors.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="text-brand-gold-400 shrink-0 mt-0.5" size={16} strokeWidth={2.5} />
+                  <span>Opportunity to claim up to 100% scholarship fee waiver.</span>
+                </li>
+              </ul>
+
+              <Button href="/test-registration?test=free" variant="gold" size="lg" className="w-full justify-center" withArrow>
+                Register Online Now
+              </Button>
+            </div>
+          </Reveal>
         </div>
       </HeroSection>
 

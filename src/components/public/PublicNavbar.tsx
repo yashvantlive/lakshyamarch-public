@@ -34,6 +34,7 @@ const PROGRAM_MENU = [
   { label: "Foundation & School", href: "/programs", desc: "Integrated Class 6–10", icon: GraduationCap, accent: "text-brand-red-600 bg-brand-red-50" },
   { label: "ThinkNEET Test Series", href: "/think-neet-test-series-begusarai", desc: "NCERT-based mock tests", icon: BookOpen, accent: "text-brand-gold-600 bg-brand-gold-50" },
   { label: "Scholarship Exam", href: "/scholarship", desc: "Win up to 100% fee waiver", icon: Trophy, accent: "text-brand-red-600 bg-brand-red-50" },
+  { label: "Free Mock Test", href: "/free-test", desc: "Evaluate your prep level", icon: BookOpen, accent: "text-brand-blue-700 bg-brand-blue-50" },
 ];
 
 const ADMISSION_MENU = [

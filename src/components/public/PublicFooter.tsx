@@ -13,6 +13,7 @@ const NAV_COLUMNS = [
       { label: "NEET Coaching", href: "/neet-coaching-begusarai" },
       { label: "Foundation & School", href: "/programs" },
       { label: "ThinkNEET Test Series", href: "/think-neet-test-series-begusarai" },
+      { label: "Free Mock Test", href: "/free-test" },
       { label: "Hostel Facilities", href: "/hostel-facilities" },
     ],
   },

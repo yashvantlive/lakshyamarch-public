@@ -81,9 +81,9 @@ const SYLLABUS = [
 ];
 
 const REGISTER_STEPS = [
-  { icon: MessageCircle, step: "01", title: "WhatsApp / Call", desc: `Message "Scholarship 2026" to +91-${INSTITUTE.primaryPhone}` },
-  { icon: GraduationCap, step: "02", title: "Share Details", desc: "Share student name, class, and school name." },
-  { icon: Trophy, step: "03", title: "Get Exam Date", desc: "We confirm exam date and venue. Arrive and write the test." },
+  { icon: GraduationCap, step: "01", title: "Fill Online Form", desc: "Submit your basic details online in less than a minute." },
+  { icon: MessageCircle, step: "02", title: "Confirm Slot", desc: "Receive your specific exam date and admit details on WhatsApp." },
+  { icon: Trophy, step: "03", title: "Write Exam & Win", desc: "Attend the exam at our center, benchmark performance, and secure your waiver." },
 ];
 
 export default function ScholarshipPage() {
@@ -134,11 +134,11 @@ export default function ScholarshipPage() {
               ))}
             </Stagger>
             <Reveal className="mt-12 flex flex-wrap justify-center gap-4">
-              <Button href={whatsappLink("Hi, I want to register for LakshyaMarch Scholarship Exam 2026.")} variant="gold" size="lg" withArrow magnetic target="_blank" rel="noopener noreferrer">
-                Register on WhatsApp
+              <Button href="/test-registration?test=scholarship" variant="gold" size="lg" withArrow magnetic>
+                Register Online Now
               </Button>
-              <Button href={`tel:+91${INSTITUTE.primaryPhone}`} variant="outline" size="lg">
-                <Phone size={18} strokeWidth={1.75} /> {INSTITUTE.primaryPhone}
+              <Button href={whatsappLink("Hi, I want to register for LakshyaMarch Scholarship Exam 2026.")} variant="outline" size="lg" target="_blank" rel="noopener noreferrer">
+                <MessageCircle size={18} strokeWidth={1.75} className="mr-1" /> WhatsApp Register
               </Button>
             </Reveal>
           </div>

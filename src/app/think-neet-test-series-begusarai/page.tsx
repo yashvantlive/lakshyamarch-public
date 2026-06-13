@@ -70,7 +70,7 @@ export default function ThinkNeetPage() {
           </Reveal>
           <Reveal delay={0.2}>
             <div className="mt-10 flex flex-wrap justify-center gap-4">
-              <Button href="/admission" variant="primary" size="lg" withArrow magnetic>Enroll Now</Button>
+              <Button href="/test-registration?test=neet" variant="primary" size="lg" withArrow magnetic>Register for Test Series</Button>
               <Button href={whatsappLink("Hi, I want more details about ThinkNEET Test Series.")} variant="ghost" size="lg" target="_blank" rel="noopener noreferrer">
                 WhatsApp Us
               </Button>
@@ -160,7 +160,7 @@ export default function ThinkNeetPage() {
               </div>
             </Reveal>
             <Reveal delay={0.15} className="mt-10 flex flex-wrap justify-center gap-4">
-              <Button href="/admission" variant="primary" size="lg" withArrow magnetic>Join ThinkNEET Today</Button>
+              <Button href="/test-registration?test=neet" variant="primary" size="lg" withArrow magnetic>Register for ThinkNEET</Button>
               <Button href={`tel:+91${INSTITUTE.primaryPhone}`} variant="outline" size="lg">Call for Schedule</Button>
             </Reveal>
           </div>
@@ -172,7 +172,7 @@ export default function ThinkNeetPage() {
         accentWord="Preparation"
         lead="Join the most structured testing ecosystem in Begusarai and track your journey to a top rank."
         actions={[
-          { label: "Enroll in ThinkNEET", href: whatsappLink("Hi, I want to enroll in ThinkNEET Test Series."), variant: "primary", withArrow: true, external: true },
+          { label: "Register for ThinkNEET", href: "/test-registration?test=neet", variant: "primary", withArrow: true },
           { label: "Explore NEET Coaching", href: "/neet-coaching-begusarai", variant: "ghost" },
         ]}
       />
