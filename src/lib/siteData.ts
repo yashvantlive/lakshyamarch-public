@@ -399,7 +399,7 @@ export const FACULTY = [
     qual: "B.Tech, BEU Patna",
     prev: "3 years exp",
     usp: "Bridging the gap between Physics and Math. Empowering young minds with strong foundations.",
-    linkedin: "https://www.linkedin.com/in/gautam-ishwar-520318299/",
+    linkedin: "https://www.linkedin.com/in/gautamishwar007/",
     facebook: "",
     instagram: "",
     team: ["School"],

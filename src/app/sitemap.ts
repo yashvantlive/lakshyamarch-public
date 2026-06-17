@@ -2,6 +2,7 @@ import { MetadataRoute } from "next";
 import { SUCCESS_STORIES } from "@/lib/stories";
 import { districtData } from "@/lib/districtData";
 import { erpApiPath } from "@/lib/erpApi";
+import { NCERT_REGISTRY } from "@/lib/ncertbookData";
 
 const BASE_URL = "https://lakshyamarch.com";
 
@@ -120,5 +121,31 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   ]);
 
-  return [...staticRoutes, ...phase3Routes, ...storyRoutes, ...blogListingRoute, ...blogPostRoutes, ...locationRoutes];
+  // NCERT Class-wise and Subject-wise pages
+  const ncertRoutes = NCERT_REGISTRY.flatMap((c) => {
+    const classNum = c.className.replace(/[^\d]/g, '');
+    const classSlug = `class-${classNum}`;
+    
+    const classRoute = {
+      url: `${BASE_URL}/study-material/ncert/${classSlug}`,
+      lastModified: new Date().toISOString().split("T")[0],
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    };
+
+    const subjects = Array.from(new Set(c.books.map(b => b.subjectName)));
+    const subjectRoutes = subjects.map((subject) => {
+      const subjectSlug = subject.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      return {
+        url: `${BASE_URL}/study-material/ncert/${classSlug}/${subjectSlug}`,
+        lastModified: new Date().toISOString().split("T")[0],
+        changeFrequency: "weekly" as const,
+        priority: 0.75,
+      };
+    });
+
+    return [classRoute, ...subjectRoutes];
+  });
+
+  return [...staticRoutes, ...phase3Routes, ...storyRoutes, ...blogListingRoute, ...blogPostRoutes, ...locationRoutes, ...ncertRoutes];
 }

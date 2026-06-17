@@ -1,10 +1,27 @@
 export interface YouTubeVideo {
   id: string;
   title: string;
+  description: string;
   thumbnail: string;
   publishedAt: string;
 }
 
+export interface ErpVideo {
+  id: string;
+  youtubeId: string;
+  title: string;
+  description: string;
+  thumbnailUrl: string;
+  wing: string;
+  className: string;
+  subject: string;
+  topic?: string;
+  publishedAt: string;
+}
+
+import { erpApiPath } from "./erpApi";
+
+/** Fetch raw latest videos directly from YouTube API */
 export async function getLatestYouTubeVideos(maxResults = 5): Promise<YouTubeVideo[]> {
   const apiKey = process.env.YOUTUBE_API_KEY;
   const channelId = process.env.YOUTUBE_CHANNEL_ID;
@@ -27,12 +44,33 @@ export async function getLatestYouTubeVideos(maxResults = 5): Promise<YouTubeVid
     return data.items.map((item: any) => ({
       id: item.id.videoId,
       title: item.snippet.title,
-      // Decode HTML entities in title
+      description: item.snippet.description,
       thumbnail: item.snippet.thumbnails?.medium?.url || item.snippet.thumbnails?.default?.url,
       publishedAt: item.snippet.publishedAt,
     }));
   } catch (error) {
     console.error("Error fetching YouTube videos:", error);
+    return [];
+  }
+}
+
+/** Fetch categorized videos from the centralized ERP API */
+export async function getErpVideos(className?: string, subject?: string, wing?: string): Promise<ErpVideo[]> {
+  try {
+    const params = new URLSearchParams();
+    if (className) params.append("class", className);
+    if (subject) params.append("subject", subject);
+    if (wing) params.append("wing", wing);
+    
+    // We use next: { revalidate: 60 } to keep it fast but fresh
+    const res = await fetch(erpApiPath(`/api/videos?${params.toString()}`), {
+      next: { revalidate: 60 }
+    });
+    
+    if (!res.ok) throw new Error("Failed to fetch ERP videos");
+    return await res.json();
+  } catch (error) {
+    console.error("Error fetching ERP videos:", error);
     return [];
   }
 }

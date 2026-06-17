@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import PublicNavbar from "@/components/public/PublicNavbar";
 import PublicFooter from "@/components/public/PublicFooter";
-import { getAllYouTubeVideos, timeAgo } from "@/lib/youtubeService";
+import { getAllYouTubeVideos, getErpVideos, timeAgo } from "@/lib/youtubeService";
 import { FaYoutube } from "react-icons/fa6";
 import { Suspense } from "react";
 import { ExamSheetTexture, StaircaseEmblem } from "@/design-system/patterns";
@@ -60,51 +60,91 @@ export default function YouTubeGalleryPage() {
 // ─── Data Fetching & Rendering ───
 
 async function VideoGalleryFetcher() {
-  // Fetch up to 150 videos, cached weekly
-  const videos = await getAllYouTubeVideos(3);
+  const erpVideos = await getErpVideos();
 
-  if (!videos || videos.length === 0) {
+  // Fallback to raw YouTube API if no ERP videos
+  if (!erpVideos || erpVideos.length === 0) {
+    const rawVideos = await getAllYouTubeVideos(3);
+    if (!rawVideos || rawVideos.length === 0) {
+      return (
+        <div className="text-center py-20 bg-white rounded-lg border border-slate-200">
+          <h2 className="text-2xl font-bold text-slate-900 mb-2">No videos found</h2>
+          <p className="text-slate-500">Please check back later or visit our YouTube channel directly.</p>
+        </div>
+      );
+    }
     return (
-      <div className="text-center py-20 bg-white rounded-lg border border-slate-200">
-        <h2 className="text-2xl font-bold text-slate-900 mb-2">No videos found</h2>
-        <p className="text-slate-500">Please check back later or visit our YouTube channel directly.</p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {rawVideos.map((video) => (
+          <VideoCard key={video.id} video={{...video, thumbnailUrl: video.thumbnail, youtubeId: video.id}} isRaw />
+        ))}
       </div>
     );
   }
 
-  return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-      {videos.map((video) => (
-        <a key={video.id} href={`https://youtube.com/watch?v=${video.id}`} target="_blank" rel="noopener noreferrer"
-           className="group bg-white rounded-lg border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col">
-          
-          <div className="aspect-video bg-slate-900 relative overflow-hidden">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={video.thumbnail} alt={video.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-            
-            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-              <div className="w-14 h-14 bg-[#FF0000] rounded-full flex items-center justify-center pl-1 shadow-[0_0_20px_rgba(255,0,0,0.5)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
-                <div className="w-0 h-0 border-t-[6px] border-t-transparent border-l-[10px] border-l-white border-b-[6px] border-b-transparent"></div>
-              </div>
-            </div>
-          </div>
+  // Group ERP videos by Class
+  const grouped: Record<string, typeof erpVideos> = {};
+  erpVideos.forEach(v => {
+    const groupName = `${v.className} ${v.subject}`.trim();
+    if (!grouped[groupName]) grouped[groupName] = [];
+    grouped[groupName].push(v);
+  });
 
-          <div className="p-5 flex flex-col flex-1">
-            <h3 className="font-bold text-slate-900 text-sm mb-3 line-clamp-2 leading-snug group-hover:text-[#FF0000] transition-colors"
-                dangerouslySetInnerHTML={{ __html: video.title }}>
-            </h3>
-            
-            <div className="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between text-[11px] font-medium text-slate-500 uppercase tracking-wider">
-              <span className="flex items-center gap-1.5">
-                <FaYoutube className="text-[#FF0000]" size={14}/> 
-                LakshyaMarch
-              </span>
-              <span>{timeAgo(video.publishedAt)}</span>
-            </div>
+  return (
+    <div className="space-y-12">
+      {Object.entries(grouped).map(([groupName, videos]) => (
+        <div key={groupName}>
+          <div className="flex items-center gap-3 mb-6">
+            <h2 className="text-2xl font-bold text-slate-900">{groupName}</h2>
+            <div className="h-px bg-slate-200 flex-1 ml-4" />
           </div>
-        </a>
+          <div className="flex overflow-x-auto pb-6 -mx-5 px-5 sm:-mx-8 sm:px-8 gap-6 snap-x hide-scrollbar">
+            {videos.map(video => (
+              <div key={video.id} className="min-w-[280px] sm:min-w-[320px] max-w-[320px] snap-start flex-none">
+                <VideoCard video={video} />
+              </div>
+            ))}
+          </div>
+        </div>
       ))}
     </div>
+  );
+}
+
+function VideoCard({ video, isRaw = false }: any) {
+  return (
+    <a href={`https://youtube.com/watch?v=${video.youtubeId}`} target="_blank" rel="noopener noreferrer"
+       className="group bg-white rounded-lg border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col h-full">
+      
+      <div className="aspect-video bg-slate-900 relative overflow-hidden">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={video.thumbnailUrl} alt={video.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+        
+        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+          <div className="w-14 h-14 bg-[#FF0000] rounded-full flex items-center justify-center pl-1 shadow-[0_0_20px_rgba(255,0,0,0.5)] transform scale-75 group-hover:scale-100 transition-transform duration-300">
+            <div className="w-0 h-0 border-t-[6px] border-t-transparent border-l-[10px] border-l-white border-b-[6px] border-b-transparent"></div>
+          </div>
+        </div>
+      </div>
+
+      <div className="p-5 flex flex-col flex-1">
+        <h3 className="font-bold text-slate-900 text-sm mb-2 line-clamp-2 leading-snug group-hover:text-[#FF0000] transition-colors"
+            dangerouslySetInnerHTML={{ __html: video.title }}>
+        </h3>
+        
+        {!isRaw && video.topic && (
+          <p className="text-xs text-slate-500 line-clamp-1 mb-3 flex-1">{video.topic}</p>
+        )}
+        
+        <div className="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between text-[11px] font-medium text-slate-500 uppercase tracking-wider">
+          <span className="flex items-center gap-1.5">
+            <FaYoutube className="text-[#FF0000]" size={14}/> 
+            LakshyaMarch
+          </span>
+          <span>{timeAgo(video.publishedAt)}</span>
+        </div>
+      </div>
+    </a>
   );
 }
 
