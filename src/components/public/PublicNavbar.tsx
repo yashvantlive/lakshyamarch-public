@@ -51,6 +51,7 @@ const RESULTS_MENU = [
 
 const STUDY_MATERIAL_MENU = [
   { label: "All Material", href: "/study-material", desc: "Main hub for resources", icon: BookOpen, accent: "text-brand-blue-700 bg-brand-blue-50" },
+  { label: "Course Booklets", href: "/study-material/modules", desc: "JEE & NEET module books", icon: BookOpen, accent: "text-brand-red-600 bg-brand-red-50" },
   { label: "DPPs", href: "/study-material/dpps", desc: "Daily Practice Papers", icon: Target, accent: "text-brand-red-600 bg-brand-red-50" },
   { label: "NCERT Books", href: "/study-material/ncert", desc: "Official NCERT textbooks", icon: BookOpen, accent: "text-brand-green-600 bg-brand-green-50" },
   { label: "Class Notes", href: "/study-material/notes", desc: "Detailed chapter notes", icon: BookOpen, accent: "text-brand-gold-600 bg-brand-gold-50" },

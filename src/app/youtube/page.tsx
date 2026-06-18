@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import PublicNavbar from "@/components/public/PublicNavbar";
 import PublicFooter from "@/components/public/PublicFooter";
-import { getAllYouTubeVideos, getErpVideos, timeAgo } from "@/lib/youtubeService";
+import { getAllYouTubeVideos, timeAgo } from "@/lib/youtubeService";
 import { FaYoutube } from "react-icons/fa6";
 import { Suspense } from "react";
 import { ExamSheetTexture, StaircaseEmblem } from "@/design-system/patterns";
@@ -60,52 +60,19 @@ export default function YouTubeGalleryPage() {
 // ─── Data Fetching & Rendering ───
 
 async function VideoGalleryFetcher() {
-  const erpVideos = await getErpVideos();
-
-  // Fallback to raw YouTube API if no ERP videos
-  if (!erpVideos || erpVideos.length === 0) {
-    const rawVideos = await getAllYouTubeVideos(3);
-    if (!rawVideos || rawVideos.length === 0) {
-      return (
-        <div className="text-center py-20 bg-white rounded-lg border border-slate-200">
-          <h2 className="text-2xl font-bold text-slate-900 mb-2">No videos found</h2>
-          <p className="text-slate-500">Please check back later or visit our YouTube channel directly.</p>
-        </div>
-      );
-    }
+  const rawVideos = await getAllYouTubeVideos(3);
+  if (!rawVideos || rawVideos.length === 0) {
     return (
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {rawVideos.map((video) => (
-          <VideoCard key={video.id} video={{...video, thumbnailUrl: video.thumbnail, youtubeId: video.id}} isRaw />
-        ))}
+      <div className="text-center py-20 bg-white rounded-lg border border-slate-200">
+        <h2 className="text-2xl font-bold text-slate-900 mb-2">No videos found</h2>
+        <p className="text-slate-500">Please check back later or visit our YouTube channel directly.</p>
       </div>
     );
   }
-
-  // Group ERP videos by Class
-  const grouped: Record<string, typeof erpVideos> = {};
-  erpVideos.forEach(v => {
-    const groupName = `${v.className} ${v.subject}`.trim();
-    if (!grouped[groupName]) grouped[groupName] = [];
-    grouped[groupName].push(v);
-  });
-
   return (
-    <div className="space-y-12">
-      {Object.entries(grouped).map(([groupName, videos]) => (
-        <div key={groupName}>
-          <div className="flex items-center gap-3 mb-6">
-            <h2 className="text-2xl font-bold text-slate-900">{groupName}</h2>
-            <div className="h-px bg-slate-200 flex-1 ml-4" />
-          </div>
-          <div className="flex overflow-x-auto pb-6 -mx-5 px-5 sm:-mx-8 sm:px-8 gap-6 snap-x hide-scrollbar">
-            {videos.map(video => (
-              <div key={video.id} className="min-w-[280px] sm:min-w-[320px] max-w-[320px] snap-start flex-none">
-                <VideoCard video={video} />
-              </div>
-            ))}
-          </div>
-        </div>
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      {rawVideos.map((video) => (
+        <VideoCard key={video.id} video={{...video, thumbnailUrl: video.thumbnail, youtubeId: video.id}} isRaw />
       ))}
     </div>
   );
