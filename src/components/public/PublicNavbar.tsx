@@ -22,6 +22,7 @@ import Button from "@/components/brand/Button";
 
 const MAIN_LINKS = [
   { label: "Home", href: "/" },
+  { label: "CBT Test", href: "/cbt-test" },
   { label: "Faculty", href: "/faculty" },
   { label: "About", href: "/about" },
   { label: "Blog", href: "/blog" },
@@ -119,7 +120,7 @@ export default function PublicNavbar() {
           >
             <button
               className={cn(
-                "flex items-center gap-1 rounded-lg px-2 py-2 font-sans text-sm font-medium transition-colors",
+                "flex items-center gap-1 rounded-lg px-1.5 py-2 font-sans text-sm font-medium transition-colors",
                 onDark ? "text-white/85 hover:bg-white/10 hover:text-white" : "text-ink-600 hover:bg-ink-100 hover:text-ink-900",
               )}
             >
@@ -165,7 +166,7 @@ export default function PublicNavbar() {
           >
             <button
               className={cn(
-                "flex items-center gap-1 rounded-lg px-2 py-2 font-sans text-sm font-medium transition-colors",
+                "flex items-center gap-1 rounded-lg px-1.5 py-2 font-sans text-sm font-medium transition-colors",
                 onDark ? "text-white/85 hover:bg-white/10 hover:text-white" : "text-ink-600 hover:bg-ink-100 hover:text-ink-900",
               )}
             >
@@ -211,7 +212,7 @@ export default function PublicNavbar() {
           >
             <button
               className={cn(
-                "flex items-center gap-1 rounded-lg px-2 py-2 font-sans text-sm font-medium transition-colors",
+                "flex items-center gap-1 rounded-lg px-1.5 py-2 font-sans text-sm font-medium transition-colors",
                 onDark ? "text-white/85 hover:bg-white/10 hover:text-white" : "text-ink-600 hover:bg-ink-100 hover:text-ink-900",
               )}
             >
@@ -257,7 +258,7 @@ export default function PublicNavbar() {
           >
             <button
               className={cn(
-                "flex items-center gap-1 rounded-lg px-2 py-2 font-sans text-sm font-medium transition-colors",
+                "flex items-center gap-1 rounded-lg px-1.5 py-2 font-sans text-sm font-medium transition-colors",
                 onDark ? "text-white/85 hover:bg-white/10 hover:text-white" : "text-ink-600 hover:bg-ink-100 hover:text-ink-900",
               )}
             >
@@ -427,7 +428,7 @@ function NavItem({ href, label, onDark, active }: { href: string; label: string;
     <Link
       href={href}
       className={cn(
-        "relative rounded-lg px-2 py-2 font-sans text-sm font-medium transition-colors",
+        "relative rounded-lg px-1.5 py-2 font-sans text-sm font-medium transition-colors",
         onDark ? "text-white/85 hover:bg-white/10 hover:text-white" : "text-ink-600 hover:bg-ink-100 hover:text-ink-900",
         active && (onDark ? "text-white" : "text-brand-red-600"),
       )}
