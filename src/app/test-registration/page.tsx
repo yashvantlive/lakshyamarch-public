@@ -4,7 +4,7 @@ import { useState, useEffect, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Turnstile } from "@marsidev/react-turnstile";
 import {
-  User, Phone, CheckCircle2, AlertCircle, Loader2,
+  User, Users, Phone, CheckCircle2, AlertCircle, Loader2,
   GraduationCap, School, Target, Sparkles, BookOpen, Trophy, Info
 } from "lucide-react";
 import PublicNavbar from "@/components/public/PublicNavbar";
@@ -53,6 +53,7 @@ function RegistrationFormContent() {
     const fd = new FormData(e.currentTarget);
     const data = {
       name: (fd.get("name") as string).trim(),
+      parentName: (fd.get("parentName") as string || "").trim(),
       phone: (fd.get("phone") as string).trim(),
       testType: testType,
       targetExam: fd.get("targetExam") as string,
@@ -162,7 +163,7 @@ function RegistrationFormContent() {
                 required
                 className="w-full pl-10 pr-4 py-3 bg-ink-50 border border-ink-200 rounded-xl text-sm font-medium text-ink-900 focus:bg-white focus:ring-2 focus:ring-brand-red-500/20 focus:border-brand-red-500 outline-none transition-all appearance-none"
               >
-                <option value="Free Mock Test">Free Diagnostic Mock Test (All Classes)</option>
+                <option value="Free Mock Test">Free Diagnostic Mock Test / LM OTC (All Classes)</option>
                 <option value="Scholarship Admission Test (SAT)">Scholarship Admission Test (SAT - Win up to 100% waiver)</option>
                 <option value="Think NEET Test Series">Think NEET Test Series (Paid Series)</option>
               </select>
@@ -194,7 +195,26 @@ function RegistrationFormContent() {
                 name="name"
                 required
                 className="w-full pl-10 pr-4 py-3 bg-ink-50 border border-ink-200 rounded-xl text-sm font-medium text-ink-900 focus:bg-white focus:ring-2 focus:ring-brand-red-500/20 focus:border-brand-red-500 outline-none transition-all"
-                placeholder="e.g. Rahul Kumar"
+                placeholder="Enter your name"
+              />
+            </div>
+          </div>
+
+          {/* Parents Name */}
+          <div>
+            <label className="block text-xs font-extrabold text-slate-700 mb-1.5 uppercase tracking-wide">
+              Parents Name <span className="text-red-500">*</span>
+            </label>
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                <Users size={16} className="text-slate-400" />
+              </div>
+              <input
+                type="text"
+                name="parentName"
+                required
+                className="w-full pl-10 pr-4 py-3 bg-ink-50 border border-ink-200 rounded-xl text-sm font-medium text-ink-900 focus:bg-white focus:ring-2 focus:ring-brand-red-500/20 focus:border-brand-red-500 outline-none transition-all"
+                placeholder="Enter your father name"
               />
             </div>
           </div>
@@ -242,7 +262,7 @@ function RegistrationFormContent() {
                   <>
                     <option value="NEET">NEET (Medical)</option>
                     <option value="JEE">JEE (Engineering)</option>
-                    <option value="Foundation/NTSE">Foundation / NTSE</option>
+                    <option value="Foundation/NTSE">Foundation / NTSE / Olympiad</option>
                   </>
                 )}
               </select>
@@ -370,8 +390,8 @@ export default function TestRegistrationPage() {
                   <Target size={18} />
                 </div>
                 <div>
-                  <h4 className="font-display font-bold text-white text-sm">Free Diagnostic Mock Test</h4>
-                  <p className="font-sans text-xs text-white/60 mt-1">Evaluate chapter-wise strengths and weaknesses for JEE/NEET/NTSE.</p>
+                  <h4 className="font-display font-bold text-white text-sm">Free Diagnostic Mock Test / LM OTC</h4>
+                  <p className="font-sans text-xs text-white/60 mt-1">Evaluate chapter-wise strengths and weaknesses, or participate in the monthly Open Test Challenge.</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">

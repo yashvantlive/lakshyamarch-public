@@ -51,8 +51,9 @@ const faqs = [
 ];
 
 const TEST_CLASSES = [
-  { class: "Class 9", target: "Foundation / NTSE", icon: BookOpen },
-  { class: "Class 10", target: "Foundation / Boards", icon: BookOpen },
+  { class: "Class 8", target: "Foundation / Pre-NTSE / Olympiad", icon: BookOpen },
+  { class: "Class 9", target: "Foundation / NTSE / Olympiad", icon: BookOpen },
+  { class: "Class 10", target: "Foundation / Boards / Olympiad", icon: BookOpen },
   { class: "Class 11", target: "JEE / NEET Target", icon: GraduationCap },
   { class: "Class 12", target: "JEE / NEET Pre-Board", icon: GraduationCap },
   { class: "Dropper", target: "JEE / NEET Advance", icon: Target },
@@ -148,10 +149,103 @@ export default function FreeTestPage() {
       </HeroSection>
 
       <main className="flex-1">
+        {/* LM Open Test Challenge (LM OTC) Section */}
+        <section className={cn(layout.section, "bg-gradient-to-br from-brand-blue-900 via-ink-950 to-brand-blue-950 text-white relative overflow-hidden border-b border-white/5")}>
+          <div className="absolute top-0 right-0 -mt-12 -mr-12 h-96 w-96 rounded-full bg-brand-gold-500/10 blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-0 -mb-12 -ml-12 h-96 w-96 rounded-full bg-brand-blue-500/10 blur-3xl pointer-events-none" />
+          
+          <div className={layout.container}>
+            <div className="max-w-4xl mx-auto text-center">
+              <Reveal>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-gold-400/30 bg-brand-gold-400/10 text-brand-gold-400 text-xs font-bold mb-6">
+                  <Sparkles size={14} className="animate-pulse" />
+                  LM की ओर से इस साल से नयी शुरुआत!
+                </div>
+              </Reveal>
+              
+              <Reveal delay={0.05}>
+                <h2 className="font-display text-[clamp(2.25rem,4.5vw,3.25rem)] font-extrabold leading-[1.1] tracking-tight text-white mb-6">
+                  LM Open Test Challenge <span className="text-brand-gold-400">(LM OTC)</span>
+                </h2>
+              </Reveal>
+
+              <Reveal delay={0.1}>
+                <p className="font-sans text-white/70 text-base sm:text-lg max-w-3xl mx-auto mb-12 leading-relaxed">
+                  कक्षा 8th, 9th, 10th, और Target JEE & NEET के बच्चों के लिए हर महीने होने वाली विशेष खुली चुनौती। अपनी तैयारी को समय पर जांचें और शानदार प्रदर्शन कर पुरस्कार जीतें!
+                </p>
+              </Reveal>
+
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-10 text-left">
+                <Reveal delay={0.15}>
+                  <div className="h-full rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all hover:bg-white/[0.08] hover:border-white/20">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-gold-400/10 text-brand-gold-400 mb-4">
+                      <CalendarDays size={22} />
+                    </div>
+                    <h4 className="font-display font-bold text-white text-base">हर महीने आयोजन</h4>
+                    <p className="font-sans text-sm text-white/60 mt-2 leading-relaxed">
+                      यह टेस्ट हरेक month के <strong className="text-white">Last Sunday</strong> को आयोजित किया जाएगा, जो बिल्कुल <strong className="text-brand-gold-400">Free</strong> होगा।
+                    </p>
+                  </div>
+                </Reveal>
+
+                <Reveal delay={0.2}>
+                  <div className="h-full rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all hover:bg-white/[0.08] hover:border-white/20">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-gold-400/10 text-brand-gold-400 mb-4">
+                      <Clock size={22} />
+                    </div>
+                    <h4 className="font-display font-bold text-white text-base">समय (Timing)</h4>
+                    <p className="font-sans text-sm text-white/60 mt-2 leading-relaxed">
+                      परीक्षा का समय दोपहर बाद <strong className="text-white">4:00 PM to 7:00 PM</strong> तक रहेगा। परीक्षा देने के लिए आज ही रजिस्टर करें।
+                    </p>
+                  </div>
+                </Reveal>
+
+                <Reveal delay={0.25}>
+                  <div className="h-full rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all hover:bg-white/[0.08] hover:border-white/20">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-gold-400/10 text-brand-gold-400 mb-4">
+                      <Trophy size={22} />
+                    </div>
+                    <h4 className="font-display font-bold text-white text-base">Yearly पुरस्कार</h4>
+                    <p className="font-sans text-sm text-white/60 mt-2 leading-relaxed">
+                      पूरे वर्ष बेहतरीन प्रदर्शन करने वाले <strong className="text-white">टॉप 5</strong> विद्यार्थियों को Attractive prizes के साथ certificates भी प्रदान किए जाएंगे।
+                    </p>
+                  </div>
+                </Reveal>
+              </div>
+
+              {/* Free Demo Class Highlights */}
+              <Reveal delay={0.3}>
+                <div className="rounded-2xl border border-brand-gold-400/30 bg-gradient-to-r from-brand-gold-500/10 to-brand-gold-500/5 p-6 text-center sm:text-left sm:flex items-center justify-between gap-6 mb-10">
+                  <div className="mb-4 sm:mb-0">
+                    <h4 className="font-display font-extrabold text-brand-gold-400 text-lg sm:text-xl flex items-center justify-center sm:justify-start gap-2">
+                      <Sparkles size={20} className="animate-spin" style={{ animationDuration: '4s' }} />
+                      Free Demo Class 1 Week*
+                    </h4>
+                    <p className="font-sans text-sm text-white/70 mt-1">
+                      टेस्ट के बाद हमारे IIT/NIT एलुमनाई फैकल्टी के मार्गदर्शन में 1 हफ्ते की फ्री डेमो क्लास का लाभ उठाएं।
+                    </p>
+                  </div>
+                  <Button href="/test-registration?test=free" variant="gold" size="md" className="w-full sm:w-auto shrink-0 justify-center" withArrow>
+                    Claim Demo Class
+                  </Button>
+                </div>
+              </Reveal>
+
+              <Reveal delay={0.35}>
+                <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
+                  <Button href="/test-registration?test=free" variant="gold" size="lg" className="w-full sm:w-auto justify-center" withArrow>
+                    Register Online for LM OTC
+                  </Button>
+                </div>
+              </Reveal>
+            </div>
+          </div>
+        </section>
+
         <section className={cn(layout.section, "bg-white")}>
           <div className={layout.container}>
             <SectionHeader eyebrow="Eligibility" title="Tests Available for All Levels" accentWord="Levels" accent="blue" lead="Distinct diagnostic papers scaled to each class's exact difficulty." className="mb-14" />
-            <Stagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+            <Stagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-6">
               {TEST_CLASSES.map((c) => (
                 <StaggerItem key={c.class}>
                   <div className="flex h-44 flex-col items-center justify-center rounded-lg border border-ink-200 bg-ink-50 p-6 text-center transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg">

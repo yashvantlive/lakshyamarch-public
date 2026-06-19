@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Turnstile } from "@marsidev/react-turnstile";
-import { User, Phone, CheckCircle2, AlertCircle, Loader2, GraduationCap, School, Target } from "lucide-react";
+import { User, Users, Phone, CheckCircle2, AlertCircle, Loader2, GraduationCap, School, Target } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { erpApiPath } from "@/lib/erpApi";
 
@@ -31,11 +31,12 @@ export default function TestEnquiryForm() {
 
     const fd = new FormData(e.currentTarget);
     const data = {
-      name: fd.get("name") as string,
-      phone: fd.get("phone") as string,
+      name: (fd.get("name") as string).trim(),
+      parentName: (fd.get("parentName") as string || "").trim(),
+      phone: (fd.get("phone") as string).trim(),
       targetExam: fd.get("targetExam") as string,
       className: fd.get("className") as string,
-      schoolName: fd.get("schoolName") as string,
+      schoolName: (fd.get("schoolName") as string || "").trim(),
       turnstileToken: token,
     };
 
@@ -113,7 +114,26 @@ export default function TestEnquiryForm() {
               name="name"
               required
               className="w-full pl-10 pr-4 py-3 bg-ink-50 border border-ink-200 rounded-xl text-sm font-medium text-ink-900 focus:bg-white focus:ring-2 focus:ring-brand-red-500/20 focus:border-brand-red-500 outline-none transition-all"
-              placeholder="e.g. Rahul Kumar"
+              placeholder="Enter your name"
+            />
+          </div>
+        </div>
+
+        {/* Parents Name */}
+        <div>
+          <label className="block text-xs font-extrabold text-slate-700 mb-1.5 uppercase tracking-wide">
+            Parents Name <span className="text-red-500">*</span>
+          </label>
+          <div className="relative">
+            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+              <Users size={16} className="text-slate-400" />
+            </div>
+            <input
+              type="text"
+              name="parentName"
+              required
+              className="w-full pl-10 pr-4 py-3 bg-ink-50 border border-ink-200 rounded-xl text-sm font-medium text-ink-900 focus:bg-white focus:ring-2 focus:ring-brand-red-500/20 focus:border-brand-red-500 outline-none transition-all"
+              placeholder="Enter your father name"
             />
           </div>
         </div>
@@ -157,7 +177,7 @@ export default function TestEnquiryForm() {
               <option value="" disabled>Select target exam...</option>
               <option value="NEET">NEET (Medical)</option>
               <option value="JEE">JEE (Engineering)</option>
-              <option value="Foundation/NTSE">Foundation / NTSE</option>
+              <option value="Foundation/NTSE">Foundation / NTSE / Olympiad</option>
             </select>
           </div>
         </div>
