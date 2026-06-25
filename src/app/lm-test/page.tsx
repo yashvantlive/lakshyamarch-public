@@ -1,4 +1,4 @@
-import PublicNavbar from "@/components/public/PublicNavbar";
+﻿import PublicNavbar from "@/components/public/PublicNavbar";
 import PublicFooter from "@/components/public/PublicFooter";
 import { Laptop, Clock, BarChart, CheckCircle2, MonitorPlay } from "lucide-react";
 import {
@@ -9,12 +9,12 @@ import { cn } from "@/lib/utils";
 import Button from "@/components/brand/Button";
 
 export const metadata = {
-  title: "CBT Test Practice | Online Mock Tests for NEET & IIT-JEE",
-  description: "Boost your NEET and IIT-JEE preparation with LakshyaMarch's Computer Based Test (CBT) practice portal. Experience the real exam environment, improve time management, and get detailed analytics.",
-  keywords: ["CBT Test Practice", "NEET CBT", "IIT-JEE CBT", "Online Mock Tests", "LakshyaMarch Test Series"],
+  title: "LM Test Practice | Online Mock Tests for NEET & IIT-JEE",
+  description: "Boost your NEET and IIT-JEE preparation with LakshyaMarch's LM Test practice portal. Experience the real exam environment, improve time management, and get detailed analytics.",
+  keywords: ["LM Test Practice", "NEET Mock Test", "IIT-JEE Mock Test", "Online Mock Tests", "LakshyaMarch Test Series"],
 };
 
-const CBT_BENEFITS = [
+const LM_TEST_BENEFITS = [
   {
     icon: Laptop,
     title: "Real Exam Simulation",
@@ -23,7 +23,7 @@ const CBT_BENEFITS = [
   {
     icon: Clock,
     title: "Time Management Mastery",
-    text: "Our CBT platform features a strict countdown timer, helping you build the speed and precision required to tackle all questions within the allotted time.",
+    text: "Our LM Test platform features a strict countdown timer, helping you build the speed and precision required to tackle all questions within the allotted time.",
   },
   {
     icon: BarChart,
@@ -33,13 +33,13 @@ const CBT_BENEFITS = [
 ];
 
 const EXAM_TRENDS = [
-  "IIT-JEE is fully Computer Based, making CBT practice mandatory.",
-  "NEET is adopting hybrid/CBT patterns. Early practice gives you a massive advantage.",
+  "IIT-JEE is fully Computer Based, making online practice mandatory.",
+  "NEET is adopting hybrid patterns. Early practice gives you a massive advantage.",
   "Online testing eliminates bubbling errors common in OMR sheets.",
   "Immediate results and analytics accelerate your revision cycle.",
 ];
 
-export default function CBTTestPage() {
+export default function LMTestPage() {
   return (
     <div className="flex min-h-screen flex-col bg-ink-50">
       <PublicNavbar />
@@ -51,18 +51,18 @@ export default function CBTTestPage() {
           </Reveal>
           <Reveal delay={0.05}>
             <h1 className="mt-6 font-display text-[clamp(2.25rem,5vw,3.5rem)] font-extrabold leading-tight tracking-tight text-white">
-              Master the <span className="text-brand-gold-400">CBT</span> Format
+              Master the <span className="text-brand-gold-400">LM</span> Test Format
             </h1>
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mx-auto mt-5 max-w-2xl font-sans text-lg leading-relaxed text-white/70">
-              In today's competitive landscape, knowing the subject is only half the battle. The other half is mastering the Computer Based Test (CBT) environment. Practice online to boost your NEET and IIT-JEE scores.
+              In today's competitive landscape, knowing the subject is only half the battle. The other half is mastering the online exam environment. Practice in our true Computer Based Test (CBT) mode to boost your NEET and IIT-JEE scores.
             </p>
           </Reveal>
           <Reveal delay={0.2}>
             <div className="mt-8 flex justify-center">
               {/* Originally: https://test.lakshyamarch.com */}
-              <Button href="https://lakshyamarch-lm-test.netlify.app/" variant="primary" size="lg" withArrow target="_blank" rel="noopener noreferrer">
+              <Button href="https://test-lakshyamarch.netlify.app/" variant="primary" size="lg" withArrow target="_blank" rel="noopener noreferrer">
                 Go to Test Portal
               </Button>
             </div>
@@ -76,14 +76,14 @@ export default function CBTTestPage() {
           <div className={layout.container}>
             <SectionHeader
               eyebrow="The Future of Exams"
-              title="Why Practice CBT Online?"
+              title="Why Practice LM Test Online?"
               accentWord="Online"
               accent="red"
               lead="Transition seamlessly from pen-and-paper to a digital exam environment."
               className="mb-14"
             />
             <Stagger className="grid gap-6 md:grid-cols-3">
-              {CBT_BENEFITS.map((benefit, idx) => {
+              {LM_TEST_BENEFITS.map((benefit, idx) => {
                 const Icon = benefit.icon;
                 return (
                   <StaggerItem key={idx}>
@@ -114,7 +114,7 @@ export default function CBTTestPage() {
                     With IIT-JEE already fully established as a Computer Based Test and NEET progressively adopting hybrid and online modes, relying solely on offline practice puts you at a disadvantage.
                   </p>
                   <p className="mt-5 font-sans leading-relaxed text-ink-600">
-                    Our dedicated CBT portal is designed to mirror the exact NTA UI. By taking mock tests online, you eliminate the risk of OMR bubbling errors, improve your navigation speed between sections, and train your brain to focus on a screen for 3+ hours without fatigue.
+                    Our dedicated LM Test portal is designed to mirror the exact NTA UI. By taking mock tests online, you eliminate the risk of OMR bubbling errors, improve your navigation speed between sections, and train your brain to focus on a screen for 3+ hours without fatigue.
                   </p>
                   
                   <div className="mt-8 space-y-4">
@@ -138,15 +138,15 @@ export default function CBTTestPage() {
                     </div>
                     <div className="mx-auto bg-white/10 rounded px-16 py-1 text-xs text-white/50 font-sans tracking-wider">
                       {/* Originally: test.lakshyamarch.com */}
-                      lakshyamarch-lm-test.netlify.app
+                      test-lakshyamarch.netlify.app
                     </div>
                   </div>
                   <div className="p-8 sm:p-12 text-center bg-brand-blue-50">
                     <MonitorPlay size={64} className="mx-auto text-brand-blue-700 mb-6 opacity-80" />
                     <h3 className="font-display text-2xl font-bold text-ink-900 mb-4">Ready to test yourself?</h3>
-                    <p className="font-sans text-ink-600 mb-8">Access chapter-wise tests, full mock exams, and previous year papers in our CBT portal.</p>
+                    <p className="font-sans text-ink-600 mb-8">Access chapter-wise tests, full mock exams, and previous year papers in our LM Test portal.</p>
                     {/* Originally: https://test.lakshyamarch.com */}
-                    <Button href="https://lakshyamarch-lm-test.netlify.app/" variant="primary" size="lg" withArrow target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+                    <Button href="https://test-lakshyamarch.netlify.app/" variant="primary" size="lg" withArrow target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
                       Login to Test Portal
                     </Button>
                   </div>
@@ -160,9 +160,9 @@ export default function CBTTestPage() {
       <CTASection
         title="Start Practicing Today"
         accentWord="Practicing"
-        lead="Join thousands of students who have boosted their scores through our authentic CBT simulation."
+        lead="Join thousands of students who have boosted their scores through our authentic LM Test simulation."
         actions={[
-          { label: "Go to Test Portal", href: "https://lakshyamarch-lm-test.netlify.app/", variant: "primary", withArrow: true, external: true },
+          { label: "Go to Test Portal", href: "https://test-lakshyamarch.netlify.app/", variant: "primary", withArrow: true, external: true },
         ]}
       />
       <PublicFooter />

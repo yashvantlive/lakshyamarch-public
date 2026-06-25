@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PublicNavbar from "@/components/public/PublicNavbar";
 import PublicFooter from "@/components/public/PublicFooter";
 
-import { INSTITUTE, FACULTY, RESULTS_JEE, whatsappLink } from "@/lib/siteData";
+import { INSTITUTE, FACULTY_COACHING, RESULTS_JEE, whatsappLink } from "@/lib/siteData";
 import {
   Trophy, CheckCircle2, Star, Users, BookOpen, Target, Zap, Clock,
   MessageCircle, GraduationCap, TrendingUp, Award,
@@ -33,12 +33,7 @@ export const metadata: Metadata = {
   },
 };
 
-const jeeFacultyList = FACULTY.filter((f) => f.team?.includes("IIT-JEE"))
-  .sort((a, b) => {
-    if (a.role === "Senior Faculty" && b.role !== "Senior Faculty") return -1;
-    if (a.role !== "Senior Faculty" && b.role === "Senior Faculty") return 1;
-    return 0;
-  });
+const jeeFacultyList = FACULTY_COACHING.filter((f) => f.team?.includes("IIT-JEE"));
 const jeeToppers = (RESULTS_JEE as ResultStudent[]).filter((r) => (r.percentile ?? 0) >= 98);
 
 const jeeFaqs = [

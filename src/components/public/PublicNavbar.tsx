@@ -19,11 +19,11 @@ import { INSTITUTE } from "@/lib/siteData";
 import { cn } from "@/lib/utils";
 import BrandMark from "@/components/brand/BrandMark";
 import Button from "@/components/brand/Button";
+import SlidingTicker from "./SlidingTicker";
 
 const MAIN_LINKS = [
   { label: "Home", href: "/" },
-  { label: "CBT Test", href: "/cbt-test" },
-  { label: "Faculty", href: "/faculty" },
+  { label: "LM Test", href: "/lm-test" },
   { label: "About", href: "/about" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
@@ -59,6 +59,11 @@ const STUDY_MATERIAL_MENU = [
   { label: "Syllabus", href: "/study-material/syllabus", desc: "Latest exam patterns", icon: GraduationCap, accent: "text-ink-600 bg-ink-100" },
 ];
 
+const FACULTY_MENU = [
+  { label: "Coaching Faculty", href: "/faculty/coaching", desc: "IIT-JEE & NEET Mentors", icon: Target, accent: "text-brand-blue-700 bg-brand-blue-50" },
+  { label: "School Faculty", href: "/faculty/school", desc: "Foundation Mentors", icon: GraduationCap, accent: "text-brand-red-600 bg-brand-red-50" },
+];
+
 export default function PublicNavbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -66,6 +71,7 @@ export default function PublicNavbar() {
   const [admissionOpen, setAdmissionOpen] = useState(false);
   const [resultsOpen, setResultsOpen] = useState(false);
   const [studyMaterialOpen, setStudyMaterialOpen] = useState(false);
+  const [facultyOpen, setFacultyOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -81,6 +87,7 @@ export default function PublicNavbar() {
     setAdmissionOpen(false);
     setResultsOpen(false);
     setStudyMaterialOpen(false);
+    setFacultyOpen(false);
   }, [pathname]);
 
   const onDark = !scrolled;
@@ -134,7 +141,7 @@ export default function PublicNavbar() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 8 }}
                   transition={{ duration: 0.18 }}
-                  className="absolute left-1/2 top-full w-[28rem] -translate-x-1/2 pt-3"
+                  className="absolute left-1/2 top-full w-[28rem] -translate-x-1/2 pt-3 z-50"
                 >
                   <div className="grid grid-cols-1 gap-1 rounded-lg border border-ink-200 bg-white p-3 shadow-brand-xl">
                     {PROGRAM_MENU.map((p) => (
@@ -180,7 +187,7 @@ export default function PublicNavbar() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 8 }}
                   transition={{ duration: 0.18 }}
-                  className="absolute left-1/2 top-full w-[24rem] -translate-x-1/2 pt-3"
+                  className="absolute left-1/2 top-full w-[24rem] -translate-x-1/2 pt-3 z-50"
                 >
                   <div className="grid grid-cols-1 gap-1 rounded-lg border border-ink-200 bg-white p-3 shadow-brand-xl">
                     {ADMISSION_MENU.map((p) => (
@@ -226,7 +233,7 @@ export default function PublicNavbar() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 8 }}
                   transition={{ duration: 0.18 }}
-                  className="absolute left-1/2 top-full w-[24rem] -translate-x-1/2 pt-3"
+                  className="absolute left-1/2 top-full w-[24rem] -translate-x-1/2 pt-3 z-50"
                 >
                   <div className="grid grid-cols-1 gap-1 rounded-lg border border-ink-200 bg-white p-3 shadow-brand-xl">
                     {RESULTS_MENU.map((p) => (
@@ -272,10 +279,56 @@ export default function PublicNavbar() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 8 }}
                   transition={{ duration: 0.18 }}
-                  className="absolute left-1/2 top-full w-[24rem] -translate-x-1/2 pt-3"
+                  className="absolute left-1/2 top-full w-[24rem] -translate-x-1/2 pt-3 z-50"
                 >
                   <div className="grid grid-cols-1 gap-1 rounded-lg border border-ink-200 bg-white p-3 shadow-brand-xl">
                     {STUDY_MATERIAL_MENU.map((p) => (
+                      <Link
+                        key={p.href}
+                        href={p.href}
+                        className="group flex items-center gap-3 rounded-xl p-3 transition-colors hover:bg-ink-50"
+                      >
+                        <span className={cn("flex h-10 w-10 shrink-0 items-center justify-center rounded-lg", p.accent)}>
+                          <p.icon size={20} strokeWidth={1.75} />
+                        </span>
+                        <span>
+                          <span className="block font-display text-sm font-semibold text-ink-900">{p.label}</span>
+                          <span className="block font-sans text-xs text-ink-500">{p.desc}</span>
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* Faculty mega menu */}
+          <div
+            className="relative"
+            onMouseEnter={() => setFacultyOpen(true)}
+            onMouseLeave={() => setFacultyOpen(false)}
+          >
+            <button
+              className={cn(
+                "flex items-center gap-1 rounded-lg px-1.5 py-2 font-sans text-sm font-medium transition-colors",
+                onDark ? "text-white/85 hover:bg-white/10 hover:text-white" : "text-ink-600 hover:bg-ink-100 hover:text-ink-900",
+              )}
+            >
+              Faculty
+              <ChevronDown size={15} strokeWidth={2} className={cn("transition-transform", facultyOpen && "rotate-180")} />
+            </button>
+            <AnimatePresence>
+              {facultyOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 8 }}
+                  transition={{ duration: 0.18 }}
+                  className="absolute left-1/2 top-full w-[24rem] -translate-x-1/2 pt-3 z-50"
+                >
+                  <div className="grid grid-cols-1 gap-1 rounded-lg border border-ink-200 bg-white p-3 shadow-brand-xl">
+                    {FACULTY_MENU.map((p) => (
                       <Link
                         key={p.href}
                         href={p.href}
@@ -407,6 +460,21 @@ export default function PublicNavbar() {
                   <span className="font-sans text-sm font-semibold text-ink-700">{p.label}</span>
                 </Link>
               ))}
+              <p className="px-4 pb-1 pt-4 font-sans text-[0.625rem] font-bold uppercase tracking-[0.16em] text-ink-400">
+                Faculty
+              </p>
+              {FACULTY_MENU.map((p) => (
+                <Link
+                  key={p.href}
+                  href={p.href}
+                  className="flex items-center gap-3 rounded-xl px-4 py-3 transition-colors hover:bg-ink-50"
+                >
+                  <span className={cn("flex h-9 w-9 items-center justify-center rounded-lg", p.accent)}>
+                    <p.icon size={18} strokeWidth={1.75} />
+                  </span>
+                  <span className="font-sans text-sm font-semibold text-ink-700">{p.label}</span>
+                </Link>
+              ))}
               <div className="grid grid-cols-2 gap-3 pt-4">
                 <Button href={`tel:+91${INSTITUTE.primaryPhone}`} variant="outline" size="sm">
                   Call Us
@@ -416,6 +484,19 @@ export default function PublicNavbar() {
                 </Button>
               </div>
             </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {!scrolled && (
+          <motion.div
+            initial={{ height: 40, opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="overflow-hidden w-full"
+          >
+            <SlidingTicker />
           </motion.div>
         )}
       </AnimatePresence>

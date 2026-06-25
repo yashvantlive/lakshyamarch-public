@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PublicNavbar from "@/components/public/PublicNavbar";
 import PublicFooter from "@/components/public/PublicFooter";
 
-import { INSTITUTE, FACULTY, RESULTS_NEET, whatsappLink } from "@/lib/siteData";
+import { INSTITUTE, FACULTY_COACHING, RESULTS_NEET, whatsappLink } from "@/lib/siteData";
 import {
   Trophy, Star, Users, BookOpen, Heart, Clock, MessageCircle,
   GraduationCap, TrendingUp, Award, Microscope,
@@ -33,12 +33,7 @@ export const metadata: Metadata = {
   },
 };
 
-const neetFacultyList = FACULTY.filter((f) => f.team?.includes("NEET"))
-  .sort((a, b) => {
-    if (a.role === "Senior Faculty" && b.role !== "Senior Faculty") return -1;
-    if (a.role !== "Senior Faculty" && b.role === "Senior Faculty") return 1;
-    return 0;
-  });
+const neetFacultyList = FACULTY_COACHING.filter((f) => f.team?.includes("NEET"));
 
 const neetFaqs = [
   { q: "Is LakshyaMarch good for NEET preparation?", a: "Yes! LakshyaMarch students secured AIR 499 in NEET 2025 with a score of 619/720 (Aradhya Bharti – ABVIMS Delhi). Our NEET results include multiple selections in PMCH Patna, ANMMCH Gaya, and other top government medical colleges." },

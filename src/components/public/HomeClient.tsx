@@ -12,7 +12,7 @@ import PublicNavbar from "@/components/public/PublicNavbar";
 import PublicFooter from "@/components/public/PublicFooter";
 import EnquiryForm from "@/components/public/EnquiryForm";
 import {
-  INSTITUTE, PROGRAMS, FACULTY, RESULTS_NEET, RESULTS_JEE, RESULTS_BOARD,
+  INSTITUTE, PROGRAMS, FACULTY_COACHING, RESULTS_NEET, RESULTS_JEE, RESULTS_BOARD,
   HIGHLIGHTS, FOUNDER, whatsappLink,
 } from "@/lib/siteData";
 import { SUCCESS_STORIES } from "@/lib/stories";
@@ -383,15 +383,18 @@ function FacultySection() {
           className="mb-14"
         />
         <Stagger className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {FACULTY.slice(0, 4).map((f) => (
+          {FACULTY_COACHING.slice(0, 4).map((f) => (
             <StaggerItem key={f.name}>
               <FacultyCard faculty={f} compact />
             </StaggerItem>
           ))}
         </Stagger>
-        <Reveal className="mt-12 text-center">
-          <Button href="/faculty" variant="secondary" size="md" withArrow>
-            Meet the Full Faculty Panel
+        <Reveal className="mt-12 flex flex-col sm:flex-row justify-center items-center gap-4">
+          <Button href="/faculty/coaching" variant="secondary" size="md" withArrow>
+            Meet Coaching Faculty
+          </Button>
+          <Button href="/faculty/school" variant="outline" size="md" withArrow>
+            Meet School Faculty
           </Button>
         </Reveal>
       </div>
