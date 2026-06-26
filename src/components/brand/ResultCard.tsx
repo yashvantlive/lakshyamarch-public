@@ -64,13 +64,16 @@ export default function ResultCard({
   student,
   category,
   className,
+  priority = false,
 }: {
   student: ResultStudent;
   category: Category;
   className?: string;
+  priority?: boolean;
 }) {
   const a = accentByCategory[category];
   const topper = !!student.isTopper;
+  const shouldPrioritize = priority || topper;
 
   return (
     <div
@@ -95,6 +98,7 @@ export default function ResultCard({
             fill
             sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw"
             className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+            priority={shouldPrioritize}
           />
         ) : (
           <div className="relative flex h-full w-full items-center justify-center bg-gradient-to-br from-ink-800 to-ink-950">

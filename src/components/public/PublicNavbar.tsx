@@ -391,15 +391,15 @@ export default function PublicNavbar() {
             className="overflow-y-auto max-h-[calc(100dvh-64px)] sm:max-h-[calc(100dvh-72px)] border-t border-ink-200 bg-white lg:hidden"
           >
             <div className="space-y-1 px-5 py-4">
-              {MAIN_LINKS.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="block rounded-xl px-4 py-3 font-sans text-sm font-semibold text-ink-700 transition-colors hover:bg-ink-50 hover:text-brand-red-600"
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {/* 1. Home Link */}
+              <Link
+                href={MAIN_LINKS[0].href}
+                className="block rounded-xl px-4 py-3 font-sans text-sm font-semibold text-ink-700 transition-colors hover:bg-ink-50 hover:text-brand-red-600"
+              >
+                {MAIN_LINKS[0].label}
+              </Link>
+
+              {/* 2. Programs Section */}
               <p className="px-4 pb-1 pt-4 font-sans text-[0.625rem] font-bold uppercase tracking-[0.16em] text-ink-400">
                 Programs
               </p>
@@ -415,6 +415,8 @@ export default function PublicNavbar() {
                   <span className="font-sans text-sm font-semibold text-ink-700">{p.label}</span>
                 </Link>
               ))}
+
+              {/* 3. Admissions Section */}
               <p className="px-4 pb-1 pt-4 font-sans text-[0.625rem] font-bold uppercase tracking-[0.16em] text-ink-400">
                 Admissions
               </p>
@@ -430,6 +432,8 @@ export default function PublicNavbar() {
                   <span className="font-sans text-sm font-semibold text-ink-700">{p.label}</span>
                 </Link>
               ))}
+
+              {/* 4. Results Section */}
               <p className="px-4 pb-1 pt-4 font-sans text-[0.625rem] font-bold uppercase tracking-[0.16em] text-ink-400">
                 Results
               </p>
@@ -445,6 +449,8 @@ export default function PublicNavbar() {
                   <span className="font-sans text-sm font-semibold text-ink-700">{p.label}</span>
                 </Link>
               ))}
+
+              {/* 5. Study Material Section */}
               <p className="px-4 pb-1 pt-4 font-sans text-[0.625rem] font-bold uppercase tracking-[0.16em] text-ink-400">
                 Study Material
               </p>
@@ -460,6 +466,8 @@ export default function PublicNavbar() {
                   <span className="font-sans text-sm font-semibold text-ink-700">{p.label}</span>
                 </Link>
               ))}
+
+              {/* 6. Faculty Section */}
               <p className="px-4 pb-1 pt-4 font-sans text-[0.625rem] font-bold uppercase tracking-[0.16em] text-ink-400">
                 Faculty
               </p>
@@ -473,6 +481,17 @@ export default function PublicNavbar() {
                     <p.icon size={18} strokeWidth={1.75} />
                   </span>
                   <span className="font-sans text-sm font-semibold text-ink-700">{p.label}</span>
+                </Link>
+              ))}
+
+              {/* 7. Remaining Main Links (LM Test, About, Blog, Contact) */}
+              {MAIN_LINKS.slice(1).map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="block rounded-xl px-4 py-3 font-sans text-sm font-semibold text-ink-700 transition-colors hover:bg-ink-50 hover:text-brand-red-600"
+                >
+                  {link.label}
                 </Link>
               ))}
               <div className="grid grid-cols-2 gap-3 pt-4">

@@ -6,10 +6,10 @@ export default function SlidingTicker() {
       <style>{`
         /* Master translation timeline: 20 seconds loop */
         @keyframes slideAndCelebrate {
-          0% { transform: translateX(100vw); }
-          55% { transform: translateX(20px); } /* Stops right next to the pedestal */
-          70% { transform: translateX(20px); } /* Wears cap, celebrates & bursts stars */
-          100% { transform: translateX(-140%); } /* Exits left smoothly */
+          0% { transform: translateX(-100%); }
+          55% { transform: translateX(calc(100vw - 4rem - 100% - 32px)); } /* Stops with 32px clearance from pedestal */
+          70% { transform: translateX(calc(100vw - 4rem - 100% - 32px)); } /* Wears cap, celebrates & bursts stars */
+          100% { transform: translateX(100vw); } /* Exits right smoothly */
         }
         .animate-run-slide {
           animation: slideAndCelebrate 20s linear infinite;
@@ -102,9 +102,9 @@ export default function SlidingTicker() {
           0%, 100% { transform: rotate(0deg); }
         }
         @keyframes celeb-wear-cap {
-          0%, 54.9% { opacity: 0; transform: translate(-38px, 15px) rotate(-25deg) scale(0.95); }
-          55% { opacity: 1; transform: translate(-38px, 15px) rotate(-25deg) scale(0.95); } /* Grabs cap */
-          57% { opacity: 1; transform: translate(-22px, -10px) rotate(-10deg) scale(1.15); } /* Lifts cap */
+          0%, 54.9% { opacity: 0; transform: translate(70px, 15px) rotate(25deg) scale(0.95); }
+          55% { opacity: 1; transform: translate(70px, 15px) rotate(25deg) scale(0.95); } /* Grabs cap from right pedestal */
+          57% { opacity: 1; transform: translate(38px, -10px) rotate(10deg) scale(1.15); } /* Lifts cap */
           59% { opacity: 1; transform: translate(0px, -4px) rotate(0deg) scale(1.3); } /* Places on head */
           /* Cap stays on head and bobs in sync with jumping */
           61% { opacity: 1; transform: translate(0px, -4px) rotate(0deg) scale(1.3); } 
@@ -191,8 +191,8 @@ export default function SlidingTicker() {
         .sb-5 { animation: starburst-5 20s ease-out infinite; }
       `}</style>
 
-      {/* Fixed Graduation Cap Stand & Pedestal on the Left */}
-      <div className="absolute left-0 top-0 bottom-0 w-16 bg-[#40060f] border-r border-[#801a2d] z-40 shadow-[4px_0_12px_rgba(0,0,0,0.5)] flex items-center justify-center">
+      {/* Fixed Graduation Cap Stand & Pedestal on the Right */}
+      <div className="absolute right-0 top-0 bottom-0 w-16 bg-[#40060f] border-l border-[#801a2d] z-40 shadow-[-4px_0_12px_rgba(0,0,0,0.5)] flex items-center justify-center">
 
         {/* Glowing Pedestal / Trophy Stand with Cap inside a single SVG to guarantee no clipping */}
         <svg className="w-full h-full p-1" viewBox="0 0 100 100" fill="none">
@@ -217,13 +217,18 @@ export default function SlidingTicker() {
       </div>
 
       {/* Animation Track */}
-      <div className="w-full overflow-hidden relative flex items-center h-full pl-16">
+      <div className="w-full overflow-hidden relative flex items-center h-full pr-16">
         <div className="animate-run-slide flex items-center gap-5 whitespace-nowrap">
+          {/* Tagline text leading with elegant white glow */}
+          <span className="text-white font-extrabold text-xs md:text-sm tracking-[0.22em] uppercase filter drop-shadow-[0_0_6px_rgba(255,255,255,0.7)]">
+            MARCH AHEAD TOWARDS YOUR लक्ष्य
+          </span>
+
           {/* Dual State Student Figure Container */}
           <div className="w-7 h-7 relative select-none">
 
             {/* STATE 1: RUNNING (1.5x Thick High-Energy Stride Cycle with Ground Contact Shadows) */}
-            <div className="state-runner absolute inset-0 flex items-center justify-center" style={{ transform: 'scaleX(-1)' }}>
+            <div className="state-runner absolute inset-0 flex items-center justify-center">
               <svg width="100%" height="100%" viewBox="0 0 100 100" className="relative">
                 
                 {/* FRAME 1: Contact Phase (Landing foot under body, trailing leg high behind) */}
@@ -322,11 +327,6 @@ export default function SlidingTicker() {
             </div>
 
           </div>
-
-          {/* Tagline text trailing behind with elegant white glow */}
-          <span className="text-white font-extrabold text-xs md:text-sm tracking-[0.22em] uppercase filter drop-shadow-[0_0_6px_rgba(255,255,255,0.7)]">
-            MARCH AHEAD TOWARDS YOUR लक्ष्य
-          </span>
         </div>
       </div>
     </div>
