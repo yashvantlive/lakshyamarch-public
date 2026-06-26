@@ -28,6 +28,7 @@ export default function BrandMark({
         className="object-contain rounded-lg"
         width={size}
         height={size}
+        priority
       />
     </span>
   );

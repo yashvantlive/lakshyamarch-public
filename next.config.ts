@@ -81,6 +81,9 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  experimental: {
+    optimizePackageImports: ["lucide-react", "@/components/brand"],
+  },
 };
 
 export default nextConfig;
