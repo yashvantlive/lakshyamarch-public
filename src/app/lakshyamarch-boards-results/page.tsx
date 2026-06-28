@@ -1,6 +1,7 @@
 import PublicNavbar from "@/components/public/PublicNavbar";
 import PublicFooter from "@/components/public/PublicFooter";
-import { RESULTS_BOARD, INSTITUTE } from "@/lib/siteData";
+import { INSTITUTE } from "@/lib/siteData";
+import { RESULTS_BOARD } from "@/lib/studentData";
 import { Trophy } from "lucide-react";
 import { Badge, HeroSection, StatsGrid, CTASection, Reveal, FAQSection } from "@/components/brand";
 import type { ResultStudent, Stat } from "@/components/brand";

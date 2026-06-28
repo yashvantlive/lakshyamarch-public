@@ -1,6 +1,6 @@
 import PublicNavbar from "@/components/public/PublicNavbar";
 import PublicFooter from "@/components/public/PublicFooter";
-import { SUCCESS_STORIES } from "@/lib/stories";
+import { SUCCESS_STORIES, resolveStudentProfiles } from "@/lib/stories";
 import { ArrowRight, BookOpen, GraduationCap, Trophy } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -51,14 +51,34 @@ export default function SuccessStoriesPage() {
                     href={`/success-stories/${story.slug}`}
                     className="group flex h-full flex-col overflow-hidden rounded-lg border border-ink-200 bg-white shadow-brand-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-brand-lg"
                   >
-                    <div className="relative aspect-[16/10] overflow-hidden bg-ink-100">
+                    <div className="relative aspect-[16/10] overflow-hidden bg-ink-100 flex items-center justify-center">
                       {story.image ? (
                         <Image src={story.image} alt={story.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
-                      ) : (
-                        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-ink-800 to-ink-950">
-                          <Trophy size={44} strokeWidth={1.5} className="text-white/25" />
-                        </div>
-                      )}
+                      ) : (() => {
+                        const profiles = resolveStudentProfiles(story.studentId);
+                        if (profiles.length > 0) {
+                          return (
+                            <div className={cn("grid w-full h-full transition-transform duration-500 group-hover:scale-105", profiles.length === 1 ? "grid-cols-1" : "grid-cols-2 gap-0.5 bg-ink-200")}>
+                              {profiles.map((p) => (
+                                <div key={p.id} className="relative h-full w-full">
+                                  <Image 
+                                    src={p.image} 
+                                    alt={p.name} 
+                                    fill 
+                                    className="object-cover object-top"
+                                    sizes="(max-width: 768px) 100vw, 33vw"
+                                  />
+                                </div>
+                              ))}
+                            </div>
+                          );
+                        }
+                        return (
+                          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-ink-800 to-ink-950">
+                            <Trophy size={44} strokeWidth={1.5} className="text-white/25" />
+                          </div>
+                        );
+                      })()}
                       <div className="absolute left-4 top-4">
                         <Badge tone={catTone[story.category]}>{story.category} {story.year}</Badge>
                       </div>

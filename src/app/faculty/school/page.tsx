@@ -22,8 +22,28 @@ export const metadata = {
 export default function SchoolFacultyPage() {
   const schoolFaculty = FACULTY_SCHOOL;
 
+  const facultySchema = {
+    "@context": "https://schema.org",
+    "@graph": schoolFaculty.map((f) => ({
+      "@type": "Person",
+      "name": f.name,
+      "jobTitle": f.role,
+      "worksFor": {
+        "@type": "EducationalOrganization",
+        "name": "LakshyaMarch Begusarai",
+        "url": "https://lakshyamarch.com"
+      },
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": f.qual
+      },
+      "description": f.usp || `${f.name} teaches ${f.subject} at LakshyaMarch.`
+    }))
+  };
+
   return (
     <div className="flex min-h-screen flex-col bg-ink-50">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(facultySchema) }} />
       <FaqSchema faqs={facultyFaqs} />
       <PublicNavbar />
 

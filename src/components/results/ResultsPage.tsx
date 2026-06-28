@@ -1,6 +1,7 @@
 "use client";
 
-import { RESULTS_NEET, RESULTS_JEE, RESULTS_BOARD, INSTITUTE, whatsappLink } from "@/lib/siteData";
+import { INSTITUTE, whatsappLink } from "@/lib/siteData";
+import { RESULTS_NEET, RESULTS_JEE, RESULTS_BOARD } from "@/lib/studentData";
 import { Trophy } from "lucide-react";
 import {
   Badge, HeroSection, StatsGrid, ResultsShowcase, CTASection, Reveal,

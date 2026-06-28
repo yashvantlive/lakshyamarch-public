@@ -61,6 +61,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { route: "/think-neet-test-series-begusarai", priority: 0.95, freq: "weekly" as const },
     { route: "/admission-counselling", priority: 0.85, freq: "weekly" as const },
     { route: "/free-test", priority: 0.8, freq: "weekly" as const },
+    { route: "/nmtc", priority: 0.95, freq: "weekly" as const },
   ].map(({ route, priority, freq }) => ({
     url: `${BASE_URL}${route}`,
     lastModified: new Date().toISOString().split("T")[0],

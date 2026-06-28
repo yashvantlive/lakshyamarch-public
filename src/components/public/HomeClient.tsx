@@ -7,8 +7,9 @@ import { Trophy, ShieldCheck } from "lucide-react";
 import PublicNavbar from "@/components/public/PublicNavbar";
 import PublicFooter from "@/components/public/PublicFooter";
 import {
-  INSTITUTE, HIGHLIGHTS, whatsappLink, RESULTS_NEET, RESULTS_JEE,
+  INSTITUTE, HIGHLIGHTS, whatsappLink,
 } from "@/lib/siteData";
+import { RESULTS_NEET, RESULTS_JEE } from "@/lib/studentData";
 import { SUCCESS_STORIES } from "@/lib/stories";
 
 import {
@@ -79,7 +80,8 @@ export default function HomeClient({ recentBlogs = [] }: { recentBlogs?: any[] }
     let content = s.excerpt;
 
     if (s.category === "NEET") {
-      const student = RESULTS_NEET.find((r) => r.id === s.studentId);
+      const studentIdStr = Array.isArray(s.studentId) ? s.studentId[0] : s.studentId;
+      const student = RESULTS_NEET.find((r) => r.id === studentIdStr);
       if (student) {
         studentName = student.name;
         image = student.image;
@@ -87,21 +89,22 @@ export default function HomeClient({ recentBlogs = [] }: { recentBlogs?: any[] }
         studentClass = `NEET ${student.year}${rankInfo}`;
         result = student.college ? student.college : `Score: ${student.score}`;
         
-        if (student.id === "neet-2025-001") {
+        if (studentIdStr === "neet-2025-001") {
           content = "Studying at LakshyaMarch Begusarai was the key to my success. The experienced faculty, high-quality test series, and constant doubt-clearing sessions helped me secure AIR 499 without leaving my family.";
-        } else if (student.id === "neet-2024-001") {
+        } else if (studentIdStr === "neet-2024-001") {
           content = "I could achieve 685/720 in NEET only because of the strict discipline and personal guidance at LakshyaMarch. The teachers cleared all my concepts and motivated me throughout my preparation journey.";
         }
       }
     } else if (s.category === "JEE") {
-      const student = RESULTS_JEE.find((r) => r.id === s.studentId);
+      const studentIdStr = Array.isArray(s.studentId) ? s.studentId[0] : s.studentId;
+      const student = RESULTS_JEE.find((r) => r.id === studentIdStr);
       if (student) {
         studentName = student.name;
         image = student.image;
         studentClass = `JEE Main ${student.year} · ${student.percentile}%ile`;
         result = student.college ? student.college : "JEE Topper";
         
-        if (student.id === "jee-2025-001") {
+        if (studentIdStr === "jee-2025-001") {
           content = "The classroom coaching at LakshyaMarch Begusarai was highly structured. The deep conceptual teaching by Ram Sir and experienced faculty cleared all my doubts, helping me score 99.35 percentile in JEE and get into NIT Trichy.";
         }
       }

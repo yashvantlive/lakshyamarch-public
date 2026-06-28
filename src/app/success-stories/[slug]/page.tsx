@@ -1,11 +1,13 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { SUCCESS_STORIES } from "@/lib/stories";
+import { SUCCESS_STORIES, resolveStudentProfiles } from "@/lib/stories";
 import PublicNavbar from "@/components/public/PublicNavbar";
 import PublicFooter from "@/components/public/PublicFooter";
 import { Calendar, User, ArrowLeft, Share2, BookOpen, GraduationCap, Trophy } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { StoryStudentCards, StoryContentContainer } from "@/components/brand";
+import { cn } from "@/lib/utils";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -18,6 +20,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!story) return { title: "Story Not Found" };
 
+  const resolvedProfiles = resolveStudentProfiles(story.studentId);
+  const ogImages = story.image ? [story.image] : resolvedProfiles.map(p => p.image);
+
   return {
     title: story.seo.title,
     description: story.seo.description,
@@ -26,7 +31,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: story.seo.title,
       description: story.seo.description,
       type: "article",
-      images: [story.image || "/og-image.jpg"],
+      images: ogImages.length > 0 ? ogImages : ["/og-image.jpg"],
     },
     twitter: {
       card: "summary_large_image",
@@ -42,22 +47,44 @@ export default async function SuccessStoryDetailPage({ params }: PageProps) {
 
   if (!story) notFound();
 
-  // JSON-LD Schema for Rank Math SEO
+  const resolvedProfiles = resolveStudentProfiles(story.studentId);
+
+  // JSON-LD Schema for Rank Math SEO (Modern Graph style)
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "EducationalOccupationalCredential",
-    "name": story.title,
-    "description": story.seo.description,
-    "image": story.image || "/og-image.jpg",
-    "author": {
-      "@type": "Person",
-      "name": story.author,
-    },
-    "publisher": {
-      "@type": "EducationalOrganization",
-      "name": "LakshyaMarch",
-      "url": "https://lakshyamarch.com",
-    },
+    "@graph": [
+      {
+        "@type": "NewsArticle",
+        "@id": `https://lakshyamarch.com/success-stories/${story.slug}#article`,
+        "isPartOf": {
+          "@type": "WebPage",
+          "@id": `https://lakshyamarch.com/success-stories/${story.slug}`
+        },
+        "headline": story.title,
+        "description": story.seo.description,
+        "image": story.image ? [`https://lakshyamarch.com${story.image}`] : resolvedProfiles.map(p => `https://lakshyamarch.com${p.image}`),
+        "datePublished": new Date().toISOString().split("T")[0] + "T08:00:00+05:30",
+        "dateModified": new Date().toISOString().split("T")[0] + "T08:00:00+05:30",
+        "author": {
+          "@type": "Person",
+          "name": story.author,
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "name": "LakshyaMarch",
+          "url": "https://lakshyamarch.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://lakshyamarch.com/lm_logo.jpeg"
+          }
+        },
+        "about": resolvedProfiles.map(p => ({
+          "@type": "Person",
+          "name": p.name,
+          "description": `${p.name} qualified ${p.category} in ${p.year} scoring ${p.score || 'excellent grades'} and was admitted to ${p.college || 'top tier college'}.`
+        }))
+      }
+    ]
   };
 
   return (
@@ -116,8 +143,8 @@ export default async function SuccessStoryDetailPage({ params }: PageProps) {
               </div>
             </div>
 
-            {/* Featured Image */}
-            <div className="relative aspect-video w-full bg-ink-100 flex items-center justify-center">
+            {/* Featured Image - Single or Dual Sister Layout */}
+            <div className="relative aspect-video w-full bg-ink-100 flex items-center justify-center overflow-hidden">
               {story.image ? (
                 <Image 
                   src={story.image} 
@@ -126,17 +153,34 @@ export default async function SuccessStoryDetailPage({ params }: PageProps) {
                   className="object-cover"
                   priority
                 />
+              ) : resolvedProfiles.length > 0 ? (
+                <div className={cn("grid w-full h-full", resolvedProfiles.length === 1 ? "grid-cols-1" : "grid-cols-2 gap-0.5 bg-ink-200")}>
+                  {resolvedProfiles.map((p) => (
+                    <div key={p.id} className="relative h-full w-full">
+                      <Image 
+                        src={p.image} 
+                        alt={p.name} 
+                        fill 
+                        className="object-cover object-top"
+                        priority
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                    </div>
+                  ))}
+                </div>
               ) : (
                 <Trophy size={80} className="text-ink-300 opacity-50" />
               )}
             </div>
 
-            {/* Article Content (Premium Typography) */}
-            <div className="px-8 py-12 sm:px-12 prose prose-slate prose-lg max-w-none">
-              <div 
-                className="text-ink-700 leading-relaxed space-y-6"
-                dangerouslySetInnerHTML={{ __html: story.content }} 
-              />
+            {/* Dynamic Student Profiles Card Grid */}
+            <div className="px-8 pt-8 sm:px-12">
+              <StoryStudentCards studentId={story.studentId} />
+            </div>
+
+            {/* Article Content (Bilingual tabbed content) */}
+            <div className="px-8 pb-12 sm:px-12">
+              <StoryContentContainer content={story.content} contentHindi={story.contentHindi} />
             </div>
 
             {/* Footer of Article */}

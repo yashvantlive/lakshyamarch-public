@@ -19,6 +19,7 @@ export type ResultStudent = {
   stat?: string;
   percentile?: number | null;
   examType?: string;
+  jeeAdvanced?: string | null;
   // Board
   percentage?: string;
   board?: string;
@@ -125,7 +126,7 @@ export default function ResultCard({
             <span className="ml-0.5 align-top text-xs font-bold">{metricSuffix(category, student)}</span>
           )}
         </p>
-        <div className="mt-auto pt-3">
+        <div className="mt-auto pt-3 flex flex-col items-center gap-1.5">
           {student.college ? (
             <span className={cn("inline-flex items-center gap-1 rounded-sm border px-2.5 py-1 font-sans text-[0.625rem] font-bold uppercase tracking-[0.1em]", a.chip)}>
               <GraduationCap size={11} strokeWidth={2} /> {student.college}
@@ -134,6 +135,11 @@ export default function ResultCard({
             <span className="inline-flex items-center gap-1 font-sans text-[0.625rem] font-bold uppercase tracking-[0.12em] text-ink-400">
               {category === "Board" ? student.board : student.examType}
               {student.year ? ` · ${student.year}` : ""}
+            </span>
+          )}
+          {category === "JEE" && student.jeeAdvanced && (
+            <span className="inline-flex items-center gap-1 font-sans text-[0.6875rem] font-extrabold uppercase tracking-[0.06em] text-brand-red-600 bg-brand-red-50 border border-brand-red-100 rounded-sm px-2 py-0.5 mt-1 shadow-brand-sm">
+              <TrendingUp size={11} /> Adv Rank: {student.jeeAdvanced}
             </span>
           )}
         </div>

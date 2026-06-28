@@ -3,8 +3,7 @@ import Script from "next/script";
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import JsonLd from "@/components/seo/JsonLd";
-import FloatingCTA from "@/components/public/FloatingCTA";
-import ScrollProgress from "@/components/brand/ScrollProgress";
+import LayoutClientAssets from "@/components/public/LayoutClientAssets";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -43,7 +42,11 @@ export const metadata: Metadata = {
   authors: [{ name: "LakshyaMarch Education" }],
   creator: "LakshyaMarch Education",
   icons: {
-    icon: "/lm_logo.jpeg",
+    icon: [
+      { url: "/icons/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icons/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+    ],
+    apple: "/icons/apple-touch-icon.png",
   },
   openGraph: {
     title: "LakshyaMarch Education | Best Coaching in Begusarai",
@@ -100,14 +103,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable} h-full`} data-scroll-behavior="smooth">
       <head>
-        {/* Resource Hints for Third-Party Domains */}
-        <link rel="preconnect" href="https://www.google-analytics.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://www.clarity.ms" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        <link rel="dns-prefetch" href="https://www.clarity.ms" />
-
         {/* MS Clarity */}
         {process.env.NEXT_PUBLIC_CLARITY_ID && (
           <Script id="ms-clarity" strategy="lazyOnload">
@@ -123,9 +118,8 @@ export default function RootLayout({
       </head>
       <body className="h-full font-sans antialiased bg-ink-50 text-ink-900" suppressHydrationWarning>
         <JsonLd />
-        <ScrollProgress />
+        <LayoutClientAssets />
         {children}
-        <FloatingCTA />
         
         {/* High-Performance Deferred Google Analytics */}
         {process.env.NEXT_PUBLIC_GA_ID && (

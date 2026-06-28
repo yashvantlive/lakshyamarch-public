@@ -31,3 +31,5 @@ export { default as FAQSection } from "./FAQSection";
 export type { FAQ } from "./FAQSection";
 export { default as ScrollProgress } from "./ScrollProgress";
 export { Reveal, Stagger, StaggerItem, Parallax, Counter, Magnetic } from "./Motion";
+export { default as StoryStudentCards } from "./StoryStudentCards";
+export { default as StoryContentContainer } from "./StoryContentContainer";

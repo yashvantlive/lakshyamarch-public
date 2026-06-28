@@ -209,8 +209,8 @@ export default function SlidingTicker() {
               <polygon points="50,22 92,34 50,46 8,34" fill="white" stroke="white" strokeWidth="1" strokeLinejoin="round" />
               <path d="M32,39.5 v6 c0,5 9,8 18,8 s18,-3 18,-8 v-6" fill="white" />
               <circle cx="50" cy="34" r="2.5" fill="#500a15" stroke="white" strokeWidth="1" />
-              <path d="M50,34 C64,34 76,42 76,52 L76,64" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
-              <polygon points="73,64 79,64 76,74" fill="white" />
+              <path d="M50,34 C36,34 24,42 24,52 L24,64" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
+              <polygon points="21,64 27,64 24,74" fill="white" />
             </g>
           </g>
         </svg>
@@ -299,8 +299,8 @@ export default function SlidingTicker() {
                   <polygon points="50,4 82,11 50,18 18,11" fill="white" stroke="white" strokeWidth="1" strokeLinejoin="round"/>
                   <path d="M38,13 v3 c0,3 5,5 12,5 s12,-2 12,-5 v-3" fill="white" stroke="white" strokeWidth="1"/>
                   <circle cx="50" cy="11" r="1.5" fill="#500a15" stroke="white" strokeWidth="1"/>
-                  <path d="M50,11 L68,16 L68,26" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <polygon points="66,26 70,26 68,31" fill="white"/>
+                  <path d="M50,11 L32,16 L32,26" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <polygon points="30,26 34,26 32,31" fill="white"/>
                 </g>
                 
                 {/* Student Body Group - Bobs up and down when jumping (1.5x Thicker, matches running state perfectly) */}

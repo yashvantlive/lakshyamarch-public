@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import PublicNavbar from "@/components/public/PublicNavbar";
 import PublicFooter from "@/components/public/PublicFooter";
-import { INSTITUTE, RESULTS_NEET, RESULTS_JEE, whatsappLink } from "@/lib/siteData";
+import { INSTITUTE, whatsappLink } from "@/lib/siteData";
+import { RESULTS_NEET, RESULTS_JEE } from "@/lib/studentData";
 import {
   Trophy, Users, BarChart3, Handshake, ShieldCheck, CalendarDays, Stethoscope, Cpu, BookOpen, Megaphone,
 } from "lucide-react";

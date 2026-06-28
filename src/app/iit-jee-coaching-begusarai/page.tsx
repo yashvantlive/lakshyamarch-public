@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import PublicNavbar from "@/components/public/PublicNavbar";
 import PublicFooter from "@/components/public/PublicFooter";
 
-import { INSTITUTE, FACULTY_COACHING, RESULTS_JEE, whatsappLink } from "@/lib/siteData";
+import { INSTITUTE, FACULTY_COACHING, whatsappLink } from "@/lib/siteData";
+import { RESULTS_JEE } from "@/lib/studentData";
 import {
   Trophy, CheckCircle2, Star, Users, BookOpen, Target, Zap, Clock,
   MessageCircle, GraduationCap, TrendingUp, Award,

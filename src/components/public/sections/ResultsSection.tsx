@@ -4,7 +4,7 @@ import React from "react";
 import { Trophy } from "lucide-react";
 import { SectionHeader, ResultsShowcase, Reveal, Button } from "@/components/brand";
 import type { ResultStudent } from "@/components/brand";
-import { RESULTS_NEET, RESULTS_JEE, RESULTS_BOARD } from "@/lib/siteData";
+import { RESULTS_NEET, RESULTS_JEE, RESULTS_BOARD } from "@/lib/studentData";
 import { layout } from "@/design-system/spacing";
 
 export default function ResultsSection() {

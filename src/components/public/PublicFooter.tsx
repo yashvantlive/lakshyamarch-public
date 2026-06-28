@@ -25,6 +25,7 @@ const NAV_COLUMNS = [
       { label: "Results", href: "/results" },
       { label: "Success Stories", href: "/success-stories" },
       { label: "Blog", href: "/blog" },
+      { label: "NMTC Exam Center", href: "/nmtc" },
     ],
   },
   {
