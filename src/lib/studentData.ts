@@ -95,6 +95,19 @@ export const RESULTS_NEET: NeetResult[] = [
     "badge": null
   },
   {
+    "id": "neet-2025-009",
+    "year": 2025,
+    "name": "Ariba",
+    "score": "509/720",
+    "marks": 509,
+    "fullMarks": 720,
+    "air": null,
+    "college": "GDCH, Nalanda (BDS)",
+    "image": "/images/students/coaching/neet/ariba.webp",
+    "isTopper": false,
+    "badge": null
+  },
+  {
     "id": "neet-2025-005",
     "year": 2025,
     "name": "Ranjita Ranjan",
@@ -104,6 +117,19 @@ export const RESULTS_NEET: NeetResult[] = [
     "air": null,
     "college": "NMCH, Patna",
     "image": "/images/students/coaching/neet/ranjita.webp",
+    "isTopper": false,
+    "badge": null
+  },
+  {
+    "id": "neet-2025-010",
+    "year": 2025,
+    "name": "Nidhi",
+    "score": null,
+    "marks": null,
+    "fullMarks": 720,
+    "air": null,
+    "college": "AIIMS Raipur (Nursing)",
+    "image": "",
     "isTopper": false,
     "badge": null
   },
